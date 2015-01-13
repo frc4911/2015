@@ -23,8 +23,6 @@ import edu.wpi.first.wpilibj.CounterBase.EncodingType;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
-
-//Payton
 public class Robot extends IterativeRobot {
 	RobotDrive myRobot;
 	Joystick stick1;
@@ -161,6 +159,7 @@ public class Robot extends IterativeRobot {
     	*/
     }
     
+    
     /**
      * This function is called once each time the robot enters tele-operated mode
      */
@@ -173,6 +172,9 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
     	myRobot.tankDrive(stick1.getRawAxis(1), stick2.getRawAxis(1));
+    	
+    	servo1.set( gyro1.getRate() );
+    	System.out.println(Timer.getFPGATimestamp() + "\t\t" + gyro1.getRate());
     }
     
     /**
