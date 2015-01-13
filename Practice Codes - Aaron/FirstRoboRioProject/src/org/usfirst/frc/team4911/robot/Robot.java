@@ -24,7 +24,7 @@ import edu.wpi.first.wpilibj.CounterBase.EncodingType;
  * directory.
  */
 
-//payton
+//Payton
 public class Robot extends IterativeRobot {
 	RobotDrive myRobot;
 	Joystick stick1;
