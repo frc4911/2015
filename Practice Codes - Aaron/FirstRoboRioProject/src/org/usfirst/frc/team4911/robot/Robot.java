@@ -23,6 +23,8 @@ import edu.wpi.first.wpilibj.CounterBase.EncodingType;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
+
+//payton
 public class Robot extends IterativeRobot {
 	RobotDrive myRobot;
 	Joystick stick1;
