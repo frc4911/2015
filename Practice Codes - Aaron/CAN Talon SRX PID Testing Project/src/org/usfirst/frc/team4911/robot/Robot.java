@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 
 /**
  * This is a short sample program demonstrating how to use the Talon SRX over
@@ -29,7 +30,8 @@ public class Robot extends SampleRobot {
 	PrintStream output;
 	AnalogPotentiometer pot1;
 	
-
+	BuiltInAccelerometer accel;
+	
   public Robot() {
 	  /*
       motor = new CANTalon(1); // Initialize the CanTalonSRX on device 1.
@@ -90,13 +92,15 @@ public class Robot extends SampleRobot {
       rightRear.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
       rightRear.changeControlMode(CANTalon.ControlMode.PercentVbus);
       rightRear.setPID(1.0, 0.0, 0.0);
+      
+      accel = new BuiltInAccelerometer();
 	  
   }
 
   public void operatorControl() {
 	  try {
-			output = new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/lvuser/natinst/autoLog.txt")));
-			System.setOut(output);
+			output = new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/lvuser/natinst/teleLog.txt")));
+			//System.setOut(output);
 		} catch (FileNotFoundException e) {
 			
 		}
@@ -114,8 +118,14 @@ public class Robot extends SampleRobot {
     	leftFront.set(stick1.getRawAxis(1));
     	leftRear.set(stick1.getRawAxis(1));
 
-    	rightFront.set(stick2.getRawAxis(1));
-    	rightRear.set(stick2.getRawAxis(1));
+    	rightFront.set(-stick2.getRawAxis(1));
+    	rightRear.set(-stick2.getRawAxis(1));
+    	
+    	System.out.println("--------------------");
+    	System.out.println("X: " + accel.getX());
+    	System.out.println("Y: " + accel.getY());
+    	System.out.println("Z: " + accel.getZ());
+    	Timer.delay(0.05);
       
     }
   
@@ -123,7 +133,7 @@ public class Robot extends SampleRobot {
   public void autonomous(){
 	  try {
 			output = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File("/home/lvuser/natinst/autoLog.txt"))));
-			System.setOut(output);
+			//System.setOut(output);
 		} catch (FileNotFoundException e) {
 			
 		}
@@ -136,9 +146,10 @@ public class Robot extends SampleRobot {
 	  }
   }
   public void disabled(){
-	  if(output != null) {
+	  /*if(output != null) {
   		System.out.println("Time: " + Timer.getFPGATimestamp());
   		output.close();
-  	}
+  	}*/
   }
+  
 }
