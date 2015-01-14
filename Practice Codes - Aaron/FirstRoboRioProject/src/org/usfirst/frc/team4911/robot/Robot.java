@@ -3,8 +3,8 @@ package org.usfirst.frc.team4911.robot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 import java.util.*;
-
 import java.io.*;
+
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Gyro;
@@ -37,6 +37,7 @@ public class Robot extends IterativeRobot {
 	
 	PrintStream output;
 	int fileNum;
+	double startTime;
 	
 	
 	//DRIVE SYSTEM CONSTANTS
@@ -70,20 +71,18 @@ public class Robot extends IterativeRobot {
         servo1 = new Servo(4);
         gyro1 = new Gyro(0);
         pot1 = new AnalogPotentiometer(1);
-        
-        fileNum = 0;
-        try{
-        	output = new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/lvuser/natinst/log" + fileNum + ".txt")));
-    		System.setOut(output);
-        } catch (Exception e){
-        	
-        }
     }
     
     /**
      * This function is run once each time the robot enters autonomous mode
      */
     public void autonomousInit() {
+    	try {
+			output = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File("/home/lvuser/natinst/autoLog.txt"))));
+			System.setOut(output);
+		} catch (FileNotFoundException e) {
+			
+		}
     	autoLoopCounter = 0;
     	//driveStraight(60.0);
     	gyro1.reset();
@@ -164,7 +163,12 @@ public class Robot extends IterativeRobot {
      * This function is called once each time the robot enters tele-operated mode
      */
     public void teleopInit(){    	
-        
+        try {
+			output = new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/lvuser/natinst/log" + fileNum + ".txt")));
+			System.setOut(output);
+		} catch (FileNotFoundException e) {
+			
+		}
     }
 
     /**
@@ -188,15 +192,11 @@ public class Robot extends IterativeRobot {
     	gyro1.reset();
     	LeftEncoder.reset();
     	RightEncoder.reset();
-    	output.close();
-    	fileNum++;
-    	try {
-        	output = new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/lvuser/natinst/log" + fileNum + ".txt")));
-        	System.setOut(output);
-        	System.out.println("\t" + Timer.getFPGATimestamp() + " Seconds:");
-        	System.out.println("===========================================");
-        } catch (Exception e){
-        }
+    	if(output != null) {
+    		System.out.println("Time: " + Timer.getFPGATimestamp());
+    		output.close();
+    	}
+    	
     }
     public void driveStraight(double distance){    	
     	double curDist = 0.0;
