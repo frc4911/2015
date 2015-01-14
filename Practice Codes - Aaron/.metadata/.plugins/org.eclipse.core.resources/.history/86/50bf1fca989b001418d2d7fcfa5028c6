@@ -26,7 +26,7 @@ public class Robot extends SampleRobot {
 	Joystick stick1;
 	Joystick stick2;
 
-	PrintStream output;
+
 	AnalogPotentiometer pot1;
 	
 
@@ -95,7 +95,7 @@ public class Robot extends SampleRobot {
 
   public void operatorControl() {
 	  try {
-			output = new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/lvuser/natinst/autoLog.txt")));
+			output = new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/lvuser/natinst/log" + fileNum + ".txt")));
 			System.setOut(output);
 		} catch (FileNotFoundException e) {
 			
