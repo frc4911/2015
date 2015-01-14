@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
-import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -35,8 +34,6 @@ public class Robot extends IterativeRobot {
 	Gyro gyro1;
 	Servo servo1;
 	AnalogPotentiometer pot1;
-	
-	BuiltInAccelerometer accel = new BuiltInAccelerometer();
 	
 	PrintStream output;
 	int fileNum;
