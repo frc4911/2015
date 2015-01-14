@@ -1,7 +1,6 @@
 package org.usfirst.frc.team4911.robot;
 
-import edu.wpi.first.wpilibj.Gyro;
-
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.Timer;
@@ -21,7 +20,8 @@ public class Robot extends SampleRobot {
 	Joystick stick1;
 	Joystick stick2;
 
-	Gyro gyro1;
+
+	AnalogPotentiometer pot1;
 	
 
   public Robot() {
@@ -59,29 +59,30 @@ public class Robot extends SampleRobot {
       //   speeds.
       motor.setPID(1.0, 0.0, 0.0);
       */
-	  
+
+      pot1 = new AnalogPotentiometer(1);
 	  
 	  stick1 = new Joystick(0);
 	  stick2 = new Joystick(1);
 	  
 	  leftFront = new CANTalon(0); // Initialize the CanTalonSRX on device 1.
       leftFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-      leftFront.changeControlMode(CANTalon.ControlMode.Position);
+      leftFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
       leftFront.setPID(1.0, 0.0, 0.0);
 	  
       leftRear = new CANTalon(2); // Initialize the CanTalonSRX on device 1.
       leftRear.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-      leftRear.changeControlMode(CANTalon.ControlMode.Position);
+      leftRear.changeControlMode(CANTalon.ControlMode.PercentVbus);
       leftRear.setPID(1.0, 0.0, 0.0);
 	  
       rightFront = new CANTalon(1); // Initialize the CanTalonSRX on device 1.
       rightFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-      rightFront.changeControlMode(CANTalon.ControlMode.Position);
+      rightFront.changeControlMode(CANTalon.ControlMode.Speed);
       rightFront.setPID(1.0, 0.0, 0.0);
 	  
       rightRear = new CANTalon(3); // Initialize the CanTalonSRX on device 1.
       rightRear.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-      rightRear.changeControlMode(CANTalon.ControlMode.Position);
+      rightRear.changeControlMode(CANTalon.ControlMode.PercentVbus);
       rightRear.setPID(1.0, 0.0, 0.0);
 	  
   }
@@ -106,5 +107,13 @@ public class Robot extends SampleRobot {
       
     }
   
+  }
+  public void autonomous(){
+	  double temp = 0.0;
+	  while(isAutonomous() && isEnabled()){
+		  System.out.println(Timer.getFPGATimestamp() + "\t" + temp);
+		  rightFront.set(temp++);
+		  Timer.delay(2.0);
+	  }
   }
 }
