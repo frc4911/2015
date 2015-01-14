@@ -127,6 +127,7 @@ public class Robot extends IterativeRobot {
     	prevPotVal = potVal;
     	
     	
+    	
     	/*
     	double potValDeg;
     	double servoVoltage = 0.55;
