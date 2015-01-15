@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.BuiltInAccelerometer;
  * CAN to run a closed-loop PID controller with an analog potentiometer.
  */
 public class Robot extends SampleRobot {
-
+//Jack Holt has Connected to GitHub
 	CANTalon leftFront;
 	CANTalon leftRear;
 	CANTalon rightFront;
