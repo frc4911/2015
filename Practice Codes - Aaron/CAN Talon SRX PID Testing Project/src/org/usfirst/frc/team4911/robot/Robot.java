@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 
+
 /**
  * This is a short sample program demonstrating how to use the Talon SRX over
  * CAN to run a closed-loop PID controller with an analog potentiometer.
@@ -31,6 +32,10 @@ public class Robot extends SampleRobot {
 	AnalogPotentiometer pot1;
 	
 	BuiltInAccelerometer accel;
+	
+	SensorThread sensor;
+	
+	static boolean teleopRunning;
 	
   public Robot() {
 	  /*
@@ -95,15 +100,20 @@ public class Robot extends SampleRobot {
       
       accel = new BuiltInAccelerometer();
 	  
+      sensor = new SensorThread(accel);
+      
+      teleopRunning = false;
   }
 
   public void operatorControl() {
 	  try {
 			output = new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/lvuser/natinst/teleLog.txt")));
-			//System.setOut(output);
+			System.setOut(output);
 		} catch (FileNotFoundException e) {
 			
 		}
+	  teleopRunning = true;
+	  sensor.start();
 	  
     while (isOperatorControl() && isEnabled()) {
       
@@ -122,9 +132,9 @@ public class Robot extends SampleRobot {
     	rightRear.set(-stick2.getRawAxis(1));
     	
     	System.out.println("--------------------");
-    	System.out.println("X: " + accel.getX());
-    	System.out.println("Y: " + accel.getY());
-    	System.out.println("Z: " + accel.getZ());
+    	System.out.println("X: " + sensor.accelX + "\t\t" + "RealX: " + accel.getX());
+    	System.out.println("Y: " + sensor.accelY + "\t\t" + "RealY: " + accel.getY());
+    	System.out.println("Z: " + sensor.accelZ + "\t\t" + "RealZ: " + accel.getZ());
     	Timer.delay(0.05);
       
     }
@@ -144,8 +154,10 @@ public class Robot extends SampleRobot {
 		  rightFront.set(temp++);
 		  Timer.delay(2.0);
 	  }
+	  
   }
   public void disabled(){
+	  teleopRunning = false;
 	  /*if(output != null) {
   		System.out.println("Time: " + Timer.getFPGATimestamp());
   		output.close();
