@@ -169,7 +169,7 @@ public class Robot extends IterativeRobot {
     public void teleopInit(){    	
         try {
 			output = new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/lvuser/natinst/log" + fileNum + ".txt")));
-			System.setOut(output);
+			//System.setOut(output);
 		} catch (FileNotFoundException e) {
 			
 		}
@@ -181,7 +181,7 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
     	myRobot.tankDrive(stick1.getRawAxis(1), stick2.getRawAxis(1));
     	
-    	servo1.set( gyro1.getRate() );
+    	//servo1.set( gyro1.getRate() );
     	System.out.println(Timer.getFPGATimestamp() + "\t\t" + gyro1.getRate());
     }
     
