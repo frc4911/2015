@@ -4,4 +4,5 @@
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.Robot"/>
 <fullyQualifiedTypeName name="java.io.PrintStream"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.SampleRobot"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.DriverStation"/>
 </qualifiedTypeNameHistroy>

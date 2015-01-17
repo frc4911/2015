@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 
+import edu.wpi.first.wpilibj.DriverStation;
+
 
 /**
  * This is a short sample program demonstrating how to use the Talon SRX over
@@ -35,7 +37,14 @@ public class Robot extends SampleRobot {
 	
 	SensorThread sensor;
 	
+	
+	enum DebugType {
+		FULL, SIMPLE, NONE
+	}
+	
 	static boolean teleopRunning;
+	
+	DebugType debug;
 	
   public Robot() {
 	  /*
@@ -99,8 +108,11 @@ public class Robot extends SampleRobot {
       rightRear.setPID(1.0, 0.0, 0.0);
       
       accel = new BuiltInAccelerometer();
+      
+      debug = DebugType.FULL;
 	  
-      sensor = new SensorThread(accel);
+      //sensor = new SensorThread(accel);
+      //sensor.setPriority(9);
       
       teleopRunning = false;
   }
@@ -131,10 +143,10 @@ public class Robot extends SampleRobot {
     	rightFront.set(-stick2.getRawAxis(1));
     	rightRear.set(-stick2.getRawAxis(1));
     	
-    	System.out.println("--------------------");
-    	System.out.println("X: " + sensor.accelX + "\t\t" + "RealX: " + accel.getX());
-    	System.out.println("Y: " + sensor.accelY + "\t\t" + "RealY: " + accel.getY());
-    	System.out.println("Z: " + sensor.accelZ + "\t\t" + "RealZ: " + accel.getZ());
+    	/*System.out.println("--------------------");
+    	System.out.println("X: " + sensor.accelX);// + "\t\t" + "RealX: " + accel.getX());
+    	System.out.println("Y: " + sensor.accelY);// + "\t\t" + "RealY: " + accel.getY());
+    	System.out.println("Z: " + sensor.accelZ);// + "\t\t" + "RealZ: " + accel.getZ());*/
     	Timer.delay(0.05);
       
     }
@@ -158,10 +170,34 @@ public class Robot extends SampleRobot {
   }
   public void disabled(){
 	  teleopRunning = false;
-	  /*if(output != null) {
+	  sensor = new SensorThread(accel);  
+	  if(output != null) {
+		System.out.println("Thread State: " + sensor.getState());
   		System.out.println("Time: " + Timer.getFPGATimestamp());
   		output.close();
-  	}*/
+  	}
   }
   
+  public void print() {
+	  if(debug == DebugType.NONE) {
+		  return;
+	  }
+	  printBorder();
+	  switch(debug) {
+	  	case FULL:
+	  		System.out.println("RIOAccel X: " + sensor.accelX);
+	  		System.out.println("RIOAccel Y: " + sensor.accelY);
+	  		System.out.println("RIOAccel Z: " + sensor.accelZ);
+	  		System.out.println("Thread State: " + sensor.getState());
+	  		
+	  	case SIMPLE:
+	  }
+	  System.out.println("Voltage: " + DriverStation.getInstance().getBatteryVoltage());
+	  printBorder();
+	  
+  }
+  
+  public void printBorder() {
+	  System.out.println("===================");
+  }
 }
