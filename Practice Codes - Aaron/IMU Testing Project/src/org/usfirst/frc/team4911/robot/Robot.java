@@ -2,6 +2,7 @@ package org.usfirst.frc.team4911.robot;
 
 
 import java.io.BufferedOutputStream;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
@@ -93,7 +94,7 @@ public class Robot extends SampleRobot {
   public void operatorControl() {
 	  try {
 			output = new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/lvuser/natinst/teleLog.txt")));
-			//System.setOut(output);
+			System.setOut(output);
 		} catch (FileNotFoundException e) {
 			
 		}  
@@ -139,6 +140,8 @@ public class Robot extends SampleRobot {
       SmartDashboard.putBoolean(  "IMU_IsMoving",         imu.isMoving());
       SmartDashboard.putNumber(   "IMU_Temp_C",           imu.getTempC());
       */
+      System.out.println("===============================================================");
+      System.out.println("TIMERt:" + Timer.getFPGATimestamp());
       System.out.println("IMU_Connected\t: " + imu.isConnected());
       System.out.println("IMU_IsCalibrating\t: " + imu.isCalibrating());
       System.out.println("IMU_Yaw\t: " + imu.getYaw());
@@ -152,6 +155,7 @@ public class Robot extends SampleRobot {
       System.out.println("IMU_Accel_Y\t: "+ imu.getWorldLinearAccelY());
       System.out.println("IMU_IsMoving\t: "+ imu.isMoving());
       System.out.println("IMU_Temp_C\t: "+ imu.getTempC());
+      System.out.println("===============================================================");
       
       //Timer.delay(0.2);
     }
