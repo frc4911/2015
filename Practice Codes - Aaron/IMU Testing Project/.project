@@ -15,4 +15,11 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>nav6</name>
+			<type>2</type>
+			<location>C:/Users/AaronBae/sunspotfrcsdk/lib/nav6</location>
+		</link>
+	</linkedResources>
 </projectDescription>
