@@ -1,0 +1,39 @@
+package org.usfirst.frc.team4911.robot.commands;
+
+import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team4911.robot.Robot;
+import org.usfirst.frc.team4911.robot.subsystems.MecanumDriveSystem;
+import org.usfirst.frc.team4911.robot.subsystems.SensorSystem;
+
+
+public class DriveStraight extends Command {
+	private MecanumDriveSystem mecanumDriveSystem = Robot.mecanumDriveSystem;
+	private SensorSystem sensorSystem = Robot.sensorSystem;
+	
+	private double kp;
+    private double goalDistance;
+    private double error;
+    private double power;
+	
+    public DriveStraight(double goal) {
+    	requires(mecanumDriveSystem);
+    	requires(sensorSystem);
+    }
+
+    protected void initialize() {
+        mecanumDriveSystem.stop();
+    }
+
+    protected void execute() {
+    }
+
+    protected boolean isFinished() {
+        return false;
+    }
+
+    protected void end() {
+    }
+
+    protected void interrupted() {
+    }
+}

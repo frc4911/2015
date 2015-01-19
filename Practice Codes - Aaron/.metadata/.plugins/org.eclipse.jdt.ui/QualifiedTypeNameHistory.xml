@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.RobotMap"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CANTalon"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.Robot"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Encoder"/>
+</qualifiedTypeNameHistroy>

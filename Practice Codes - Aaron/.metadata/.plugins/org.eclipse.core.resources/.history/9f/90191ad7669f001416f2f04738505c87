@@ -1,0 +1,20 @@
+package org.usfirst.frc.team4911.robot.subsystems;
+
+import org.usfirst.frc.team4911.robot.RobotMap;
+import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.command.Subsystem;
+
+public class MecanumDriveSystem extends Subsystem {
+	private CANTalon frontLeft = RobotMap.leftFront;
+	private CANTalon rearLeft = RobotMap.leftRear;
+	private CANTalon frontRight = RobotMap.rightFront;
+	private CANTalon rearRight = RobotMap.rightRear;
+	
+	
+	@Override
+	protected void initDefaultCommand() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

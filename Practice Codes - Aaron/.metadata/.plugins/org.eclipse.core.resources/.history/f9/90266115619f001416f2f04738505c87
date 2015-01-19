@@ -1,0 +1,23 @@
+package org.usfirst.frc.team4911.robot;
+
+import edu.wpi.first.wpilibj.Joystick;
+
+public class OI {
+    public Joystick rightJoy;
+    public Joystick leftJoy;
+
+    public OI() {
+        rightJoy = new Joystick(RobotConstants.JOYSTICK_RIGHT);
+        leftJoy = new Joystick(RobotConstants.JOYSTICK_LEFT);
+        
+    }
+    
+    public Joystick getLeftJoy(){
+    	return leftJoy;
+    }
+    
+    public Joystick getRightJoy(){
+    	return leftJoy;
+    }
+}
+

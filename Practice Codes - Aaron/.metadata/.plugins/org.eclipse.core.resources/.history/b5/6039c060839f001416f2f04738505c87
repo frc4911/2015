@@ -1,0 +1,43 @@
+package org.usfirst.frc.team4911.robot;
+
+import edu.wpi.first.wpilibj.Joystick;
+
+public class OI {
+    public Joystick rightJoy;
+    public Joystick leftJoy;
+
+    public OI() {
+        rightJoy = new Joystick(RobotConstants.JOYSTICK_RIGHT);
+        leftJoy = new Joystick(RobotConstants.JOYSTICK_LEFT);
+        
+        /*
+        rightButton1 = new JoystickButton(rightJoy, 1);
+        rightButton1.whenPressed(new Turn90Clockwise());
+    	*/
+    }
+    
+    public Joystick getLeftJoy(){
+    	return leftJoy;
+    }
+    
+    public Joystick getRightJoy(){
+    	return leftJoy;
+    }
+    
+    public double getLeftJoyX(){
+    	return leftJoy.getRawAxis(0);
+    }
+    
+    public double getLeftJoyY(){
+    	return leftJoy.getRawAxis(1);
+    }
+    
+    public double getRightJoyX(){
+    	return leftJoy.getRawAxis(0);
+    }
+    
+    public double getRightJoyY(){
+    	return leftJoy.getRawAxis(1);
+    }
+}
+
