@@ -1,10 +1,13 @@
 package org.usfirst.frc.team4911.robot;
 
+import java.io.FileNotFoundException;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+
 import org.usfirst.frc.team4911.robot.OI;
 import org.usfirst.frc.team4911.robot.RobotMap;
 import org.usfirst.frc.team4911.robot.commands.Autonomous;
@@ -20,10 +23,12 @@ public class Robot extends IterativeRobot {
     public static SensorSystem sensorSystem;
     public static PrintSystem printSystem;
     
+    
     public void robotInit() {
     	RobotMap.init();
-    	
+
     	printSystem = new PrintSystem();
+
     	mecanumDriveSystem = new MecanumDriveSystem();
     	sensorSystem = new SensorSystem();
         oi = new OI();
@@ -40,6 +45,7 @@ public class Robot extends IterativeRobot {
     	if(autonomousCommand.isCanceled()) {
     		autonomousCommand = new Autonomous();
     	}
+    	printSystem.createNewFile();
         autonomousCommand.start(); 
     }
 
@@ -54,6 +60,7 @@ public class Robot extends IterativeRobot {
     	if(teleOp.isCanceled()){
     		teleOp = new OperatorDrive();
     	}
+    	printSystem.createNewFile();
     	teleOp.start();
     }
 
@@ -65,6 +72,7 @@ public class Robot extends IterativeRobot {
         //LiveWindow.run();
     }
     public void disabledInit(){
+    	printSystem.closeOutput();
         autonomousCommand = new Autonomous();
         teleOp = new OperatorDrive();
         Scheduler.getInstance().removeAll();        

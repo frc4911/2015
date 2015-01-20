@@ -4,7 +4,11 @@
 	<classpathentry kind="src" path="nav6"/>
 	<classpathentry kind="var" path="wpilib" sourcepath="wpilib.sources"/>
 	<classpathentry kind="var" path="networktables" sourcepath="networktables.sources"/>
-	<classpathentry kind="lib" path="C:/Users/AaronBae/sunspotfrcsdk/lib/nav6.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/pratz_000/Desktop/nav6/crio/java/bin/nav6.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/C:/Users/pratz_000/Desktop/nav6/crio/java/doc/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
