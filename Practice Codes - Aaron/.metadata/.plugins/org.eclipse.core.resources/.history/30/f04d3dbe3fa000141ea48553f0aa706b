@@ -1,0 +1,5 @@
+package edu.wpi.first.wpilibj.visa;
+
+public class VisaException {
+
+}
