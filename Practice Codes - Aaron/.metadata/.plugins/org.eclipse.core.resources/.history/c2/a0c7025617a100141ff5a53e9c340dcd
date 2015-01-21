@@ -147,8 +147,7 @@ public class Robot extends SampleRobot {
     	System.out.println("X: " + sensor.accelX);// + "\t\t" + "RealX: " + accel.getX());
     	System.out.println("Y: " + sensor.accelY);// + "\t\t" + "RealY: " + accel.getY());
     	System.out.println("Z: " + sensor.accelZ);// + "\t\t" + "RealZ: " + accel.getZ());*/
-    	System.out.println("Encoder Positions:/t" + leftFront.getEncPosition() + " ,\t" + rightFront.getEncPosition());
-    	System.out.println("Encoder Velocity:/t" + leftFront.getEncVelocity() + " ,\t" + rightFront.getEncVelocity());
+    	System.out.println("Encoder Positions:/t" + leftFront.getEncPosition() + rightFront.getEncPosition());
     	Timer.delay(0.05);
       
     }
