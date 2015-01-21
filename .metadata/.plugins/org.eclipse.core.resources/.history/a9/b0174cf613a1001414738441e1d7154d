@@ -12,7 +12,7 @@ public class Autonomous extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.printSystem.print("Autonomous");
+		Robot.printSystem.print();
 	}
 
 	@Override

@@ -24,7 +24,7 @@ public class OperatorDrive extends Command {
 	@Override
 	protected void execute() {
 		mecanumDriveSystem.drive(oi.getMainJoyX(), oi.getMainJoyY(), oi.getRotationJoyY());
-		Robot.printSystem.print("Teleop");
+		Robot.printSystem.print();
 	}
 
 	@Override
