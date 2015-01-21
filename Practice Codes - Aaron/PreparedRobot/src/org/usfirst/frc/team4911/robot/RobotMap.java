@@ -1,5 +1,8 @@
 package org.usfirst.frc.team4911.robot;
 
+
+import org.usfirst.frc.team4911.robot.subsystems.PrintSystem;
+
 import edu.wpi.first.wpilibj.CANTalon;
 //import edu.wpi.first.wpilibj.vision.AxisCamera;
 //import java.net.Inet4Address;
@@ -17,6 +20,8 @@ public class RobotMap {
 	
 	
 	public static void init(){
+		
+			Robot.printSystem.print("initializing");
 			
 			leftFront = new CANTalon(0); // Initialize the CanTalonSRX on device 1.
 			leftFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
@@ -37,25 +42,10 @@ public class RobotMap {
 	      	rightRear.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 	      	rightRear.changeControlMode(CANTalon.ControlMode.PercentVbus);
 	      	rightRear.setPID(1.0, 0.0, 0.0);
-	      	      
-<<<<<<< HEAD
-	      	/*
-	      	leftEncoder = new Encoder(RobotConstants.LEFT_ENCODER_PORT_A, RobotConstants.LEFT_ENCODER_PORT_B, false, EncodingType.k4X);
-	      	leftEncoder.setDistancePerPulse(RobotConstants.ENCODER_DISTANCE_PER_PULSE);
-	      	leftEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
-	      	leftEncoder.start();
+	      	     
+	      	
 	      
-	      	rightEncoder = new Encoder(RobotConstants.RIGHT_ENCODER_PORT_A, RobotConstants.RIGHT_ENCODER_PORT_B, false, EncodingType.k4X);
-	      	rightEncoder.setDistancePerPulse(RobotConstants.ENCODER_DISTANCE_PER_PULSE);
-	      	rightEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
-	      	rightEncoder.start();
-=======
-	      /*	      
-	      //Camera IP cannot be part of RobotMap (Static), because it is Dynamic
-	      camera = new AxisCamera(Inet4Address.getLocalHost().getHostAddress());
->>>>>>> b7e3b5d7bf7b57410627937644cb4340906447ad
-	      
-	      	//Camera IP cannot be part of RobotMap (Static), because it is Dynamic
+	      	/*Camera IP cannot be part of RobotMap (Static), because it is Dynamic
 	      	camera = new AxisCamera(Inet4Address.getLocalHost().getHostAddress());
 	      
 	      	ultraSonicSensor = new AnalogChannel(RobotConstants.ULTRASONIC_SENSOR_PORT);
