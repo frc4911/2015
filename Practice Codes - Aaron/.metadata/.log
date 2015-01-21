@@ -6595,3 +6595,421 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 17:14:28.831
 !MESSAGE Installedjava
+!SESSION 2015-01-19 17:17:29.593 -----------------------------------------------
+eclipse.buildId=4.4.1.M20140925-0400
+java.version=1.8.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.m2e.logback.configuration 2 0 2015-01-19 17:17:31.046
+!MESSAGE Exception while setting up logging:org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+!STACK 0
+java.lang.ClassCastException: org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+	at org.eclipse.m2e.logback.configuration.LogHelper.logJavaProperties(LogHelper.java:26)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.loadConfiguration(LogPlugin.java:189)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.configureLogback(LogPlugin.java:144)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.access$2(LogPlugin.java:107)
+	at org.eclipse.m2e.logback.configuration.LogPlugin$1.run(LogPlugin.java:62)
+	at java.util.TimerThread.mainLoop(Unknown Source)
+	at java.util.TimerThread.run(Unknown Source)
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-01-19 17:17:34.097
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\AaronBae'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 17:17:34.528
+!MESSAGE Installing tools if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 17:17:34.532
+!MESSAGE Installedtools
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 17:17:34.535
+!MESSAGE Installing java if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 17:17:34.540
+!MESSAGE Installedjava
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 17:19:27.043
+!MESSAGE [edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@1dc2c13c, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@579ee82, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@127320df, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@6c3884f5, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@6778636f, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@2dbf8cfc, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@26c1244c, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@e76134d, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@2a317af7, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@7b38db21, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@54f4734e]
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 17:19:27.046
+!MESSAGE [edu.wpi.first.wpilib.plugins.core.wizards.Tag@6a26eee6, edu.wpi.first.wpilib.plugins.core.wizards.Tag@4be1c797, edu.wpi.first.wpilib.plugins.core.wizards.Tag@76bdfc19, edu.wpi.first.wpilib.plugins.core.wizards.Tag@1248f83, edu.wpi.first.wpilib.plugins.core.wizards.Tag@5c28009f, edu.wpi.first.wpilib.plugins.core.wizards.Tag@19b0a9f2, edu.wpi.first.wpilib.plugins.core.wizards.Tag@f4c3e9, edu.wpi.first.wpilib.plugins.core.wizards.Tag@25890ce3, edu.wpi.first.wpilib.plugins.core.wizards.Tag@39b9dc35, edu.wpi.first.wpilib.plugins.core.wizards.Tag@25da1dc9, edu.wpi.first.wpilib.plugins.core.wizards.Tag@3976910, edu.wpi.first.wpilib.plugins.core.wizards.Tag@6e149395, edu.wpi.first.wpilib.plugins.core.wizards.Tag@19bbb216, edu.wpi.first.wpilib.plugins.core.wizards.Tag@6cfac0bd, edu.wpi.first.wpilib.plugins.core.wizards.Tag@549debdb]
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 17:33:24.179
+!MESSAGE Running ant file: C:\Users\AaronBae\GitHub\2015\Practice Codes - Aaron\IMU Trial 3\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 17:33:24.181
+!MESSAGE Targets: deploy, Mode: run
+!SESSION 2015-01-19 17:34:41.413 -----------------------------------------------
+eclipse.buildId=4.4.1.M20140925-0400
+java.version=1.8.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.m2e.logback.configuration 2 0 2015-01-19 17:34:42.956
+!MESSAGE Exception while setting up logging:org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+!STACK 0
+java.lang.ClassCastException: org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+	at org.eclipse.m2e.logback.configuration.LogHelper.logJavaProperties(LogHelper.java:26)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.loadConfiguration(LogPlugin.java:189)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.configureLogback(LogPlugin.java:144)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.access$2(LogPlugin.java:107)
+	at org.eclipse.m2e.logback.configuration.LogPlugin$1.run(LogPlugin.java:62)
+	at java.util.TimerThread.mainLoop(Unknown Source)
+	at java.util.TimerThread.run(Unknown Source)
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-01-19 17:34:47.550
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\AaronBae'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 17:34:48.019
+!MESSAGE Installing tools if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 17:34:48.025
+!MESSAGE Installedtools
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 17:34:48.029
+!MESSAGE Installing java if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 17:34:48.033
+!MESSAGE Installedjava
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 17:35:22.057
+!MESSAGE Running ant file: C:\Users\AaronBae\GitHub\2015\Practice Codes - Aaron\IMU Trial 3\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 17:35:22.060
+!MESSAGE Targets: deploy, Mode: run
+!SESSION 2015-01-19 18:21:32.967 -----------------------------------------------
+eclipse.buildId=4.4.1.M20140925-0400
+java.version=1.8.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2015-01-19 18:21:34.702
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.m2e.logback.configuration 2 0 2015-01-19 18:21:35.233
+!MESSAGE Exception while setting up logging:org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+!STACK 0
+java.lang.ClassCastException: org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+	at org.eclipse.m2e.logback.configuration.LogHelper.logJavaProperties(LogHelper.java:26)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.loadConfiguration(LogPlugin.java:189)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.configureLogback(LogPlugin.java:144)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.access$2(LogPlugin.java:107)
+	at org.eclipse.m2e.logback.configuration.LogPlugin$1.run(LogPlugin.java:62)
+	at java.util.TimerThread.mainLoop(Unknown Source)
+	at java.util.TimerThread.run(Unknown Source)
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-01-19 18:21:41.000
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\AaronBae'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 18:21:41.501
+!MESSAGE Installing tools if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 18:21:41.501
+!MESSAGE Installedtools
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 18:21:41.517
+!MESSAGE Installing java if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 18:21:41.517
+!MESSAGE Installedjava
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 18:25:13.405
+!MESSAGE Running ant file: C:\Users\AaronBae\GitHub\2015\Practice Codes - Aaron\IMU Trial 3\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 18:25:13.408
+!MESSAGE Targets: deploy, Mode: run
+!SESSION 2015-01-19 18:32:10.223 -----------------------------------------------
+eclipse.buildId=4.4.1.M20140925-0400
+java.version=1.8.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.m2e.logback.configuration 2 0 2015-01-19 18:32:11.679
+!MESSAGE Exception while setting up logging:org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+!STACK 0
+java.lang.ClassCastException: org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+	at org.eclipse.m2e.logback.configuration.LogHelper.logJavaProperties(LogHelper.java:26)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.loadConfiguration(LogPlugin.java:189)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.configureLogback(LogPlugin.java:144)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.access$2(LogPlugin.java:107)
+	at org.eclipse.m2e.logback.configuration.LogPlugin$1.run(LogPlugin.java:62)
+	at java.util.TimerThread.mainLoop(Unknown Source)
+	at java.util.TimerThread.run(Unknown Source)
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-01-19 18:32:16.145
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\AaronBae'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 18:32:16.579
+!MESSAGE Installing tools if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 18:32:16.583
+!MESSAGE Installedtools
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 18:32:16.587
+!MESSAGE Installing java if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 18:32:16.591
+!MESSAGE Installedjava
+
+!ENTRY org.eclipse.ui.intro 4 0 2015-01-19 18:44:39.558
+!MESSAGE C:\Program Files\Eclipse\WPILib Intro\sample.xml (The system cannot find the path specified)
+!STACK 0
+java.io.FileNotFoundException: C:\Program Files\Eclipse\WPILib Intro\sample.xml (The system cannot find the path specified)
+	at java.io.FileInputStream.open(Native Method)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at sun.net.www.protocol.file.FileURLConnection.connect(Unknown Source)
+	at sun.net.www.protocol.file.FileURLConnection.getInputStream(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLEntityManager.setupCurrentEntity(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLVersionDetector.determineDocVersion(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(Unknown Source)
+	at javax.xml.parsers.DocumentBuilder.parse(Unknown Source)
+	at org.eclipse.ui.internal.intro.impl.model.loader.IntroContentParser.parse(IntroContentParser.java:94)
+	at org.eclipse.ui.internal.intro.impl.model.loader.IntroContentParser.<init>(IntroContentParser.java:56)
+	at org.eclipse.ui.internal.intro.impl.model.IntroModelRoot.loadDOM(IntroModelRoot.java:885)
+	at org.eclipse.ui.internal.intro.impl.model.IntroModelRoot.processConfigExtension(IntroModelRoot.java:411)
+	at org.eclipse.ui.internal.intro.impl.model.IntroModelRoot.resolveConfigExtensions(IntroModelRoot.java:381)
+	at org.eclipse.ui.internal.intro.impl.model.IntroModelRoot.resolveChildren(IntroModelRoot.java:242)
+	at org.eclipse.ui.internal.intro.impl.model.AbstractIntroContainer.getChildren(AbstractIntroContainer.java:86)
+	at org.eclipse.ui.internal.intro.impl.model.IntroModelRoot.loadModel(IntroModelRoot.java:164)
+	at org.eclipse.ui.internal.intro.impl.model.loader.BaseExtensionPointManager.loadModel(BaseExtensionPointManager.java:95)
+	at org.eclipse.ui.internal.intro.impl.model.loader.ExtensionPointManager.getModel(ExtensionPointManager.java:89)
+	at org.eclipse.ui.internal.intro.impl.model.IntroSearchParticipant.getAllDocuments(IntroSearchParticipant.java:119)
+	at org.eclipse.help.internal.search.IndexingOperation.getAddedDocuments(IndexingOperation.java:388)
+	at org.eclipse.help.internal.search.IndexingOperation.execute(IndexingOperation.java:88)
+	at org.eclipse.help.internal.search.LocalSearchManager.updateIndex(LocalSearchManager.java:628)
+	at org.eclipse.help.internal.search.LocalSearchManager.ensureIndexUpdated(LocalSearchManager.java:602)
+	at org.eclipse.help.internal.search.federated.IndexerJob.run(IndexerJob.java:31)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SESSION 2015-01-19 18:57:04.530 -----------------------------------------------
+eclipse.buildId=4.4.1.M20140925-0400
+java.version=1.8.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.m2e.logback.configuration 2 0 2015-01-19 18:57:06.041
+!MESSAGE Exception while setting up logging:org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+!STACK 0
+java.lang.ClassCastException: org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+	at org.eclipse.m2e.logback.configuration.LogHelper.logJavaProperties(LogHelper.java:26)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.loadConfiguration(LogPlugin.java:189)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.configureLogback(LogPlugin.java:144)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.access$2(LogPlugin.java:107)
+	at org.eclipse.m2e.logback.configuration.LogPlugin$1.run(LogPlugin.java:62)
+	at java.util.TimerThread.mainLoop(Unknown Source)
+	at java.util.TimerThread.run(Unknown Source)
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-01-19 18:57:09.971
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\AaronBae'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 18:57:10.340
+!MESSAGE Installing tools if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 18:57:10.344
+!MESSAGE Installedtools
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 18:57:10.348
+!MESSAGE Installing java if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 18:57:10.351
+!MESSAGE Installedjava
+!SESSION 2015-01-19 19:03:57.417 -----------------------------------------------
+eclipse.buildId=4.4.1.M20140925-0400
+java.version=1.8.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.m2e.logback.configuration 2 0 2015-01-19 19:03:58.859
+!MESSAGE Exception while setting up logging:org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+!STACK 0
+java.lang.ClassCastException: org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+	at org.eclipse.m2e.logback.configuration.LogHelper.logJavaProperties(LogHelper.java:26)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.loadConfiguration(LogPlugin.java:189)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.configureLogback(LogPlugin.java:144)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.access$2(LogPlugin.java:107)
+	at org.eclipse.m2e.logback.configuration.LogPlugin$1.run(LogPlugin.java:62)
+	at java.util.TimerThread.mainLoop(Unknown Source)
+	at java.util.TimerThread.run(Unknown Source)
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-01-19 19:04:03.144
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\AaronBae'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 19:04:03.618
+!MESSAGE Installing tools if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 19:04:03.622
+!MESSAGE Installedtools
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 19:04:03.629
+!MESSAGE Installing java if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-19 19:04:03.634
+!MESSAGE Installedjava
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 19:22:24.827
+!MESSAGE Running ant file: C:\Users\AaronBae\GitHub\2015\Practice Codes - Aaron\IMU Trial 3\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 19:22:24.830
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 19:24:32.109
+!MESSAGE Running ant file: C:\Users\AaronBae\GitHub\2015\Practice Codes - Aaron\IMU Trial 3\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 19:24:32.112
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 19:28:20.108
+!MESSAGE Running ant file: C:\Users\AaronBae\GitHub\2015\Practice Codes - Aaron\IMU Trial 3\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 19:28:20.110
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 19:32:23.124
+!MESSAGE Running ant file: C:\Users\AaronBae\GitHub\2015\Practice Codes - Aaron\IMU Trial 3\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 19:32:23.126
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 19:52:16.805
+!MESSAGE Running ant file: C:\Users\AaronBae\GitHub\2015\Practice Codes - Aaron\IMU Trial 3\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 19:52:16.807
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 19:53:23.339
+!MESSAGE Running ant file: C:\Users\AaronBae\GitHub\2015\Practice Codes - Aaron\IMU Trial 3\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 19:53:23.342
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 19:54:47.642
+!MESSAGE Running ant file: C:\Users\AaronBae\GitHub\2015\Practice Codes - Aaron\IMU Trial 3\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 19:54:47.645
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 19:55:43.270
+!MESSAGE Running ant file: C:\Users\AaronBae\GitHub\2015\Practice Codes - Aaron\IMU Trial 3\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 19:55:43.272
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 19:58:40.661
+!MESSAGE Running ant file: C:\Users\AaronBae\GitHub\2015\Practice Codes - Aaron\IMU Trial 3\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 19:58:40.664
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 20:02:43.997
+!MESSAGE Running ant file: C:\Users\AaronBae\GitHub\2015\Practice Codes - Aaron\IMU Trial 3\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 20:02:44.000
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 20:04:00.157
+!MESSAGE Running ant file: C:\Users\AaronBae\GitHub\2015\Practice Codes - Aaron\IMU Trial 3\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 20:04:00.160
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 20:17:13.469
+!MESSAGE Running ant file: C:\Users\AaronBae\GitHub\2015\Practice Codes - Aaron\IMU Trial 3\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 20:17:13.472
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 20:21:21.875
+!MESSAGE Running ant file: C:\Users\AaronBae\GitHub\2015\Practice Codes - Aaron\IMU Trial 3\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 20:21:21.878
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 20:26:11.703
+!MESSAGE Running ant file: C:\Users\AaronBae\GitHub\2015\Practice Codes - Aaron\IMU Trial 3\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 20:26:11.705
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 20:30:48.155
+!MESSAGE Running ant file: C:\Users\AaronBae\GitHub\2015\Practice Codes - Aaron\IMU Trial 3\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-19 20:30:48.158
+!MESSAGE Targets: deploy, Mode: run
+!SESSION 2015-01-20 16:21:30.201 -----------------------------------------------
+eclipse.buildId=4.4.1.M20140925-0400
+java.version=1.8.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.m2e.logback.configuration 2 0 2015-01-20 16:21:32.576
+!MESSAGE Exception while setting up logging:org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+!STACK 0
+java.lang.ClassCastException: org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+	at org.eclipse.m2e.logback.configuration.LogHelper.logJavaProperties(LogHelper.java:26)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.loadConfiguration(LogPlugin.java:189)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.configureLogback(LogPlugin.java:144)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.access$2(LogPlugin.java:107)
+	at org.eclipse.m2e.logback.configuration.LogPlugin$1.run(LogPlugin.java:62)
+	at java.util.TimerThread.mainLoop(Unknown Source)
+	at java.util.TimerThread.run(Unknown Source)
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-01-20 16:21:38.300
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\AaronBae'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-20 16:21:38.789
+!MESSAGE Installing tools if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-20 16:21:38.805
+!MESSAGE Installedtools
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-20 16:21:38.805
+!MESSAGE Installing java if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-20 16:21:38.805
+!MESSAGE Installedjava
