@@ -27,25 +27,15 @@ public class PrintSystem extends Subsystem {
     public void createNewFile() {
     	if(DriverStation.getInstance().isAutonomous()) {
     		try {
-    			if(autoFileNum >= 10) {
-    				fileWriter = new PrintWriter(new File("/home/lvuser/natinst/autoLog" + (autoFileNum++) + ".txt"));
-    			}
-    			else {
-    				fileWriter = new PrintWriter(new File("/home/lvuser/natinst/autoLog" + 0 + (autoFileNum++) + ".txt"));
-    			}
+    			fileWriter = new PrintWriter(new File("/home/lvuser/natinst/autoLog" + (autoFileNum++) + ".txt"));
     		} 
     		catch (FileNotFoundException e) {
     		}
     	}
     	else if(DriverStation.getInstance().isOperatorControl()) {
     		try {
-    			if(teleFileNum >= 10) {
-    				fileWriter = new PrintWriter(new File("/home/lvuser/natinst/teleLog" + (teleFileNum++) + ".txt"));
-    			}
-    			else {
-    				fileWriter = new PrintWriter(new File("/home/lvuser/natinst/teleLog" + 0 + (teleFileNum++) + ".txt"));
-    			}
-    		}
+        		fileWriter = new PrintWriter(new File("/home/lvuser/natinst/teleLog" + (teleFileNum++) + ".txt"));
+        	}
         	catch(FileNotFoundException e) {
         	}
     	}
