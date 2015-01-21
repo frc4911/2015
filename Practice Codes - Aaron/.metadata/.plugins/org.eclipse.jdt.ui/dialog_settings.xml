@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<item value="C:\Users\AaronBae\sunspotfrcsdk\lib" key="org.eclipse.jdt.ui.lastextjar"/>
 	<item value="C:\Users\AaronBae\sunspotfrcsdk\lib\nav6" key="org.eclipse.jdt.ui.last.external.project"/>
 	<section name="org.eclipse.ltk.ui.refactoring.settings">
 	</section>
-	<section name="RefactoringWizard.preview">
-		<item value="600" key="width"/>
-		<item value="400" key="height"/>
+	<section name="ProblemSeveritiesConfigurationBlock">
+		<item value="false" key="expanded2"/>
+		<item value="false" key="expanded1"/>
+		<item value="false" key="expanded4"/>
+		<item value="false" key="expanded3"/>
+		<item value="false" key="expanded6"/>
+		<item value="false" key="expanded5"/>
+		<item value="false" key="expanded7"/>
+		<item value="true" key="expanded0"/>
 	</section>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
 		<item value="2" key="layout"/>
@@ -18,21 +25,40 @@
 		<item value="false" key="create_constructor"/>
 		<item value="true" key="create_unimplemented"/>
 	</section>
+	<section name="OptionalMessageDialog.hide.">
+		<item value="true" key="org.eclipse.jdt.ui.typecomment.deprecated"/>
+	</section>
+	<section name="RefactoringWizard.preview">
+		<item value="600" key="width"/>
+		<item value="400" key="height"/>
+	</section>
+	<section name="JavaBuildConfigurationBlock">
+		<item value="false" key="expanded2"/>
+		<item value="false" key="expanded1"/>
+		<item value="true" key="expanded0"/>
+	</section>
+	<section name="org.eclipse.jdt.internal.ui.wizards.buildpaths.NewVariableEntryDialog">
+		<item value="1231" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-24|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="786" key="DIALOG_HEIGHT"/>
+		<item value="270" key="DIALOG_X_ORIGIN"/>
+		<item value="-137" key="DIALOG_Y_ORIGIN"/>
+	</section>
 	<section name="RenameInformationPopup">
 	</section>
 	<section name="ClasspathContainerSelectionPage">
 		<item value="0" key="index"/>
 	</section>
-	<section name="OptionalMessageDialog.hide.">
-		<item value="true" key="org.eclipse.jdt.ui.typecomment.deprecated"/>
-	</section>
 	<section name="quick_assist_proposal_size">
 	</section>
 	<section name="BuildPathsPropertyPage">
-		<item value="0" key="pageIndex"/>
+		<item value="2" key="pageIndex"/>
 	</section>
 	<section name="completion_proposal_size">
 	</section>
 	<section name="JavaElementSearchActions">
+	</section>
+	<section name="WorkingSetModelAwareSelectionDialog">
+		<item value="true" key="ShowVisibleOnly"/>
 	</section>
 </section>
