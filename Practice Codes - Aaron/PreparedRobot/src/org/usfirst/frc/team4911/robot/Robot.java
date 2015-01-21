@@ -1,7 +1,5 @@
 package org.usfirst.frc.team4911.robot;
 
-import java.io.FileNotFoundException;
-
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 

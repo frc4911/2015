@@ -1,18 +1,20 @@
 package org.usfirst.frc.team4911.robot.commands;
 
 import org.usfirst.frc.team4911.robot.Robot;
+import org.usfirst.frc.team4911.robot.subsystems.PrintSystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class Autonomous extends Command {
-
+	private PrintSystem printSystem = Robot.printSystem;
+	
 	@Override
 	protected void initialize() {
 	}
 
 	@Override
 	protected void execute() {
-		Robot.printSystem.print();
+		printSystem.print("Autonomous");
 	}
 
 	@Override

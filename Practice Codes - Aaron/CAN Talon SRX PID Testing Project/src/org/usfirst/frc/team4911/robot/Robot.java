@@ -99,7 +99,7 @@ public class Robot extends SampleRobot {
 	  
       rightFront = new CANTalon(1); // Initialize the CanTalonSRX on device 1.
       rightFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-      rightFront.changeControlMode(CANTalon.ControlMode.Speed);
+      rightFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
       rightFront.setPID(1.0, 0.0, 0.0);
 	  
       rightRear = new CANTalon(3); // Initialize the CanTalonSRX on device 1.
@@ -147,6 +147,8 @@ public class Robot extends SampleRobot {
     	System.out.println("X: " + sensor.accelX);// + "\t\t" + "RealX: " + accel.getX());
     	System.out.println("Y: " + sensor.accelY);// + "\t\t" + "RealY: " + accel.getY());
     	System.out.println("Z: " + sensor.accelZ);// + "\t\t" + "RealZ: " + accel.getZ());*/
+    	System.out.println("Encoder Positions:/t" + leftFront.getEncPosition() + " ,\t" + rightFront.getEncPosition());
+    	System.out.println("Encoder Velocity:/t" + leftFront.getEncVelocity() + " ,\t" + rightFront.getEncVelocity());
     	Timer.delay(0.05);
       
     }

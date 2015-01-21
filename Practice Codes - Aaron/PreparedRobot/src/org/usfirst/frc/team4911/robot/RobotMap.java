@@ -10,9 +10,6 @@ public class RobotMap {
 	public static CANTalon leftRear;
 	public static CANTalon rightFront;
 	public static CANTalon rightRear;
-
-    //public static Encoder leftEncoder;
-    //public static Encoder rightEncoder;
 	
 	//public static AxisCamera camera;
 	//public static AnalogChannel ultraSonicSensor;
@@ -41,6 +38,7 @@ public class RobotMap {
 	      	rightRear.changeControlMode(CANTalon.ControlMode.PercentVbus);
 	      	rightRear.setPID(1.0, 0.0, 0.0);
 	      	      
+<<<<<<< HEAD
 	      	/*
 	      	leftEncoder = new Encoder(RobotConstants.LEFT_ENCODER_PORT_A, RobotConstants.LEFT_ENCODER_PORT_B, false, EncodingType.k4X);
 	      	leftEncoder.setDistancePerPulse(RobotConstants.ENCODER_DISTANCE_PER_PULSE);
@@ -51,6 +49,11 @@ public class RobotMap {
 	      	rightEncoder.setDistancePerPulse(RobotConstants.ENCODER_DISTANCE_PER_PULSE);
 	      	rightEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
 	      	rightEncoder.start();
+=======
+	      /*	      
+	      //Camera IP cannot be part of RobotMap (Static), because it is Dynamic
+	      camera = new AxisCamera(Inet4Address.getLocalHost().getHostAddress());
+>>>>>>> b7e3b5d7bf7b57410627937644cb4340906447ad
 	      
 	      	//Camera IP cannot be part of RobotMap (Static), because it is Dynamic
 	      	camera = new AxisCamera(Inet4Address.getLocalHost().getHostAddress());

@@ -1,15 +1,18 @@
 package org.usfirst.frc.team4911.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.Encoder;
+
+//import edu.wpi.first.wpilibj.CANTalon;
 
 public class SensorSystem extends Subsystem {
-    //public static Encoder leftEncoder = RobotMap.leftEncoder;
-    //public static Encoder rightEncoder = RobotMap.rightEncoder;
-	
 	//public static AxisCamera camera = RobotMap.camera;
 	//public static AnalogChannel ultraSonicSensor = RobotMap.ultraSonicSensor;
 	//public static IMUAdvanced imu = RobotMap.imu;
+
+	//public static CANTalon leftFront = RobotMap.leftFront;
+	//public static CANTalon leftRear = RobotMap.leftRear;
+	//public static CANTalon rightFront = RobotMap.rightFront;
+	//public static CANTalon rightRear = RobotMap.rightRear;
 	
     public void initDefaultCommand() {
         //setDefaultCommand(new MySpecialCommand());
@@ -65,25 +68,20 @@ public class SensorSystem extends Subsystem {
     /***************************************
      * Encoder Methods
      ***************************************/
-    public Encoder getLeftEncoder(){
-    	return null;
-    }
-    public Encoder getRightEncoder(){
-    	return null;
-    }
-
     public double getDistance(){
-        //return (leftEncoder.getDistance() + rightEncoder.getDistance()) / 2.0;
+    	//"getEncPosition()": do not know what the units it will give me
+    	//This method must be corrected to return the units in "INCHES"
+        //return (leftFront.getEncPosition() + rightFront.getEncPosition()) / 2.0;
     	return 0.0;
     }
     
     public double getLeftDistance(){
-        //return leftEncoder.getDistance();
+        //return leftFront.getEncPosition();
     	return 0.0;
     }
     
     public double getRightDistance(){
-        //return rightEncoder.getDistance();
+        //return rightFront.getDistance();
     	return 0.0;
     }
 }

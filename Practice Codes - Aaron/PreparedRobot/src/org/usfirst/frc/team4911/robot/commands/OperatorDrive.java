@@ -8,6 +8,7 @@ import org.usfirst.frc.team4911.robot.OI;
 public class OperatorDrive extends Command {
 	MecanumDriveSystem mecanumDriveSystem = Robot.mecanumDriveSystem;
 	SensorSystem sensorSystem = Robot.sensorSystem;
+	PrintSystem printSystem = Robot.printSystem;
 
 	OI oi = Robot.oi;
 	
@@ -24,7 +25,7 @@ public class OperatorDrive extends Command {
 	@Override
 	protected void execute() {
 		mecanumDriveSystem.drive(oi.getMainJoyX(), oi.getMainJoyY(), oi.getRotationJoyY());
-		Robot.printSystem.print();
+		printSystem.print("Teleop");
 	}
 
 	@Override
