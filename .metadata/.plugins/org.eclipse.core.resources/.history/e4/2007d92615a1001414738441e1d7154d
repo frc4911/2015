@@ -8,7 +8,6 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import org.usfirst.frc.team4911.robot.RobotConstants;
@@ -53,25 +52,12 @@ public class PrintSystem extends Subsystem {
     	}
     }
     
-    public void print(String method) {
+    public void print() {
     	if(!DriverStation.getInstance().isDisabled()) {
-    		fileWriter.println("====================");
-    		fileWriter.println("Time: " + Timer.getFPGATimestamp());
-    		fileWriter.println("Method: " + method);
-    		fileWriter.println("Left Encoder: " /*+ getLeftEncoder*/);
-    		fileWriter.println("Right Encoder: " /*getRightEncoder*/);
-    		fileWriter.println("Heading: " /* + getGyro*/);
-    		fileWriter.println("====================");
-    		
+    		fileWriter.println("sup?");
     	}
     	if(RobotConstants.FLAG) {
-    		System.out.println("====================");
-    		System.out.println("Time: " + Timer.getFPGATimestamp());
-    		System.out.println("Method: " + method);
-    		System.out.println("Left Encoder: " /*+ getLeftEncoder*/);
-    		System.out.println("Right Encoder: " /*getRightEncoder*/);
-    		System.out.println("Heading: " /* + getGyro*/);
-    		System.out.println("====================");
+    		System.out.println("nm");
     	}
     }
 }
