@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team4911.robot.RobotConstants;
 
 public class PrintSystem extends Subsystem {
+    //PrintStream output;
 	private int autoFileNum;
 	private int teleFileNum;
 	private PrintWriter fileWriter;
@@ -18,6 +19,8 @@ public class PrintSystem extends Subsystem {
 	public PrintSystem(){
 		autoFileNum = 1;
 		teleFileNum = 1;
+		//autoWriter = new PrintWriter(new File("/home/lvuser/MatchLog/autoLog" + autoFileNum + ".txt"));
+		//teleWriter = new PrintWriter(new File("/home/lvuser/MatchLog/TeleLog" + teleFileNum + ".txt"));
 	}
 	
     public void initDefaultCommand() {
