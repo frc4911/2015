@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<item value="C:\Users\pratz_000\Desktop\nav6\crio\java\bin" key="org.eclipse.jdt.ui.lastextjar"/>
+	<item value="C:\Users\pratz_000\Desktop\nav6\crio\java\doc\com\kauailabs\nav6" key="org.eclipse.jdt.ui.last.external.project"/>
 	<section name="javadoc">
 		<item value="public" key="access"/>
 		<item value="false" key="noindex"/>
