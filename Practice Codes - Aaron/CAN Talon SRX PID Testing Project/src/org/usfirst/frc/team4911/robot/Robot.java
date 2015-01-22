@@ -118,14 +118,15 @@ public class Robot extends SampleRobot {
   }
 
   public void operatorControl() {
-	  try {
+	  /*try {
 			output = new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/lvuser/natinst/teleLog.txt")));
 			System.setOut(output);
 		} catch (FileNotFoundException e) {
 			
-		}
+		}*/
 	  teleopRunning = true;
 	  sensor.start();
+	  
 	  
     while (isOperatorControl() && isEnabled()) {
       
@@ -143,12 +144,12 @@ public class Robot extends SampleRobot {
     	rightFront.set(-stick2.getRawAxis(1));
     	rightRear.set(-stick2.getRawAxis(1));
     	
-    	/*System.out.println("--------------------");
-    	System.out.println("X: " + sensor.accelX);// + "\t\t" + "RealX: " + accel.getX());
+    	System.out.println("--------------------");
+    	/*System.out.println("X: " + sensor.accelX);// + "\t\t" + "RealX: " + accel.getX());
     	System.out.println("Y: " + sensor.accelY);// + "\t\t" + "RealY: " + accel.getY());
     	System.out.println("Z: " + sensor.accelZ);// + "\t\t" + "RealZ: " + accel.getZ());*/
-    	System.out.println("Encoder Positions:/t" + leftFront.getEncPosition() + " ,\t" + rightFront.getEncPosition());
-    	System.out.println("Encoder Velocity:/t" + leftFront.getEncVelocity() + " ,\t" + rightFront.getEncVelocity());
+    	System.out.println("Encoder Positions:\t" + leftFront.getEncPosition() + " ,\t" + rightFront.getEncPosition());
+    	System.out.println("Encoder Velocity:\t" + leftFront.getEncVelocity() + " ,\t" + rightFront.getEncVelocity());
     	Timer.delay(0.05);
       
     }
