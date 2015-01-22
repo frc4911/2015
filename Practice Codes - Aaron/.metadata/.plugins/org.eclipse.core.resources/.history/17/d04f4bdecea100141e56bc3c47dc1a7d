@@ -118,12 +118,12 @@ public class Robot extends SampleRobot {
   }
 
   public void operatorControl() {
-	  try {
+	  /*try {
 			output = new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/lvuser/natinst/teleLog.txt")));
 			System.setOut(output);
 		} catch (FileNotFoundException e) {
 			
-		}
+		}*/
 	  teleopRunning = true;
 	  sensor.start();
 	  
@@ -149,8 +149,7 @@ public class Robot extends SampleRobot {
     	System.out.println("Y: " + sensor.accelY);// + "\t\t" + "RealY: " + accel.getY());
     	System.out.println("Z: " + sensor.accelZ);// + "\t\t" + "RealZ: " + accel.getZ());*/
     	System.out.println("Encoder Positions:\t" + leftFront.getEncPosition() + " ,\t" + rightFront.getEncPosition());
-    	System.out.println("Encoder INCHES:\t" + getInch(leftFront) + " ,\t" + getInch(leftFront));
-    	//System.out.println("Encoder Velocity:\t" + leftFront.getEncVelocity() + " ,\t" + rightFront.getEncVelocity());
+    	System.out.println("Encoder Velocity:\t" + leftFront.getEncVelocity() + " ,\t" + rightFront.getEncVelocity());
     	Timer.delay(0.05);
       
     }
@@ -159,7 +158,7 @@ public class Robot extends SampleRobot {
   public void autonomous(){
 	  try {
 			output = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File("/home/lvuser/natinst/autoLog.txt"))));
-			System.setOut(output);
+			//System.setOut(output);
 		} catch (FileNotFoundException e) {
 			
 		}
@@ -204,11 +203,7 @@ public class Robot extends SampleRobot {
   public void printBorder() {
 	  System.out.println("===================");
   }
-  
-  public static int PULSES_PER_ROTATION = 1024;
-  public static double DIAMETER_OF_WHEEL = 4.0;//inch
-  
-  public double getInch(CANTalon talon){
-	  return talon.getPosition() / PULSES_PER_ROTATION * (DIAMETER_OF_WHEEL * Math.PI);
+  public double getInchLeft(){
+	  return getPosition()
   }
-}
+ }

@@ -118,12 +118,12 @@ public class Robot extends SampleRobot {
   }
 
   public void operatorControl() {
-	  try {
+	  /*try {
 			output = new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/lvuser/natinst/teleLog.txt")));
 			System.setOut(output);
 		} catch (FileNotFoundException e) {
 			
-		}
+		}*/
 	  teleopRunning = true;
 	  sensor.start();
 	  
