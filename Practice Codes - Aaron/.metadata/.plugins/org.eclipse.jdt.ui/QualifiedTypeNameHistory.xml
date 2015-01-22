@@ -6,4 +6,5 @@
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Encoder"/>
 <fullyQualifiedTypeName name="com.kauailabs.nav6.frc.BufferingSerialPort"/>
 <fullyQualifiedTypeName name="com.kauailabs.nav6.frc.IMU"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.subsystems.PrintSystem"/>
 </qualifiedTypeNameHistroy>

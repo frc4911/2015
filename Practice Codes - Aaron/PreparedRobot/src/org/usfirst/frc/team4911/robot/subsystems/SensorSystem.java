@@ -1,6 +1,9 @@
 package org.usfirst.frc.team4911.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
+import edu.wpi.first.wpilibj.Gyro;
+import org.usfirst.frc.team4911.robot.RobotMap;
 
 //import edu.wpi.first.wpilibj.CANTalon;
 
@@ -13,6 +16,9 @@ public class SensorSystem extends Subsystem {
 	//public static CANTalon leftRear = RobotMap.leftRear;
 	//public static CANTalon rightFront = RobotMap.rightFront;
 	//public static CANTalon rightRear = RobotMap.rightRear;
+	
+	public static BuiltInAccelerometer accelerometer = RobotMap.accelerometer;
+	public static Gyro gyro = RobotMap.gyro;
 	
     public void initDefaultCommand() {
         //setDefaultCommand(new MySpecialCommand());
@@ -63,6 +69,32 @@ public class SensorSystem extends Subsystem {
     public float getCompass(){
     	//return imu.getCompassHeading();
     	return 0.0f;
+    }
+    
+    /***************************************
+     * Accelerometer Methods
+     ***************************************/
+    public double getX(){
+    	return accelerometer.getX();
+    }
+    public double getY(){
+    	return accelerometer.getY();
+    }
+    public double getZ(){
+    	return accelerometer.getZ();
+    }
+    
+    /***************************************
+     * Gyro Methods
+     ***************************************/
+    public double getAngle(){
+    	return gyro.getAngle();
+    }
+    public double getRate(){
+    	return gyro.getRate();
+    }
+    public void resetGyro(){
+    	gyro.reset();
     }
     
     /***************************************

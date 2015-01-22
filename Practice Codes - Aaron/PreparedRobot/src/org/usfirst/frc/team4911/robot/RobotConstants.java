@@ -41,7 +41,11 @@ public class RobotConstants {
     
     //ULTRASONIC SENSOR
     public static final int ULTRASONIC_SENSOR_PORT = 7;
-    public static final double vPerI = 5.002/204.6645;    
+    public static final double vPerI = 5.002/204.6645; 
+    
+    //GYRO
+    public static final int MAIN_GYRO_PORT = 1;//Analog
+    public static final double GYRO_SENSITIVITY = 0.007;
     
     //DEBUG SWITCH
     public static final boolean FLAG = false;
