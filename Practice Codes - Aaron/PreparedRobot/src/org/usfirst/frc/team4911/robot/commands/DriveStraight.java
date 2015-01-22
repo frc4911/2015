@@ -40,7 +40,7 @@ public class DriveStraight extends Command {
         power = getRampedPower(goalDistance, sensorSystem.getDistance());            
 
         //mecanumDriveSystem.drive(power - error , power + error, 0.0);
-        mecanumDriveSystem.drive(power, power, 0.0);
+        mecanumDriveSystem.drive(power, power);
     }
 
     protected boolean isFinished() {

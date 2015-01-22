@@ -9,14 +9,8 @@ public class RobotConstants {
     //DRIVE SYSTEM CONSTANTS
     public static final double WHEEL_DIAMETER = 4.0; //Measured in Inches
     public static final double GEAR_RATIO = 1.0;//39 Teeth on Wheels & 42 Teeth on Encoders
-    public static final double ONE_ROTATION_IN_INCHES = Math.PI * WHEEL_DIAMETER;
-    public static final double ENCODER_PULSE_PER_ROTATION = 250.0;//Number of Pulse per One Rotation of the Encoder
+    public static final double ENCODER_PULSE_PER_ROTATION = 1024.0;//Number of Pulse per One Rotation of the Encoder
     public static final double ENCODER_DISTANCE_PER_PULSE = GEAR_RATIO * WHEEL_DIAMETER * Math.PI / ENCODER_PULSE_PER_ROTATION;
-    
-    public static final int LEFT_ENCODER_PORT_A = 14;//Digital //1
-    public static final int LEFT_ENCODER_PORT_B = 13;//Digital //2
-    public static final int RIGHT_ENCODER_PORT_A = 1;//Digital //3
-    public static final int RIGHT_ENCODER_PORT_B = 2;//Digital //4
 
     //DRIVESTRAIGHT CONSTANTS
     public static final double DRIVESTRAIGHT_CORRECTION_CONSTANT = 0.05;

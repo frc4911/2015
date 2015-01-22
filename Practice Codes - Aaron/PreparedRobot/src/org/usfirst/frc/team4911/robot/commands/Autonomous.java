@@ -10,7 +10,9 @@ public class Autonomous extends Command {
 	
 	@Override
 	protected void initialize() {
+		new DriveStraight(60.0).start();
 	}
+	
 
 	@Override
 	protected void execute() {

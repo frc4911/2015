@@ -59,6 +59,10 @@ public class MecanumDriveSystem extends Subsystem {
 		//robot.mecanumDrive_Cartesian(x, y, rotation, (double)imu.getYaw());
 		
 	}
+	public void drive(double left, double right){
+		robot.tankDrive(left, right);
+		
+	}
 	public void stop(){
 		drive(0.0, 0.0, 0.0);
 	}

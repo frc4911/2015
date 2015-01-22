@@ -3,19 +3,19 @@ package org.usfirst.frc.team4911.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.Gyro;
+
+import org.usfirst.frc.team4911.robot.RobotConstants;
 import org.usfirst.frc.team4911.robot.RobotMap;
 
-//import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANTalon;
 
 public class SensorSystem extends Subsystem {
 	//public static AxisCamera camera = RobotMap.camera;
 	//public static AnalogChannel ultraSonicSensor = RobotMap.ultraSonicSensor;
 	//public static IMUAdvanced imu = RobotMap.imu;
 
-	//public static CANTalon leftFront = RobotMap.leftFront;
-	//public static CANTalon leftRear = RobotMap.leftRear;
-	//public static CANTalon rightFront = RobotMap.rightFront;
-	//public static CANTalon rightRear = RobotMap.rightRear;
+	public static CANTalon left = RobotMap.leftFront;
+	public static CANTalon right = RobotMap.rightFront;
 	
 	public static BuiltInAccelerometer accelerometer = RobotMap.accelerometer;
 	public static Gyro gyro = RobotMap.gyro;
@@ -101,20 +101,16 @@ public class SensorSystem extends Subsystem {
      * Encoder Methods
      ***************************************/
     public double getDistance(){
-    	//"getEncPosition()": do not know what the units it will give me
-    	//This method must be corrected to return the units in "INCHES"
-        //return (leftFront.getEncPosition() + rightFront.getEncPosition()) / 2.0;
-    	return 0.0;
+        return (getLeftDistance() + getRightDistance()) / 2.0;
     }
     
     public double getLeftDistance(){
-        //return leftFront.getEncPosition();
-    	return 0.0;
+        return left.getEncPosition() * RobotConstants.ENCODER_DISTANCE_PER_PULSE;
     }
     
     public double getRightDistance(){
-        //return rightFront.getDistance();
-    	return 0.0;
+        return left.getEncPosition() * RobotConstants.ENCODER_DISTANCE_PER_PULSE;
+
     }
 }
 
