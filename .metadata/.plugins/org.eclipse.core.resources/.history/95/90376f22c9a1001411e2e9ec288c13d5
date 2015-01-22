@@ -66,30 +66,24 @@ public class PrintSystem extends Subsystem {
     		fileWriter.println("Right Encoder: " /*getRightEncoder*/);
     		fileWriter.println("Heading: " /* + getGyro*/);
     		fileWriter.println("====================");
-    	}
+    		
     	
-    	if(RobotConstants.FLAG) {
-    		System.out.println("====================");
-    		System.out.println("Method: " + method);
-    		System.out.println("Time: " + Timer.getFPGATimestamp());    		
-    		System.out.println("Left Encoder: " /*+ getLeftEncoder*/);
-   			System.out.println("Right Encoder: " /*getRightEncoder*/);
-   			System.out.println("Heading: " /* + getGyro*/);
-   			System.out.println("====================");
+    		if(RobotConstants.FLAG) {
+    			System.out.println("====================");
+    			System.out.println("Method: " + method);
+    			System.out.println("Time: " + Timer.getFPGATimestamp());    		
+    			System.out.println("Left Encoder: " /*+ getLeftEncoder*/);
+    			System.out.println("Right Encoder: " /*getRightEncoder*/);
+    			System.out.println("Heading: " /* + getGyro*/);
+    			System.out.println("====================");
+    		}
     	}
-    	
     }
     
     public void printMessage(String message) {
-    	System.out.println("====================");
-    	System.out.println(message);
-    	System.out.println("====================");
-    	
-    	if(!DriverStation.getInstance().isDisabled()) {
-    		fileWriter.println("====================");
-    		fileWriter.println(message);
-    		fileWriter.println("====================");
-    	}
+    	fileWriter.println("====================");
+    	fileWriter.println(message);
+    	fileWriter.println("====================");
     }
 }
 
