@@ -27,7 +27,8 @@ public class DriveStraight extends Command {
 
     protected void initialize() {
         mecanumDriveSystem.stop();
-        sensorSystem.zeroYaw();
+        //sensorSystem.zeroYaw();
+        sensorSystem.restGyro();
         kp = RobotConstants.DRIVESTRAIGHT_CORRECTION_CONSTANT;
         error = 0.0;
         power = 0.0;
@@ -35,7 +36,7 @@ public class DriveStraight extends Command {
     }
 
     protected void execute() {
-        error = kp * sensorSystem.getYaw();
+        error = kp * sensorSystem.getAngle();
         power = getRampedPower(goalDistance, sensorSystem.getDistance());            
 
         //mecanumDriveSystem.drive(power - error , power + error, 0.0);

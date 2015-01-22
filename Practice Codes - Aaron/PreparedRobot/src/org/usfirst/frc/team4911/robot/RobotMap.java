@@ -1,6 +1,8 @@
 package org.usfirst.frc.team4911.robot;
 
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Gyro;
 //import edu.wpi.first.wpilibj.vision.AxisCamera;
 //import java.net.Inet4Address;
 //import com.kauailabs.nav6.frc.IMUAdvanced;
@@ -14,6 +16,9 @@ public class RobotMap {
 	//public static AxisCamera camera;
 	//public static AnalogChannel ultraSonicSensor;
 	//public static IMUAdvanced imu;
+
+	public static BuiltInAccelerometer accelerometer;
+	public static Gyro gyro;
 	
 	
 	public static void init(){
@@ -52,5 +57,10 @@ public class RobotMap {
 
 		  } 
 		  */
+	      accelerometer = new BuiltInAccelerometer();
+
+	      gyro = new Gyro(RobotConstants.MAIN_GYRO_PORT);
+	      gyro.setSensitivity(RobotConstants.GYRO_SENSITIVITY);
+	      gyro.initGyro();
 	}
 }
