@@ -28,7 +28,7 @@ public class DriveStraight extends Command {
     protected void initialize() {
         mecanumDriveSystem.stop();
         //sensorSystem.zeroYaw();
-        sensorSystem.resetGyro();
+        sensorSystem.restGyro();
         kp = RobotConstants.DRIVESTRAIGHT_CORRECTION_CONSTANT;
         error = 0.0;
         power = 0.0;
