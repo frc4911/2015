@@ -15,9 +15,9 @@ import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.Timer;
 
 //import com.kauailabs.nav6.frc.BufferingSerialPort;
-//import com.kauailabs.nav6.*;
+import com.kauailabs.nav6.*;
 //import com.kauailabs.nav6.frc.IMUAdvanced;
-//import com.kauailabs.nav6.frc.*;
+import com.kauailabs.nav6.frc.*;
 
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;

@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
+import edu.wpi.first.wpilibj.CameraServer;
 
 import edu.wpi.first.wpilibj.DriverStation;
 
@@ -36,6 +37,8 @@ public class Robot extends SampleRobot {
 	BuiltInAccelerometer accel;
 	
 	SensorThread sensor;
+	
+	CameraServer server;
 	
 	
 	enum DebugType {
@@ -115,6 +118,10 @@ public class Robot extends SampleRobot {
       //sensor.setPriority(9);
       
       teleopRunning = false;
+      
+      server = CameraServer.getInstance();
+      server.setQuality(100);
+      server.startAutomaticCapture("cam1");
   }
 
   public void operatorControl() {
@@ -126,7 +133,7 @@ public class Robot extends SampleRobot {
 		}*/
 	  teleopRunning = true;
 	  sensor.start();
-	  
+	  //server.startAutomaticCapture("cam1");
 	  
     while (isOperatorControl() && isEnabled()) {
       
