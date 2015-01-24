@@ -43,4 +43,7 @@ public class RobotConstants {
     
     //DEBUG SWITCH
     public static final boolean FLAG = false;
+    
+    //CM to IN conversion
+    public static final double inToCM = 2.54;
 }

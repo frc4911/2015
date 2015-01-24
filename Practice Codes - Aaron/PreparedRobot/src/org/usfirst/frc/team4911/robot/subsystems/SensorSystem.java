@@ -9,6 +9,8 @@ import org.usfirst.frc.team4911.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
 
+import ExternalLibs.LIDAR;
+
 public class SensorSystem extends Subsystem {
 	//public static AxisCamera camera = RobotMap.camera;
 	//public static AnalogChannel ultraSonicSensor = RobotMap.ultraSonicSensor;
@@ -19,6 +21,8 @@ public class SensorSystem extends Subsystem {
 	
 	public static BuiltInAccelerometer accelerometer = RobotMap.accelerometer;
 	public static Gyro gyro = RobotMap.gyro;
+	
+	public static LIDAR lidar = RobotMap.lidar;
 	
     public void initDefaultCommand() {
         //setDefaultCommand(new MySpecialCommand());
@@ -111,6 +115,21 @@ public class SensorSystem extends Subsystem {
     public double getRightDistance(){
         return left.getEncPosition() * RobotConstants.ENCODER_DISTANCE_PER_PULSE;
 
+    }
+    
+    /***************************************
+     * LIDAR Methods
+     ***************************************/
+    public void start() {
+    	lidar.start();
+    }
+    
+    public int getCM() {
+    	return lidar.getDistance();
+    }
+    
+    public double getIN() {
+    	return ((double)lidar.getDistance()/(RobotConstants.inToCM));
     }
 }
 
