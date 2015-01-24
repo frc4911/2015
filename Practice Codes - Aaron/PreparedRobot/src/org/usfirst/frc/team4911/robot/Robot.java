@@ -25,10 +25,9 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	RobotMap.init();
 
-    	printSystem = new PrintSystem();
-
     	mecanumDriveSystem = new MecanumDriveSystem();
     	sensorSystem = new SensorSystem();
+    	printSystem = new PrintSystem();
         oi = new OI();
         
         autonomousCommand = new Autonomous();
