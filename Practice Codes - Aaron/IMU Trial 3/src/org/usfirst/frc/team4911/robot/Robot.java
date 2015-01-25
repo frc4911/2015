@@ -4,7 +4,6 @@ package org.usfirst.frc.team4911.robot;
 import java.io.BufferedOutputStream;
 
 
-
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
@@ -13,11 +12,10 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.SerialPort;
 
-//import com.kauailabs.nav6.frc.BufferingSerialPort;
-//import com.kauailabs.nav6.*;
-//import com.kauailabs.nav6.frc.IMUAdvanced;
-//import com.kauailabs.nav6.frc.*;
+import com.kauailabs.nav6.frc.IMUAdvanced;
+import com.kauailabs.nav6.frc.*;
 
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -41,12 +39,14 @@ public class Robot extends SampleRobot {
 
 	PrintStream output;
   
-  //BufferingSerialPort serial_port;
-  //IMU imu;  // Alternatively, use IMUAdvanced for advanced features
-  //IMUAdvanced imu;
+	SerialPort serial_port;
+	IMUAdvanced imu;
   boolean first_iteration;
 
   public Robot() {
+	  stick1 = new Joystick(0);
+	  stick2 = new Joystick(1);
+	  
 	  leftFront = new CANTalon(0); // Initialize the CanTalonSRX on device 1.
       leftFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
       leftFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
@@ -68,9 +68,8 @@ public class Robot extends SampleRobot {
       rightRear.setPID(1.0, 0.0, 0.0);
       
 	  
-	  
       try {
-          //serial_port = new BufferingSerialPort(57600);
+    	  serial_port = new SerialPort(57600,SerialPort.Port.kUSB);
           
           // You can add a second parameter to modify the 
           // update rate (in hz) from 4 to 100.  The default is 100.
@@ -80,15 +79,11 @@ public class Robot extends SampleRobot {
           // You can also use the IMUAdvanced class for advanced
           // features.
 
-          byte update_rate_hz = 20;
-          //imu = new IMU(serial_port,update_rate_hz);
-          //imu = new IMUAdvanced(serial_port,update_rate_hz);
+          byte update_rate_hz = 100;
+          imu = new IMUAdvanced(serial_port,update_rate_hz);
       } catch (Exception ex) {
           ex.printStackTrace();
       }
-      //if ( imu != null ) {
-          //LiveWindow.addSensor("IMU", "Gyro", imu);
-      //}
       first_iteration = true;
   }
 
@@ -101,7 +96,7 @@ public class Robot extends SampleRobot {
 			System.setOut(output);
 		} catch (FileNotFoundException e) {
 			
-		}  
+		} 
 	  
     while (isOperatorControl() && isEnabled()) {
       leftFront.set(stick1.getRawAxis(1));
@@ -111,57 +106,29 @@ public class Robot extends SampleRobot {
       rightRear.set(-stick2.getRawAxis(1));
     	
       
-      // When calibration has completed, zero the yaw
-      // Calibration is complete approaximately 20 seconds
-      // after the robot is powered on.  During calibration,
-      // the robot should be still
-      
-      //boolean is_calibrating = imu.isCalibrating();
-      //if ( first_iteration && !is_calibrating ) {
-          //Timer.delay( 0.3 );
-          //imu.zeroYaw();
-          //first_iteration = false;
-      //}
-      /*
-      // Update the dashboard with status and orientation
-      // data from the nav6 IMU
-      
-      SmartDashboard.putBoolean(  "IMU_Connected",        imu.isConnected());
-      SmartDashboard.putBoolean(  "IMU_IsCalibrating",    imu.isCalibrating());
-      SmartDashboard.putNumber(   "IMU_Yaw",              imu.getYaw());
-      SmartDashboard.putNumber(   "IMU_Pitch",            imu.getPitch());
-      SmartDashboard.putNumber(   "IMU_Roll",             imu.getRoll());
-      SmartDashboard.putNumber(   "IMU_CompassHeading",   imu.getCompassHeading());
-      SmartDashboard.putNumber(   "IMU_Update_Count",     imu.getUpdateCount());
-      SmartDashboard.putNumber(   "IMU_Byte_Count",       imu.getByteCount());
-
-      // If you are using the IMUAdvanced class, you can also access the following
-      // additional functions, at the expense of some extra processing
-      // that occurs on the CRio processor
-      
-      SmartDashboard.putNumber(   "IMU_Accel_X",          imu.getWorldLinearAccelX());
-      SmartDashboard.putNumber(   "IMU_Accel_Y",          imu.getWorldLinearAccelY());
-      SmartDashboard.putBoolean(  "IMU_IsMoving",         imu.isMoving());
-      SmartDashboard.putNumber(   "IMU_Temp_C",           imu.getTempC());
-      
-      System.out.println("===============================================================");
-      System.out.println("TIMERt:" + Timer.getFPGATimestamp());
-      System.out.println("IMU_Connected\t: " + imu.isConnected());
-      System.out.println("IMU_IsCalibrating\t: " + imu.isCalibrating());
-      System.out.println("IMU_Yaw\t: " + imu.getYaw());
-      System.out.println("IMU_Pitch\t: " + imu.getPitch());
-      System.out.println("IMU_Roll\t: " + imu.getRoll());
-      System.out.println("IMU_CompassHeading\t: " + imu.getCompassHeading());
-      System.out.println("IMU_Update_Count\t: " + imu.getUpdateCount());
-      System.out.println("IMU_Byte_Count\t: " + imu.getByteCount());
-
-      System.out.println("IMU_Accel_X\t: "+ imu.getWorldLinearAccelX());
-      System.out.println("IMU_Accel_Y\t: "+ imu.getWorldLinearAccelY());
-      System.out.println("IMU_IsMoving\t: "+ imu.isMoving());
-      System.out.println("IMU_Temp_C\t: "+ imu.getTempC());
-      System.out.println("===============================================================");
-      */
-      //Timer.delay(0.2);
+      boolean is_calibrating = imu.isCalibrating();
+      if ( first_iteration && !is_calibrating ) {
+          Timer.delay( 0.3 );
+          imu.zeroYaw();
+          first_iteration = false;
+      } else {
+		  System.out.println("===============================================================");
+		  System.out.println("TIMERt:" + Timer.getFPGATimestamp());
+		  System.out.println("IMU_Connected\t: " + imu.isConnected());
+		  System.out.println("IMU_IsCalibrating\t: " + imu.isCalibrating());
+		  System.out.println("IMU_Yaw\t: " + imu.getYaw());
+		  System.out.println("IMU_Pitch\t: " + imu.getPitch());
+		  System.out.println("IMU_Roll\t: " + imu.getRoll());
+		  System.out.println("IMU_CompassHeading\t: " + imu.getCompassHeading());
+		  System.out.println("IMU_Update_Count\t: " + imu.getUpdateCount());
+		  System.out.println("IMU_Byte_Count\t: " + imu.getByteCount());
+		
+		  System.out.println("IMU_Accel_X\t: "+ imu.getWorldLinearAccelX());
+		  System.out.println("IMU_Accel_Y\t: "+ imu.getWorldLinearAccelY());
+		  System.out.println("IMU_IsMoving\t: "+ imu.isMoving());
+		  System.out.println("IMU_Temp_C\t: "+ imu.getTempC());
+		  //System.out.println("===============================================================");
+      }
     }
     
     leftFront.disable();
