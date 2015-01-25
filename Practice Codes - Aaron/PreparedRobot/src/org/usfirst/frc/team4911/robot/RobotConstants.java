@@ -3,7 +3,7 @@ package org.usfirst.frc.team4911.robot;
 public class RobotConstants {
     //JOYSTICK CONFIG
     public static final int JOYSTICK_MAIN = 1;
-    public static final int JOYSTICK_ROTATION = 2;
+    public static final int JOYSTICK_ROTATION = 0;
     public static final double JOYSTICK_SENSITIVITY = 10.0;
     
     //DRIVE SYSTEM CONSTANTS
@@ -17,6 +17,14 @@ public class RobotConstants {
     public static final int LEFT_ENCODER_PORT_B = 13;//Digital //2
     public static final int RIGHT_ENCODER_PORT_A = 1;//Digital //3
     public static final int RIGHT_ENCODER_PORT_B = 2;//Digital //4
+    
+    public static final int LEFT_FRONT_CANTALON_PORT = 0;
+    public static final int LEFT_REAR_CANTALON_PORT = 2;
+    public static final int RIGHT_FRONT_CANTALON_PORT = 1;
+    public static final int RIGHT_REAR_CANTALON_PORT = 3;
+    
+    //PNEUMATIC SYSTEM CONSTANTS
+    public static final int COMPRESSOR_PCMID = 1;
 
     //DRIVESTRAIGHT CONSTANTS
     public static final double DRIVESTRAIGHT_CORRECTION_CONSTANT = 0.05;
