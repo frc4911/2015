@@ -116,17 +116,17 @@ public class Robot extends SampleRobot {
 		  System.out.println("TIMERt:" + Timer.getFPGATimestamp());
 		  System.out.println("IMU_Connected\t: " + imu.isConnected());
 		  System.out.println("IMU_IsCalibrating\t: " + imu.isCalibrating());
-		  //System.out.println("IMU_Yaw\t: " + imu.getYaw());
-		  //System.out.println("IMU_Pitch\t: " + imu.getPitch());
-		  //System.out.println("IMU_Roll\t: " + imu.getRoll());
-		  //System.out.println("IMU_CompassHeading\t: " + imu.getCompassHeading());
-		  //System.out.println("IMU_Update_Count\t: " + imu.getUpdateCount());
-		  //System.out.println("IMU_Byte_Count\t: " + imu.getByteCount());
+		  System.out.println("IMU_Yaw\t: " + imu.getYaw());
+		  System.out.println("IMU_Pitch\t: " + imu.getPitch());
+		  System.out.println("IMU_Roll\t: " + imu.getRoll());
+		  System.out.println("IMU_CompassHeading\t: " + imu.getCompassHeading());
+		  System.out.println("IMU_Update_Count\t: " + imu.getUpdateCount());
+		  System.out.println("IMU_Byte_Count\t: " + imu.getByteCount());
 		
-		  //System.out.println("IMU_Accel_X\t: "+ imu.getWorldLinearAccelX());
-		  //System.out.println("IMU_Accel_Y\t: "+ imu.getWorldLinearAccelY());
-		  //System.out.println("IMU_IsMoving\t: "+ imu.isMoving());
-		  //System.out.println("IMU_Temp_C\t: "+ imu.getTempC());
+		  System.out.println("IMU_Accel_X\t: "+ imu.getWorldLinearAccelX());
+		  System.out.println("IMU_Accel_Y\t: "+ imu.getWorldLinearAccelY());
+		  System.out.println("IMU_IsMoving\t: "+ imu.isMoving());
+		  System.out.println("IMU_Temp_C\t: "+ imu.getTempC());
 		  //System.out.println("===============================================================");
       }
     }
