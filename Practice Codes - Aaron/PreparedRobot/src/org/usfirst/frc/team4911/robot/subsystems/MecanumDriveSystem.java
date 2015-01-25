@@ -1,17 +1,16 @@
 package org.usfirst.frc.team4911.robot.subsystems;
 
 import org.usfirst.frc.team4911.robot.Robot;
+
 import org.usfirst.frc.team4911.robot.RobotMap;
 
-//import com.kauailabs.nav6.frc.BufferingSerialPort;
-//import com.kauailabs.nav6.frc.IMUAdvanced;
+import com.kauailabs.nav6.frc.IMUAdvanced;
 
-
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
-//import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-//import edu.wpi.first.wpilibj.visa.VisaException;
 
 public class MecanumDriveSystem extends Subsystem {
 	private CANTalon frontLeft = RobotMap.leftFront;
@@ -19,17 +18,14 @@ public class MecanumDriveSystem extends Subsystem {
 	private CANTalon frontRight = RobotMap.rightFront;
 	private CANTalon rearRight = RobotMap.rightRear;
 	
-	//private AdvancedIMU imu = RobotMap.imu;
-	
 	private RobotDrive robot = new RobotDrive(frontLeft, rearLeft, frontRight, rearRight);
 	private SensorSystem sensorSystem = Robot.sensorSystem;
-	//BufferingSerialPort serial_port;		
+	SerialPort serial_port;		
 	
 	public MecanumDriveSystem(){
 		super();
-		/*
 		try {
-	          serial_port = new BufferingSerialPort(57600);
+			serial_port = new SerialPort(57600,SerialPort.Port.kUSB);
 	          
 	          // You can add a second parameter to modify the 
 	          // update rate (in hz) from 4 to 100.  The default is 100.
@@ -42,13 +38,12 @@ public class MecanumDriveSystem extends Subsystem {
 	          byte update_rate_hz = 20;
 	          //imu = new IMU(serial_port,update_rate_hz);
 	          imu = new IMUAdvanced(serial_port,update_rate_hz);
-	      } catch (VisaException ex) {
+	      } catch (Exception ex) {
 	          ex.printStackTrace();
 	      }
 	      
 	      Timer.delay(0.3);
 	      imu.zeroYaw();
-	      */
 	}
 	
 	@Override
@@ -58,9 +53,7 @@ public class MecanumDriveSystem extends Subsystem {
 	}
 	
 	public void drive(double x, double y, double rotation){
-		//robot.mecanumDrive_Cartesian(x, y, rotation, 0.0);
-		robot.mecanumDrive_Cartesian(x, y, rotation, sensorSystem.getAngle());
-		//robot.mecanumDrive_Cartesian(x, y, rotation, (double)imu.getYaw());
+		robot.mecanumDrive_Cartesian(x, y, rotation, (double)sensorSystem.getYaw());
 	}
 	public void drive(double left, double right){
 		robot.tankDrive(left, right);
