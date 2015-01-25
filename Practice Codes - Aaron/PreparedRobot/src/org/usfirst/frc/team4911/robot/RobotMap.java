@@ -1,5 +1,10 @@
 package org.usfirst.frc.team4911.robot;
 
+import org.usfirst.frc.team4911.robot.subsystems.PrintSystem;
+
+import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Gyro;
@@ -19,6 +24,9 @@ public class RobotMap {
 	public static CANTalon rightFront;
 	public static CANTalon rightRear;
 	
+	public static Solenoid testSolenoid;
+	public static Compressor compressor;
+	
 	//public static AxisCamera camera;
 	//public static AnalogChannel ultraSonicSensor;
 	public static IMUAdvanced imu;
@@ -30,6 +38,45 @@ public class RobotMap {
 	private static SerialPort serial_port;
 	
 	public static void init(){
+			
+			leftFront = new CANTalon(RobotConstants.LEFT_FRONT_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
+			leftFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+			leftFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
+			leftFront.setPID(1.0, 0.0, 0.0);
+			  
+			leftRear = new CANTalon(RobotConstants.LEFT_REAR_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
+			leftRear.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+			leftRear.changeControlMode(CANTalon.ControlMode.PercentVbus);
+			leftRear.setPID(1.0, 0.0, 0.0);
+		  
+			rightFront = new CANTalon(RobotConstants.RIGHT_FRONT_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
+	      	rightFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+	      	rightFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
+	      	rightFront.setPID(1.0, 0.0, 0.0);
+		  
+	      	rightRear = new CANTalon(RobotConstants.RIGHT_REAR_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
+	      	rightRear.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+	      	rightRear.changeControlMode(CANTalon.ControlMode.PercentVbus);
+	      	rightRear.setPID(1.0, 0.0, 0.0);
+	      	
+	      	compressor = new Compressor(); //compressor = new Compressor(RobotConstants.COMPRESSOR_PCMID);
+	      	testSolenoid = new Solenoid(3);
+	      	
+	      
+	      	/*Camera IP cannot be part of RobotMap (Static), because it is Dynamic
+	      	camera = new AxisCamera(Inet4Address.getLocalHost().getHostAddress());
+	      
+	      	ultraSonicSensor = new AnalogChannel(RobotConstants.ULTRASONIC_SENSOR_PORT);
+	      		
+	      
+	      	try {
+	      		serial_port = new SerialPort(57600,SerialPort.Port.kOnboard);
+				byte update_rate_hz = 50;//[4 - 100]
+				imu = new IMUAdvanced(serial_port, update_rate_hz);
+		  	} catch( Exception ex ) {
+
+		  	} 
+	      	*/
 		leftFront = new CANTalon(2); // Initialize the CanTalonSRX on device 1.
 		leftFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		leftFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
