@@ -6,15 +6,14 @@ import org.usfirst.frc.team4911.robot.Robot;
 import org.usfirst.frc.team4911.robot.OI;
 
 public class OperatorDrive extends Command {
-	MecanumDriveSystem mecanumDriveSystem = Robot.mecanumDriveSystem;
-	SensorSystem sensorSystem = Robot.sensorSystem;
-	PrintSystem printSystem = Robot.printSystem;
-
-	OI oi = Robot.oi;
+	private MecanumDriveSystem mecanumDriveSystem = Robot.mecanumDriveSystem;
+	private SensorSystem sensorSystem = Robot.sensorSystem;
+	private PrintSystem printSystem = Robot.printSystem;	
+	private OI oi = Robot.oi;
 	
-
     public boolean usingDriveSystem;
     public boolean gridLocked;
+	private int cycleNum;
 	
 	public OperatorDrive(){
 		requires(mecanumDriveSystem);
@@ -26,6 +25,7 @@ public class OperatorDrive extends Command {
 		sensorSystem.zeroYaw();
 		usingDriveSystem = false;
 		gridLocked = true;
+		cycleNum = 1;
 	}
 
 	@Override
@@ -43,11 +43,14 @@ public class OperatorDrive extends Command {
 				mecanumDriveSystem.drive(oi.getMainJoyX(), oi.getMainJoyY(), oi.getRotationJoyY());
 			}
 				
-			printSystem.print("Teleop");
-			System.out.println("==================");
-			System.out.println(sensorSystem.getYaw());
-			System.out.println("X: " + oi.getMainJoyX() + " Y: " + oi.getMainJoyY() + " Rot: " + oi.getRotationJoyY());
-			System.out.println("==================");
+			if(cycleNum % 4 == 0) {
+				printSystem.print("Teleop");
+				System.out.println("==================");
+				System.out.println(sensorSystem.getYaw());
+				System.out.println("X: " + oi.getMainJoyX() + " Y: " + oi.getMainJoyY() + " Rot: " + oi.getMainJoyZ());
+				System.out.println("==================");
+			}
+			cycleNum++;
 		}
 	}
 
