@@ -48,7 +48,7 @@ public class OI {
      * ROTATION JOY METHODS	
      *************************************/
     public Joystick getRotationJoy(){
-    	return mainJoy;
+    	return rotationJoy;
     }
     
     public double getRotationJoyX(){

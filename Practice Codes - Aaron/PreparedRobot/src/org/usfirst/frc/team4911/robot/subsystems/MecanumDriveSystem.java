@@ -8,6 +8,7 @@ import com.kauailabs.nav6.frc.IMUAdvanced;
 
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -22,7 +23,12 @@ public class MecanumDriveSystem extends Subsystem {
 	private IMUAdvanced imu = RobotMap.imu;		
 	
 	public MecanumDriveSystem(){
-		super();	      
+		super();
+		robot.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, false);
+		robot.setInvertedMotor(RobotDrive.MotorType.kRearLeft, false);
+
+		robot.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+		robot.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 	}
 	
 	@Override
@@ -32,7 +38,10 @@ public class MecanumDriveSystem extends Subsystem {
 	}
 	
 	public void drive(double x, double y, double rotation){
+		
 		robot.mecanumDrive_Cartesian(x, y, rotation, (double)imu.getYaw());
+		//robot.mecanumDrive_Cartesian(x, y, rotation, 0.0);
+		//robot.mecanumDrive_Cartesian(0.0, 0.5, 0.0, 0.0);
 	}
 	public void drive(double left, double right){
 		robot.tankDrive(left, right);

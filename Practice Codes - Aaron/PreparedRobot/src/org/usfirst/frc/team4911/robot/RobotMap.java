@@ -30,27 +30,25 @@ public class RobotMap {
 	private static SerialPort serial_port;
 	
 	public static void init(){
-		leftFront = new CANTalon(0); // Initialize the CanTalonSRX on device 1.
+		leftFront = new CANTalon(2); // Initialize the CanTalonSRX on device 1.
 		leftFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		leftFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		leftFront.setPID(1.0, 0.0, 0.0);
 		  
-		leftRear = new CANTalon(2); // Initialize the CanTalonSRX on device 1.
+		leftRear = new CANTalon(1); // Initialize the CanTalonSRX on device 1.
 		leftRear.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		leftRear.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		leftRear.setPID(1.0, 0.0, 0.0);
 		  
-		rightFront = new CANTalon(1); // Initialize the CanTalonSRX on device 1.
+		rightFront = new CANTalon(3); // Initialize the CanTalonSRX on device 1.
 		rightFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		rightFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		rightFront.setPID(1.0, 0.0, 0.0);
-		rightFront.reverseOutput(true);
 		  
-		rightRear = new CANTalon(3); // Initialize the CanTalonSRX on device 1.
+		rightRear = new CANTalon(4); // Initialize the CanTalonSRX on device 1.
 		rightRear.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		rightRear.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		rightRear.setPID(1.0, 0.0, 0.0);
-		rightRear.reverseOutput(true);
 		  	      
 		/*	      
 		//Camera IP cannot be part of RobotMap (Static), because it is Dynamic
