@@ -40,7 +40,7 @@ public class OperatorDrive extends Command {
 					mecanumDriveSystem.drive(0.0, valY, oi.getRotationJoyY());
 				}
 			} else {
-				mecanumDriveSystem.drive(oi.getMainJoyX(), oi.getMainJoyY(), oi.getMainJoyZ());
+				mecanumDriveSystem.drive(oi.getMainJoyX(), oi.getMainJoyY(), oi.getRotationJoyY());
 			}
 				
 			if(cycleNum % 4 == 0) {
