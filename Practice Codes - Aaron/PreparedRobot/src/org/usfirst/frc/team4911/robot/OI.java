@@ -1,16 +1,26 @@
 package org.usfirst.frc.team4911.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
+
 import org.usfirst.frc.team4911.robot.RobotConstants;
+import org.usfirst.frc.team4911.robot.commands.*;
 
 public class OI {
     public Joystick mainJoy;
     public Joystick rotationJoy;
+    
+    public JoystickButton lockButton;
 
     public OI() {
     	mainJoy = new Joystick(RobotConstants.JOYSTICK_MAIN);
     	rotationJoy = new Joystick(RobotConstants.JOYSTICK_ROTATION);
         
+    	lockButton = new JoystickButton(mainJoy, 2);
+    	lockButton.whenPressed(new UnlockGrid());
+    	lockButton.whenReleased(new LockGrid());
+    	
         /*
         rightButton1 = new JoystickButton(rightJoy, 1);
         rightButton1.whenPressed(new Turn90Clockwise());
