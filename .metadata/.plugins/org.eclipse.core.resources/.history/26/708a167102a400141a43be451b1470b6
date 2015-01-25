@@ -41,10 +41,6 @@ public class RobotConstants {
     public static final int MAIN_GYRO_PORT = 1;//Analog
     public static final double GYRO_SENSITIVITY = 0.007;
     
-    //CAMERA
-    public static final String CAMERA_NAME = "cam1";
-    public static final int CAMERA_QUALITY = 15;
-    
     //DEBUG SWITCH
     public static final boolean FLAG = false;
     

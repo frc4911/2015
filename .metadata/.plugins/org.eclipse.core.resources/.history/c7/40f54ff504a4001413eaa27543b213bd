@@ -20,7 +20,7 @@ public class Robot extends IterativeRobot {
     public static MecanumDriveSystem mecanumDriveSystem;
     public static SensorSystem sensorSystem;
     public static PrintSystem printSystem;
-    public static CameraSystem cameraSystem;
+    
     
     public void robotInit() {
     	RobotMap.init();
@@ -28,7 +28,6 @@ public class Robot extends IterativeRobot {
     	mecanumDriveSystem = new MecanumDriveSystem();
     	sensorSystem = new SensorSystem();
     	printSystem = new PrintSystem();
-    	cameraSystem = new CameraSystem();
         oi = new OI();
         
         autonomousCommand = new Autonomous();
