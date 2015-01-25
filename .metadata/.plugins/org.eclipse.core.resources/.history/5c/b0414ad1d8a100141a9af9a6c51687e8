@@ -1,7 +1,0 @@
-package ExternalLibs;
-
-import PIDSource;
-
-public class LIDAR extends PIDSource {
-
-}
