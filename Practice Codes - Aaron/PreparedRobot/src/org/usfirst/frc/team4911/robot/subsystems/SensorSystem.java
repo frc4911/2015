@@ -1,14 +1,16 @@
 package org.usfirst.frc.team4911.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.Gyro;
+import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.Timer;
 
 import org.usfirst.frc.team4911.robot.RobotConstants;
 import org.usfirst.frc.team4911.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
+
 import com.kauailabs.nav6.frc.IMUAdvanced;
 
 import ExternalLibs.LIDAR;
@@ -25,6 +27,12 @@ public class SensorSystem extends Subsystem {
 	public static Gyro gyro = RobotMap.gyro;
 	
 	public static LIDAR lidar = RobotMap.lidar;
+	
+	public SensorSystem(){
+	    imu.zeroYaw();
+	    gyro.setSensitivity(RobotConstants.GYRO_SENSITIVITY);
+	    gyro.initGyro();
+	}
 	
     public void initDefaultCommand() {
         //setDefaultCommand(new MySpecialCommand());

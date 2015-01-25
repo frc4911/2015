@@ -46,7 +46,7 @@ public class RobotConstants {
     public static final int CAMERA_QUALITY = 5;
     
     //DEBUG SWITCH
-    public static final boolean FLAG = false;
+    public static final boolean FLAG = true;
     
     //CM to IN conversion
     public static final double inToCM = 2.54;

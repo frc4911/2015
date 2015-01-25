@@ -8,7 +8,6 @@ import com.kauailabs.nav6.frc.IMUAdvanced;
 
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -17,33 +16,13 @@ public class MecanumDriveSystem extends Subsystem {
 	private CANTalon rearLeft = RobotMap.leftRear;
 	private CANTalon frontRight = RobotMap.rightFront;
 	private CANTalon rearRight = RobotMap.rightRear;
-	
 	private RobotDrive robot = new RobotDrive(frontLeft, rearLeft, frontRight, rearRight);
-	private SensorSystem sensorSystem = Robot.sensorSystem;
-	SerialPort serial_port;		
+	SerialPort serial_port;	
+	
+	private IMUAdvanced imu = RobotMap.imu;		
 	
 	public MecanumDriveSystem(){
-		super();
-		try {
-			serial_port = new SerialPort(57600,SerialPort.Port.kUSB);
-	          
-	          // You can add a second parameter to modify the 
-	          // update rate (in hz) from 4 to 100.  The default is 100.
-	          // If you need to minimize CPU load, you can set it to a
-	          // lower value, as shown here, depending upon your needs.
-	          
-	          // You can also use the IMUAdvanced class for advanced
-	          // features.
-
-	          byte update_rate_hz = 20;
-	          //imu = new IMU(serial_port,update_rate_hz);
-	          imu = new IMUAdvanced(serial_port,update_rate_hz);
-	      } catch (Exception ex) {
-	          ex.printStackTrace();
-	      }
-	      
-	      Timer.delay(0.3);
-	      imu.zeroYaw();
+		super();	      
 	}
 	
 	@Override
@@ -53,7 +32,7 @@ public class MecanumDriveSystem extends Subsystem {
 	}
 	
 	public void drive(double x, double y, double rotation){
-		robot.mecanumDrive_Cartesian(x, y, rotation, (double)sensorSystem.getYaw());
+		robot.mecanumDrive_Cartesian(x, y, rotation, (double)imu.getYaw());
 	}
 	public void drive(double left, double right){
 		robot.tankDrive(left, right);
