@@ -43,16 +43,6 @@ public class OI {
     	return pow;
     }
     
-    public double getMainJoyZ() {
-    	double pow = 0;
-    	if(Math.abs(mainJoy.getZ()) >= 0.1) {
-            pow = Math.round(mainJoy.getY() * RobotConstants.JOYSTICK_SENSITIVITY) 
-            		/ RobotConstants.JOYSTICK_SENSITIVITY;  
-        }
-    	return pow;
-    	
-    }
-    
 
     /*************************************
      * ROTATION JOY METHODS	
