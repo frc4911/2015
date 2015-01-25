@@ -43,7 +43,7 @@ public class RobotConstants {
     
     //CAMERA
     public static final String CAMERA_NAME = "cam1";
-    public static final int CAMERA_QUALITY = 5;
+    public static final int CAMERA_QUALITY = 15;
     
     //DEBUG SWITCH
     public static final boolean FLAG = false;
