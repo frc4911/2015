@@ -7,4 +7,6 @@
 <fullyQualifiedTypeName name="com.kauailabs.nav6.frc.IMU"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.subsystems.PrintSystem"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.Robot"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CANTalon.ControlMode"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
 </qualifiedTypeNameHistroy>

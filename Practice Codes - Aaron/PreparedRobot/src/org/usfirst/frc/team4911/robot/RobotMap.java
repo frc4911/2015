@@ -1,16 +1,18 @@
 package org.usfirst.frc.team4911.robot;
 
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
+
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.CameraServer;
 
-import ExternalLibs.LIDAR;;
+import ExternalLibs.LIDAR;
 
 //import edu.wpi.first.wpilibj.vision.AxisCamera;
 //import java.net.Inet4Address;
-//import com.kauailabs.nav6.frc.IMUAdvanced;
+import com.kauailabs.nav6.frc.IMUAdvanced;
 
 public class RobotMap {
 	public static CANTalon leftFront;
@@ -20,13 +22,14 @@ public class RobotMap {
 	
 	//public static AxisCamera camera;
 	//public static AnalogChannel ultraSonicSensor;
-	//public static IMUAdvanced imu;
+	public static IMUAdvanced imu;
 
 	public static BuiltInAccelerometer accelerometer;
 	public static Gyro gyro;
 	public static LIDAR	   lidar;
 	
 	public static CameraServer camera;
+	private static SerialPort serial_port;
 	
 	public static void init(){
 		  leftFront = new CANTalon(0); // Initialize the CanTalonSRX on device 1.
@@ -58,14 +61,13 @@ public class RobotMap {
 	      ultraSonicSensor = new AnalogChannel(RobotConstants.ULTRASONIC_SENSOR_PORT);
 	      
 	      
-	      try {
-	      	serial_port = new SerialPort(57600,SerialPort.Port.kOnboard);
-			byte update_rate_hz = 50;//[4 - 100]
-			imu = new IMUAdvanced(serial_port, update_rate_hz);
-		  } catch( Exception ex ) {
-
-		  } 
 		  */
+	      try {
+	    	  serial_port = new SerialPort(57600,SerialPort.Port.kOnboard);
+	    	  byte update_rate_hz = 50;//[4 - 100]
+	    	  imu = new IMUAdvanced(serial_port, update_rate_hz);
+		  } catch( Exception ex ) {
+		  } 
 	      accelerometer = new BuiltInAccelerometer();
 
 	      gyro = new Gyro(RobotConstants.MAIN_GYRO_PORT);
