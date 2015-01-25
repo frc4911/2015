@@ -9,8 +9,7 @@ public class RobotConstants {
     //DRIVE SYSTEM CONSTANTS
     public static final double WHEEL_DIAMETER = 4.0; //Measured in Inches
     public static final double GEAR_RATIO = 1.0;//39 Teeth on Wheels & 42 Teeth on Encoders
-    public static final double ONE_ROTATION_IN_INCHES = Math.PI * WHEEL_DIAMETER;
-    public static final double ENCODER_PULSE_PER_ROTATION = 250.0;//Number of Pulse per One Rotation of the Encoder
+    public static final double ENCODER_PULSE_PER_ROTATION = 1024.0;//Number of Pulse per One Rotation of the Encoder
     public static final double ENCODER_DISTANCE_PER_PULSE = GEAR_RATIO * WHEEL_DIAMETER * Math.PI / ENCODER_PULSE_PER_ROTATION;
     
     public static final int LEFT_ENCODER_PORT_A = 14;//Digital //1
@@ -49,8 +48,19 @@ public class RobotConstants {
     
     //ULTRASONIC SENSOR
     public static final int ULTRASONIC_SENSOR_PORT = 7;
-    public static final double vPerI = 5.002/204.6645;    
+    public static final double vPerI = 5.002/204.6645; 
+    
+    //GYRO
+    public static final int MAIN_GYRO_PORT = 1;//Analog
+    public static final double GYRO_SENSITIVITY = 0.007;
+    
+    //CAMERA
+    public static final String CAMERA_NAME = "cam1";
+    public static final int CAMERA_QUALITY = 5;
     
     //DEBUG SWITCH
-    public static final boolean FLAG = false;
+    public static final boolean FLAG = true;
+    
+    //CM to IN conversion
+    public static final double inToCM = 2.54;
 }

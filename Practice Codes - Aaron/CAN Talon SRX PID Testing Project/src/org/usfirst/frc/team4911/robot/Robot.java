@@ -5,14 +5,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
-
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 
 
@@ -34,8 +36,11 @@ public class Robot extends SampleRobot {
 	AnalogPotentiometer pot1;
 	
 	BuiltInAccelerometer accel;
+	Gyro gyro;
 	
 	SensorThread sensor;
+	
+	CameraServer server;
 	
 	
 	enum DebugType {
@@ -81,6 +86,7 @@ public class Robot extends SampleRobot {
       //   speeds.
       motor.setPID(1.0, 0.0, 0.0);
       */
+	  
 
       pot1 = new AnalogPotentiometer(1);
 	  
@@ -89,34 +95,43 @@ public class Robot extends SampleRobot {
 	  
 	  leftFront = new CANTalon(0); // Initialize the CanTalonSRX on device 1.
       leftFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-      leftFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
+      leftFront.changeControlMode(CANTalon.ControlMode.Position);
       leftFront.setPID(1.0, 0.0, 0.0);
 	  
       leftRear = new CANTalon(2); // Initialize the CanTalonSRX on device 1.
       leftRear.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-      leftRear.changeControlMode(CANTalon.ControlMode.PercentVbus);
+      leftRear.changeControlMode(CANTalon.ControlMode.Position);
       leftRear.setPID(1.0, 0.0, 0.0);
 	  
       rightFront = new CANTalon(1); // Initialize the CanTalonSRX on device 1.
       rightFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-      rightFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
+      rightFront.changeControlMode(CANTalon.ControlMode.Position);
       rightFront.setPID(1.0, 0.0, 0.0);
 	  
       rightRear = new CANTalon(3); // Initialize the CanTalonSRX on device 1.
       rightRear.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-      rightRear.changeControlMode(CANTalon.ControlMode.PercentVbus);
+      rightRear.changeControlMode(CANTalon.ControlMode.Position);
       rightRear.setPID(1.0, 0.0, 0.0);
       
       accel = new BuiltInAccelerometer();
+      
+      gyro = new Gyro(0);
+      gyro.setSensitivity(0.007);
+      gyro.initGyro();
       
       debug = DebugType.FULL;
 	  
       //sensor = new SensorThread(accel);
       //sensor.setPriority(9);
       
-      teleopRunning = false;
+      server = CameraServer.getInstance();
+      server.setQuality(100);
+      server.startAutomaticCapture("cam1");
   }
 
+  double initLeftEncoder = 0.0;
+  double initRightEncoder = 0.0;
+  
   public void operatorControl() {
 	  try {
 			output = new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/lvuser/natinst/teleLog.txt")));
@@ -125,39 +140,40 @@ public class Robot extends SampleRobot {
 			
 		}
 	  teleopRunning = true;
-	  sensor.start();
+	  //sensor.start();
+	  //server.startAutomaticCapture("cam1");
 	  
+	  gyro.reset();
+	  initLeftEncoder = leftFront.getEncPosition();
+	  initRightEncoder = rightFront.getEncPosition();
+	  while(isOperatorControl() && isEnabled()){
+		  System.out.println("Gyro:\t" + gyro.getAngle());
+	  }
+/*	  
     while (isOperatorControl() && isEnabled()) {
-      
-      // In closed loop mode, this sets the goal in the units mentioned above.
-      // Since we are using an analog potentiometer, this will try to go to
-      //   the middle of the potentiometer range.
-	//		motor.set(512);
-
-      //Timer.delay(5.0);
-     
-    	
     	leftFront.set(stick1.getRawAxis(1));
     	leftRear.set(stick1.getRawAxis(1));
 
     	rightFront.set(-stick2.getRawAxis(1));
     	rightRear.set(-stick2.getRawAxis(1));
     	
-    	/*System.out.println("--------------------");
-    	System.out.println("X: " + sensor.accelX);// + "\t\t" + "RealX: " + accel.getX());
-    	System.out.println("Y: " + sensor.accelY);// + "\t\t" + "RealY: " + accel.getY());
-    	System.out.println("Z: " + sensor.accelZ);// + "\t\t" + "RealZ: " + accel.getZ());*/
-    	System.out.println("Encoder Positions:/t" + leftFront.getEncPosition() + " ,\t" + rightFront.getEncPosition());
-    	System.out.println("Encoder Velocity:/t" + leftFront.getEncVelocity() + " ,\t" + rightFront.getEncVelocity());
-    	Timer.delay(0.05);
-      
+    	System.out.println("--------------------");
+    	//System.out.println("Encoder Positions:\t" + leftFront.getEncPosition() + " ,\t" + rightFront.getEncPosition());
+    	System.out.println("Encoder INCHES:\t" + getInch(leftFront) + " ,\t" + getInch(rightFront));
+    	//System.out.println("Encoder Velocity:\t" + leftFront.getEncVelocity() + " ,\t" + rightFront.getEncVelocity());
     }
+*/
+	  //direct(1);
+	  //Timer.delay(10);
+	  System.out.println("DONE");
+	output.close();
   
   }
   public void autonomous(){
+	  /*
 	  try {
 			output = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File("/home/lvuser/natinst/autoLog.txt"))));
-			//System.setOut(output);
+			System.setOut(output);
 		} catch (FileNotFoundException e) {
 			
 		}
@@ -168,38 +184,31 @@ public class Robot extends SampleRobot {
 		  rightFront.set(temp++);
 		  Timer.delay(2.0);
 	  }
-	  
+	  */
   }
+  /*
   public void disabled(){
-	  teleopRunning = false;
 	  sensor = new SensorThread(accel);  
 	  if(output != null) {
 		System.out.println("Thread State: " + sensor.getState());
   		System.out.println("Time: " + Timer.getFPGATimestamp());
   		output.close();
   	}
-  }
+  }*/
   
-  public void print() {
-	  if(debug == DebugType.NONE) {
-		  return;
-	  }
-	  printBorder();
-	  switch(debug) {
-	  	case FULL:
-	  		System.out.println("RIOAccel X: " + sensor.accelX);
-	  		System.out.println("RIOAccel Y: " + sensor.accelY);
-	  		System.out.println("RIOAccel Z: " + sensor.accelZ);
-	  		System.out.println("Thread State: " + sensor.getState());
-	  		
-	  	case SIMPLE:
-	  }
-	  System.out.println("Voltage: " + DriverStation.getInstance().getBatteryVoltage());
-	  printBorder();
+  public static int PULSES_PER_ROTATION = 1024;
+  public static double DIAMETER_OF_WHEEL = 4.0;//inch
+  
+  public double getInch(CANTalon talon){
+	  if(talon == leftFront)
+		  return (talon.getPosition() - initLeftEncoder) / PULSES_PER_ROTATION * (DIAMETER_OF_WHEEL * Math.PI);
+	  else 
+		  return (talon.getPosition() - initRightEncoder) / PULSES_PER_ROTATION * (DIAMETER_OF_WHEEL * Math.PI);
+  }
+  public void direct(int rotation){
 	  
-  }
-  
-  public void printBorder() {
-	  System.out.println("===================");
+	   leftFront.set((rotation * 1024) + initLeftEncoder);
+	   rightFront.set((rotation * 1024) + initRightEncoder);
+	   System.out.println("PID:\t" + leftFront.getP() + "\t" + leftFront.getI() + "\t" + leftFront.getD() + "\t" + leftFront.getF());
   }
 }

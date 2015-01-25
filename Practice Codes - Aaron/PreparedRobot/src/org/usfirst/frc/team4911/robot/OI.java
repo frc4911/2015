@@ -3,20 +3,35 @@ package org.usfirst.frc.team4911.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.*;
 import org.usfirst.frc.team4911.robot.RobotConstants;
-import org.usfirst.frc.team4911.robot.commands.SetSolenoid;
+import org.usfirst.frc.team4911.robot.commands.*;
 
 public class OI {
     public Joystick mainJoy;
     public Joystick rotationJoy;
-    public JoystickButton rightButton1;
+    public JoystickButton button3;
+    public JoystickButton button4;
+    public JoystickButton button5;
+    public JoystickButton button6;
 
     public OI() {
     	mainJoy = new Joystick(RobotConstants.JOYSTICK_MAIN);
     	rotationJoy = new Joystick(RobotConstants.JOYSTICK_ROTATION);
         
         
-        rightButton1 = new JoystickButton(mainJoy, 1);
-        rightButton1.whenPressed(new SetSolenoid());
+        button3 = new JoystickButton(mainJoy, 3);
+        button4 = new JoystickButton(mainJoy, 4);
+        button5 = new JoystickButton(mainJoy, 5);
+        button6 = new JoystickButton(mainJoy, 6);
+        
+        button3.whenPressed(new DriveStraightForward());
+        
+        button4.whenPressed(new DriveStraightBackward());
+        
+        button5.whenPressed(new StrafeLeft());
+        
+        button6.whenPressed(new StrafeRight());
+        
+        
     	
     }
     
@@ -51,7 +66,7 @@ public class OI {
      * ROTATION JOY METHODS	
      *************************************/
     public Joystick getRotationJoy(){
-    	return mainJoy;
+    	return rotationJoy;
     }
     
     public double getRotationJoyX(){

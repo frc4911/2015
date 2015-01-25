@@ -19,13 +19,20 @@ public class OperatorDrive extends Command {
 	
 	@Override
 	protected void initialize() {
-
+		sensorSystem.zeroYaw();
 	}
 
 	@Override
 	protected void execute() {
 		mecanumDriveSystem.drive(oi.getMainJoyX(), oi.getMainJoyY(), oi.getRotationJoyY());
+		//mecanumDriveSystem.drive(0.0, 0.3, 0.0);
+		//mecanumDriveSystem.drive(0.4, 0.4);
+		//mecanumDriveSystem.drive(oi.getMainJoyY(), oi.getRotationJoyY());
 		printSystem.print("Teleop");
+		System.out.println("==================");
+		System.out.println(sensorSystem.getYaw());
+		System.out.println("X: " + oi.getMainJoyX() + " Y: " + oi.getMainJoyY() + " Rot: " + oi.getRotationJoyY());
+		System.out.println("==================");
 	}
 
 	@Override
