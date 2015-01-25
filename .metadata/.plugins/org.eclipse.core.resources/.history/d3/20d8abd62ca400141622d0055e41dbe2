@@ -43,13 +43,11 @@ public class RobotMap {
 	      rightFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 	      rightFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
 	      rightFront.setPID(1.0, 0.0, 0.0);
-	      rightFront.reverseOutput(true);
 		  
 	      rightRear = new CANTalon(3); // Initialize the CanTalonSRX on device 1.
 	      rightRear.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 	      rightRear.changeControlMode(CANTalon.ControlMode.PercentVbus);
 	      rightRear.setPID(1.0, 0.0, 0.0);
-	      rightRear.reverseOutput(true);
 	      	      
 	      /*	      
 	      //Camera IP cannot be part of RobotMap (Static), because it is Dynamic
