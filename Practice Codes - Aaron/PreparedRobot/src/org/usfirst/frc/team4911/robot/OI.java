@@ -18,6 +18,8 @@ public class OI {
     public JoystickButton button6;
     
 
+    
+
     public OI() {
     	mainJoy = new Joystick(RobotConstants.JOYSTICK_MAIN);
         
@@ -40,10 +42,15 @@ public class OI {
         button5.whenPressed(strafeLeft);        
         button6.whenPressed(strafeRight);
         */
-        button3.whenPressed(new PIDAxisDrive(0.0 , -0.3, 0.0, button3));        
+        
+        /*button3.whenPressed(new PIDAxisDrive(0.0 , -0.3, 0.0, button3));        
         button4.whenPressed(new PIDAxisDrive(0.0 , 0.3, 0.0, button4));        
         button5.whenPressed(new PIDAxisDrive(-0.3 , 0.0, 0.0, button5));        
-        button6.whenPressed(new PIDAxisDrive(0.3 , 0.0, 0.0, button6));
+        button6.whenPressed(new PIDAxisDrive(0.3 , 0.0, 0.0, button6));*/
+        
+        
+        
+        
         
     }
     
@@ -83,5 +90,8 @@ public class OI {
     	return pow;
     }
     
-    
+    public int getPOV() {
+    	return mainJoy.getPOV(RobotConstants.JOYSTICK_POV_NUM);
+    }
+        
 }

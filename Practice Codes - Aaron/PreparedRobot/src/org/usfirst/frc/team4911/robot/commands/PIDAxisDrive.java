@@ -1,13 +1,18 @@
 package org.usfirst.frc.team4911.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+<<<<<<< HEAD
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+=======
+import edu.wpi.first.wpilibj.Joystick;
+>>>>>>> 004d4b783cef76415f7f2d6cf17178d69e7e0455
 
 import org.usfirst.frc.team4911.robot.subsystems.*;
 import org.usfirst.frc.team4911.robot.Robot;
 import org.usfirst.frc.team4911.robot.RobotConstants;
 import org.usfirst.frc.team4911.robot.OI;
+import org.usfirst.frc.team4911.robot.RobotConstants;
 
 /**
  *
@@ -20,13 +25,27 @@ public class PIDAxisDrive extends Command {
 	private double x;
 	private double y;
 	private double goalHeading;//degrees;
-	private JoystickButton button;
+	//private JoystickButton button;
+	private Joystick joystick;
+	private int povDir;
 	
-    public PIDAxisDrive(double x, double y, double goalHeading, JoystickButton button) {
+	private static double kP = 1.0 / 150.0;
+	private static double kI = 0.0;
+	private static double kD = 0.0;
+	
+	private double rotation;
+	private double currError;
+	private double lastError;
+	private double integration;
+	private double derivative;
+	
+    public PIDAxisDrive(double x, double y, double goalHeading, Joystick joystick, int povDir) {
 		this.x = x;
 		this.y = y;
 		this.goalHeading = goalHeading;
-		this.button = button;
+		this.joystick = joystick;
+		this.povDir = povDir;
+		//this.button = button;
     }
 
     protected void initialize() {
@@ -53,7 +72,7 @@ public class PIDAxisDrive extends Command {
     }
 
     protected boolean isFinished() {
-        return !button.get();
+        return !(joystick.getPOV(RobotConstants.JOYSTICK_POV_NUM) == povDir);
     }
 
     protected void end() {

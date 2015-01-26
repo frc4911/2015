@@ -1,9 +1,11 @@
 package org.usfirst.frc.team4911.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+
 import org.usfirst.frc.team4911.robot.subsystems.*;
 import org.usfirst.frc.team4911.robot.Robot;
 import org.usfirst.frc.team4911.robot.OI;
+import org.usfirst.frc.team4911.robot.RobotConstants;
 
 public class OperatorDrive extends Command {
 	private MecanumDriveSystem mecanumDriveSystem = Robot.mecanumDriveSystem;
@@ -51,6 +53,19 @@ public class OperatorDrive extends Command {
 			*/	
 			printSystem.printMessage("" + sensorSystem.getYaw()
 					+ "\nX: " + oi.getMainJoyX() + " Y: " + oi.getMainJoyY() + " Rot: " + oi.getMainJoyZ());
+			
+			if(oi.getPOV() == RobotConstants.POV_UP) {
+	        	new PIDAxisDrive(0.0, 0.3, 0.0, oi.mainJoy, RobotConstants.POV_UP).start();
+	        }
+	        else if(oi.getPOV() == RobotConstants.POV_DOWN) {
+	        	new PIDAxisDrive(0.0, -0.3, 0.0, oi.mainJoy, RobotConstants.POV_DOWN).start();
+	        }
+	        else if(oi.getPOV() == RobotConstants.POV_LEFT) {
+	        	new PIDAxisDrive(0.3, 0.0, 0.0, oi.mainJoy, RobotConstants.POV_LEFT).start();
+	        }
+	        else if(oi.getPOV() == RobotConstants.POV_RIGHT) {
+	        	new PIDAxisDrive(-0.3, 0.0, 0.0, oi.mainJoy, RobotConstants.POV_RIGHT).start();
+	        }
 		}
 	}
 

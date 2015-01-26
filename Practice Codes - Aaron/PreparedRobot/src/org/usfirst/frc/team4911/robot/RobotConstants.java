@@ -5,6 +5,12 @@ public class RobotConstants {
     public static final int JOYSTICK_MAIN = 1;
     public static final double JOYSTICK_SENSITIVITY = 10.0;
     
+    public static final int JOYSTICK_POV_NUM = 0;
+    public static final int POV_UP = 180;
+    public static final int POV_DOWN = 0;
+    public static final int POV_LEFT = 90;
+    public static final int POV_RIGHT = 270;
+    
     //DRIVE SYSTEM CONSTANTS
     public static final double WHEEL_DIAMETER = 4.0; //Measured in Inches
     public static final double GEAR_RATIO = 1.0;//39 Teeth on Wheels & 42 Teeth on Encoders
