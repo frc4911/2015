@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4911.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 
@@ -29,21 +30,27 @@ public class OI {
     	lockButton = new JoystickButton(mainJoy, 2);
     	lockButton.whenPressed(new UnlockGrid());
     	lockButton.whenReleased(new LockGrid());
-    	
+    	/*
     	driveStraightForward = new DriveStraightForward();
     	driveStraightBackward = new DriveStraightBackward();
     	strafeLeft = new StrafeLeft();
     	strafeRight = new StrafeRight();
-        
+        */
         button3 = new JoystickButton(mainJoy, 3);
         button4 = new JoystickButton(mainJoy, 4);
         button5 = new JoystickButton(mainJoy, 5);
         button6 = new JoystickButton(mainJoy, 6);
-        
+        /*
         button3.whenPressed(driveStraightForward);        
         button4.whenPressed(driveStraightBackward);        
         button5.whenPressed(strafeLeft);        
         button6.whenPressed(strafeRight);
+        */
+        button3.whenPressed(new PIDAxisDrive(0.0 , 0.3, 0.0, button3));        
+        button4.whenPressed(new PIDAxisDrive(0.0 , -0.3, 0.0, button4));        
+        button5.whenPressed(new PIDAxisDrive(0.3 , 0.0, 0.0, button5));        
+        button6.whenPressed(new PIDAxisDrive(-0.3 , 0.0, 0.0, button6));
+        
     }
     
     /*************************************
