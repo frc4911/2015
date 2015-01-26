@@ -21,7 +21,7 @@ public class PIDAxisDrive extends Command {
 	private double goalHeading;//degrees;
 	private JoystickButton button;
 	
-	private static double kP = 1.0 / 180.0;
+	private static double kP = 1.0 / 150.0;
 	private static double kI = 0.0;
 	private static double kD = 0.0;
 	

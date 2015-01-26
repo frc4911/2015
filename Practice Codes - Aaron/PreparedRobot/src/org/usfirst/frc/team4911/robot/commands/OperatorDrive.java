@@ -15,6 +15,9 @@ public class OperatorDrive extends Command {
     public boolean gridLocked;
 	private int cycleNum;
 	
+	private double error = 0.0;
+	private double kP = 1.0 / 100.0;
+	
 	public OperatorDrive(){
 		requires(mecanumDriveSystem);
 		requires(sensorSystem);
@@ -31,7 +34,9 @@ public class OperatorDrive extends Command {
 	@Override
 	protected void execute() {
 		if(!usingDriveSystem){
-			mecanumDriveSystem.drive(oi.getMainJoyX(),oi.getMainJoyY(), 0.0);
+			double goalHeading = 0.0;
+			error = goalHeading - sensorSystem.getYaw();
+			mecanumDriveSystem.drive(oi.getMainJoyX(),oi.getMainJoyY(), kP * error);
 			/*
 			if(gridLocked){
 				double valX = oi.getMainJoyX();
@@ -46,8 +51,8 @@ public class OperatorDrive extends Command {
 			}
 			*/	
 			if(cycleNum % 4 == 0) {
-				printSystem.print("Teleop");
-				printSystem.print("IMU:\t" + sensorSystem.getYaw());
+				//printSystem.print("Teleop");
+				//printSystem.print("IMU:\t" + sensorSystem.getYaw());
 				System.out.println("==================");
 				System.out.println(sensorSystem.getYaw());
 				System.out.println("X: " + oi.getMainJoyX() + " Y: " + oi.getMainJoyY() + " Rot: " + oi.getMainJoyZ());
