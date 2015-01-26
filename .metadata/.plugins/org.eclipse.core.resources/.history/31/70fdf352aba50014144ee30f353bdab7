@@ -18,7 +18,6 @@ public class OI {
     public JoystickButton button5;
     public JoystickButton button6;
     
-    
     public DriveStraightForward driveStraightForward;
     public DriveStraightBackward driveStraightBackward;
     public StrafeLeft strafeLeft;
@@ -47,15 +46,10 @@ public class OI {
         button5.whenPressed(strafeLeft);        
         button6.whenPressed(strafeRight);
         */
-        
-        /*button3.whenPressed(new PIDAxisDrive(0.0 , -0.3, 0.0, button3));        
+        button3.whenPressed(new PIDAxisDrive(0.0 , -0.3, 0.0, button3));        
         button4.whenPressed(new PIDAxisDrive(0.0 , 0.3, 0.0, button4));        
         button5.whenPressed(new PIDAxisDrive(-0.3 , 0.0, 0.0, button5));        
-        button6.whenPressed(new PIDAxisDrive(0.3 , 0.0, 0.0, button6));*/
-        
-        
-        
-        
+        button6.whenPressed(new PIDAxisDrive(0.3 , 0.0, 0.0, button6));
         
     }
     
@@ -95,10 +89,7 @@ public class OI {
     	return pow;
     }
     
-    public int getPOV() {
-    	return mainJoy.getPOV(RobotConstants.JOYSTICK_POV_NUM);
-    }
-    
+
     /*************************************
      * ROTATION JOY METHODS	
      *************************************/

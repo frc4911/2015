@@ -7,10 +7,10 @@ public class RobotConstants {
     public static final double JOYSTICK_SENSITIVITY = 10.0;
     
     public static final int JOYSTICK_POV_NUM = 0;
-    public static final int POV_UP = 180;
-    public static final int POV_DOWN = 0;
-    public static final int POV_LEFT = 90;
-    public static final int POV_RIGHT = 270;
+    public static final int POV_UP = 90;
+    public static final int POV_DOWN = 270;
+    public static final int POV_LEFT = 180;
+    public static final int POV_RIGHT = 0;
     
     //DRIVE SYSTEM CONSTANTS
     public static final double WHEEL_DIAMETER = 4.0; //Measured in Inches
