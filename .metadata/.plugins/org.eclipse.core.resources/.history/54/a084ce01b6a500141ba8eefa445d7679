@@ -24,6 +24,16 @@ public class PIDAxisDrive extends Command {
 	private Joystick joystick;
 	private int povDir;
 	
+	private static double kP = 1.0 / 150.0;
+	private static double kI = 0.0;
+	private static double kD = 0.0;
+	
+	private double rotation;
+	private double currError;
+	private double lastError;
+	private double integration;
+	private double derivative;
+	
     public PIDAxisDrive(double x, double y, double goalHeading, Joystick joystick, int povDir) {
 		this.x = x;
 		this.y = y;
@@ -46,6 +56,13 @@ public class PIDAxisDrive extends Command {
     }
 
     protected void execute() {
+    	/*
+    	currError = goalHeading - sensorSystem.getYaw();//[-180 - 180] degrees
+    	integration += currError;//[0 - 0.5] seconds
+    	derivative = lastError - currError;// NO USE
+    	lastError = currError;
+    	rotation = kP * currError + kI * integration + kD * derivative;//[-1.0 - 1.0] percentage
+    	*/
     	mecanumDriveSystem.driveWithPID(x, y, goalHeading);
     }
 
