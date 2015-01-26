@@ -30,6 +30,7 @@ public class Robot extends IterativeRobot {
     	printSystem = new PrintSystem();
     	mecanumDriveSystem = new MecanumDriveSystem();
     	sensorSystem = new SensorSystem();
+    	// roneckor - duplicate line
     	printSystem = new PrintSystem();
     	//cameraSystem = new CameraSystem();
         

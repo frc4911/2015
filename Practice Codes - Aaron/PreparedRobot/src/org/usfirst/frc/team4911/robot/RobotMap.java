@@ -61,16 +61,16 @@ public class RobotMap {
 	      	rightRear.changeControlMode(CANTalon.ControlMode.PercentVbus);
 	      	rightRear.setPID(1.0, 0.0, 0.0);
 	      	
+	      	// roneckor - dead code?
 	      	compressor = new Compressor(); //compressor = new Compressor(RobotConstants.COMPRESSOR_PCMID);
 	      	testSolenoid = new Solenoid(3);
 	      	
-	      
+	      	// roneckor - dead code?
 	      	/*Camera IP cannot be part of RobotMap (Static), because it is Dynamic
 	      	camera = new AxisCamera(Inet4Address.getLocalHost().getHostAddress());
-	      
+	        
 	      	ultraSonicSensor = new AnalogChannel(RobotConstants.ULTRASONIC_SENSOR_PORT);
-	      		
-	      
+	        
 	      	try {
 	      		serial_port = new SerialPort(57600,SerialPort.Port.kOnboard);
 				byte update_rate_hz = 50;//[4 - 100]
@@ -79,6 +79,8 @@ public class RobotMap {
 
 		  	} 
 	      	*/
+	      	
+	    // roneckor - lots of dupe code and duped commented out code
 		leftFront = new CANTalon(2); // Initialize the CanTalonSRX on device 1.
 		leftFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		leftFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
@@ -111,6 +113,7 @@ public class RobotMap {
 		//camera = CameraServer.getInstance();
 		//camera.setQuality(RobotConstants.CAMERA_QUALITY);
 
+		// roneckor - if you have to make a block like this, create a new Init function
 	    /***************************************
 	     * IMU INITIALIZATION
 	     ***************************************/
@@ -126,6 +129,7 @@ public class RobotMap {
 			// features.
 		
 			byte update_rate_hz = 20;
+			// roneckor - dead code?
 			//imu = new IMU(serial_port,update_rate_hz);
 			imu = new IMUAdvanced(serial_port,update_rate_hz);
 		} catch (Exception ex) {
