@@ -29,7 +29,6 @@ public class SensorSystem extends Subsystem {
 	public static LIDAR lidar = RobotMap.lidar;
 	
 	public SensorSystem(){
-	    imu.zeroYaw();
 	    gyro.setSensitivity(RobotConstants.GYRO_SENSITIVITY);
 	    gyro.initGyro();
 	}

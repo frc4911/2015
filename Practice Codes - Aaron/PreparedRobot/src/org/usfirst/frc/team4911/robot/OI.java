@@ -10,11 +10,17 @@ import org.usfirst.frc.team4911.robot.commands.*;
 public class OI {
     public Joystick mainJoy;
     public Joystick rotationJoy;
+    
     public JoystickButton lockButton;
     public JoystickButton button3;
     public JoystickButton button4;
     public JoystickButton button5;
     public JoystickButton button6;
+    
+    public DriveStraightForward driveStraightForward;
+    public DriveStraightBackward driveStraightBackward;
+    public StrafeLeft strafeLeft;
+    public StrafeRight strafeRight;
 
     public OI() {
     	mainJoy = new Joystick(RobotConstants.JOYSTICK_MAIN);
@@ -23,16 +29,21 @@ public class OI {
     	lockButton = new JoystickButton(mainJoy, 2);
     	lockButton.whenPressed(new UnlockGrid());
     	lockButton.whenReleased(new LockGrid());
+    	
+    	driveStraightForward = new DriveStraightForward();
+    	driveStraightBackward = new DriveStraightBackward();
+    	strafeLeft = new StrafeLeft();
+    	strafeRight = new StrafeRight();
         
         button3 = new JoystickButton(mainJoy, 3);
         button4 = new JoystickButton(mainJoy, 4);
         button5 = new JoystickButton(mainJoy, 5);
         button6 = new JoystickButton(mainJoy, 6);
         
-        button3.whenPressed(new DriveStraightForward());        
-        button4.whenPressed(new DriveStraightBackward());        
-        button5.whenPressed(new StrafeLeft());        
-        button6.whenPressed(new StrafeRight());
+        button3.whenPressed(driveStraightForward);        
+        button4.whenPressed(driveStraightBackward);        
+        button5.whenPressed(strafeLeft);        
+        button6.whenPressed(strafeRight);
     }
     
     /*************************************
@@ -45,6 +56,7 @@ public class OI {
     
     public double getMainJoyX(){
 		double pow = 0;
+		// roneckor - does this return a value 0 to 1?
     	if(Math.abs(mainJoy.getX()) >= 0.1) {
             pow = Math.round(mainJoy.getX() * RobotConstants.JOYSTICK_SENSITIVITY) 
             		/ RobotConstants.JOYSTICK_SENSITIVITY;  
@@ -64,11 +76,10 @@ public class OI {
     public double getMainJoyZ() {
     	double pow = 0;
     	if(Math.abs(mainJoy.getZ()) >= 0.1) {
-            pow = Math.round(mainJoy.getY() * RobotConstants.JOYSTICK_SENSITIVITY) 
+            pow = Math.round(mainJoy.getZ() * RobotConstants.JOYSTICK_SENSITIVITY) 
             		/ RobotConstants.JOYSTICK_SENSITIVITY;  
         }
     	return pow;
-    	
     }
     
 
@@ -98,4 +109,3 @@ public class OI {
     }
     
 }
-

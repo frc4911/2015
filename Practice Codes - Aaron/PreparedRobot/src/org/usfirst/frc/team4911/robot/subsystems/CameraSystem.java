@@ -14,10 +14,10 @@ public class CameraSystem extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	public static CameraServer camera = RobotMap.camera;
+	//public static CameraServer camera = RobotMap.camera;
 	
 	public CameraSystem() {
-		camera.startAutomaticCapture(RobotConstants.CAMERA_NAME);
+		//camera.startAutomaticCapture(RobotConstants.CAMERA_NAME);
 	}
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -25,15 +25,16 @@ public class CameraSystem extends Subsystem {
     }
     
     public void startStream() {
-    	camera.startAutomaticCapture(RobotConstants.CAMERA_NAME);
+    	//camera.startAutomaticCapture(RobotConstants.CAMERA_NAME);
     }
     
     public void setQuality(int quality) {
-    	camera.setQuality(quality);
+    	//camera.setQuality(quality);
     }
     
     public int getQuality() {
-    	return camera.getQuality();
+    	//return camera.getQuality();
+    	return 0;
     }
    
 }
