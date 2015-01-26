@@ -15,8 +15,8 @@ public class DriveStraightBackward extends Command {
 	private SensorSystem sensorSystem = Robot.sensorSystem;
 	private PrintSystem printSystem = Robot.printSystem;
 
-	private OI oi = Robot.oi;
-	private OperatorDrive operatorDrive = Robot.teleOp;
+	OI oi;
+	OperatorDrive operatorDrive;
 	
     public DriveStraightBackward() {
     	
@@ -24,6 +24,8 @@ public class DriveStraightBackward extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	oi = Robot.oi;
+    	operatorDrive = Robot.teleOp;
     	if(operatorDrive.usingDriveSystem){
     		this.cancel();
     	}    		

@@ -13,19 +13,22 @@ public class DriveStraightForward extends Command {
 	MecanumDriveSystem mecanumDriveSystem = Robot.mecanumDriveSystem;
 	SensorSystem sensorSystem = Robot.sensorSystem;
 	PrintSystem printSystem = Robot.printSystem;
-
-	OI oi = Robot.oi;
-	OperatorDrive operatorDrive = Robot.teleOp;
+	
+	OI oi;
+	OperatorDrive operatorDrive;
 	
     public DriveStraightForward() {
-    	if(operatorDrive.usingDriveSystem){
-    		this.cancel();
-    	}    		
-    	operatorDrive.usingDriveSystem = true;      	
+    	      	
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	oi = Robot.oi;
+    	operatorDrive = Robot.teleOp;
+    	if(operatorDrive.usingDriveSystem){
+    		this.cancel();
+    	}    		
+    	operatorDrive.usingDriveSystem = true;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -35,8 +38,8 @@ public class DriveStraightForward extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        printSystem.print("OI:\t" + (oi == null));
-        printSystem.print("Button:\t" + (oi.button3 == null));
+        System.out.println("OI:\t" + (oi == null));
+        System.out.println("Button:\t" + (oi.button3 == null));
     	return !oi.button3.get();
         
     }
