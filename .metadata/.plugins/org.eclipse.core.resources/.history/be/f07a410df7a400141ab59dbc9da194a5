@@ -38,7 +38,6 @@ public class RobotConstants {
     public static final double TOLERANCE = 1.0;//degrees
     public static final double MINIMUM_TURN_POWER = 0.01;//10% for the Talons
     
-    // roneckor - no comments for below values/commented out values
     public static final double KP_ANGLE = 3.9;//4.9;
     public static final double KI_ANGLE = 0.009;
     public static final double KD_ANGLE = 5.0;//3.0
