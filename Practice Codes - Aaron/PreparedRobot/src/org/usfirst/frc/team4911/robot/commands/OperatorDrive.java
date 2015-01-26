@@ -11,9 +11,8 @@ public class OperatorDrive extends Command {
 	private PrintSystem printSystem = Robot.printSystem;	
 	private OI oi = Robot.oi;
 	
-    public boolean usingDriveSystem;
+    public boolean driveSystemConflict;
     public boolean gridLocked;
-	private int cycleNum;
 	
 	private double error = 0.0;
 	private double kP = 1.0 / 100.0;
@@ -27,14 +26,13 @@ public class OperatorDrive extends Command {
 	@Override
 	protected void initialize() {
 		sensorSystem.zeroYaw();
-		usingDriveSystem = false;
+		driveSystemConflict = false;
 		gridLocked = true;
-		cycleNum = 1;
 	}
 
 	@Override
 	protected void execute() {
-		if(!usingDriveSystem){
+		if(!driveSystemConflict){
 			double goalHeading = 0.0;
 			error = goalHeading - sensorSystem.getYaw();
 			mecanumDriveSystem.drive(oi.getMainJoyX(),oi.getMainJoyY(), kP * error);
@@ -51,15 +49,8 @@ public class OperatorDrive extends Command {
 				mecanumDriveSystem.drive(oi.getMainJoyX(), oi.getMainJoyY(), oi.getMainJoyZ());
 			}
 			*/	
-			if(cycleNum % 4 == 0) {
-				//printSystem.print("Teleop");
-				//printSystem.print("IMU:\t" + sensorSystem.getYaw());
-				System.out.println("==================");
-				System.out.println(sensorSystem.getYaw());
-				System.out.println("X: " + oi.getMainJoyX() + " Y: " + oi.getMainJoyY() + " Rot: " + oi.getMainJoyZ());
-				System.out.println("==================");
-			}
-			cycleNum++;
+			printSystem.printMessage("" + sensorSystem.getYaw()
+					+ "\nX: " + oi.getMainJoyX() + " Y: " + oi.getMainJoyY() + " Rot: " + oi.getMainJoyZ());
 		}
 	}
 

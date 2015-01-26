@@ -1,0 +1,72 @@
+package org.usfirst.frc.team4911.robot.commands;
+
+import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team4911.robot.subsystems.*;
+import org.usfirst.frc.team4911.robot.Robot;
+import org.usfirst.frc.team4911.robot.OI;
+
+public class OperatorDrive extends Command {
+	private MecanumDriveSystem mecanumDriveSystem = Robot.mecanumDriveSystem;
+	private SensorSystem sensorSystem = Robot.sensorSystem;
+	private PrintSystem printSystem = Robot.printSystem;	
+	private OI oi = Robot.oi;
+	
+    public boolean driveSystemConflict;
+    public boolean gridLocked;
+	
+	private double error = 0.0;
+	private double kP = 1.0 / 100.0;
+	
+	public OperatorDrive(){
+		requires(mecanumDriveSystem);
+		requires(sensorSystem);
+	}
+	
+	
+	@Override
+	protected void initialize() {
+		sensorSystem.zeroYaw();
+		driveSystemConflict = false;
+		gridLocked = true;
+	}
+
+	@Override
+	protected void execute() {
+		if(!driveSystemConflict){
+			double goalHeading = 0.0;
+			error = goalHeading - sensorSystem.getYaw();
+			mecanumDriveSystem.drive(oi.getMainJoyX(),oi.getMainJoyY(), kP * error);
+			/*
+			if(gridLocked){
+				double valX = oi.getMainJoyX();
+				double valY = oi.getMainJoyY();
+				if(valX > valY){
+					mecanumDriveSystem.drive(valX, 0.0, oi.getMainJoyZ());
+				} else {
+					mecanumDriveSystem.drive(0.0, valY, oi.getMainJoyZ());
+				}
+			} else {
+				mecanumDriveSystem.drive(oi.getMainJoyX(), oi.getMainJoyY(), oi.getMainJoyZ());
+			}
+			*/	
+			printSystem.printMessage("" + sensorSystem.getYaw());
+			printSystem.printMessage("X: " + oi.getMainJoyX() + " Y: " + oi.getMainJoyY() + " Rot: " + oi.getMainJoyZ());
+		}
+	}
+
+	@Override
+	protected boolean isFinished() {
+		return false;
+	}
+
+	@Override
+	protected void end() {		
+		this.cancel();
+	}
+
+	@Override
+	protected void interrupted() {
+
+	}
+
+}

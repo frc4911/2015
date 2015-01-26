@@ -1,10 +1,12 @@
 package org.usfirst.frc.team4911.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team4911.robot.subsystems.*;
 import org.usfirst.frc.team4911.robot.Robot;
+import org.usfirst.frc.team4911.robot.RobotConstants;
 import org.usfirst.frc.team4911.robot.OI;
 
 /**
@@ -21,9 +23,9 @@ public class PIDAxisDrive extends Command {
 	private double goalHeading;//degrees;
 	private JoystickButton button;
 	
-	private static double kP = 1.0 / 150.0;
-	private static double kI = 0.0;
-	private static double kD = 0.0;
+	private static double kP;
+	private static double kI;
+	private static double kD;
 	
 	private double rotation;
 	private double currError;
@@ -40,14 +42,18 @@ public class PIDAxisDrive extends Command {
 
     protected void initialize() {
     	oi = Robot.oi;
+    	kP = RobotConstants.kP;
+    	kI = RobotConstants.kI;
+    	kD = RobotConstants.kD;
+    	
     	operatorDrive = Robot.teleOp;
     	mecanumDriveSystem = Robot.mecanumDriveSystem;
     	sensorSystem = Robot.sensorSystem;
 
-    	if(operatorDrive.usingDriveSystem){
+    	if(operatorDrive.driveSystemConflict){
     		this.cancel();
     	}    		
-    	operatorDrive.usingDriveSystem = true;
+    	operatorDrive.driveSystemConflict = true;
     }
 
     protected void execute() {
@@ -64,7 +70,7 @@ public class PIDAxisDrive extends Command {
     }
 
     protected void end() {
-    	operatorDrive.usingDriveSystem = false;  
+    	operatorDrive.driveSystemConflict = false;  
     }
 
     protected void interrupted() {

@@ -17,9 +17,14 @@ public class PrintSystem extends Subsystem {
 	private int teleFileNum;
 	private PrintWriter fileWriter;
 	private SensorSystem sensorSystem = Robot.sensorSystem;
+	private int printFrequency;
+	private int numIteration;
+	
 	public PrintSystem(){
 		autoFileNum = 1;
 		teleFileNum = 1;
+		this.numIteration = 0;
+		this.printFrequency = RobotConstants.printFrequency;
 	}
 	
     public void initDefaultCommand() {
@@ -81,6 +86,7 @@ public class PrintSystem extends Subsystem {
    			System.out.println("Distance: " + sensorSystem.getIN() + " in");
    			System.out.println("====================");
     	}
+    	numIteration++;
     	
     }
     
