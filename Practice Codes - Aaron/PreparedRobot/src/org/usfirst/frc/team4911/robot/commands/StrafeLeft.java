@@ -15,9 +15,13 @@ public class StrafeLeft extends Command {
 	PrintSystem printSystem = Robot.printSystem;
 
 	OI oi = Robot.oi;
+	private OperatorDrive operatorDrive = Robot.teleOp;
 	
     public StrafeLeft() {
-    	
+    	if(operatorDrive.usingDriveSystem){
+    		this.cancel();
+    	}    		
+    	operatorDrive.usingDriveSystem = true;  
     }
 
     // Called just before this Command runs the first time
@@ -36,6 +40,7 @@ public class StrafeLeft extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	operatorDrive.usingDriveSystem = false;  
     }
 
     // Called when another command which requires one or more of the same

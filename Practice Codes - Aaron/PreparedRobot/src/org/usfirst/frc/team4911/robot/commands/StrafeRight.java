@@ -2,6 +2,10 @@ package org.usfirst.frc.team4911.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+
+
+
+
 import org.usfirst.frc.team4911.robot.subsystems.*;
 import org.usfirst.frc.team4911.robot.Robot;
 import org.usfirst.frc.team4911.robot.OI;
@@ -15,9 +19,13 @@ public class StrafeRight extends Command {
 	PrintSystem printSystem = Robot.printSystem;
 
 	OI oi = Robot.oi;
+	private OperatorDrive operatorDrive = Robot.teleOp;
 	
     public StrafeRight() {
-    	
+    	if(operatorDrive.usingDriveSystem){
+    		this.cancel();
+    	}    		
+    	operatorDrive.usingDriveSystem = true;  
     }
 
     // Called just before this Command runs the first time
@@ -36,6 +44,7 @@ public class StrafeRight extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	operatorDrive.usingDriveSystem = false;  
     }
 
     // Called when another command which requires one or more of the same

@@ -31,20 +31,23 @@ public class OperatorDrive extends Command {
 	@Override
 	protected void execute() {
 		if(!usingDriveSystem){
+			mecanumDriveSystem.drive(oi.getMainJoyX(),oi.getMainJoyY(), 0.0);
+			/*
 			if(gridLocked){
 				double valX = oi.getMainJoyX();
 				double valY = oi.getMainJoyY();
 				if(valX > valY){
-					mecanumDriveSystem.drive(valX, 0.0, oi.getRotationJoyY());
+					mecanumDriveSystem.drive(valX, 0.0, oi.getMainJoyZ());
 				} else {
-					mecanumDriveSystem.drive(0.0, valY, oi.getRotationJoyY());
+					mecanumDriveSystem.drive(0.0, valY, oi.getMainJoyZ());
 				}
 			} else {
-				mecanumDriveSystem.drive(oi.getMainJoyX(), oi.getMainJoyY(), oi.getRotationJoyY());
+				mecanumDriveSystem.drive(oi.getMainJoyX(), oi.getMainJoyY(), oi.getMainJoyZ());
 			}
-				
+			*/	
 			if(cycleNum % 4 == 0) {
 				printSystem.print("Teleop");
+				printSystem.print("IMU:\t" + sensorSystem.getYaw());
 				System.out.println("==================");
 				System.out.println(sensorSystem.getYaw());
 				System.out.println("X: " + oi.getMainJoyX() + " Y: " + oi.getMainJoyY() + " Rot: " + oi.getMainJoyZ());

@@ -3,6 +3,7 @@ package org.usfirst.frc.team4911.robot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 
+
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
@@ -10,21 +11,18 @@ import org.usfirst.frc.team4911.robot.OI;
 import org.usfirst.frc.team4911.robot.RobotMap;
 import org.usfirst.frc.team4911.robot.commands.Autonomous;
 import org.usfirst.frc.team4911.robot.commands.OperatorDrive;
-import org.usfirst.frc.team4911.robot.commands.SetSolenoid;
 import org.usfirst.frc.team4911.robot.subsystems.*;
 
 public class Robot extends IterativeRobot {
-    public static Command autonomousCommand;
-    public static Command teleOp;
-    public static Command testCommand;
+    public static Autonomous autonomousCommand;
+    public static OperatorDrive teleOp;
    
     public static OI oi;
     public static MecanumDriveSystem mecanumDriveSystem;
     public static SensorSystem sensorSystem;
     public static PrintSystem printSystem;
-    public static CameraSystem cameraSystem;
+    //public static CameraSystem cameraSystem;
     
-    public static PneumaticSystem pneumaticSystem;
     
     public void robotInit() {
     	RobotMap.init();
@@ -33,12 +31,12 @@ public class Robot extends IterativeRobot {
     	mecanumDriveSystem = new MecanumDriveSystem();
     	sensorSystem = new SensorSystem();
     	printSystem = new PrintSystem();
-    	cameraSystem = new CameraSystem();
-        oi = new OI();
+    	//cameraSystem = new CameraSystem();
         
         autonomousCommand = new Autonomous();
         teleOp = new OperatorDrive();
-        testCommand = new SetSolenoid();
+
+        oi = new OI();
 
         if(RobotConstants.FLAG) {
             System.out.println("Ready To Roll Out!");

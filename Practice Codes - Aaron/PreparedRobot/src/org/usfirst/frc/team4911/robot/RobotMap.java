@@ -33,9 +33,11 @@ public class RobotMap {
 	public static BuiltInAccelerometer accelerometer;
 	public static Gyro gyro;
 	public static LIDAR	   lidar;	
-	public static CameraServer camera;
+	//public static CameraServer camera;
 	
 	private static SerialPort serial_port;
+	
+	//private PrintSystem printSystem = R
 	
 	public static void init(){
 			
@@ -106,14 +108,14 @@ public class RobotMap {
 		accelerometer = new BuiltInAccelerometer();
 		gyro = new Gyro(RobotConstants.MAIN_GYRO_PORT);
 		lidar = new LIDAR(I2C.Port.kOnboard);
-		camera = CameraServer.getInstance();
-		camera.setQuality(RobotConstants.CAMERA_QUALITY);
+		//camera = CameraServer.getInstance();
+		//camera.setQuality(RobotConstants.CAMERA_QUALITY);
 
 	    /***************************************
 	     * IMU INITIALIZATION
 	     ***************************************/
 		try {
-			serial_port = new SerialPort(57600,SerialPort.Port.kUSB);
+			serial_port = new SerialPort(57600,SerialPort.Port.kUSB );
 		          
 			// You can add a second parameter to modify the 
 			// update rate (in hz) from 4 to 100.  The default is 100.
@@ -127,7 +129,9 @@ public class RobotMap {
 			//imu = new IMU(serial_port,update_rate_hz);
 			imu = new IMUAdvanced(serial_port,update_rate_hz);
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			//ex.printStackTrace();
+			//printSystem.print("Exception from IMU");
+			
 		}
 		Timer.delay(0.3);
 	}
