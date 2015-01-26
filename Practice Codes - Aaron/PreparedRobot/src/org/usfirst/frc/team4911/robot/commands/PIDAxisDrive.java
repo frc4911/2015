@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Joystick;
 
 import org.usfirst.frc.team4911.robot.subsystems.*;
 import org.usfirst.frc.team4911.robot.Robot;
+import org.usfirst.frc.team4911.robot.RobotConstants;
 import org.usfirst.frc.team4911.robot.OI;
 import org.usfirst.frc.team4911.robot.RobotConstants;
 
@@ -13,7 +14,6 @@ import org.usfirst.frc.team4911.robot.RobotConstants;
  */
 public class PIDAxisDrive extends Command {
 	private MecanumDriveSystem mecanumDriveSystem;
-	private SensorSystem sensorSystem;
 	private OI oi;
 	private OperatorDrive operatorDrive;
 	
@@ -45,23 +45,25 @@ public class PIDAxisDrive extends Command {
 
     protected void initialize() {
     	oi = Robot.oi;
+    	
     	operatorDrive = Robot.teleOp;
     	mecanumDriveSystem = Robot.mecanumDriveSystem;
-    	sensorSystem = Robot.sensorSystem;
 
-    	if(operatorDrive.usingDriveSystem){
+    	if(operatorDrive.driveSystemConflict){
     		this.cancel();
     	}    		
-    	operatorDrive.usingDriveSystem = true;
+    	operatorDrive.driveSystemConflict = true;
     }
 
     protected void execute() {
+    	/*
     	currError = goalHeading - sensorSystem.getYaw();//[-180 - 180] degrees
     	integration += currError;//[0 - 0.5] seconds
     	derivative = lastError - currError;// NO USE
     	lastError = currError;
     	rotation = kP * currError + kI * integration + kD * derivative;//[-1.0 - 1.0] percentage
-    	mecanumDriveSystem.drive(x, y, rotation);
+    	*/
+    	mecanumDriveSystem.driveWithPID(x, y, goalHeading);
     }
 
     protected boolean isFinished() {
@@ -69,7 +71,7 @@ public class PIDAxisDrive extends Command {
     }
 
     protected void end() {
-    	operatorDrive.usingDriveSystem = false;  
+    	operatorDrive.driveSystemConflict = false;  
     }
 
     protected void interrupted() {

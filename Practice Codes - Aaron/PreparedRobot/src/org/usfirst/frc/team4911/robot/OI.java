@@ -10,7 +10,6 @@ import org.usfirst.frc.team4911.robot.commands.*;
 
 public class OI {
     public Joystick mainJoy;
-    public Joystick rotationJoy;
     
     public JoystickButton lockButton;
     public JoystickButton button3;
@@ -18,15 +17,11 @@ public class OI {
     public JoystickButton button5;
     public JoystickButton button6;
     
+
     
-    public DriveStraightForward driveStraightForward;
-    public DriveStraightBackward driveStraightBackward;
-    public StrafeLeft strafeLeft;
-    public StrafeRight strafeRight;
 
     public OI() {
     	mainJoy = new Joystick(RobotConstants.JOYSTICK_MAIN);
-    	rotationJoy = new Joystick(RobotConstants.JOYSTICK_ROTATION);
         
     	//lockButton = new JoystickButton(mainJoy, 2);
     	//lockButton.whenPressed(new UnlockGrid());
@@ -98,30 +93,5 @@ public class OI {
     public int getPOV() {
     	return mainJoy.getPOV(RobotConstants.JOYSTICK_POV_NUM);
     }
-    
-    /*************************************
-     * ROTATION JOY METHODS	
-     *************************************/
-    public Joystick getRotationJoy(){
-    	return rotationJoy;
-    }
-    
-    public double getRotationJoyX(){
-		double pow = 0;
-    	if(Math.abs(rotationJoy.getX()) >= 0.1) {
-            pow = Math.round(rotationJoy.getX() * RobotConstants.JOYSTICK_SENSITIVITY) 
-            		/ RobotConstants.JOYSTICK_SENSITIVITY;  
-        }
-    	return pow;
-    }
-    
-    public double getRotationJoyY(){
-    	double pow = 0;
-    	if(Math.abs(rotationJoy.getY()) >= 0.1) {
-            pow = Math.round(rotationJoy.getY() * RobotConstants.JOYSTICK_SENSITIVITY) 
-            		/ RobotConstants.JOYSTICK_SENSITIVITY;  
-        }
-    	return pow;
-    }
-    
+        
 }

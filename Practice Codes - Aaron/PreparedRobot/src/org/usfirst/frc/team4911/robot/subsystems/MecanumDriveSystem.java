@@ -1,8 +1,10 @@
 package org.usfirst.frc.team4911.robot.subsystems;
 
 import org.usfirst.frc.team4911.robot.Robot;
-
+import org.usfirst.frc.team4911.robot.RobotConstants;
 import org.usfirst.frc.team4911.robot.RobotMap;
+import org.usfirst.frc.team4911.robot.subsystems.*;
+
 
 import com.kauailabs.nav6.frc.IMUAdvanced;
 
@@ -19,6 +21,12 @@ public class MecanumDriveSystem extends Subsystem {
 	private CANTalon rearRight = RobotMap.rightRear;
 	private RobotDrive robot = new RobotDrive(frontLeft, rearLeft, frontRight, rearRight);
 	SerialPort serial_port;	
+	
+	private double rotation;
+	private double currError;
+	private double lastError;
+	private double integration;
+	private double derivative;
 	
 	private IMUAdvanced imu = RobotMap.imu;		
 	
@@ -42,6 +50,16 @@ public class MecanumDriveSystem extends Subsystem {
 		robot.mecanumDrive_Cartesian(x, y, rotation, (double)imu.getYaw());
 		//robot.mecanumDrive_Cartesian(x, y, rotation, 0.0);
 		//robot.mecanumDrive_Cartesian(0.0, 0.5, 0.0, 0.0);
+	}
+	
+	public void driveWithPID(double x, double y, double goalHeading){
+		currError = goalHeading - Robot.sensorSystem.getYaw();//[-180 - 180] degrees
+    	integration += currError;//[0 - 0.5] seconds
+    	derivative = lastError - currError;// NO USE
+    	lastError = currError;
+    	rotation = RobotConstants.kP * currError + RobotConstants.kI * integration + RobotConstants.kD * derivative;//[-1.0 - 1.0] percentage
+    	drive(x, y, rotation);
+		
 	}
 	public void drive(double left, double right){
 		robot.tankDrive(left, right);
