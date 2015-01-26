@@ -14,18 +14,21 @@ public class StrafeLeft extends Command {
 	SensorSystem sensorSystem = Robot.sensorSystem;
 	PrintSystem printSystem = Robot.printSystem;
 
-	OI oi = Robot.oi;
-	private OperatorDrive operatorDrive = Robot.teleOp;
+	OI oi;
+	OperatorDrive operatorDrive;
 	
     public StrafeLeft() {
-    	if(operatorDrive.usingDriveSystem){
-    		this.cancel();
-    	}    		
-    	operatorDrive.usingDriveSystem = true;  
+    	 
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	oi = Robot.oi;
+    	operatorDrive = Robot.teleOp; 
+    	if(operatorDrive.usingDriveSystem){
+    		this.cancel();
+    	}    		
+    	operatorDrive.usingDriveSystem = true; 
     }
 
     // Called repeatedly when this Command is scheduled to run

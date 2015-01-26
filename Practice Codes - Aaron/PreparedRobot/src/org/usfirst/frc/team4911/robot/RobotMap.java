@@ -133,8 +133,8 @@ public class RobotMap {
 			//imu = new IMU(serial_port,update_rate_hz);
 			imu = new IMUAdvanced(serial_port,update_rate_hz);
 		} catch (Exception ex) {
-			//ex.printStackTrace();
-			//printSystem.print("Exception from IMU");
+			System.out.println("Probs be happen\'n");
+			ex.printStackTrace();
 			
 		}
 		Timer.delay(0.3);
