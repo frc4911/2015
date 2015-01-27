@@ -46,6 +46,13 @@ public class PIDAxisDrive extends Command {
     }
 
     protected void execute() {
+    	/*
+    	currError = goalHeading - sensorSystem.getYaw();//[-180 - 180] degrees
+    	integration += currError;//[0 - 0.5] seconds
+    	derivative = lastError - currError;// NO USE
+    	lastError = currError;
+    	rotation = kP * currError + kI * integration + kD * derivative;//[-1.0 - 1.0] percentage
+    	*/
     	mecanumDriveSystem.driveWithPID(x, y, goalHeading);
     }
 

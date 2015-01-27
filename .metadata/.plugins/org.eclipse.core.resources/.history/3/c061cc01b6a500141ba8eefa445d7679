@@ -16,6 +16,9 @@ public class OperatorDrive extends Command {
     public boolean driveSystemConflict;
     public boolean gridLocked;
 	
+	private double error = 0.0;
+	private double kP = 1.0 / 100.0;
+	
 	public OperatorDrive(){
 		requires(mecanumDriveSystem);
 		requires(sensorSystem);
@@ -32,7 +35,9 @@ public class OperatorDrive extends Command {
 	@Override
 	protected void execute() {
 		if(!driveSystemConflict){
-			mecanumDriveSystem.driveWithPID(oi.getMainJoyX(),oi.getMainJoyY(), 0);
+			double goalHeading = 0.0;
+			error = goalHeading - sensorSystem.getYaw();
+			mecanumDriveSystem.drive(oi.getMainJoyX(),oi.getMainJoyY(), kP * error);
 			/*
 			if(gridLocked){
 				double valX = oi.getMainJoyX();
