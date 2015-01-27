@@ -46,7 +46,7 @@ public class PIDAxisDrive extends Command {
     }
 
     protected void execute() {
-    	mecanumDriveSystem.driveWithPID(x, y, goalHeading);
+    	mecanumDriveSystem.driveWithPID(x, y);
     }
 
     protected boolean isFinished() {

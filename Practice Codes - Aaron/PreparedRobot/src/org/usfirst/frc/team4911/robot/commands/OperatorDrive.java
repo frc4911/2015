@@ -25,6 +25,7 @@ public class OperatorDrive extends Command {
 	@Override
 	protected void initialize() {
 		sensorSystem.zeroYaw();
+		mecanumDriveSystem.setGoalHeading(0.0);
 		driveSystemConflict = false;
 		gridLocked = true;
 	}
@@ -32,7 +33,7 @@ public class OperatorDrive extends Command {
 	@Override
 	protected void execute() {
 		if(!driveSystemConflict){
-			mecanumDriveSystem.driveWithPID(oi.getMainJoyX(),oi.getMainJoyY(), 0);
+			mecanumDriveSystem.driveWithPID(oi.getMainJoyX(),oi.getMainJoyY());
 			/*
 			if(gridLocked){
 				double valX = oi.getMainJoyX();
@@ -47,7 +48,8 @@ public class OperatorDrive extends Command {
 			}
 			*/	
 			printSystem.printMessage("" + sensorSystem.getYaw()
-					+ "\nX: " + oi.getMainJoyX() + " Y: " + oi.getMainJoyY() + " Rot: " + oi.getMainJoyZ());
+					+ "\nX: " + oi.getMainJoyX() + " Y: " + oi.getMainJoyY() + " Rot: " + oi.getMainJoyZ()
+					+ "\nHeading: " + sensorSystem.getYaw() + " Goal Heading: " + mecanumDriveSystem.getGoalHeading());
 			
 			if(oi.getPOV() == RobotConstants.POV_UP) {
 	        	new PIDAxisDrive(0.0, 0.3, 0.0, oi.mainJoy, RobotConstants.POV_UP).start();
