@@ -33,21 +33,9 @@ public class OperatorDrive extends Command {
 	protected void execute() {
 		if(!driveSystemConflict){
 			mecanumDriveSystem.driveWithPID(oi.getMainJoyX(),oi.getMainJoyY(), 0);
-			/*
-			if(gridLocked){
-				double valX = oi.getMainJoyX();
-				double valY = oi.getMainJoyY();
-				if(valX > valY){
-					mecanumDriveSystem.drive(valX, 0.0, oi.getMainJoyZ());
-				} else {
-					mecanumDriveSystem.drive(0.0, valY, oi.getMainJoyZ());
-				}
-			} else {
-				mecanumDriveSystem.drive(oi.getMainJoyX(), oi.getMainJoyY(), oi.getMainJoyZ());
-			}
-			*/	
-			printSystem.printMessage("" + sensorSystem.getYaw()
-					+ "\nX: " + oi.getMainJoyX() + " Y: " + oi.getMainJoyY() + " Rot: " + oi.getMainJoyZ());
+			
+			//printSystem.printMessage("" + sensorSystem.getYaw()
+			//		+ "\nX: " + oi.getMainJoyX() + " Y: " + oi.getMainJoyY() + " Rot: " + oi.getMainJoyZ());
 			
 			if(oi.getPOV() == RobotConstants.POV_UP) {
 	        	new PIDAxisDrive(0.0, 0.3, 0.0, oi.mainJoy, RobotConstants.POV_UP).start();

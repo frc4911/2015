@@ -2,8 +2,6 @@ package org.usfirst.frc.team4911.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 
-
-
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
@@ -11,11 +9,13 @@ import org.usfirst.frc.team4911.robot.OI;
 import org.usfirst.frc.team4911.robot.RobotMap;
 import org.usfirst.frc.team4911.robot.commands.Autonomous;
 import org.usfirst.frc.team4911.robot.commands.OperatorDrive;
+import org.usfirst.frc.team4911.robot.commands.RunPrintServer;
 import org.usfirst.frc.team4911.robot.subsystems.*;
 
 public class Robot extends IterativeRobot {
     public static Autonomous autonomousCommand;
     public static OperatorDrive teleOp;
+    public static RunPrintServer printServerCommand;
    
     public static OI oi;
     public static MecanumDriveSystem mecanumDriveSystem;
@@ -34,6 +34,7 @@ public class Robot extends IterativeRobot {
         
         autonomousCommand = new Autonomous();
         teleOp = new OperatorDrive();
+        printServerCommand = new RunPrintServer();
 
         oi = new OI();
 
@@ -46,7 +47,8 @@ public class Robot extends IterativeRobot {
     	if(autonomousCommand.isCanceled()) {
     		autonomousCommand = new Autonomous();
     	}
-    	printSystem.createNewFile();
+    	printServerCommand = new RunPrintServer();
+    	printServerCommand.start();
         autonomousCommand.start(); 
     }
 
@@ -61,7 +63,8 @@ public class Robot extends IterativeRobot {
     	if(teleOp.isCanceled()){
     		teleOp = new OperatorDrive();
     	}
-    	printSystem.createNewFile();
+    	printServerCommand = new RunPrintServer();
+    	printServerCommand.start();    	
     	teleOp.start();
     }
 
