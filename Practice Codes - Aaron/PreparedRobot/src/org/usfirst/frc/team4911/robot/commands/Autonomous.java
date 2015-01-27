@@ -16,7 +16,6 @@ public class Autonomous extends Command {
 
 	@Override
 	protected void execute() {
-		printSystem.print("Autonomous");
 	}
 
 	@Override
