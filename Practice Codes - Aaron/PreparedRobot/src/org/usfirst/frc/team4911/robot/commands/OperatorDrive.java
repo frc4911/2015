@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4911.robot.commands;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team4911.robot.subsystems.*;
@@ -16,6 +17,10 @@ public class OperatorDrive extends Command {
     public boolean driveSystemConflict;
     public boolean gridLocked;
 	
+    Runtime runtime;
+    
+    long mb = 1024*1024;
+    
 	public OperatorDrive(){
 		requires(mecanumDriveSystem);
 		requires(sensorSystem);
@@ -28,6 +33,7 @@ public class OperatorDrive extends Command {
 		mecanumDriveSystem.setGoalHeading(0.0);
 		driveSystemConflict = false;
 		gridLocked = true;
+		runtime = Runtime.getRuntime();
 	}
 
 	@Override
@@ -50,6 +56,9 @@ public class OperatorDrive extends Command {
 		}
 		Robot.printSystem.print("Goal Heading:", "" + Robot.mecanumDriveSystem.getGoalHeading());
 		Robot.printSystem.print("Current Heading:", "" + Robot.sensorSystem.getYaw());
+		Robot.printSystem.print("Used Memory: " , "" + (runtime.totalMemory() - runtime.freeMemory()) / mb);
+		Robot.printSystem.print("Free Memory: ", "" + runtime.freeMemory()/mb);
+		Robot.printSystem.print("Voltage: ", "" + DriverStation.getInstance().getBatteryVoltage());
 	}
 
 	@Override

@@ -17,6 +17,7 @@ public class OI {
     public JoystickButton button4;
     public JoystickButton button5;
     public JoystickButton button6;
+    public JoystickButton button11;
     
 
     
@@ -38,6 +39,7 @@ public class OI {
         button4 = new JoystickButton(mainJoy, 4);
         button5 = new JoystickButton(mainJoy, 5);
         button6 = new JoystickButton(mainJoy, 6);
+        button11 = new JoystickButton(mainJoy, 11);
         /*
         button3.whenPressed(driveStraightForward);        
         button4.whenPressed(driveStraightBackward);        
@@ -56,6 +58,8 @@ public class OI {
         button4.whenPressed(new SetGoalHeading(180, button4));
         button6.whenPressed(new SetGoalHeading(90, button6));
         button5.whenPressed(new SetGoalHeading(-90, button5));
+
+        button11.whenPressed(new ZeroYaw(button11));
         
         
         
