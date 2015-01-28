@@ -13,6 +13,8 @@ public class OperatorDrive extends Command {
 	private PrintSystem printSystem = Robot.printSystem;	
 	private OI oi = Robot.oi;
 	
+	public double speed;
+	
     public boolean driveSystemConflict;
     public boolean gridLocked;
 	
@@ -28,12 +30,13 @@ public class OperatorDrive extends Command {
 		mecanumDriveSystem.setGoalHeading(0.0);
 		driveSystemConflict = false;
 		gridLocked = true;
+		speed = RobotConstants.STANDARD_DRIVE_SPEED;
 	}
 
 	@Override
 	protected void execute() {
 		if(!driveSystemConflict){
-			mecanumDriveSystem.driveWithPID(oi.getMainJoyX(),oi.getMainJoyY());
+			mecanumDriveSystem.driveWithPID(oi.getMainJoyX() * speed,oi.getMainJoyY() * speed);
 			
 			if(oi.getPOV() == RobotConstants.POV_UP) {
 	        	new PIDAxisDrive(0.0, 0.3, 0.0, oi.mainJoy, RobotConstants.POV_UP).start();

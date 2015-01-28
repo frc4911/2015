@@ -1,11 +1,12 @@
 package org.usfirst.frc.team4911.robot.commands;
 
 import org.usfirst.frc.team4911.robot.OI;
-
 import org.usfirst.frc.team4911.robot.Robot;
+import org.usfirst.frc.team4911.robot.RobotConstants;
 import org.usfirst.frc.team4911.robot.subsystems.MecanumDriveSystem;
 import org.usfirst.frc.team4911.robot.subsystems.SensorSystem;
 import org.usfirst.frc.team4911.robot.subsystems.PrintSystem;
+
 
 
 import edu.wpi.first.wpilibj.Timer;
@@ -56,7 +57,7 @@ public class EnableRotate extends Command {
 
     protected void execute() {
     	if(button.get()){
-	    	mecanumDriveSystem.drive(oi.getMainJoyX(), oi.getMainJoyY(), oi.getMainJoyZ());
+	    	mecanumDriveSystem.drive(oi.getMainJoyX(), oi.getMainJoyY(), oi.getMainJoyZ() * RobotConstants.ROTATE_SPEED);
     	}
     	mecanumDriveSystem.setGoalHeading(sensorSystem.getYaw());
     }
