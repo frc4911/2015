@@ -35,8 +35,11 @@ public class OperatorDrive extends Command {
 		mecanumDriveSystem.setGoalHeading(0.0);
 		driveSystemConflict = false;
 		gridLocked = true;
+<<<<<<< HEAD
 		speed = RobotConstants.STANDARD_DRIVE_SPEED;
+=======
 		runtime = Runtime.getRuntime();
+>>>>>>> 207d5c6d6e40dd37a593353700b57defb5f5eba3
 	}
 
 	@Override
