@@ -3,6 +3,8 @@ package org.usfirst.frc.team4911.robot.subsystems;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.Map;
+import java.util.HashMap;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
@@ -10,21 +12,23 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import org.usfirst.frc.team4911.robot.Robot;
 import org.usfirst.frc.team4911.robot.RobotConstants;
-import org.usfirst.frc.team4911.robot.RobotMap;
 
 public class PrintSystem extends Subsystem {
 	private int autoFileNum;
 	private int teleFileNum;
 	private PrintWriter fileWriter;
-	private SensorSystem sensorSystem = Robot.sensorSystem;
-	private int printFrequency;
+	
+	private Map<String, String> dataMap;
+	private int frequency;
 	private int numIteration;
 	
 	public PrintSystem(){
 		autoFileNum = 1;
 		teleFileNum = 1;
 		this.numIteration = 0;
-		this.printFrequency = RobotConstants.printFrequency;
+		this.frequency = RobotConstants.printFrequency;
+		this.dataMap = new HashMap<String, String>();
+		resetIteration();
 	}
 	
     public void initDefaultCommand() {
@@ -64,42 +68,37 @@ public class PrintSystem extends Subsystem {
     	}
     }
     
-    public void print(String method) {
-    	if(!DriverStation.getInstance().isDisabled()) {
-    		fileWriter.println("====================");
-    		fileWriter.println("Method: " + method);
-    		fileWriter.println("Time: " + Timer.getFPGATimestamp());    		
-    		fileWriter.println("Left Encoder: " /*+ getLeftEncoder*/);
-    		fileWriter.println("Right Encoder: " /*getRightEncoder*/);
-    		fileWriter.println("Heading: " /* + getGyro*/);
-    		fileWriter.println("Distance: " + sensorSystem.getIN() + " in");
-    		fileWriter.println("====================");
-    	}
-    	
-    	if(RobotConstants.FLAG) {
-    		System.out.println("====================");
-    		System.out.println("Method: " + method);
-    		System.out.println("Time: " + Timer.getFPGATimestamp());    		
-    		System.out.println("Left Encoder: " /*+ getLeftEncoder*/);
-   			System.out.println("Right Encoder: " /*getRightEncoder*/);
-   			System.out.println("Heading: " /* + getGyro*/);
-   			System.out.println("Distance: " + sensorSystem.getIN() + " in");
-   			System.out.println("====================");
-    	}
-    	numIteration++;
-    	
+    public void resetIteration() {
+    	numIteration = 0;
+    	this.frequency = RobotConstants.printFrequency;
     }
     
-    public void printMessage(String message) {
-    	System.out.println("====================");
-    	System.out.println(message);
-    	System.out.println("====================");
-    	
-    	if(!DriverStation.getInstance().isDisabled()) {
-    		fileWriter.println("====================");
-    		fileWriter.println(message);
-    		fileWriter.println("====================");
+    public void updatePrint(){
+    	if(numIteration >= frequency) {
+    		if(RobotConstants.FLAG){
+    			System.out.println("===========================================");
+    			System.out.println("Time:\t" + Timer.getFPGATimestamp());
+    		}	
+    		fileWriter.println("===========================================");
+    		fileWriter.println("Time:\t" + Timer.getFPGATimestamp());
+    		for(String key : dataMap.keySet()){
+    			String msg = dataMap.get(key);
+    			if(RobotConstants.FLAG){
+        			System.out.println(key + " :\t" + msg);
+    			}
+    			fileWriter.println(key + " :\t" + msg);
+    		}    	
+    		if(RobotConstants.FLAG)
+    			System.out.println("===========================================");
+    		fileWriter.println("===========================================");
+    		resetIteration();
+    	} else {
+    		numIteration++;
     	}
+    }
+    
+    public void print(String key, String msg){
+    	dataMap.put(key, msg);
     }
 }
 
