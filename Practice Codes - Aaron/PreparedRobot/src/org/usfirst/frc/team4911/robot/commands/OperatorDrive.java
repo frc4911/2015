@@ -48,6 +48,8 @@ public class OperatorDrive extends Command {
 	        	new PIDAxisDrive(-0.3, 0.0, 0.0, oi.mainJoy, RobotConstants.POV_RIGHT).start();
 	        }
 		}
+		Robot.printSystem.print("Goal Heading:", "" + Robot.mecanumDriveSystem.getGoalHeading());
+		Robot.printSystem.print("Current Heading:", "" + Robot.sensorSystem.getYaw());
 	}
 
 	@Override

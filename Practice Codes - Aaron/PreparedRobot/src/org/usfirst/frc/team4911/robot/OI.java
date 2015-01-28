@@ -52,6 +52,11 @@ public class OI {
         
         button2.whenPressed(new EnableRotate(button2));
         
+        button3.whenPressed(new SetGoalHeading(0, button3));
+        button4.whenPressed(new SetGoalHeading(180, button4));
+        button6.whenPressed(new SetGoalHeading(90, button6));
+        button5.whenPressed(new SetGoalHeading(-90, button5));
+        
         
         
     }

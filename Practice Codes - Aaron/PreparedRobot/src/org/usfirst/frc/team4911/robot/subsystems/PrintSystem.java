@@ -29,6 +29,8 @@ public class PrintSystem extends Subsystem {
 		this.frequency = RobotConstants.printFrequency;
 		this.dataMap = new HashMap<String, String>();
 		resetIteration();
+		
+		
 	}
 	
     public void initDefaultCommand() {
@@ -87,6 +89,7 @@ public class PrintSystem extends Subsystem {
         			System.out.println(key + " :\t" + msg);
     			}
     			fileWriter.println(key + " :\t" + msg);
+    			//dataMap.remove(key);
     		}    	
     		if(RobotConstants.FLAG)
     			System.out.println("===========================================");
@@ -98,7 +101,7 @@ public class PrintSystem extends Subsystem {
     }
     
     public void print(String key, String msg){
-    	dataMap.put(key, msg);
+    	dataMap.put(key + " :\t", msg);
     }
 }
 
