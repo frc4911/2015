@@ -1,0 +1,70 @@
+package org.usfirst.frc.team4911.robot.commands;
+
+import org.usfirst.frc.team4911.robot.OI;
+
+import org.usfirst.frc.team4911.robot.Robot;
+import org.usfirst.frc.team4911.robot.subsystems.MecanumDriveSystem;
+import org.usfirst.frc.team4911.robot.subsystems.SensorSystem;
+import org.usfirst.frc.team4911.robot.subsystems.PrintSystem;
+
+
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.buttons.*;
+
+/**
+ *
+ */
+public class EnableRotate extends Command {
+	private MecanumDriveSystem mecanumDriveSystem;
+	private SensorSystem sensorSystem;	
+	private PrintSystem printSystem;	
+	private OI oi;
+	private OperatorDrive operatorDrive;
+	private JoystickButton button;
+	
+    public boolean driveSystemConflict;
+    public boolean gridLocked;
+    
+    private double previousDegree = 0;
+    private static double THRESHOLD = 20.0;//degrees
+    
+    public EnableRotate(JoystickButton button) {
+    	this.button = button;
+    }
+
+    protected void initialize() {
+    	oi = Robot.oi;
+    	operatorDrive = Robot.teleOp;
+    	mecanumDriveSystem = Robot.mecanumDriveSystem;
+    	sensorSystem = Robot.sensorSystem;
+    	printSystem = Robot.printSystem;
+    	if(operatorDrive.driveSystemConflict){
+    		this.cancel();
+    	}    		
+    	operatorDrive.driveSystemConflict = true;
+    }
+
+    protected void execute() {
+    	if(button.get()){
+	    	mecanumDriveSystem.drive(oi.getMainJoyX(), oi.getMainJoyY(), oi.getMainJoyZ());
+    	}
+    }
+
+    protected boolean isFinished() {
+    	double currentDegree = sensorSystem.getYaw();
+    	double deltaDegree = Math.abs(previousDegree - currentDegree);
+    	previousDegree = currentDegree;
+    	printSystem.print("Heading:\t", "" + sensorSystem.getYaw());
+    	printSystem.print("GoalHeading:\t", "" + mecanumDriveSystem.goalHeading);
+        return (deltaDegree < THRESHOLD) && (!button.get());
+    }
+
+    protected void end() {
+    	mecanumDriveSystem.setGoalHeading(sensorSystem.getYaw());
+    	operatorDrive.driveSystemConflict = false;
+    }
+
+    protected void interrupted() {
+    }
+}
