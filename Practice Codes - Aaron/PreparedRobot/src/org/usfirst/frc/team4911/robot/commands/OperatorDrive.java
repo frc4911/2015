@@ -10,9 +10,8 @@ import org.usfirst.frc.team4911.robot.RobotConstants;
 public class OperatorDrive extends Command {
 	private MecanumDriveSystem mecanumDriveSystem = Robot.mecanumDriveSystem;
 	private SensorSystem sensorSystem = Robot.sensorSystem;
-	// memory hog, just call the print function below using Robot.printSystem.print("foo", "bar");
-	private PrintSystem printSystem = Robot.printSystem;	
 	private OI oi = Robot.oi;
+	private Runtime runtime;
 	
 	public double speed;
 	
@@ -31,11 +30,8 @@ public class OperatorDrive extends Command {
 		mecanumDriveSystem.setGoalHeading(0.0);
 		driveSystemConflict = false;
 		gridLocked = true;
-<<<<<<< HEAD
-=======
 		speed = RobotConstants.STANDARD_DRIVE_SPEED;
 		runtime = Runtime.getRuntime();
->>>>>>> 695040fdd6b8a4cf1d4245bb477509f7307e0af1
 	}
 
 	@Override
@@ -56,8 +52,6 @@ public class OperatorDrive extends Command {
 	        	new PIDAxisDrive(-0.3, 0.5, 0.0, oi.mainJoy, RobotConstants.POV_RIGHT).start();
 	        }
 		}
-		//Robot.printSystem.print("Goal Heading:", "" + Robot.mecanumDriveSystem.getGoalHeading());
-		//Robot.printSystem.print("Current Heading:", "" + Robot.sensorSystem.getYaw());
 	}
 
 	@Override

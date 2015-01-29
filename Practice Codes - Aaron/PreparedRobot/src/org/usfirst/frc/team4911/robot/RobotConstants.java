@@ -35,9 +35,9 @@ public class RobotConstants {
     public static final double FLOOR = 0.15;
     
     //PID CONSTANTS
-    public static final double kP = 1.0 / 150.0;
-    public static final double kI = 0.0;
-    public static final double kD = 0.0;
+    public static final double kP = 1.0 / 170.0;
+    public static final double kI = 0.000005;
+    public static final double kD = 0.005;
     
     //GYRO
     public static final int MAIN_GYRO_PORT = 1;//Analog
@@ -48,7 +48,7 @@ public class RobotConstants {
     public static final int CAMERA_QUALITY = 5;
     
     //DEBUG SWITCH
-    public static final boolean FLAG = false;
+    public static final boolean FLAG = true;
     
     //CM to IN conversion
     public static final double inToCM = 2.54;

@@ -37,9 +37,7 @@ public class RobotMap {
 	//public static CameraServer camera;
 	
 	private static SerialPort serial_port;
-	
-	//private PrintSystem printSystem = R
-	
+		
 	public static void init(){
 			
 			leftFront = new CANTalon(RobotConstants.LEFT_FRONT_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
