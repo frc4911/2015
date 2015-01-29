@@ -32,13 +32,11 @@ public class Robot extends IterativeRobot {
     	printSystem = new PrintSystem();
     	mecanumDriveSystem = new MecanumDriveSystem();
     	sensorSystem = new SensorSystem();
-    	//cameraSystem = new CameraSystem();
+        cameraSystem = new CameraSystem();
         
         autonomousCommand = new Autonomous();
         teleOp = new OperatorDrive();
         printServerCommand = new RunPrintServer();
-        
-        cameraSystem = new CameraSystem();
 
         oi = new OI();
 

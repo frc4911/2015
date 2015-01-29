@@ -16,8 +16,6 @@ import com.kauailabs.nav6.frc.IMUAdvanced;
 import ExternalLibs.LIDAR;
 
 public class SensorSystem extends Subsystem {
-	//public static AxisCamera camera = RobotMap.camera;
-	//public static AnalogChannel ultraSonicSensor = RobotMap.ultraSonicSensor;
 	public static IMUAdvanced imu = RobotMap.imu;
 
 	public static CANTalon left = RobotMap.leftFront;
@@ -34,7 +32,6 @@ public class SensorSystem extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
-        //setDefaultCommand(new MySpecialCommand());
     }
     
     /***************************************

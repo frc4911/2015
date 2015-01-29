@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4911.robot.subsystems;
 
 import java.io.File;
+
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Map;
@@ -29,8 +30,6 @@ public class PrintSystem extends Subsystem {
 		this.frequency = RobotConstants.printFrequency;
 		this.dataMap = new HashMap<String, String>();
 		resetIteration();
-		
-		
 	}
 	
     public void initDefaultCommand() {
