@@ -3,8 +3,13 @@ package org.usfirst.frc.team4911.robot;
 public class RobotConstants {
     //JOYSTICK CONFIG
     public static final int JOYSTICK_MAIN = 1;
-    public static final int JOYSTICK_ROTATION = 0;
     public static final double JOYSTICK_SENSITIVITY = 10.0;
+    
+    public static final int JOYSTICK_POV_NUM = 0;
+    public static final int POV_UP = 180;
+    public static final int POV_DOWN = 0;
+    public static final int POV_LEFT = 90;
+    public static final int POV_RIGHT = 270;
     
     //DRIVE SYSTEM CONSTANTS
     public static final double WHEEL_DIAMETER = 4.0; //Measured in Inches
@@ -12,19 +17,15 @@ public class RobotConstants {
     public static final double ENCODER_PULSE_PER_ROTATION = 1024.0;//Number of Pulse per One Rotation of the Encoder
     public static final double ENCODER_DISTANCE_PER_PULSE = GEAR_RATIO * WHEEL_DIAMETER * Math.PI / ENCODER_PULSE_PER_ROTATION;
     
-    public static final int LEFT_ENCODER_PORT_A = 14;//Digital //1
-    public static final int LEFT_ENCODER_PORT_B = 13;//Digital //2
-    public static final int RIGHT_ENCODER_PORT_A = 1;//Digital //3
-    public static final int RIGHT_ENCODER_PORT_B = 2;//Digital //4
+    public static final int LEFT_FRONT_CANTALON_PORT = 2;
+    public static final int LEFT_REAR_CANTALON_PORT = 1;
+    public static final int RIGHT_FRONT_CANTALON_PORT = 3;
+    public static final int RIGHT_REAR_CANTALON_PORT = 4;
     
-    public static final int LEFT_FRONT_CANTALON_PORT = 0;
-    public static final int LEFT_REAR_CANTALON_PORT = 2;
-    public static final int RIGHT_FRONT_CANTALON_PORT = 1;
-    public static final int RIGHT_REAR_CANTALON_PORT = 3;
+    public static final double ROTATE_SPEED = 0.30;
+    public static final double STANDARD_DRIVE_SPEED = 0.4;
     
-    //PNEUMATIC SYSTEM CONSTANTS
-    public static final int COMPRESSOR_PCMID = 1;
-
+    
     //DRIVESTRAIGHT CONSTANTS
     public static final double DRIVESTRAIGHT_CORRECTION_CONSTANT = 0.05;
     public static final double AMPLITUDE = 20;
@@ -34,34 +35,26 @@ public class RobotConstants {
     public static final double FLOOR = 0.15;
     
     //PID CONSTANTS
-    public static final double TOLERANCE_TIME_LIMIT = 0.250;//seconds
-    public static final double TOLERANCE = 1.0;//degrees
-    public static final double MINIMUM_TURN_POWER = 0.01;//10% for the Talons
-    
-    // roneckor - no comments for below values/commented out values
-    public static final double KP_ANGLE = 3.9;//4.9;
-    public static final double KI_ANGLE = 0.009;
-    public static final double KD_ANGLE = 5.0;//3.0
-    
-    public static final double KP_TURNRATE = 0.001;
-    public static final double KI_TURNRATE = 0.001;
-    public static final double KD_TURNRATE = 0.00025;  
-    
-    //ULTRASONIC SENSOR
-    public static final int ULTRASONIC_SENSOR_PORT = 7;
-    public static final double vPerI = 5.002/204.6645; 
+    public static final double kP = 1.0 / 170.0;
+    public static final double kI = 0.000005;
+    public static final double kD = 0.005;
     
     //GYRO
     public static final int MAIN_GYRO_PORT = 1;//Analog
     public static final double GYRO_SENSITIVITY = 0.007;
     
     //CAMERA
-    public static final String CAMERA_NAME = "cam1";
-    public static final int CAMERA_QUALITY = 5;
+    public static final int CAMERA_SERVO_PORT = 0;
+    public static final double CAMERA_SERVO_LEFT = 0.0;
+    public static final double CAMERA_SERVO_MID = 0.5;
+    public static final double CAMERA_SERVO_RIGHT = 1.0;
     
     //DEBUG SWITCH
     public static final boolean FLAG = true;
     
-    //CM to IN conversion
+    //CM to IN conversion (LIDAR)
     public static final double inToCM = 2.54;
+    
+    //PrintSystem Constants
+    public static final int printFrequency = 1;
 }

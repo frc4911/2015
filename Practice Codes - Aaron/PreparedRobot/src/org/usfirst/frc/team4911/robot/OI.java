@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4911.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 
@@ -9,30 +10,40 @@ import org.usfirst.frc.team4911.robot.commands.*;
 
 public class OI {
     public Joystick mainJoy;
-    public Joystick rotationJoy;
+    
     public JoystickButton lockButton;
+    public JoystickButton button2;
     public JoystickButton button3;
     public JoystickButton button4;
     public JoystickButton button5;
     public JoystickButton button6;
+    public JoystickButton button11;
+    public JoystickButton trigger;
+    
+
+    
 
     public OI() {
     	mainJoy = new Joystick(RobotConstants.JOYSTICK_MAIN);
-    	rotationJoy = new Joystick(RobotConstants.JOYSTICK_ROTATION);
         
-    	lockButton = new JoystickButton(mainJoy, 2);
-    	lockButton.whenPressed(new UnlockGrid());
-    	lockButton.whenReleased(new LockGrid());
-        
+    	trigger = new JoystickButton(mainJoy, 1);
+    	button2 = new JoystickButton(mainJoy, 2);
         button3 = new JoystickButton(mainJoy, 3);
         button4 = new JoystickButton(mainJoy, 4);
         button5 = new JoystickButton(mainJoy, 5);
         button6 = new JoystickButton(mainJoy, 6);
+        button11 = new JoystickButton(mainJoy, 11);
         
-        button3.whenPressed(new DriveStraightForward());        
-        button4.whenPressed(new DriveStraightBackward());        
-        button5.whenPressed(new StrafeLeft());        
-        button6.whenPressed(new StrafeRight());
+        trigger.whenPressed(new SetDriveSpeed(1.0, trigger));
+        
+        button2.whenPressed(new EnableRotate(button2));
+        
+        button3.whenPressed(new SetGoalHeading(0, button3));
+        button4.whenPressed(new SetGoalHeading(180, button4));
+        button6.whenPressed(new SetGoalHeading(90, button6));
+        button5.whenPressed(new SetGoalHeading(-90, button5));
+
+        button11.whenPressed(new ZeroYaw(button11));
     }
     
     /*************************************
@@ -65,36 +76,14 @@ public class OI {
     public double getMainJoyZ() {
     	double pow = 0;
     	if(Math.abs(mainJoy.getZ()) >= 0.1) {
-            pow = Math.round(mainJoy.getY() * RobotConstants.JOYSTICK_SENSITIVITY) 
+            pow = Math.round(mainJoy.getZ() * RobotConstants.JOYSTICK_SENSITIVITY) 
             		/ RobotConstants.JOYSTICK_SENSITIVITY;  
         }
     	return pow;
     }
     
-
-    /*************************************
-     * ROTATION JOY METHODS	
-     *************************************/
-    public Joystick getRotationJoy(){
-    	return rotationJoy;
+    public int getPOV() {
+    	return mainJoy.getPOV(RobotConstants.JOYSTICK_POV_NUM);
     }
-    
-    public double getRotationJoyX(){
-		double pow = 0;
-    	if(Math.abs(rotationJoy.getX()) >= 0.1) {
-            pow = Math.round(rotationJoy.getX() * RobotConstants.JOYSTICK_SENSITIVITY) 
-            		/ RobotConstants.JOYSTICK_SENSITIVITY;  
-        }
-    	return pow;
-    }
-    
-    public double getRotationJoyY(){
-    	double pow = 0;
-    	if(Math.abs(rotationJoy.getY()) >= 0.1) {
-            pow = Math.round(rotationJoy.getY() * RobotConstants.JOYSTICK_SENSITIVITY) 
-            		/ RobotConstants.JOYSTICK_SENSITIVITY;  
-        }
-    	return pow;
-    }
-    
+        
 }
