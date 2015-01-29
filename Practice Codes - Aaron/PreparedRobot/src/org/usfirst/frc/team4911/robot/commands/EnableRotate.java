@@ -64,22 +64,17 @@ public class EnableRotate extends Command {
     protected boolean isFinished() {
     	if(numIteration % 5 == 0){
     		currentDegree = sensorSystem.getYaw();
-        	deltaDegree = Math.abs(previousDegree - currentDegree);
-        	
+        	deltaDegree = Math.abs(previousDegree - currentDegree);        	
         	previousDegree = currentDegree;
         	numIteration = 1;
         	return (deltaDegree < THRESHOLD) && (!button.get() );
     	} else {
         	numIteration++;
     		return false;
-    	}
-    	
-    	
-        
+    	}        
     }
 
     protected void end() {
-    	//mecanumDriveSystem.setGoalHeading(sensorSystem.getYaw());
     	operatorDrive.driveSystemConflict = false;
     	mecanumDriveSystem.setGoalHeading(sensorSystem.getYaw());
     }

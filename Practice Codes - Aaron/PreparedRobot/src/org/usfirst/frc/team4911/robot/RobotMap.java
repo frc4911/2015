@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Timer;
 import ExternalLibs.LIDAR;
 
@@ -31,7 +31,9 @@ public class RobotMap {
 	public static IMUAdvanced imu;
 	public static BuiltInAccelerometer accelerometer;
 	public static Gyro gyro;
-	public static LIDAR lidar;	
+
+	public static LIDAR	   lidar;	
+	public static Servo cameraServo;
 	
 	private static SerialPort serial_port;
 		
@@ -60,6 +62,8 @@ public class RobotMap {
 		accelerometer = new BuiltInAccelerometer();
 		gyro = new Gyro(RobotConstants.MAIN_GYRO_PORT);
 		lidar = new LIDAR(I2C.Port.kOnboard);
+		cameraServo = new Servo(RobotConstants.CAMERA_SERVO_PORT);
+		cameraServo.set(RobotConstants.CAMERA_SERVO_MID);
 
 	    /***************************************
 	     * IMU INITIALIZATION
@@ -76,13 +80,9 @@ public class RobotMap {
 			// features.
 		
 			byte update_rate_hz = 20;
-			// roneckor - dead code?
-			//imu = new IMU(serial_port,update_rate_hz);
 			imu = new IMUAdvanced(serial_port,update_rate_hz);
 		} catch (Exception ex) {
-			System.out.println("Probs be happen\'n");
 			ex.printStackTrace();
-			
 		}
 		Timer.delay(0.3);
 	}

@@ -22,7 +22,7 @@ public class RobotConstants {
     public static final int RIGHT_FRONT_CANTALON_PORT = 3;
     public static final int RIGHT_REAR_CANTALON_PORT = 4;
     
-    public static final double ROTATE_SPEED = 0.5;
+    public static final double ROTATE_SPEED = 0.30;
     public static final double STANDARD_DRIVE_SPEED = 0.4;
     
     
@@ -44,13 +44,15 @@ public class RobotConstants {
     public static final double GYRO_SENSITIVITY = 0.007;
     
     //CAMERA
-    public static final String CAMERA_NAME = "cam1";
-    public static final int CAMERA_QUALITY = 5;
+    public static final int CAMERA_SERVO_PORT = 0;
+    public static final double CAMERA_SERVO_LEFT = 0.0;
+    public static final double CAMERA_SERVO_MID = 0.5;
+    public static final double CAMERA_SERVO_RIGHT = 1.0;
     
     //DEBUG SWITCH
     public static final boolean FLAG = true;
     
-    //CM to IN conversion
+    //CM to IN conversion (LIDAR)
     public static final double inToCM = 2.54;
     
     //PrintSystem Constants

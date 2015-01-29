@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.Servo;
 
 import org.usfirst.frc.team4911.robot.OI;
 import org.usfirst.frc.team4911.robot.RobotMap;
@@ -21,7 +22,8 @@ public class Robot extends IterativeRobot {
     public static MecanumDriveSystem mecanumDriveSystem;
     public static SensorSystem sensorSystem;
     public static PrintSystem printSystem;
-    //public static CameraSystem cameraSystem;
+    
+    public static CameraSystem cameraSystem;
     
     
     public void robotInit() {
@@ -30,7 +32,7 @@ public class Robot extends IterativeRobot {
     	printSystem = new PrintSystem();
     	mecanumDriveSystem = new MecanumDriveSystem();
     	sensorSystem = new SensorSystem();
-    	//cameraSystem = new CameraSystem();
+        cameraSystem = new CameraSystem();
         
         autonomousCommand = new Autonomous();
         teleOp = new OperatorDrive();
