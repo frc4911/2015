@@ -15,7 +15,6 @@ public class CameraSystem extends Subsystem {
     // here. Call these from Commands.
 	
 	public Servo cameraServo;
-	
 	public CameraSystem() {
 		cameraServo = RobotMap.cameraServo;
 	}

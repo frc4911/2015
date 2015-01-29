@@ -2,12 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-<<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/Users/pratz_000/wpilib/java/current/lib/NetworkTables.jar"/>
 	<classpathentry kind="lib" path="C:/Users/pratz_000/wpilib/java/current/lib/WPILib.jar"/>
-=======
-	<classpathentry kind="lib" path="C:/Users/Jack/wpilib/java/current/lib/NetworkTables.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Jack/wpilib/java/current/lib/WPILib.jar"/>
->>>>>>> f77eef84e25d6f1d8bbfda40c3c4fe199ee412ca
 	<classpathentry kind="output" path="bin"/>
 </classpath>
