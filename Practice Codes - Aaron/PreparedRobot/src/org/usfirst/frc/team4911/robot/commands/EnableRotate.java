@@ -50,7 +50,6 @@ public class EnableRotate extends Command {
     		this.cancel();
     	}    		
     	operatorDrive.driveSystemConflict = true;
-    	printSystem.print("EnableRotate Running", "RUNNING");
     	previousDegree = 0.0;//sensorSystem.getYaw();
     	numIteration = 1;
     }
@@ -66,15 +65,8 @@ public class EnableRotate extends Command {
     	if(numIteration % 5 == 0){
     		currentDegree = sensorSystem.getYaw();
         	deltaDegree = Math.abs(previousDegree - currentDegree);
-        	printSystem.print("PreviousDegree", "" + (previousDegree));
-            
-        	previousDegree = currentDegree;
         	
-        	printSystem.print("CurrDegree", "" + currentDegree);
-        	printSystem.print("GoalHeading", "" + mecanumDriveSystem.getGoalHeading());
-        	printSystem.print("ButtonPressed", "" + (button.get()));
-        	printSystem.print("DeltaDegree", "" + (deltaDegree));
-        	printSystem.print("Returning", "" +((deltaDegree < THRESHOLD) && (!button.get())));
+        	previousDegree = currentDegree;
         	numIteration = 1;
         	return (deltaDegree < THRESHOLD) && (!button.get() );
     	} else {
@@ -90,7 +82,6 @@ public class EnableRotate extends Command {
     	//mecanumDriveSystem.setGoalHeading(sensorSystem.getYaw());
     	operatorDrive.driveSystemConflict = false;
     	mecanumDriveSystem.setGoalHeading(sensorSystem.getYaw());
-    	printSystem.print("EnableRotate Running", "NOT RUNNING");
     }
 
     protected void interrupted() {

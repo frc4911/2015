@@ -72,10 +72,17 @@ public class MecanumDriveSystem extends Subsystem {
     	integration += currError;//[0 - 0.5] seconds
     	derivative = lastError - currError;// NO USE
     	lastError = currError;
+    	if ( currError * lastError <0){
+    		integration = 0.0;
+    	}
     	rotation = RobotConstants.kP * currError + RobotConstants.kI * integration + RobotConstants.kD * derivative;//[-1.0 - 1.0] percentage
     	rotation = (rotation < 0) ? Math.max(-0.5, rotation) : Math.min(0.5, rotation);
     	drive(x, y, rotation);
 		
+    	Robot.printSystem.print("Nav6Val", "" + Robot.sensorSystem.getYaw());
+    	Robot.printSystem.print("Integration", "" + RobotConstants.kI * integration);
+    	Robot.printSystem.print("Proportion", "" + RobotConstants.kP * currError);
+    	Robot.printSystem.print("Derivative", "" + RobotConstants.kD * derivative);
 	}
 	public void drive(double left, double right){
 		robot.tankDrive(left, right);
