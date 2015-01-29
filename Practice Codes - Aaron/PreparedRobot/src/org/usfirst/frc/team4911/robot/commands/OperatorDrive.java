@@ -1,6 +1,5 @@
 package org.usfirst.frc.team4911.robot.commands;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team4911.robot.subsystems.*;
@@ -11,16 +10,13 @@ import org.usfirst.frc.team4911.robot.RobotConstants;
 public class OperatorDrive extends Command {
 	private MecanumDriveSystem mecanumDriveSystem = Robot.mecanumDriveSystem;
 	private SensorSystem sensorSystem = Robot.sensorSystem;
+	// memory hog, just call the print function below using Robot.printSystem.print("foo", "bar");
 	private PrintSystem printSystem = Robot.printSystem;	
 	private OI oi = Robot.oi;
 	
     public boolean driveSystemConflict;
     public boolean gridLocked;
 	
-    Runtime runtime;
-    
-    long mb = 1024*1024;
-    
 	public OperatorDrive(){
 		requires(mecanumDriveSystem);
 		requires(sensorSystem);
@@ -33,7 +29,6 @@ public class OperatorDrive extends Command {
 		mecanumDriveSystem.setGoalHeading(0.0);
 		driveSystemConflict = false;
 		gridLocked = true;
-		runtime = Runtime.getRuntime();
 	}
 
 	@Override
@@ -48,17 +43,14 @@ public class OperatorDrive extends Command {
 	        	new PIDAxisDrive(0.0, -0.3, 0.0, oi.mainJoy, RobotConstants.POV_DOWN).start();
 	        }
 	        else if(oi.getPOV() == RobotConstants.POV_LEFT) {
-	        	new PIDAxisDrive(0.3, 0.0, 0.0, oi.mainJoy, RobotConstants.POV_LEFT).start();
+	        	new PIDAxisDrive(0.3, -0.5, 0.0, oi.mainJoy, RobotConstants.POV_LEFT).start();
 	        }
 	        else if(oi.getPOV() == RobotConstants.POV_RIGHT) {
-	        	new PIDAxisDrive(-0.3, 0.0, 0.0, oi.mainJoy, RobotConstants.POV_RIGHT).start();
+	        	new PIDAxisDrive(-0.3, 0.5, 0.0, oi.mainJoy, RobotConstants.POV_RIGHT).start();
 	        }
 		}
-		Robot.printSystem.print("Goal Heading:", "" + Robot.mecanumDriveSystem.getGoalHeading());
-		Robot.printSystem.print("Current Heading:", "" + Robot.sensorSystem.getYaw());
-		Robot.printSystem.print("Used Memory: " , "" + (runtime.totalMemory() - runtime.freeMemory()) / mb);
-		Robot.printSystem.print("Free Memory: ", "" + runtime.freeMemory()/mb);
-		Robot.printSystem.print("Voltage: ", "" + DriverStation.getInstance().getBatteryVoltage());
+		//Robot.printSystem.print("Goal Heading:", "" + Robot.mecanumDriveSystem.getGoalHeading());
+		//Robot.printSystem.print("Current Heading:", "" + Robot.sensorSystem.getYaw());
 	}
 
 	@Override
