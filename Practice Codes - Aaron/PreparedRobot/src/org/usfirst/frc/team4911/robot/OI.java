@@ -18,6 +18,7 @@ public class OI {
     public JoystickButton button5;
     public JoystickButton button6;
     public JoystickButton button11;
+    public JoystickButton trigger;
     
 
     
@@ -34,6 +35,8 @@ public class OI {
     	strafeLeft = new StrafeLeft();
     	strafeRight = new StrafeRight();
         */
+    	
+    	trigger = new JoystickButton(mainJoy, 1);
     	button2 = new JoystickButton(mainJoy, 2);
         button3 = new JoystickButton(mainJoy, 3);
         button4 = new JoystickButton(mainJoy, 4);
@@ -51,6 +54,8 @@ public class OI {
         button4.whenPressed(new PIDAxisDrive(0.0 , 0.3, 0.0, button4));        
         button5.whenPressed(new PIDAxisDrive(-0.3 , 0.0, 0.0, button5));        
         button6.whenPressed(new PIDAxisDrive(0.3 , 0.0, 0.0, button6));*/
+        
+        trigger.whenPressed(new SetDriveSpeed(1.0, trigger));
         
         button2.whenPressed(new EnableRotate(button2));
         

@@ -22,6 +22,10 @@ public class RobotConstants {
     public static final int RIGHT_FRONT_CANTALON_PORT = 3;
     public static final int RIGHT_REAR_CANTALON_PORT = 4;
     
+    public static final double ROTATE_SPEED = 0.5;
+    public static final double STANDARD_DRIVE_SPEED = 0.4;
+    
+    
     //DRIVESTRAIGHT CONSTANTS
     public static final double DRIVESTRAIGHT_CORRECTION_CONSTANT = 0.05;
     public static final double AMPLITUDE = 20;
@@ -50,5 +54,5 @@ public class RobotConstants {
     public static final double inToCM = 2.54;
     
     //PrintSystem Constants
-    public static final int printFrequency = 10;
+    public static final int printFrequency = 1;
 }

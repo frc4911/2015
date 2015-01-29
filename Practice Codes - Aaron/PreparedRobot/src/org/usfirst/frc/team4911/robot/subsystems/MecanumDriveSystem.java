@@ -53,6 +53,9 @@ public class MecanumDriveSystem extends Subsystem {
 	public void drive(double x, double y, double rotation){
 		
 		robot.mecanumDrive_Cartesian(x, y, rotation, (double)imu.getYaw());
+		Robot.printSystem.print("X:", "" + x);
+		Robot.printSystem.print("Y:", "" + y);
+		Robot.printSystem.print("Rotation:", "" + rotation);
 		//robot.mecanumDrive_Cartesian(x, y, rotation, 0.0);
 		//robot.mecanumDrive_Cartesian(0.0, 0.5, 0.0, 0.0);
 	}
