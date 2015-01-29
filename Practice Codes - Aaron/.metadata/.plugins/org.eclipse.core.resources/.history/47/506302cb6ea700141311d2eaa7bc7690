@@ -61,6 +61,7 @@ public class RobotMap {
 		gyro = new Gyro(RobotConstants.MAIN_GYRO_PORT);
 		lidar = new LIDAR(I2C.Port.kOnboard);
 
+		// roneckor - if you have to make a block like this, create a new Init function
 	    /***************************************
 	     * IMU INITIALIZATION
 	     ***************************************/

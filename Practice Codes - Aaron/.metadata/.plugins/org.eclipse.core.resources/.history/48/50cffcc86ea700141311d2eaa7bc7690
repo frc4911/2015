@@ -60,7 +60,10 @@ public class RobotMap {
 		accelerometer = new BuiltInAccelerometer();
 		gyro = new Gyro(RobotConstants.MAIN_GYRO_PORT);
 		lidar = new LIDAR(I2C.Port.kOnboard);
+		//camera = CameraServer.getInstance();
+		//camera.setQuality(RobotConstants.CAMERA_QUALITY);
 
+		// roneckor - if you have to make a block like this, create a new Init function
 	    /***************************************
 	     * IMU INITIALIZATION
 	     ***************************************/
