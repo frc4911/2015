@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
+<<<<<<< HEAD
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.DriverStation"/>
+=======
+<fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.RobotConstants"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.Robot"/>
+>>>>>>> f77eef84e25d6f1d8bbfda40c3c4fe199ee412ca
 </qualifiedTypeNameHistroy>

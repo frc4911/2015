@@ -1,11 +1,12 @@
 package org.usfirst.frc.team4911.robot.commands;
 
 import org.usfirst.frc.team4911.robot.OI;
-
 import org.usfirst.frc.team4911.robot.Robot;
+import org.usfirst.frc.team4911.robot.RobotConstants;
 import org.usfirst.frc.team4911.robot.subsystems.MecanumDriveSystem;
 import org.usfirst.frc.team4911.robot.subsystems.SensorSystem;
 import org.usfirst.frc.team4911.robot.subsystems.PrintSystem;
+
 
 
 import edu.wpi.first.wpilibj.Timer;
@@ -49,14 +50,13 @@ public class EnableRotate extends Command {
     		this.cancel();
     	}    		
     	operatorDrive.driveSystemConflict = true;
-    	printSystem.print("EnableRotate Running", "RUNNING");
     	previousDegree = 0.0;//sensorSystem.getYaw();
     	numIteration = 1;
     }
 
     protected void execute() {
     	if(button.get()){
-	    	mecanumDriveSystem.drive(oi.getMainJoyX(), oi.getMainJoyY(), oi.getMainJoyZ());
+	    	mecanumDriveSystem.drive(oi.getMainJoyX(), oi.getMainJoyY(), oi.getMainJoyZ() * RobotConstants.ROTATE_SPEED);
     	}
     	mecanumDriveSystem.setGoalHeading(sensorSystem.getYaw());
     }
@@ -65,15 +65,8 @@ public class EnableRotate extends Command {
     	if(numIteration % 5 == 0){
     		currentDegree = sensorSystem.getYaw();
         	deltaDegree = Math.abs(previousDegree - currentDegree);
-        	printSystem.print("PreviousDegree", "" + (previousDegree));
-            
-        	previousDegree = currentDegree;
         	
-        	printSystem.print("CurrDegree", "" + currentDegree);
-        	printSystem.print("GoalHeading", "" + mecanumDriveSystem.getGoalHeading());
-        	printSystem.print("ButtonPressed", "" + (button.get()));
-        	printSystem.print("DeltaDegree", "" + (deltaDegree));
-        	printSystem.print("Returning", "" +((deltaDegree < THRESHOLD) && (!button.get())));
+        	previousDegree = currentDegree;
         	numIteration = 1;
         	return (deltaDegree < THRESHOLD) && (!button.get() );
     	} else {
@@ -89,7 +82,6 @@ public class EnableRotate extends Command {
     	//mecanumDriveSystem.setGoalHeading(sensorSystem.getYaw());
     	operatorDrive.driveSystemConflict = false;
     	mecanumDriveSystem.setGoalHeading(sensorSystem.getYaw());
-    	printSystem.print("EnableRotate Running", "NOT RUNNING");
     }
 
     protected void interrupted() {

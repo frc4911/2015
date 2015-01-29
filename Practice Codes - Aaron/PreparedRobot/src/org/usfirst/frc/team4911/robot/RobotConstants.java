@@ -22,6 +22,10 @@ public class RobotConstants {
     public static final int RIGHT_FRONT_CANTALON_PORT = 3;
     public static final int RIGHT_REAR_CANTALON_PORT = 4;
     
+    public static final double ROTATE_SPEED = 0.5;
+    public static final double STANDARD_DRIVE_SPEED = 0.4;
+    
+    
     //DRIVESTRAIGHT CONSTANTS
     public static final double DRIVESTRAIGHT_CORRECTION_CONSTANT = 0.05;
     public static final double AMPLITUDE = 20;
@@ -31,9 +35,9 @@ public class RobotConstants {
     public static final double FLOOR = 0.15;
     
     //PID CONSTANTS
-    public static final double kP = 1.0 / 150.0;
-    public static final double kI = 0.0;
-    public static final double kD = 0.0;
+    public static final double kP = 1.0 / 170.0;
+    public static final double kI = 0.000005;
+    public static final double kD = 0.005;
     
     //GYRO
     public static final int MAIN_GYRO_PORT = 1;//Analog
@@ -44,11 +48,11 @@ public class RobotConstants {
     public static final int CAMERA_QUALITY = 5;
     
     //DEBUG SWITCH
-    public static final boolean FLAG = false;
+    public static final boolean FLAG = true;
     
     //CM to IN conversion
     public static final double inToCM = 2.54;
     
     //PrintSystem Constants
-    public static final int printFrequency = 10;
+    public static final int printFrequency = 1;
 }
