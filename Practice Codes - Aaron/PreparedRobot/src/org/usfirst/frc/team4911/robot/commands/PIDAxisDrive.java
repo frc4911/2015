@@ -20,7 +20,6 @@ public class PIDAxisDrive extends Command {
 	private double x;
 	private double y;
 	private double goalHeading;//degrees;
-	//private JoystickButton button;
 	private Joystick joystick;
 	private int povDir;
 	
@@ -30,7 +29,6 @@ public class PIDAxisDrive extends Command {
 		this.goalHeading = goalHeading;
 		this.joystick = joystick;
 		this.povDir = povDir;
-		//this.button = button;
     }
 
     protected void initialize() {

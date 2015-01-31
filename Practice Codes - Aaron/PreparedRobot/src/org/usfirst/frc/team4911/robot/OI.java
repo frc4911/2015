@@ -26,16 +26,6 @@ public class OI {
     public OI() {
     	mainJoy = new Joystick(RobotConstants.JOYSTICK_MAIN);
         
-    	//lockButton = new JoystickButton(mainJoy, 2);
-    	//lockButton.whenPressed(new UnlockGrid());
-    	//lockButton.whenReleased(new LockGrid());
-    	/*
-    	driveStraightForward = new DriveStraightForward();
-    	driveStraightBackward = new DriveStraightBackward();
-    	strafeLeft = new StrafeLeft();
-    	strafeRight = new StrafeRight();
-        */
-    	
     	trigger = new JoystickButton(mainJoy, 1);
     	button2 = new JoystickButton(mainJoy, 2);
         button3 = new JoystickButton(mainJoy, 3);
@@ -43,17 +33,6 @@ public class OI {
         button5 = new JoystickButton(mainJoy, 5);
         button6 = new JoystickButton(mainJoy, 6);
         button11 = new JoystickButton(mainJoy, 11);
-        /*
-        button3.whenPressed(driveStraightForward);        
-        button4.whenPressed(driveStraightBackward);        
-        button5.whenPressed(strafeLeft);        
-        button6.whenPressed(strafeRight);
-        */
-        
-        /*button3.whenPressed(new PIDAxisDrive(0.0 , -0.3, 0.0, button3));        
-        button4.whenPressed(new PIDAxisDrive(0.0 , 0.3, 0.0, button4));        
-        button5.whenPressed(new PIDAxisDrive(-0.3 , 0.0, 0.0, button5));        
-        button6.whenPressed(new PIDAxisDrive(0.3 , 0.0, 0.0, button6));*/
         
         trigger.whenPressed(new SetDriveSpeed(1.0, trigger));
         
@@ -66,9 +45,6 @@ public class OI {
         button4.whenPressed(new RotateForTime(10, 0.25)); // rotates for two ticks at 50% power going right
 
         button11.whenPressed(new ZeroYaw(button11));
-        
-        
-        
     }
     
     /*************************************

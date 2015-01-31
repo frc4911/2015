@@ -21,7 +21,7 @@ public class MecanumDriveSystem extends Subsystem {
 	private CANTalon frontRight = RobotMap.rightFront;
 	private CANTalon rearRight = RobotMap.rightRear;
 	private RobotDrive robot = new RobotDrive(frontLeft, rearLeft, frontRight, rearRight);
-	SerialPort serial_port;	
+	private SerialPort serial_port;	
 	
 	private double rotation;
 	private double currError;
@@ -46,18 +46,11 @@ public class MecanumDriveSystem extends Subsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
 
 	}
 	
 	public void drive(double x, double y, double rotation){
-		
 		robot.mecanumDrive_Cartesian(x, y, rotation, (double)imu.getYaw());
-		Robot.printSystem.print("X:", "" + x);
-		Robot.printSystem.print("Y:", "" + y);
-		Robot.printSystem.print("Rotation:", "" + rotation);
-		//robot.mecanumDrive_Cartesian(x, y, rotation, 0.0);
-		//robot.mecanumDrive_Cartesian(0.0, 0.5, 0.0, 0.0);
 	}
 	
 	public void driveWithPID(double x, double y){
@@ -69,8 +62,8 @@ public class MecanumDriveSystem extends Subsystem {
 			}
 			currError = delta;
 		}
-    	integration += currError;//[0 - 0.5] seconds
-    	derivative = lastError - currError;// NO USE
+    	integration += currError;
+    	derivative = lastError - currError;
     	lastError = currError;
     	if ( currError * lastError <0){
     		integration = 0.0;
@@ -78,15 +71,9 @@ public class MecanumDriveSystem extends Subsystem {
     	rotation = RobotConstants.kP * currError + RobotConstants.kI * integration + RobotConstants.kD * derivative;//[-1.0 - 1.0] percentage
     	rotation = (rotation < 0) ? Math.max(-0.5, rotation) : Math.min(0.5, rotation);
     	drive(x, y, rotation);
-		
-    	Robot.printSystem.print("Nav6Val", "" + Robot.sensorSystem.getYaw());
-    	Robot.printSystem.print("Integration", "" + RobotConstants.kI * integration);
-    	Robot.printSystem.print("Proportion", "" + RobotConstants.kP * currError);
-    	Robot.printSystem.print("Derivative", "" + RobotConstants.kD * derivative);
 	}
 	public void drive(double left, double right){
 		robot.tankDrive(left, right);
-		
 	}
 	public void stop(){
 		drive(0.0, 0.0, 0.0);
