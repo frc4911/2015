@@ -88,7 +88,7 @@ public class PrintSystem extends Subsystem {
         			System.out.println(data);
     			}
     			fileWriter.println(data);
-    			}    	
+    		}    	
     		if(RobotConstants.FLAG){
     			System.out.println("===========================================");
     		}

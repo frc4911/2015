@@ -26,13 +26,13 @@ public class SetGoalHeading extends Command {
 
     protected void initialize() {
     	mecanumDriveSystem = Robot.mecanumDriveSystem;
-		this.goalHeading = (deltaGoalHeading + mecanumDriveSystem.getGoalHeading()) % 180 ;
+		this.goalHeading = (deltaGoalHeading + mecanumDriveSystem.getGoalHeading());
     }
 
     protected void execute() {
-    	Robot.printSystem.print("DeltaGoalHeading", "" + goalHeading);
+    	Robot.printSystem.print("New GoalHeading", "" + goalHeading);
 
-    	Robot.printSystem.print("GoalHeading", "" + mecanumDriveSystem.getGoalHeading());
+    	Robot.printSystem.print("Old GoalHeading", "" + mecanumDriveSystem.getGoalHeading());
     	
     	Robot.mecanumDriveSystem.setGoalHeading(goalHeading);
     	
