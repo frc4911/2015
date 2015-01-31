@@ -4,14 +4,15 @@ import java.io.File;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.StringTokenizer;
+import java.text.DecimalFormat;
+
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import org.usfirst.frc.team4911.robot.Robot;
 import org.usfirst.frc.team4911.robot.RobotConstants;
 
 public class PrintSystem extends Subsystem {
@@ -19,7 +20,7 @@ public class PrintSystem extends Subsystem {
 	private int teleFileNum;
 	private PrintWriter fileWriter;
 	
-	private Map<String, String> dataMap;
+	private LinkedList<String> dataList;
 	private int frequency;
 	private int numIteration;
 	
@@ -28,7 +29,7 @@ public class PrintSystem extends Subsystem {
 		teleFileNum = 1;
 		this.numIteration = 0;
 		this.frequency = RobotConstants.printFrequency;
-		this.dataMap = new HashMap<String, String>();
+		this.dataList = new LinkedList<String>();
 		resetIteration();
 	}
 	
@@ -78,20 +79,19 @@ public class PrintSystem extends Subsystem {
     	if(numIteration >= frequency) {
     		if(RobotConstants.FLAG){
     			System.out.println("===========================================");
-    			System.out.println("Time:\t" + Timer.getFPGATimestamp());
+    			System.out.println("Printed:\t" + Timer.getFPGATimestamp());
     		}	
     		fileWriter.println("===========================================");
-    		fileWriter.println("Time:\t" + Timer.getFPGATimestamp());
-    		for(String key : dataMap.keySet()){
-    			String msg = dataMap.get(key);
+    		fileWriter.println("Printed:\t" + Timer.getFPGATimestamp());
+    		for(String data : dataList){
     			if(RobotConstants.FLAG){
-        			System.out.println(key + " :\t" + msg);
+        			System.out.println(data);
     			}
-    			fileWriter.println(key + " :\t" + msg);
-    			//dataMap.remove(key);
-    		}    	
-    		if(RobotConstants.FLAG)
+    			fileWriter.println(data);
+    			}    	
+    		if(RobotConstants.FLAG){
     			System.out.println("===========================================");
+    		}
     		fileWriter.println("===========================================");
     		resetIteration();
     	} else {
@@ -99,8 +99,64 @@ public class PrintSystem extends Subsystem {
     	}
     }
     
-    public void print(String key, String msg){
-    	dataMap.put(key + " :\t", msg);
+    public void print(String label, Object val){
+    	double time = Timer.getFPGATimestamp();
+    	StackTraceElement[] st = Thread.currentThread().getStackTrace();
+    	StackTraceElement e = st[2];//st.length - 5
+    	dataList.add(new Data(e, time, label, val.toString()).toString());
+    }
+    
+    public void print(String msg){
+    	double time = Timer.getFPGATimestamp();
+    	StackTraceElement[] st = Thread.currentThread().getStackTrace();
+    	StackTraceElement e = st[2];
+    	dataList.add(new Data(e, time, msg).toString());
+    }
+        
+    private class Data {
+    	public String className;
+    	public int lineNumber;
+    	public String methodName;
+    	public String label;
+    	public String value;
+    	public String msg;
+    	public double time;
+    	
+    	public Data(StackTraceElement t, double time, String label, String value){
+    		this.label = label;
+    		this.value = value;
+    		this.time = time;
+    		StringTokenizer tokenizer = new StringTokenizer(t.getClassName(),".");
+    		while(tokenizer.hasMoreTokens()){
+    			this.className = tokenizer.nextToken();
+    		}
+    		this.lineNumber = t.getLineNumber();
+    		this.methodName = t.getMethodName();    		
+    	}
+    	public Data(StackTraceElement t, double time, String msg){
+    		this.msg = msg;
+    		this.time = time;
+    		StringTokenizer tokenizer = new StringTokenizer(t.getClassName(),".");
+    		while(tokenizer.hasMoreTokens()){
+    			this.className = tokenizer.nextToken();
+    		}
+    		this.lineNumber = t.getLineNumber();
+    		this.methodName = t.getMethodName();    		
+    	}
+    	
+    	public String toString(){
+    		String s;
+    		if(this.label == null && this.value == null){
+    			s = (new DecimalFormat("#0.000")).format(time) + " : "
+						+ className + " " + methodName + "() - Line " + lineNumber
+						+ "\t| " + msg;
+    		} else {
+    			s = (new DecimalFormat("#0.000")).format(time) + " : "
+						+ className + " " + methodName + "() - Line " + lineNumber
+						+ "\t| " + label + " :\t" + value;
+    		}
+    		return s;
+    	}
     }
 }
 
