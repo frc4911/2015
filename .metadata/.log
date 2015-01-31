@@ -8957,3 +8957,6 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-31 11:30:16.447
 !MESSAGE Installedjava
+
+!ENTRY org.eclipse.core.resources 4 567 2015-01-31 11:30:29.184
+!MESSAGE The project description file (.project) for 'PreparedRobot' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
