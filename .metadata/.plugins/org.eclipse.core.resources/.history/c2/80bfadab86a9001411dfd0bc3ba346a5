@@ -56,5 +56,5 @@ public class RobotConstants {
     public static final double inToCM = 2.54;
     
     //PrintSystem Constants
-    public static final int printFrequency = 100;
+    public static final int printFrequency = 1;
 }
