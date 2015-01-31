@@ -38,10 +38,11 @@ public class OI {
         
         button2.whenPressed(new EnableRotate(button2));
         
-        button3.whenPressed(new SetGoalHeading(0, button3));
-        button4.whenPressed(new SetGoalHeading(180, button4));
-        button6.whenPressed(new SetGoalHeading(90, button6));
-        button5.whenPressed(new SetGoalHeading(-90, button5));
+        button5.whenPressed(new SetGoalHeading(-90.0, button5)); 
+        button6.whenPressed(new SetGoalHeading(90.0, button6));
+        
+        button3.whenPressed(new RotateForTime(10, -0.25)); // rotates for two ticks at 50% power going left
+        button4.whenPressed(new RotateForTime(10, 0.25)); // rotates for two ticks at 50% power going right
 
         button11.whenPressed(new ZeroYaw(button11));
     }

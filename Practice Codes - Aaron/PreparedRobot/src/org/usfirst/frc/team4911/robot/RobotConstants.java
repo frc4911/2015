@@ -35,8 +35,8 @@ public class RobotConstants {
     public static final double FLOOR = 0.15;
     
     //PID CONSTANTS
-    public static final double kP = 1.0 / 170.0;
-    public static final double kI = 0.000005;
+    public static final double kP = 1.0 / 175.0;
+    public static final double kI = 0.00000;
     public static final double kD = 0.005;
     
     //GYRO

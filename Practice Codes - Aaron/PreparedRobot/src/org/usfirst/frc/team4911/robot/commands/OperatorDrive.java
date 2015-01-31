@@ -10,6 +10,7 @@ import org.usfirst.frc.team4911.robot.RobotConstants;
 public class OperatorDrive extends Command {
 	private MecanumDriveSystem mecanumDriveSystem = Robot.mecanumDriveSystem;
 	private SensorSystem sensorSystem = Robot.sensorSystem;
+	private PrintSystem printSystem = Robot.printSystem;
 	private OI oi = Robot.oi;
 	private Runtime runtime;
 	
@@ -52,6 +53,7 @@ public class OperatorDrive extends Command {
 	        	new PIDAxisDrive(-0.3, 0.5, 0.0, oi.mainJoy, RobotConstants.POV_RIGHT).start();
 	        }
 		}
+		printSystem.print("HELLO", 5);
 	}
 
 	@Override
