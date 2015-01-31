@@ -50,11 +50,11 @@ public class RobotConstants {
     public static final double CAMERA_SERVO_RIGHT = 1.0;
     
     //DEBUG SWITCH
-    public static final boolean FLAG = true;
+    public static final boolean FLAG = false;
     
     //CM to IN conversion (LIDAR)
     public static final double inToCM = 2.54;
     
     //PrintSystem Constants
-    public static final int printFrequency = 1;
+    public static final int printFrequency = 100;
 }
