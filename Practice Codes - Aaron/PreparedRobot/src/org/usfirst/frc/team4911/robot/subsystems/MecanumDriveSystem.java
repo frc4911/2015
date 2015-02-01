@@ -54,7 +54,7 @@ public class MecanumDriveSystem extends Subsystem {
 	}
 	
 	public void driveWithPID(double x, double y){
-		currError = goalHeading - Robot.sensorSystem.getYaw();//[-180 - 180] degrees
+		currError = goalHeading - Robot.sensorSystem.getYawWithCompensation();//[-180 - 180] degrees
 		if(Math.abs(currError) > 180) {
 			double delta = 360-Math.abs(currError);
 			if(currError > 0) {

@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team4911.robot.OI;
 import org.usfirst.frc.team4911.robot.Robot;
 import org.usfirst.frc.team4911.robot.RobotConstants;
+import org.usfirst.frc.team4911.robot.commands.OperatorDrive;
 import org.usfirst.frc.team4911.robot.subsystems.MecanumDriveSystem;
 import org.usfirst.frc.team4911.robot.subsystems.SensorSystem;
 import org.usfirst.frc.team4911.robot.subsystems.PrintSystem;
@@ -20,15 +21,15 @@ public class RotateForTime extends Command {
 	
 	private int timeRotated;
 	private int maxRotateTime;
-	
+	private OperatorDrive operatorDrive;
 	private double rotateSpeed;
 	
 	
     public RotateForTime(int maxRotateTime, double rotateSpeed) {
         this.maxRotateTime = maxRotateTime;
-        timeRotated = 0;
         this.rotateSpeed = rotateSpeed;
-		Robot.teleOp.driveSystemConflict = true;
+        
+        	
     }
 
     // Called just before this Command runs the first time
@@ -37,12 +38,18 @@ public class RotateForTime extends Command {
     	sensorSystem = Robot.sensorSystem;
     	printSystem = Robot.printSystem;
     	oi = Robot.oi;
+    	operatorDrive = Robot.teleOp;
+        if (operatorDrive.driveSystemConflict){
+        	this.cancel();
+        }
+        operatorDrive.driveSystemConflict = true;
+        timeRotated = 0;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	mecanumDriveSystem.drive(0 , 0, rotateSpeed);
-    	timeRotated ++;
+    	timeRotated++;
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -52,8 +59,8 @@ public class RotateForTime extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	mecanumDriveSystem.setGoalHeading(Math.round(sensorSystem.getYaw()));
-		Robot.teleOp.driveSystemConflict = false;
+    	mecanumDriveSystem.setGoalHeading(Math.round(sensorSystem.getYawWithCompensation()));
+    	operatorDrive.driveSystemConflict = false;
     	
     }
 

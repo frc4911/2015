@@ -94,6 +94,8 @@ public class PrintSystem extends Subsystem {
     		}
     		fileWriter.println("===========================================");
     		resetIteration();
+    		dataList.clear();
+    		
     	} else {
     		numIteration++;
     	}
@@ -158,5 +160,6 @@ public class PrintSystem extends Subsystem {
     		return s;
     	}
     }
+    
 }
 
