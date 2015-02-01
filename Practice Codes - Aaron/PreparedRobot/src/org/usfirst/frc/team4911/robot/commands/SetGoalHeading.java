@@ -14,19 +14,24 @@ public class SetGoalHeading extends Command {
 	private double deltaGoalHeading;
 	private JoystickButton button;
 	private MecanumDriveSystem mecanumDriveSystem;
+	private boolean addingHeading;
 	
     public SetGoalHeading(double deltaGoalHeading, JoystickButton button) {
 		this.deltaGoalHeading = deltaGoalHeading;
 		this.button = button;
+		addingHeading = true;
     }
     public SetGoalHeading(int isPositive, JoystickButton button) {
 		this.goalHeading = isPositive * 90;
 		this.button = button;
+		addingHeading = false;
     }
 
     protected void initialize() {
     	mecanumDriveSystem = Robot.mecanumDriveSystem;
-		this.goalHeading = (deltaGoalHeading + mecanumDriveSystem.getGoalHeading());
+    	if(addingHeading){
+    		this.goalHeading = (deltaGoalHeading + mecanumDriveSystem.getGoalHeading());
+    	}
     }
 
     protected void execute() {

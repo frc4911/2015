@@ -43,6 +43,9 @@ public class RobotConstants {
     public static final int MAIN_GYRO_PORT = 1;//Analog
     public static final double GYRO_SENSITIVITY = 0.007;
     
+    //IMU CONSTANTS
+    public static final double YAW_DRIFT_PER_TICK = 0.004;
+    
     //CAMERA
     public static final int CAMERA_SERVO_PORT = 0;
     public static final double CAMERA_SERVO_LEFT = 0.0;
@@ -50,11 +53,12 @@ public class RobotConstants {
     public static final double CAMERA_SERVO_RIGHT = 1.0;
     
     //DEBUG SWITCH
-    public static final boolean FLAG = false;
+    public static final boolean FLAG = true;
     
     //CM to IN conversion (LIDAR)
     public static final double inToCM = 2.54;
     
     //PrintSystem Constants
     public static final int printFrequency = 100;
+    
 }

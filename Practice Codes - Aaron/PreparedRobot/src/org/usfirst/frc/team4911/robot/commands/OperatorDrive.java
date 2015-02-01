@@ -53,7 +53,9 @@ public class OperatorDrive extends Command {
 	        	new PIDAxisDrive(-0.3, 0.0, 0.0, oi.mainJoy, RobotConstants.POV_RIGHT).start();
 	        }
 		}
-		//printSystem.print("HELLO", 5);
+		printSystem.print("Compensated Yaw", "" + sensorSystem.getYawWithCompensation());
+
+		printSystem.print("Yaw", "" + sensorSystem.getYaw());
 	}
 
 	@Override
