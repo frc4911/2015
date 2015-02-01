@@ -17,6 +17,7 @@ public class OI {
     public JoystickButton button4;
     public JoystickButton button5;
     public JoystickButton button6;
+    public JoystickButton button7;
     public JoystickButton button11;
     public JoystickButton trigger;
     
@@ -32,6 +33,7 @@ public class OI {
         button4 = new JoystickButton(mainJoy, 4);
         button5 = new JoystickButton(mainJoy, 5);
         button6 = new JoystickButton(mainJoy, 6);
+        button7 = new JoystickButton(mainJoy, 7);
         button11 = new JoystickButton(mainJoy, 11);
         
         trigger.whenPressed(new SetDriveSpeed(1.0, trigger));
@@ -40,9 +42,10 @@ public class OI {
         
         button5.whenPressed(new SetGoalHeading(-90.0, button5)); 
         button6.whenPressed(new SetGoalHeading(90.0, button6));
+        button7.whenPressed(new SetGoalHeading(0, button7));
         
-        button3.whenPressed(new RotateForTime(10, -0.25)); // rotates for two ticks at 50% power going left
-        button4.whenPressed(new RotateForTime(10, 0.25)); // rotates for two ticks at 50% power going right
+        button3.whenPressed(new RotateForTime(5, -0.25)); // rotates for ten ticks (one tick is 20 milliseconds) at 25% power going left
+        button4.whenPressed(new RotateForTime(5, 0.25)); // rotates for ten ticks (one tick is 20 milliseconds) at 25% power going right
 
         button11.whenPressed(new ZeroYaw(button11));
     }

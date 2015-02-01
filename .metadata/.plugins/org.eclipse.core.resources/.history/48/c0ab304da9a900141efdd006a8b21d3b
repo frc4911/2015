@@ -1,0 +1,41 @@
+package org.usfirst.frc.team4911.robot.commands;
+
+import edu.wpi.first.wpilibj.command.Command;
+
+import org.usfirst.frc.team4911.robot.Robot;
+import org.usfirst.frc.team4911.robot.RobotConstants;
+import org.usfirst.frc.team4911.robot.subsystems.SensorSystem;
+import org.usfirst.frc.team4911.robot.subsystems.PrintSystem;
+
+/**
+ *
+ */
+public class RunPrintServer extends Command {
+	private PrintSystem printSystem;
+	private SensorSystem sensorSystem;
+	
+    public RunPrintServer() {
+    	printSystem = Robot.printSystem;
+    	printSystem.createNewFile();
+    }
+
+    protected void initialize() {
+    	printSystem.resetIteration();
+    	sensorSystem = Robot.sensorSystem;
+    }
+
+    protected void execute() {
+    	printSystem.updatePrint();
+    }
+
+    protected boolean isFinished() {
+        return false;
+    }
+
+
+    protected void end() {
+    }
+
+    protected void interrupted() {
+    }
+}
