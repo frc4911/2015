@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;nav6SimpleRobotExample&apos;" deleteContents="false" description="Delete resource &apos;nav6SimpleRobotExample&apos;" element1="/nav6SimpleRobotExample" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1421543939156"/>&#x0A;<refactoring comment="Delete 5 resources" deleteContents="false" description="Delete 5 resources" element1="/CAN Talon SRX PID Testing Project" element2="/firstProject" element3="/FirstRoboRioProject" element4="/IMU Testing Project" element5="/PreparedRobot" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="5" stamp="1422126724625"/>
-=======
-<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;nav6SimpleRobotExample&apos;" deleteContents="false" description="Delete resource &apos;nav6SimpleRobotExample&apos;" element1="/nav6SimpleRobotExample" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1421543939156"/>&#x0A;<refactoring comment="Delete resource &apos;LIDAR&apos;" deleteContents="false" description="Delete resource &apos;LIDAR&apos;" element1="/LIDAR" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1421891145214"/>
->>>>>>> 5f3acf441627f3e15dad799ad4da858950c56ddb
-</session>
