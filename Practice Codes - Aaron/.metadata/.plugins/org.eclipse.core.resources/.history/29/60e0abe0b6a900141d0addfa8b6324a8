@@ -53,7 +53,6 @@ public class OperatorDrive extends Command {
 	        	new PIDAxisDrive(-0.3, 0.0, 0.0, oi.mainJoy, RobotConstants.POV_RIGHT).start();
 	        }
 		}
-	}
 
 	@Override
 	protected boolean isFinished() {
