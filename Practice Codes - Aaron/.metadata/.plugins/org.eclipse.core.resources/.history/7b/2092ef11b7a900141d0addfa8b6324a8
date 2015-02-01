@@ -38,7 +38,6 @@ public class PrintSystem extends Subsystem {
     }
     
     public void createNewFile() {
-    	String time = new DecimalFormat("#0.000").format(Timer.getFPGATimestamp());
     	if(DriverStation.getInstance().isAutonomous()) {
     		try {
     			if(autoFileNum >= 10) {
@@ -115,7 +114,11 @@ public class PrintSystem extends Subsystem {
     	StackTraceElement e = st[2];
     	dataList.add(new Data(e, time, msg).toString());
     }
-     
+    
+    public static String getTimeStamp() {
+    	return new DecimalFormat("#0.000")).format(Timer.getFPGATimestamp());
+    }
+        
     private class Data {
     	public String className;
     	public int lineNumber;

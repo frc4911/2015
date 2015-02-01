@@ -38,7 +38,6 @@ public class PrintSystem extends Subsystem {
     }
     
     public void createNewFile() {
-    	String time = new DecimalFormat("#0.000").format(Timer.getFPGATimestamp());
     	if(DriverStation.getInstance().isAutonomous()) {
     		try {
     			if(autoFileNum >= 10) {
