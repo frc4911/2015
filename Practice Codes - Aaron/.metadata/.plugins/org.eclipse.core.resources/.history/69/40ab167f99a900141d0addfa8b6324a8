@@ -94,7 +94,7 @@ public class PrintSystem extends Subsystem {
     		}
     		fileWriter.println("===========================================");
     		resetIteration();
-    		dataList.clear();
+    		
     		
     	} else {
     		numIteration++;
@@ -159,9 +159,6 @@ public class PrintSystem extends Subsystem {
     		}
     		return s;
     	}
-    }
-    public static String getTimeStamp() {
-    	return new DecimalFormat("#0.000")).format(Timer.getFPGATimestamp());
     }
 }
 
