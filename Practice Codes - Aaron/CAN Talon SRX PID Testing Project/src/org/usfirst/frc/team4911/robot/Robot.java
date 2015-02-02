@@ -38,9 +38,9 @@ public class Robot extends SampleRobot {
 		stick1 = new Joystick(0);
 		stick2 = new Joystick(1);
 		
-		kP = 1.2;
-		kI = .0002;
-		kD = 5.0;
+		kP = 1.1;
+		kI = 0.00001;//0.0002;
+		kD = 0.0;//5.0;
 			  
 		leftFront = new CANTalon(2); // Initialize the CanTalonSRX on device 1.
 		leftFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
@@ -110,12 +110,12 @@ public class Robot extends SampleRobot {
 			}
 			
 			if(stick1.getRawButton(1)) {
-				kD += .5;
+				kI += .00001;
 			}
 			else if (stick1.getRawButton(2)) {
-				kD -= .5;
+				kI -= .00001;
 			}
-			System.out.println("KD: " + kD);
+			System.out.println("Ki: " + kI);
 			rightFront.setPID(kP, kI, kD);
 			Timer.delay(.15);
 			//System.out.println("Current encoder pos: " + rightFront.getEncPosition());
