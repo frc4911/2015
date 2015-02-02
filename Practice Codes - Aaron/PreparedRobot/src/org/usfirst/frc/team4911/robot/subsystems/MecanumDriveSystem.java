@@ -92,5 +92,17 @@ public class MecanumDriveSystem extends Subsystem {
 	public double getGoalHeading() {
 		return goalHeading;
 	}
-
+	
+	public double getLeftFrontCurrent(){
+		return frontLeft.getOutputCurrent();
+	}
+	public double getLeftRearCurrent(){
+		return rearLeft.getOutputCurrent();
+	}
+	public double getRightFrontCurrent(){
+		return frontRight.getOutputCurrent();
+	}
+	public double getRightRearCurrent(){
+		return rearRight.getOutputCurrent();
+	}
 }

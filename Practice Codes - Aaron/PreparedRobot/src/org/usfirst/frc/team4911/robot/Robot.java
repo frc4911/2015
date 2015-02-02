@@ -36,13 +36,8 @@ public class Robot extends IterativeRobot {
         
         autonomousCommand = new Autonomous();
         teleOp = new OperatorDrive();
-        printServerCommand = new RunPrintServer();
 
         oi = new OI();
-
-        if(RobotConstants.FLAG) {
-            System.out.println("Ready To Roll Out!");
-        }
     }
 
     public void autonomousInit() {
