@@ -1,0 +1,29 @@
+package org.usfirst.frc.team4911.robot.subsystems;
+
+import org.usfirst.frc.team4911.robot.RobotConstants;
+import org.usfirst.frc.team4911.robot.RobotMap;
+import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.CANTalon;
+
+/**
+ *
+ */
+public class HookLiftSystem extends Subsystem {
+	public CANTalon leftHook;
+	public CANTalon rightHook;
+	
+    public void initDefaultCommand() {
+    	
+    }
+    
+    public HookLiftSystem(){
+    	leftHook = RobotMap.hookLeft;
+    	rightHook = RobotMap.hookRight;
+    }
+    
+    public void setPosition(double position){
+    	leftHook.set(position);
+    	rightHook.set(position);;
+    }
+}
+
