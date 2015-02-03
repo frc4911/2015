@@ -31,7 +31,7 @@ public class ContainerLiftSystem extends Subsystem {
 
     //This will move the bottom of the container to the height of the tote specified 
     //toteNum = number of totes in a stack
-    public void liftViaTote(double toteNum){
+    public void liftViaTote(int toteNum){
     	if(toteNum >= 0){
     		containerLift.set(RobotConstants.TOTE_HEIGHT * toteNum / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
     	}
