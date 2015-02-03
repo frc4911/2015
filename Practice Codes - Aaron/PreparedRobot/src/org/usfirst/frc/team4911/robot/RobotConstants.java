@@ -60,5 +60,6 @@ public class RobotConstants {
     
     //PrintSystem Constants
     public static final int printFrequency = 1;
+    public static final boolean STATIC_INFO_ALLOWED = true;
     
 }

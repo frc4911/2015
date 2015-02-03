@@ -9,4 +9,5 @@
 <fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.subsystems.PrintSystem"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.Robot"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.RobotConstants"/>
 </qualifiedTypeNameHistroy>

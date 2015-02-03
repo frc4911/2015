@@ -169,16 +169,22 @@ public class PrintSystem extends Subsystem {
     		String s;
     		if(this.label == null && this.value == null){
     			s = (new DecimalFormat("#0.000")).format(time) + " : "
-						+ className + "\t" + methodName + "()\t- Line " + lineNumber
+						+ className + " " + methodName + "()\t- Line " + lineNumber
 						+ "\t| " + msg;
     		} else if(this.unit == null){
     			s = (new DecimalFormat("#0.000")).format(time) + " : "
-						+ className + "\t" + methodName + "()\t- Line " + lineNumber
+						+ className + " " + methodName + "()\t- Line " + lineNumber
 						+ "\t| " + label + "\t: " + value;
     		} else {
-    			s = (new DecimalFormat("#0.000")).format(time) + " : "
-						+ className + "\t" + methodName + "()\t- Line " + lineNumber
-						+ "\t| " + label + "\t: " + value + " "+ unit;
+    			if(value.length() > 5){
+	    			s = (new DecimalFormat("#0.000")).format(time) + " : "
+							+ className + " " + methodName + "()\t- Line " + lineNumber
+							+ "\t| " + label + "\t: " + value + "\t"+ unit;
+    			} else {
+    				s = (new DecimalFormat("#0.000")).format(time) + " : "
+							+ className + " " + methodName + "()\t- Line " + lineNumber
+							+ "\t| " + label + "\t: " + value + " \t"+ unit;
+    			}
     		}
     		return s;
     	}

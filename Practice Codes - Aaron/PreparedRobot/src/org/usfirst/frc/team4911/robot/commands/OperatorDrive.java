@@ -53,7 +53,7 @@ public class OperatorDrive extends Command {
 	        	new PIDAxisDrive(-0.3, 0.0, 0.0, oi.mainJoy, RobotConstants.POV_RIGHT).start();
 	        }
 		}
-		printSystem.print("HELLO");
+		printSystem.print("DriverInput", oi.getMainJoyX() * speed + "\t\t" + oi.getMainJoyY() * speed);
 	}
 
 	@Override

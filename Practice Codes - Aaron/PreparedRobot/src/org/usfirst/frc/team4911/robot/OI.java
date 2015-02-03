@@ -60,7 +60,6 @@ public class OI {
     
     public double getMainJoyX(){
 		double pow = 0;
-		// roneckor - does this return a value 0 to 1?
     	if(Math.abs(mainJoy.getX()) >= 0.1) {
             pow = Math.round(mainJoy.getX() * RobotConstants.JOYSTICK_SENSITIVITY) 
             		/ RobotConstants.JOYSTICK_SENSITIVITY;  
