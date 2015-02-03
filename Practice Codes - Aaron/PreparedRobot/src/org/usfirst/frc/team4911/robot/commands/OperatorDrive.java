@@ -38,6 +38,9 @@ public class OperatorDrive extends Command {
 	@Override
 	protected void execute() {
 		if(!driveSystemConflict){
+			if(RobotConstants.USING_BEN_JOY) {
+				speed = oi.getMainJoyThrottle();
+			}
 			mecanumDriveSystem.driveWithPID(oi.getMainJoyX() * speed,oi.getMainJoyY() * speed);
 			
 			if(oi.getPOV() == RobotConstants.POV_UP) {

@@ -1,8 +1,5 @@
 package org.usfirst.frc.team4911.robot;
 
-import java.io.BufferedOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.PrintStream;
 
 import com.kauailabs.nav6.frc.IMUAdvanced;
@@ -12,13 +9,12 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
-//import edu.wpi.first.wpilibj.buttons;
+import edu.wpi.first.wpilibj.I2C;
+import ExternalLibs.LIDAR;
 
 public class Robot extends SampleRobot {
 	Joystick stick1;
 	Joystick stick2;
-	
-	//Button button1;
 	
 	CANTalon leftFront;
 	CANTalon leftRear;
@@ -29,6 +25,8 @@ public class Robot extends SampleRobot {
 	
 	public static IMUAdvanced imu;
 	public static SerialPort serial_port;
+	
+	LIDAR lidar;
 	
 	double kP;
 	double kI;
@@ -62,9 +60,11 @@ public class Robot extends SampleRobot {
 		rightRear.changeControlMode(CANTalon.ControlMode.Position);
 		rightRear.setPID(1.0, 0.0, 0.0);
 		
-		
+		lidar = new LIDAR(I2C.Port.kMXP);
+		lidar.start();
 		
 		/***************************************
+		 *
 	     * IMU INITIALIZATION
 	     ***************************************/
 		/*try {
@@ -91,14 +91,8 @@ public class Robot extends SampleRobot {
 	}
 	
 	public void operatorControl() {
-		/*try {
-			output = new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/lvuser/natinst/teleLog.txt")));
-			System.setOut(output);
-		} catch (FileNotFoundException e) {	
-		}*/
-	  
+		
 		while(isOperatorControl() && isEnabled()){
-			//System.out.println(imu.getYaw());
 			if(stick1.getRawButton(3)) {
 				rightFront.set(1024);
 				System.out.println("Position 1!");
@@ -115,12 +109,11 @@ public class Robot extends SampleRobot {
 			else if (stick1.getRawButton(2)) {
 				kI -= .00001;
 			}
-			System.out.println("Ki: " + kI);
 			rightFront.setPID(kP, kI, kD);
 			Timer.delay(.15);
-			//System.out.println("Current encoder pos: " + rightFront.getEncPosition());
+			//System.out.println("LIDAR distance: " + lidar.getDistance() + " cm");
+			System.out.println("Throtttle: " + stick1.getThrottle());
 		}
-		//output.close();
 	}  
 	
 	public void autonomous(){
