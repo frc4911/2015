@@ -1,0 +1,31 @@
+package org.usfirst.frc.team4911.robot.subsystems;
+
+import org.usfirst.frc.team4911.robot.RobotConstants;
+import org.usfirst.frc.team4911.robot.RobotMap;
+
+import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.CANTalon;
+
+/**
+ *
+ */
+public class ContainerLiftSystem extends Subsystem {
+	public CANTalon containerTalon;
+	
+    public void initDefaultCommand() {
+
+    }
+    
+    public ContainerLiftSystem(){
+    	containerTalon = RobotMap.containerTalon;
+    }
+    
+    public void setPositionViaPercent(double position){
+    	containerTalon.set(RobotConstants.CONTAINERSYSTEM_TOTAL_DISTANCE * position / RobotConstants.CONTAINERSYSTEM_ENCODER_DISTANCE_PER_PULSE);
+    }
+
+    public void setPositionViaTote(int toteNum){
+    	containerTalon.set(RobotConstants.TOTE_HEIGHT * (toteNum - 1) / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
+    }
+}
+

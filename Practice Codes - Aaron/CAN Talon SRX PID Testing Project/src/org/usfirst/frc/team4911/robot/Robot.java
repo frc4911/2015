@@ -4,6 +4,7 @@ import java.io.PrintStream;
 
 import com.kauailabs.nav6.frc.IMUAdvanced;
 
+import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.SampleRobot;
@@ -42,26 +43,27 @@ public class Robot extends SampleRobot {
 			  
 		leftFront = new CANTalon(2); // Initialize the CanTalonSRX on device 1.
 		leftFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		leftFront.changeControlMode(CANTalon.ControlMode.Position);
+		leftFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		leftFront.setPID(1.0, 0.0, 0.0);
 		  
 		leftRear = new CANTalon(1); // Initialize the CanTalonSRX on device 1.
 		leftRear.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		leftRear.changeControlMode(CANTalon.ControlMode.Position);
+		leftRear.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		leftRear.setPID(1.0, 0.0, 0.0);
 		  
 		rightFront = new CANTalon(3); // Initialize the CanTalonSRX on device 1.
 		rightFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		rightFront.changeControlMode(CANTalon.ControlMode.Position);
+		rightFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		rightFront.setPID(kP, kI, kD);
 		  
 		rightRear = new CANTalon(4); // Initialize the CanTalonSRX on device 1.
 		rightRear.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		rightRear.changeControlMode(CANTalon.ControlMode.Position);
+		rightRear.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		rightRear.setPID(1.0, 0.0, 0.0);
 		
 		lidar = new LIDAR(I2C.Port.kMXP);
 		lidar.start();
+		
 		
 		/***************************************
 		 *
@@ -93,6 +95,11 @@ public class Robot extends SampleRobot {
 	public void operatorControl() {
 		
 		while(isOperatorControl() && isEnabled()){
+<<<<<<< HEAD
+=======
+			//System.out.println(imu.getYaw());
+			
+>>>>>>> 28f19e0205cf69d9b0a1566332378eec750ec5ee
 			if(stick1.getRawButton(3)) {
 				rightFront.set(1024);
 				System.out.println("Position 1!");
@@ -111,8 +118,13 @@ public class Robot extends SampleRobot {
 			}
 			rightFront.setPID(kP, kI, kD);
 			Timer.delay(.15);
+<<<<<<< HEAD
 			//System.out.println("LIDAR distance: " + lidar.getDistance() + " cm");
 			System.out.println("Throtttle: " + stick1.getThrottle());
+=======
+			//System.out.println("Current encoder pos: " + rightFront.getEncPosition());
+			
+>>>>>>> 28f19e0205cf69d9b0a1566332378eec750ec5ee
 		}
 	}  
 	

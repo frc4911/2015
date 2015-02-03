@@ -10,4 +10,5 @@
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.subsystems.PrintSystem"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.Robot"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.RobotConstants"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.RobotDrive"/>
 </qualifiedTypeNameHistroy>

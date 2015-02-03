@@ -115,11 +115,11 @@ public class SensorSystem extends Subsystem {
     }
     
     public double getLeftDistance(){
-        return left.getEncPosition() * RobotConstants.ENCODER_DISTANCE_PER_PULSE;
+        return left.getEncPosition() * RobotConstants.DRIVESYSTEM_ENCODER_DISTANCE_PER_PULSE;
     }
     
     public double getRightDistance(){
-        return left.getEncPosition() * RobotConstants.ENCODER_DISTANCE_PER_PULSE;
+        return left.getEncPosition() * RobotConstants.DRIVESYSTEM_ENCODER_DISTANCE_PER_PULSE;
 
     }
     
