@@ -39,7 +39,8 @@ public class SetGoalHeading extends Command {
 
     	Robot.printSystem.print("Old GoalHeading", "" + mecanumDriveSystem.getGoalHeading());
     	
-    	Robot.mecanumDriveSystem.setGoalHeading(goalHeading);
+    	mecanumDriveSystem.setGoalHeading(goalHeading);
+    	Robot.printSystem.print(("Goal Heading Post Set: " + mecanumDriveSystem.getGoalHeading()));
     	
     }
 

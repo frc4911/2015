@@ -1,4 +1,7 @@
-GitRepositoriesView.GitDirectories=C\:\\Users\\Jack\\Documents\\GitHub\\2015\\.git;
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=71eb44330eddbf871d3eeb9369d36ef64a147d6e
+GitRepositoriesView.GitDirectories=C\:\\Users\\Jack\\Documents\\GitHub\\2015\\.git;C\:\\Users\\pratz_000\\Documents\\GitHub\\2015\\.git;
 RepositorySearchDialogDeepSearch=false
-RepositorySearchDialogSearchPath=C\:\\Users\\Jack\\Documents\\GitHub\\2015\\Practice Codes - Aaron\\PreparedRobot
+RepositorySearchDialogSearchPath=C\:\\Users\\pratz_000\\Documents\\GitHub\\2015
 eclipse.preferences.version=1

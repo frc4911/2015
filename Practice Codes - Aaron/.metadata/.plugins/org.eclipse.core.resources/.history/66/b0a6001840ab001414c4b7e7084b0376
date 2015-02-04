@@ -1,0 +1,22 @@
+package org.usfirst.frc.team4911.robot.subsystems;
+
+import org.usfirst.frc.team4911.robot.RobotConstants;
+import org.usfirst.frc.team4911.robot.RobotMap;
+import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.CANTalon;
+
+/**
+ *
+ */
+public class ContainerLiftSystem extends Subsystem {
+	public CANTalon containerTalon;
+	
+    public void initDefaultCommand() {
+
+    }
+    
+    public ContainerLiftSystem(){
+    	containerTalon = RobotMap.containerTalon;
+    }
+}
+

@@ -22,9 +22,9 @@ public class Robot extends IterativeRobot {
     public static MecanumDriveSystem mecanumDriveSystem;
     public static SensorSystem sensorSystem;
     public static PrintSystem printSystem;
-    
     public static CameraSystem cameraSystem;
-    
+    public static HookLiftSystem hookLiftSystem;
+    public static ContainerLiftSystem containerLiftSystem;
     
     public void robotInit() {
     	RobotMap.init();
@@ -33,16 +33,13 @@ public class Robot extends IterativeRobot {
     	mecanumDriveSystem = new MecanumDriveSystem();
     	sensorSystem = new SensorSystem();
         cameraSystem = new CameraSystem();
+        hookLiftSystem = new HookLiftSystem();
+        containerLiftSystem = new ContainerLiftSystem();
         
         autonomousCommand = new Autonomous();
         teleOp = new OperatorDrive();
-        printServerCommand = new RunPrintServer();
 
         oi = new OI();
-
-        if(RobotConstants.FLAG) {
-            System.out.println("Ready To Roll Out!");
-        }
     }
 
     public void autonomousInit() {

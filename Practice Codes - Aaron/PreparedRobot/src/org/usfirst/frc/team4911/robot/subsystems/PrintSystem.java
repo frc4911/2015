@@ -71,7 +71,7 @@ public class PrintSystem extends Subsystem {
     }
     
     public void resetIteration() {
-    	numIteration = 0;
+    	numIteration = 1;
     	this.frequency = RobotConstants.printFrequency;
     }
     
@@ -94,11 +94,19 @@ public class PrintSystem extends Subsystem {
     		}
     		fileWriter.println("===========================================");
     		resetIteration();
+    		dataList.clear();
+    		
     	} else {
     		numIteration++;
     	}
     }
     
+    public void print(String label, Object val, String unit){
+    	double time = Timer.getFPGATimestamp();
+    	StackTraceElement[] st = Thread.currentThread().getStackTrace();
+    	StackTraceElement e = st[2];//st.length - 5
+    	dataList.add(new Data(e, time, label, val.toString(), unit).toString());
+    }
     public void print(String label, Object val){
     	double time = Timer.getFPGATimestamp();
     	StackTraceElement[] st = Thread.currentThread().getStackTrace();
@@ -112,7 +120,7 @@ public class PrintSystem extends Subsystem {
     	StackTraceElement e = st[2];
     	dataList.add(new Data(e, time, msg).toString());
     }
-        
+     
     private class Data {
     	public String className;
     	public int lineNumber;
@@ -120,8 +128,21 @@ public class PrintSystem extends Subsystem {
     	public String label;
     	public String value;
     	public String msg;
+    	public String unit;
     	public double time;
     	
+    	public Data(StackTraceElement t, double time, String label, String value, String unit){
+    		this.label = label;
+    		this.value = value;
+    		this.time = time;
+    		this.unit = unit;
+    		StringTokenizer tokenizer = new StringTokenizer(t.getClassName(),".");
+    		while(tokenizer.hasMoreTokens()){
+    			this.className = tokenizer.nextToken();
+    		}
+    		this.lineNumber = t.getLineNumber();
+    		this.methodName = t.getMethodName();    		
+    	}
     	public Data(StackTraceElement t, double time, String label, String value){
     		this.label = label;
     		this.value = value;
@@ -148,15 +169,28 @@ public class PrintSystem extends Subsystem {
     		String s;
     		if(this.label == null && this.value == null){
     			s = (new DecimalFormat("#0.000")).format(time) + " : "
-						+ className + " " + methodName + "() - Line " + lineNumber
+						+ className + " " + methodName + "()\t- Line " + lineNumber
 						+ "\t| " + msg;
-    		} else {
+    		} else if(this.unit == null){
     			s = (new DecimalFormat("#0.000")).format(time) + " : "
-						+ className + " " + methodName + "() - Line " + lineNumber
-						+ "\t| " + label + " :\t" + value;
+						+ className + " " + methodName + "()\t- Line " + lineNumber
+						+ "\t| " + label + "\t: " + value;
+    		} else {
+    			if(value.length() > 5){
+	    			s = (new DecimalFormat("#0.000")).format(time) + " : "
+							+ className + " " + methodName + "()\t- Line " + lineNumber
+							+ "\t| " + label + "\t: " + value + "\t"+ unit;
+    			} else {
+    				s = (new DecimalFormat("#0.000")).format(time) + " : "
+							+ className + " " + methodName + "()\t- Line " + lineNumber
+							+ "\t| " + label + "\t: " + value + " \t"+ unit;
+    			}
     		}
     		return s;
     	}
+    }
+    public static String format(double d){
+    	return new DecimalFormat("#0.000").format(d);
     }
 }
 

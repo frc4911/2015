@@ -1,6 +1,5 @@
 package org.usfirst.frc.team4911.robot.subsystems;
 
-import org.usfirst.frc.team4911.robot.RobotConstants;
 import org.usfirst.frc.team4911.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Subsystem;

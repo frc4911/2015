@@ -1,17 +1,17 @@
 package org.usfirst.frc.team4911.robot;
 
-import java.io.BufferedOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.PrintStream;
 
 import com.kauailabs.nav6.frc.IMUAdvanced;
 
+import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.I2C;
+import ExternalLibs.LIDAR;
 
 public class Robot extends SampleRobot {
 	Joystick stick1;
@@ -27,34 +27,49 @@ public class Robot extends SampleRobot {
 	public static IMUAdvanced imu;
 	public static SerialPort serial_port;
 	
+	LIDAR lidar;
+	
+	double kP;
+	double kI;
+	double kD;
+	
 	public Robot() {
 		stick1 = new Joystick(0);
 		stick2 = new Joystick(1);
+		
+		kP = 1.1;
+		kI = 0.00001;//0.0002;
+		kD = 0.0;//5.0;
 			  
-		leftFront = new CANTalon(0); // Initialize the CanTalonSRX on device 1.
+		leftFront = new CANTalon(2); // Initialize the CanTalonSRX on device 1.
 		leftFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		leftFront.changeControlMode(CANTalon.ControlMode.Position);
+		leftFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		leftFront.setPID(1.0, 0.0, 0.0);
 		  
-		leftRear = new CANTalon(2); // Initialize the CanTalonSRX on device 1.
+		leftRear = new CANTalon(1); // Initialize the CanTalonSRX on device 1.
 		leftRear.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		leftRear.changeControlMode(CANTalon.ControlMode.Position);
+		leftRear.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		leftRear.setPID(1.0, 0.0, 0.0);
 		  
-		rightFront = new CANTalon(1); // Initialize the CanTalonSRX on device 1.
+		rightFront = new CANTalon(3); // Initialize the CanTalonSRX on device 1.
 		rightFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		rightFront.changeControlMode(CANTalon.ControlMode.Position);
-		rightFront.setPID(1.0, 0.0, 0.0);
+		rightFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
+		rightFront.setPID(kP, kI, kD);
 		  
-		rightRear = new CANTalon(3); // Initialize the CanTalonSRX on device 1.
+		rightRear = new CANTalon(4); // Initialize the CanTalonSRX on device 1.
 		rightRear.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		rightRear.changeControlMode(CANTalon.ControlMode.Position);
+		rightRear.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		rightRear.setPID(1.0, 0.0, 0.0);
 		
+		lidar = new LIDAR(I2C.Port.kMXP);
+		lidar.start();
+		
+		
 		/***************************************
+		 *
 	     * IMU INITIALIZATION
 	     ***************************************/
-		try {
+		/*try {
 			serial_port = new SerialPort(57600,SerialPort.Port.kUSB );
 		          
 			// You can add a second parameter to modify the 
@@ -73,23 +88,49 @@ public class Robot extends SampleRobot {
 			System.out.println("Probs be happen\'n");
 			ex.printStackTrace();
 			
-		}
+		}*/
 		Timer.delay(0.3);
 	}
 	
 	public void operatorControl() {
-		try {
-			output = new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/lvuser/natinst/teleLog.txt")));
-			System.setOut(output);
-		} catch (FileNotFoundException e) {	
-		}
-	  
+		
 		while(isOperatorControl() && isEnabled()){
-			System.out.println(imu.getYaw());
+<<<<<<< HEAD
+=======
+			//System.out.println(imu.getYaw());
+			
+>>>>>>> 28f19e0205cf69d9b0a1566332378eec750ec5ee
+			if(stick1.getRawButton(3)) {
+				rightFront.set(1024);
+				System.out.println("Position 1!");
+				
+			}
+			else if(stick1.getRawButton(4)) {
+				rightFront.set(0);
+				System.out.println("Position 0!");
+			}
+			
+			if(stick1.getRawButton(1)) {
+				kI += .00001;
+			}
+			else if (stick1.getRawButton(2)) {
+				kI -= .00001;
+			}
+			rightFront.setPID(kP, kI, kD);
+			Timer.delay(.15);
+<<<<<<< HEAD
+			//System.out.println("LIDAR distance: " + lidar.getDistance() + " cm");
+			System.out.println("Throtttle: " + stick1.getThrottle());
+=======
+			//System.out.println("Current encoder pos: " + rightFront.getEncPosition());
+			
+>>>>>>> 28f19e0205cf69d9b0a1566332378eec750ec5ee
 		}
-		output.close();
 	}  
 	
-	public void autonomous(){ 
+	public void autonomous(){
+		while(isAutonomous() && isEnabled()) {
+			rightFront.setPosition(1024);
+		}
 	}
 }
