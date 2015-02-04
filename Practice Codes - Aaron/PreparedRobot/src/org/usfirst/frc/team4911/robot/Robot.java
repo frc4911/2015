@@ -11,6 +11,7 @@ import org.usfirst.frc.team4911.robot.RobotMap;
 import org.usfirst.frc.team4911.robot.commands.Autonomous;
 import org.usfirst.frc.team4911.robot.commands.OperatorDrive;
 import org.usfirst.frc.team4911.robot.commands.RunPrintServer;
+import org.usfirst.frc.team4911.robot.commands.DownTheChannelAndBack;
 import org.usfirst.frc.team4911.robot.subsystems.*;
 
 public class Robot extends IterativeRobot {
@@ -18,6 +19,8 @@ public class Robot extends IterativeRobot {
     public static OperatorDrive teleOp;
     public static RunPrintServer printServerCommand;
    
+    public static DownTheChannelAndBack uselessTestingCommand;
+    
     public static OI oi;
     public static MecanumDriveSystem mecanumDriveSystem;
     public static SensorSystem sensorSystem;
@@ -38,6 +41,7 @@ public class Robot extends IterativeRobot {
         
         autonomousCommand = new Autonomous();
         teleOp = new OperatorDrive();
+        uselessTestingCommand = new DownTheChannelAndBack();
 
         oi = new OI();
     }
@@ -71,7 +75,13 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
     }
     
+    public void testInit(){
+    	uselessTestingCommand = new DownTheChannelAndBack();
+    	uselessTestingCommand.start();
+    }
+    
     public void testPeriodic() {
+    	Scheduler.getInstance().run();
     	//LiveWindow.run();
     }
     public void disabledInit(){

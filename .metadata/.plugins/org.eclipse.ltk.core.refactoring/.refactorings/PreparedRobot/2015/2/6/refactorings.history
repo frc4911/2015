@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;ExternalLibs&apos; to &apos;CAN Talon SRX PID Testing Project/src&apos;&#x0D;&#x0A;- Original project: &apos;PreparedRobot&apos;&#x0D;&#x0A;- Destination element: &apos;CAN Talon SRX PID Testing Project/src&apos;&#x0D;&#x0A;- Original element: &apos;PreparedRobot/src/ExternalLibs&apos;" description="Copy package" destination="=CAN Talon SRX PID Testing Project/src" element1="/src&lt;ExternalLibs" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1422924398290" version="1.0"/>
+</session>

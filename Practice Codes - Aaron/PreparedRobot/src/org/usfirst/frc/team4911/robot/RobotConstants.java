@@ -4,12 +4,14 @@ public class RobotConstants {
     //JOYSTICK CONFIG
     public static final int JOYSTICK_MAIN = 1;
     public static final double JOYSTICK_SENSITIVITY = 10.0;
-    
     public static final int JOYSTICK_POV_NUM = 0;
     public static final int POV_UP = 180;
     public static final int POV_DOWN = 0;
     public static final int POV_LEFT = 90;
     public static final int POV_RIGHT = 270;
+    
+    //JOYSTICK SWAP
+    public static final boolean USING_BEN_JOY = false;
     
     //DRIVE SYSTEM CONSTANTS
     public static final double DRIVESYSTEM_WHEEL_DIAMETER = 4.0; //Measured in Inches
@@ -78,7 +80,7 @@ public class RobotConstants {
     public static final double CAMERA_SERVO_RIGHT = 1.0;
     
     //DEBUG SWITCH
-    public static final boolean FLAG = false;
+    public static final boolean FLAG = true;
     
     //CM to IN conversion (LIDAR)
     public static final double inToCM = 2.54;
