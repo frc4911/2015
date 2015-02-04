@@ -32,6 +32,7 @@ public class SensorSystem extends Subsystem {
 	    gyro.setSensitivity(RobotConstants.GYRO_SENSITIVITY);
 	    gyro.initGyro();
     	startTime = Timer.getFPGATimestamp();
+    	lidar.start();
 	}
 	
     public void initDefaultCommand() {

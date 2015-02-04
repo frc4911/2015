@@ -87,7 +87,7 @@ public class RobotMap {
       	
 		accelerometer = new BuiltInAccelerometer();
 		gyro = new Gyro(RobotConstants.MAIN_GYRO_PORT);
-		lidar = new LIDAR(I2C.Port.kOnboard);
+		lidar = new LIDAR(I2C.Port.kMXP);
 		cameraServo = new Servo(RobotConstants.CAMERA_SERVO_PORT);
 		cameraServo.set(RobotConstants.CAMERA_SERVO_MID);
 

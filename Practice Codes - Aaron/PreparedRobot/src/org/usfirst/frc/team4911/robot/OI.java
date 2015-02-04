@@ -65,8 +65,8 @@ public class OI {
         	
         	button5.whenPressed(new ZeroYaw(button5));
         	
-        	button8.whenPressed(new RotateForTime(5, -0.25));
-        	button9.whenPressed(new RotateForTime(5, 0.25));
+        	button8.whenPressed(new RotateForTime(1, -0.25));
+        	button9.whenPressed(new RotateForTime(1, 0.25));
         }
         
         
@@ -114,13 +114,7 @@ public class OI {
     }
     
     public double getMainJoyThrottle() {
-    	double throttle;
-    	if(mainJoy.getThrottle() >= 0.0) {
-    		throttle = 0.3;
-    	} else {
-    		throttle = 1.0;
-    	}
-    	return throttle;
+    	return ((-1*mainJoy.getThrottle()) + 1.0) * 0.5;
     }
         
 }

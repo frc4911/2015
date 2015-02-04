@@ -95,15 +95,10 @@ public class Robot extends SampleRobot {
 	public void operatorControl() {
 		
 		while(isOperatorControl() && isEnabled()){
-<<<<<<< HEAD
-=======
-			//System.out.println(imu.getYaw());
-			
->>>>>>> 28f19e0205cf69d9b0a1566332378eec750ec5ee
-			if(stick1.getRawButton(3)) {
+            if(stick1.getRawButton(3)) {
 				rightFront.set(1024);
 				System.out.println("Position 1!");
-				
+		
 			}
 			else if(stick1.getRawButton(4)) {
 				rightFront.set(0);
@@ -118,13 +113,8 @@ public class Robot extends SampleRobot {
 			}
 			rightFront.setPID(kP, kI, kD);
 			Timer.delay(.15);
-<<<<<<< HEAD
-			//System.out.println("LIDAR distance: " + lidar.getDistance() + " cm");
-			System.out.println("Throtttle: " + stick1.getThrottle());
-=======
+			System.out.println("LIDAR distance: " + lidar.getDistance() + " cm");
 			//System.out.println("Current encoder pos: " + rightFront.getEncPosition());
-			
->>>>>>> 28f19e0205cf69d9b0a1566332378eec750ec5ee
 		}
 	}  
 	
