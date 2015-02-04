@@ -49,8 +49,18 @@ public class RobotConstants {
     public static final double CONTAINERSYSTEM_WHEEL_DIAMETER = 0.67; //Measured in Inches
     public static final double CONTAINERSYSTEM_GEAR_RATIO = 1.0/ 13.5;
     public static final double CONTAINERSYSTEM_ENCODER_PULSE_PER_ROTATION = 1024.0;//Number of Pulse per One Rotation of the Encoder
-    public static final double CONTAINERSYSTEM_ENCODER_DISTANCE_PER_PULSE = HOOKSYSTEM_GEAR_RATIO * HOOKSYSTEM_WHEEL_DIAMETER * Math.PI / HOOKSYSTEM_ENCODER_PULSE_PER_ROTATION;
+    public static final double CONTAINERSYSTEM_ENCODER_DISTANCE_PER_PULSE = CONTAINERSYSTEM_GEAR_RATIO * CONTAINERSYSTEM_WHEEL_DIAMETER * Math.PI / CONTAINERSYSTEM_ENCODER_PULSE_PER_ROTATION;
 
+    public static final double CONTAINERSYSTEM_CLAMP_CLOSING_DISTANCE = 30.0;//Measured in Inches
+    public static final double CONTAINERSYSTEM_CLAMP_HOLDING_DISTANCE = 15.0;//Measured in Inches
+    public static final double CONTAINERSYSTEM_CLAMP_OPENING_DISTANCE = 15.0;//Measured in Inches
+    public static final double CONTAINERSYSTEM_CLAMP_AXLE_CIRCUMFERENCE = 1.0 / 6.0; //Measured in Inches
+    public static final double CONTAINERSYSTEM_CLAMP_GEAR_RATIO = 1.0/ 11.0;
+    public static final double CONTAINERSYSTEM_CLAMP_ENCODER_PULSE_PER_ROTATION = 1024.0;//Number of Pulse per One Rotation of the Encoder
+    public static final double CONTAINERSYSTEM_CLAMP_ENCODER_DISTANCE_PER_PULSE = CONTAINERSYSTEM_CLAMP_GEAR_RATIO * CONTAINERSYSTEM_CLAMP_AXLE_CIRCUMFERENCE / CONTAINERSYSTEM_CLAMP_ENCODER_PULSE_PER_ROTATION;
+    
+    public static final double CONTAINERSYSTEM_CLAMP_SPEED = 1.0;
+    
     public static final int CONTAINER_LIMIT_SWITCH_IN_PORT = 1;//Digital IO
     public static final int CONTAINER_LIMIT_SWITCH_OUT_PORT = 2;//Digital IO
     

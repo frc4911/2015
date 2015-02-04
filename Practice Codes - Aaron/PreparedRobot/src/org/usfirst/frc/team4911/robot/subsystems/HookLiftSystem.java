@@ -6,8 +6,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.CANTalon;
 
 public class HookLiftSystem extends Subsystem {
-	public CANTalon leftHook;
-	public CANTalon rightHook;
+	private CANTalon leftHook;
+	private CANTalon rightHook;
+	private boolean isBeingUsed;
 	
     public void initDefaultCommand() {
     	
@@ -16,6 +17,7 @@ public class HookLiftSystem extends Subsystem {
     public HookLiftSystem(){
     	leftHook = RobotMap.hookLeft;
     	rightHook = RobotMap.hookRight;
+    	isBeingUsed = false;
     }
 
     //CHECK IF THE SIGNS ARE CORRECT
@@ -32,6 +34,29 @@ public class HookLiftSystem extends Subsystem {
 	    	leftHook.set(RobotConstants.TOTE_HEIGHT * (toteNum - 1) / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
 	    	rightHook.set(-RobotConstants.TOTE_HEIGHT * (toteNum - 1) / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
     	}
+    }
+    
+    //CHECK IF THE SIGNS ARE CORRECT
+    //returns values in inches from the ground
+    public double getDistance(){
+    	return (leftHook.get() + (-1 * rightHook.get())) / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE;
+    }
+    
+
+    public boolean isBeingUsed(){
+    	return isBeingUsed;
+    }
+    
+    public void setBeingused(boolean b){
+    	this.isBeingUsed = b;
+    }
+    
+    public CANTalon getLeft(){
+    	return leftHook;
+    }
+    
+    public CANTalon getRight(){
+    	return rightHook;
     }
 }
 
