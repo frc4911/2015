@@ -26,9 +26,13 @@ public class SensorSystem extends Subsystem {
 	
 	public static LIDAR lidar = RobotMap.lidar;
 	
+	public double startTime;
+	
 	public SensorSystem(){
 	    gyro.setSensitivity(RobotConstants.GYRO_SENSITIVITY);
 	    gyro.initGyro();
+    	startTime = Timer.getFPGATimestamp();
+    	lidar.start();
 	}
 	
     public void initDefaultCommand() {
@@ -45,6 +49,7 @@ public class SensorSystem extends Subsystem {
     }
     public void zeroYaw(){
     	imu.zeroYaw();
+    	startTime = Timer.getFPGATimestamp();
     }
     
     public float getPitch(){
@@ -55,6 +60,11 @@ public class SensorSystem extends Subsystem {
     }
     public float getYaw(){
     	return imu.getYaw();
+    }
+    public float getYawWithCompensation(){
+    	Double ellapsedTime = Timer.getFPGATimestamp() - startTime;
+    	return imu.getYaw() + (float)(RobotConstants.YAW_DRIFT_PER_TICK * ellapsedTime);
+    	
     }
     public float getTemp(){
     	return imu.getTempC();
@@ -106,11 +116,11 @@ public class SensorSystem extends Subsystem {
     }
     
     public double getLeftDistance(){
-        return left.getEncPosition() * RobotConstants.ENCODER_DISTANCE_PER_PULSE;
+        return left.getEncPosition() * RobotConstants.DRIVESYSTEM_ENCODER_DISTANCE_PER_PULSE;
     }
     
     public double getRightDistance(){
-        return left.getEncPosition() * RobotConstants.ENCODER_DISTANCE_PER_PULSE;
+        return left.getEncPosition() * RobotConstants.DRIVESYSTEM_ENCODER_DISTANCE_PER_PULSE;
 
     }
     

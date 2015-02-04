@@ -14,27 +14,33 @@ public class SetGoalHeading extends Command {
 	private double deltaGoalHeading;
 	private JoystickButton button;
 	private MecanumDriveSystem mecanumDriveSystem;
+	private boolean addingHeading;
 	
     public SetGoalHeading(double deltaGoalHeading, JoystickButton button) {
 		this.deltaGoalHeading = deltaGoalHeading;
 		this.button = button;
+		addingHeading = true;
     }
     public SetGoalHeading(int isPositive, JoystickButton button) {
 		this.goalHeading = isPositive * 90;
 		this.button = button;
+		addingHeading = false;
     }
 
     protected void initialize() {
     	mecanumDriveSystem = Robot.mecanumDriveSystem;
-		this.goalHeading = (deltaGoalHeading + mecanumDriveSystem.getGoalHeading()) % 180 ;
+    	if(addingHeading){
+    		this.goalHeading = (deltaGoalHeading + mecanumDriveSystem.getGoalHeading());
+    	}
     }
 
     protected void execute() {
-    	Robot.printSystem.print("DeltaGoalHeading", "" + goalHeading);
+    	Robot.printSystem.print("New GoalHeading", "" + goalHeading);
 
-    	Robot.printSystem.print("GoalHeading", "" + mecanumDriveSystem.getGoalHeading());
+    	Robot.printSystem.print("Old GoalHeading", "" + mecanumDriveSystem.getGoalHeading());
     	
-    	Robot.mecanumDriveSystem.setGoalHeading(goalHeading);
+    	mecanumDriveSystem.setGoalHeading(goalHeading);
+    	Robot.printSystem.print(("Goal Heading Post Set: " + mecanumDriveSystem.getGoalHeading()));
     	
     }
 

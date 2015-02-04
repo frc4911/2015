@@ -38,6 +38,9 @@ public class OperatorDrive extends Command {
 	@Override
 	protected void execute() {
 		if(!driveSystemConflict){
+			if(RobotConstants.USING_BEN_JOY) {
+				speed = oi.getMainJoyThrottle();
+			}
 			mecanumDriveSystem.driveWithPID(oi.getMainJoyX() * speed,oi.getMainJoyY() * speed);
 			
 			if(oi.getPOV() == RobotConstants.POV_UP) {
@@ -47,13 +50,13 @@ public class OperatorDrive extends Command {
 	        	new PIDAxisDrive(0.0, -0.3, 0.0, oi.mainJoy, RobotConstants.POV_DOWN).start();
 	        }
 	        else if(oi.getPOV() == RobotConstants.POV_LEFT) {
-	        	new PIDAxisDrive(0.3, -0.5, 0.0, oi.mainJoy, RobotConstants.POV_LEFT).start();
+	        	new PIDAxisDrive(0.3, 0.0, 0.0, oi.mainJoy, RobotConstants.POV_LEFT).start();
 	        }
 	        else if(oi.getPOV() == RobotConstants.POV_RIGHT) {
-	        	new PIDAxisDrive(-0.3, 0.5, 0.0, oi.mainJoy, RobotConstants.POV_RIGHT).start();
+	        	new PIDAxisDrive(-0.3, 0.0, 0.0, oi.mainJoy, RobotConstants.POV_RIGHT).start();
 	        }
 		}
-		printSystem.print("HELLO", 5);
+		printSystem.print("DriverInput", oi.getMainJoyX() * speed + "\t\t" + oi.getMainJoyY() * speed);
 	}
 
 	@Override
