@@ -41,7 +41,7 @@ public class OperatorDrive extends Command {
 			if(RobotConstants.USING_BEN_JOY) {
 				speed = oi.getMainJoyThrottle();
 			}
-			mecanumDriveSystem.driveWithPID(oi.getMainJoyX() * speed,oi.getMainJoyY() * speed);
+			mecanumDriveSystem.driveWithPID(oi.getMainJoyX() * speed, oi.getMainJoyY() * speed);
 			
 			if(oi.getPOV() == RobotConstants.POV_UP) {
 	        	new PIDAxisDrive(0.0, 0.3, 0.0, oi.mainJoy, RobotConstants.POV_UP).start();

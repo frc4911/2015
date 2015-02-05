@@ -136,7 +136,7 @@ public class SensorSystem extends Subsystem {
     }
     
     public double getIN() {
-    	return ((double)lidar.getDistance()/(RobotConstants.inToCM));
+    	return ((double)lidar.getDistance() / (RobotConstants.inToCM));
     }
 }
 
