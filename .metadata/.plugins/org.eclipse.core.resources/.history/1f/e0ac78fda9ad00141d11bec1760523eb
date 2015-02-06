@@ -54,10 +54,13 @@ public class EnableRotate extends Command {
     	operatorDrive.driveSystemConflict = true;
     	previousDegree = 0.0;//sensorSystem.getYaw();
     	numIteration = 1;
+    	speed = 1.0;
     }
 
     protected void execute() {
-    	speed = oi.getMainJoyThrottle();
+    	if(RobotConstants.USING_BEN_JOY) {
+    		speed = oi.getMainJoyThrottle();
+    	}
     	if(button.get()){
 	    	mecanumDriveSystem.drive(oi.getMainJoyX() * speed, oi.getMainJoyY() * speed, oi.getMainJoyZ() * RobotConstants.ROTATE_SPEED);
     	}
