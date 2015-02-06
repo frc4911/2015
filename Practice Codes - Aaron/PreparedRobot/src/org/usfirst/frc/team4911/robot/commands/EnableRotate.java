@@ -32,6 +32,8 @@ public class EnableRotate extends Command {
 	double currentDegree;
 	double deltaDegree;
 	
+	private double speed;
+	
 	int numIteration;
 	
     private static double THRESHOLD = 2.0;//degrees
@@ -55,13 +57,17 @@ public class EnableRotate extends Command {
     }
 
     protected void execute() {
+    	speed = oi.getMainJoyThrottle();
     	if(button.get()){
-	    	mecanumDriveSystem.drive(oi.getMainJoyX(), oi.getMainJoyY(), oi.getMainJoyZ() * RobotConstants.ROTATE_SPEED);
+	    	mecanumDriveSystem.drive(oi.getMainJoyX() * speed, oi.getMainJoyY() * speed, oi.getMainJoyZ() * RobotConstants.ROTATE_SPEED);
     	}
     	mecanumDriveSystem.setGoalHeading(sensorSystem.getYaw());
     }
 
     protected boolean isFinished() {
+    	// Causes the code to check the imu value every 100 milliseconds as opposed to every 20 milliseconds, allowing the
+    	// IMU to keep up which sends values every 50 milliseconds. This gives us a more accurate reading of speed
+    	
     	if(numIteration % 5 == 0){
     		currentDegree = sensorSystem.getYaw();
         	deltaDegree = Math.abs(previousDegree - currentDegree);        	

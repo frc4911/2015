@@ -11,7 +11,9 @@ import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.CameraServer;
 import ExternalLibs.LIDAR;
+
 
 public class Robot extends SampleRobot {
 	Joystick stick1;
@@ -32,6 +34,8 @@ public class Robot extends SampleRobot {
 	double kP;
 	double kI;
 	double kD;
+	
+	CameraServer server;
 	
 	public Robot() {
 		stick1 = new Joystick(0);
@@ -64,12 +68,15 @@ public class Robot extends SampleRobot {
 		lidar = new LIDAR(I2C.Port.kMXP);
 		lidar.start();
 		
+		server = CameraServer.getInstance();
+		server.setQuality(50);
+		server.startAutomaticCapture("cam0");
 		
 		/***************************************
 		 *
 	     * IMU INITIALIZATION
 	     ***************************************/
-		/*try {
+		try {
 			serial_port = new SerialPort(57600,SerialPort.Port.kUSB );
 		          
 			// You can add a second parameter to modify the 
@@ -88,22 +95,18 @@ public class Robot extends SampleRobot {
 			System.out.println("Probs be happen\'n");
 			ex.printStackTrace();
 			
-		}*/
+		}
+		imu.initIMU();
 		Timer.delay(0.3);
 	}
 	
 	public void operatorControl() {
 		
 		while(isOperatorControl() && isEnabled()){
-<<<<<<< HEAD
-=======
-			//System.out.println(imu.getYaw());
-			
->>>>>>> 28f19e0205cf69d9b0a1566332378eec750ec5ee
-			if(stick1.getRawButton(3)) {
+            /*if(stick1.getRawButton(3)) {
 				rightFront.set(1024);
 				System.out.println("Position 1!");
-				
+		
 			}
 			else if(stick1.getRawButton(4)) {
 				rightFront.set(0);
@@ -116,15 +119,9 @@ public class Robot extends SampleRobot {
 			else if (stick1.getRawButton(2)) {
 				kI -= .00001;
 			}
-			rightFront.setPID(kP, kI, kD);
+			rightFront.setPID(kP, kI, kD);*/
 			Timer.delay(.15);
-<<<<<<< HEAD
-			//System.out.println("LIDAR distance: " + lidar.getDistance() + " cm");
-			System.out.println("Throtttle: " + stick1.getThrottle());
-=======
-			//System.out.println("Current encoder pos: " + rightFront.getEncPosition());
-			
->>>>>>> 28f19e0205cf69d9b0a1566332378eec750ec5ee
+			System.out.println("IMU: " + imu.getYaw());
 		}
 	}  
 	

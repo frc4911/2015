@@ -49,6 +49,8 @@ public class RunPrintServer extends Command {
         double memoryUsage = (double)runtime.totalMemory() / (double)runtime.maxMemory();
 
     	printSystem.print("Battery", PrintSystem.format(driverStation.getBatteryVoltage()), "Volts");
+    	printSystem.print("LIDAR", sensorSystem.getIN(), "inches");
+    	printSystem.print("GoalHeading", driveSystem.getGoalHeading(), "degree");
     	printSystem.print("IMU Yaw", PrintSystem.format(sensorSystem.getYawWithCompensation()), "Degrees");
     	printSystem.print("IMU Pitch", PrintSystem.format(sensorSystem.getPitch()), "Degrees");
     	printSystem.print("IMU Roll", PrintSystem.format(sensorSystem.getRoll()), "Degrees");

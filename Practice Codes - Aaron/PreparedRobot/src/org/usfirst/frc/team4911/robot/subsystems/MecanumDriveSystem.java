@@ -80,10 +80,7 @@ public class MecanumDriveSystem extends Subsystem {
 	}
 	public void setGoalHeading (double goalHeading) {
 		double moddedHeading = goalHeading%360.0;
-		if(moddedHeading >= 0 && moddedHeading <= 180) {
-			//do nothing
-		}
-		else if(moddedHeading > 180) {
+		if(moddedHeading > 180) {
 			moddedHeading -= 360;
 		}
 		this.goalHeading = moddedHeading;

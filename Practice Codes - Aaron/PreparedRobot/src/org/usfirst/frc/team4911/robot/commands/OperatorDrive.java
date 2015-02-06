@@ -17,7 +17,6 @@ public class OperatorDrive extends Command {
 	public double speed;
 	
     public boolean driveSystemConflict;
-    public boolean gridLocked;
 	
 	public OperatorDrive(){
 		requires(mecanumDriveSystem);
@@ -30,7 +29,6 @@ public class OperatorDrive extends Command {
 		sensorSystem.zeroYaw();
 		mecanumDriveSystem.setGoalHeading(0.0);
 		driveSystemConflict = false;
-		gridLocked = true;
 		speed = RobotConstants.STANDARD_DRIVE_SPEED;
 		runtime = Runtime.getRuntime();
 	}
@@ -38,10 +36,8 @@ public class OperatorDrive extends Command {
 	@Override
 	protected void execute() {
 		if(!driveSystemConflict){
-			if(RobotConstants.USING_BEN_JOY) {
-				speed = oi.getMainJoyThrottle();
-			}
-			mecanumDriveSystem.driveWithPID(oi.getMainJoyX() * speed,oi.getMainJoyY() * speed);
+			speed = oi.getMainJoyThrottle();
+			mecanumDriveSystem.driveWithPID(oi.getMainJoyX() * speed, oi.getMainJoyY() * speed);
 			
 			if(oi.getPOV() == RobotConstants.POV_UP) {
 	        	new PIDAxisDrive(0.0, 0.3, 0.0, oi.mainJoy, RobotConstants.POV_UP).start();
@@ -57,6 +53,7 @@ public class OperatorDrive extends Command {
 	        }
 		}
 		printSystem.print("DriverInput", oi.getMainJoyX() * speed + "\t\t" + oi.getMainJoyY() * speed);
+		printSystem.print("Driver Conflict", driveSystemConflict);
 	}
 
 	@Override

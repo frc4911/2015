@@ -20,6 +20,7 @@ public class OI {
     public JoystickButton button7;
     public JoystickButton button8;
     public JoystickButton button9;
+    public JoystickButton button10;
     public JoystickButton button11;
     public JoystickButton trigger;
     
@@ -38,40 +39,21 @@ public class OI {
         button7 = new JoystickButton(mainJoy, 7);
         button8 = new JoystickButton(mainJoy, 8);
         button9 = new JoystickButton(mainJoy, 9);
+        button10 = new JoystickButton(mainJoy, 10);
         button11 = new JoystickButton(mainJoy, 11);
         
-        if(!RobotConstants.USING_BEN_JOY) {
-        	trigger.whenPressed(new SetDriveSpeed(1.0, trigger));
+      
+        trigger.whenPressed(new EnableRotate(trigger));
         	
-        	button2.whenPressed(new EnableRotate(button2));
-        
-        	button3.whenPressed(new RotateForTime(5, -0.25)); // rotates for ten ticks (one tick is 20 milliseconds) at 25% power going left
-            button4.whenPressed(new RotateForTime(5, 0.25)); // rotates for ten ticks (one tick is 20 milliseconds) at 25% power going right
-            
-        	button5.whenPressed(new SetGoalHeading(-90.0, button5)); 
-        	button6.whenPressed(new SetGoalHeading(90.0, button6));
-        	button7.whenPressed(new SetGoalHeading(0, button7));
+        button2.whenPressed(new SetGoalHeading(0, button2));
+        button3.whenPressed(new SetGoalHeading(-90.0, button3));
+        button4.whenPressed(new SetGoalHeading(90.0, button4));
         	
-
-            button11.whenPressed(new ZeroYaw(button11));
-        }
-        
-        else {
-        	trigger.whenPressed(new EnableRotate(trigger));
+        button5.whenPressed(new ZeroYaw(button5));
         	
-        	button2.whenPressed(new SetGoalHeading(0, button2));
-        	button3.whenPressed(new SetGoalHeading(-90.0, button3));
-        	button4.whenPressed(new SetGoalHeading(90.0, button4));
-        	
-        	button5.whenPressed(new ZeroYaw(button5));
-        	
-        	button8.whenPressed(new RotateForTime(5, -0.25));
-        	button9.whenPressed(new RotateForTime(5, 0.25));
-        }
-        
-        
-        
-        
+        button8.whenPressed(new RotateForTime(0.05, -0.25));
+        button9.whenPressed(new RotateForTime(0.05, 0.25));
+        button10.whenPressed(new MaintainDistance());
     }
     
     /*************************************
@@ -114,13 +96,7 @@ public class OI {
     }
     
     public double getMainJoyThrottle() {
-    	double throttle;
-    	if(mainJoy.getThrottle() >= 0.0) {
-    		throttle = 0.3;
-    	} else {
-    		throttle = 1.0;
-    	}
-    	return throttle;
+    	return ((-1*mainJoy.getThrottle()) + 1.0) * 0.5;
     }
         
 }

@@ -11,10 +11,12 @@ import edu.wpi.first.wpilibj.CANTalon;
  *
  */
 public class ContainerLiftSystem extends Subsystem {
-	public CANTalon containerLift;
-	public CANTalon containerContainer;
-	public DigitalInput switchIn;
-	public DigitalInput switchOut;
+	private CANTalon containerLift;
+	private CANTalon containerContainer;
+	private DigitalInput switchIn;
+	private DigitalInput switchOut;
+	private boolean isLiftBeingUsed;
+	private boolean isClampBeingUsed;
 	
     public void initDefaultCommand() {
 
@@ -23,6 +25,7 @@ public class ContainerLiftSystem extends Subsystem {
     public ContainerLiftSystem(){
     	containerLift = RobotMap.containerLift;
     	containerContainer = RobotMap.containerContainer;
+    	isLiftBeingUsed = false;
     }
     
     public void liftViaPercent(double position){
@@ -30,10 +33,10 @@ public class ContainerLiftSystem extends Subsystem {
     }
 
     //This will move the bottom of the container to the height of the tote specified 
-    //toteNum = number of totes in a stack
+    //toteNum = number of totes below the Container you want to lift
     public void liftViaTote(double toteNum){
     	if(toteNum >= 0){
-    		containerLift.set(RobotConstants.TOTE_HEIGHT * toteNum / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
+    		containerLift.set(RobotConstants.TOTE_HEIGHT * toteNum / RobotConstants.CONTAINERSYSTEM_ENCODER_DISTANCE_PER_PULSE);
     	}
     }
     
@@ -57,6 +60,45 @@ public class ContainerLiftSystem extends Subsystem {
     	} else {
     		containerContainer.set(input);
     	}
+    }
+    
+    public boolean isLiftBeingUsed(){
+    	return isLiftBeingUsed;
+    }
+    
+    public void setLiftBeingUsed(boolean b){
+    	this.isLiftBeingUsed = b;
+    }
+    
+    public boolean isClampBeingUsed(){
+    	return isClampBeingUsed;
+    }
+    
+    public void setClampBeingUsed(boolean b){
+    	this.isClampBeingUsed = b;
+    }
+    
+    //CHECK IF THE SIGNS ARE CORRECT
+    //returns values in inches from the ground
+    public double getLiftDistance(){
+    	return containerLift.get() / RobotConstants.CONTAINERSYSTEM_ENCODER_DISTANCE_PER_PULSE;
+    }
+
+    //CHECK IF THE SIGNS ARE CORRECT
+    //returns values in inches from the ground
+    public double getClampDistance(){
+    	return containerLift.get() / RobotConstants.CONTAINERSYSTEM_CLAMP_ENCODER_DISTANCE_PER_PULSE;
+    }
+    
+    public CANTalon getContainerLift(){
+    	return containerLift;
+    }
+    public CANTalon getContainerContainer(){
+    	return containerContainer;
+    }
+    
+    public enum ContainerStatus {
+    	CLOSE, OPEN, CLAMP;
     }
 }
 

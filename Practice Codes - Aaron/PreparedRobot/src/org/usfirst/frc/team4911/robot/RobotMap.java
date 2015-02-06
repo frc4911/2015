@@ -82,12 +82,12 @@ public class RobotMap {
       	containerContainer.changeControlMode(CANTalon.ControlMode.PercentVbus);
       	containerContainer.setPID(1.0, 0.0, 0.0);
 
-      	limitSwitchIn = new DigitalInput(RobotConstants.CONTAINER_LIMIT_SWITCH_IN_PORT);
-      	limitSwitchOut = new DigitalInput(RobotConstants.CONTAINER_LIMIT_SWITCH_OUT_PORT);
+      	limitSwitchIn = new DigitalInput(RobotConstants.CONTAINERSYSTEM_CLAMP_LIMIT_SWITCH_IN_PORT);
+      	limitSwitchOut = new DigitalInput(RobotConstants.CONTAINERSYSTEM_CLAMP_LIMIT_SWITCH_OUT_PORT);
       	
 		accelerometer = new BuiltInAccelerometer();
 		gyro = new Gyro(RobotConstants.MAIN_GYRO_PORT);
-		lidar = new LIDAR(I2C.Port.kOnboard);
+		lidar = new LIDAR(I2C.Port.kMXP);
 		cameraServo = new Servo(RobotConstants.CAMERA_SERVO_PORT);
 		cameraServo.set(RobotConstants.CAMERA_SERVO_MID);
 

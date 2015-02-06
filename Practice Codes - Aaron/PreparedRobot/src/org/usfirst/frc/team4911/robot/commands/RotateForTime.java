@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4911.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -11,7 +12,7 @@ import org.usfirst.frc.team4911.robot.subsystems.MecanumDriveSystem;
 import org.usfirst.frc.team4911.robot.subsystems.SensorSystem;
 import org.usfirst.frc.team4911.robot.subsystems.PrintSystem;
 /**
- *
+ * Jack Holt's Command
  */
 public class RotateForTime extends Command {
 	private MecanumDriveSystem mecanumDriveSystem;
@@ -19,13 +20,13 @@ public class RotateForTime extends Command {
 	private PrintSystem printSystem;	
 	private OI oi;
 	
-	private int timeRotated;
-	private int maxRotateTime;
+	private double startTime;
+	private double maxRotateTime;
 	private OperatorDrive operatorDrive;
 	private double rotateSpeed;
 	
 	
-    public RotateForTime(int maxRotateTime, double rotateSpeed) {
+    public RotateForTime(double maxRotateTime, double rotateSpeed) {
         this.maxRotateTime = maxRotateTime;
         this.rotateSpeed = rotateSpeed;
         
@@ -43,18 +44,19 @@ public class RotateForTime extends Command {
         	this.cancel();
         }
         operatorDrive.driveSystemConflict = true;
-        timeRotated = 0;
+        startTime = Timer.getFPGATimestamp();
+        
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	mecanumDriveSystem.drive(0 , 0, rotateSpeed);
-    	timeRotated++;
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (timeRotated >= maxRotateTime);
+    	
+        return ((Timer.getFPGATimestamp() - startTime) >= maxRotateTime);
     }
 
     // Called once after isFinished returns true
