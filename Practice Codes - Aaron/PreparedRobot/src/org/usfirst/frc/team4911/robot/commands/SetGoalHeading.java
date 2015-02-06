@@ -21,11 +21,6 @@ public class SetGoalHeading extends Command {
 		this.button = button;
 		addingHeading = true;
     }
-    public SetGoalHeading(int isPositive, JoystickButton button) {
-		this.goalHeading = isPositive * 90;
-		this.button = button;
-		addingHeading = false;
-    }
 
     protected void initialize() {
     	mecanumDriveSystem = Robot.mecanumDriveSystem;

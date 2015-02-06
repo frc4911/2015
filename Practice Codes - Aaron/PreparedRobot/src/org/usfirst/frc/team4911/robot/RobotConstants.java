@@ -63,8 +63,9 @@ public class RobotConstants {
     
     public static final double CONTAINERSYSTEM_CLAMP_SPEED = 1.0;
     
-    public static final int CONTAINER_LIMIT_SWITCH_IN_PORT = 1;//Digital IO
-    public static final int CONTAINER_LIMIT_SWITCH_OUT_PORT = 2;//Digital IO
+    public static final int CONTAINERSYSTEM_CLAMP_LIMIT_SWITCH_IN_PORT = 1;//Digital IO
+    public static final int CONTAINERSYSTEM_CLAMP_LIMIT_SWITCH_OUT_PORT = 2;//Digital IO
+    
     
     //GYRO
     public static final int MAIN_GYRO_PORT = 1;//Analog

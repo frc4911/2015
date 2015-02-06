@@ -1,23 +1,20 @@
 package org.usfirst.frc.team4911.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team4911.robot.Robot;
-import org.usfirst.frc.team4911.robot.commands.OperatorDrive;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-/**
- *
- */
-public class LockGrid extends Command {
-	private OperatorDrive operatorDriveCommand;
-	
-    public LockGrid() {
-        
+public class ButtonCommand extends Command {
+
+    public ButtonCommand() {
+    	
     }
+
     protected void initialize() {
-    	operatorDriveCommand.gridLocked = true;
+    	
     }
 
     protected void execute() {
+    	
     }
 
     protected boolean isFinished() {
@@ -28,5 +25,6 @@ public class LockGrid extends Command {
     }
 
     protected void interrupted() {
+    	
     }
 }

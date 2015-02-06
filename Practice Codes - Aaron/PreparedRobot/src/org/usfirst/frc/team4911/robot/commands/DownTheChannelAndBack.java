@@ -23,6 +23,7 @@ public class DownTheChannelAndBack extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
+    	//addSequential(new ZeroYaw());
     	//addSequential(new Autonomous());
     	addSequential(new RotateForTime(20, 0.3));
     	//addSequential(new Autonomous());  	
