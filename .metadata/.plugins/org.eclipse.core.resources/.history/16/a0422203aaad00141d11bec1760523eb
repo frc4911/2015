@@ -40,17 +40,33 @@ public class OI {
         button9 = new JoystickButton(mainJoy, 9);
         button11 = new JoystickButton(mainJoy, 11);
         
-      
-        trigger.whenPressed(new EnableRotate(trigger));
+        if(!RobotConstants.USING_BEN_JOY) { // if it's NOT using Ben's joystick 
+        	trigger.whenPressed(new SetDriveSpeed(1.0, trigger));
         	
-        button2.whenPressed(new SetGoalHeading(0, button2));
-        button3.whenPressed(new SetGoalHeading(-90.0, button3));
-        button4.whenPressed(new SetGoalHeading(90.0, button4));
+        	button2.whenPressed(new EnableRotate(button2));
+        
+        	button3.whenPressed(new RotateForTime(0.02, -0.25));
+            button4.whenPressed(new RotateForTime(0.02, 0.25)); 
+            
+        	button5.whenPressed(new SetGoalHeading(-90.0, button5)); 
+        	button6.whenPressed(new SetGoalHeading(90.0, button6));
+        	button7.whenPressed(new SetGoalHeading(0, button7));
         	
-        button5.whenPressed(new ZeroYaw(button5));
+            button11.whenPressed(new ZeroYaw(button11));
+        }
+        
+        else {
+        	trigger.whenPressed(new EnableRotate(trigger));
         	
-        button8.whenPressed(new RotateForTime(0.05, -0.25));
-        button9.whenPressed(new RotateForTime(0.05, 0.25));
+        	button2.whenPressed(new SetGoalHeading(0, button2));
+        	button3.whenPressed(new SetGoalHeading(-90.0, button3));
+        	button4.whenPressed(new SetGoalHeading(90.0, button4));
+        	
+        	button5.whenPressed(new ZeroYaw(button5));
+        	
+        	button8.whenPressed(new RotateForTime(0.05, -0.25));
+        	button9.whenPressed(new RotateForTime(0.05, 0.25));
+        }
     }
     
     /*************************************

@@ -10,6 +10,9 @@ public class RobotConstants {
     public static final int POV_LEFT = 90;
     public static final int POV_RIGHT = 270;
     
+    //JOYSTICK SWAP
+    public static final boolean USING_BEN_JOY = false;
+    
     //DRIVE SYSTEM CONSTANTS
     public static final double DRIVESYSTEM_WHEEL_DIAMETER = 4.0; //Measured in Inches
     public static final double DRIVESYSTEM_GEAR_RATIO = 1.0;//39 Teeth on Wheels & 42 Teeth on Encoders
