@@ -20,6 +20,7 @@ public class OI {
     public JoystickButton button7;
     public JoystickButton button8;
     public JoystickButton button9;
+    public JoystickButton button10;
     public JoystickButton button11;
     public JoystickButton trigger;
     
@@ -38,6 +39,7 @@ public class OI {
         button7 = new JoystickButton(mainJoy, 7);
         button8 = new JoystickButton(mainJoy, 8);
         button9 = new JoystickButton(mainJoy, 9);
+        button10 = new JoystickButton(mainJoy, 10);
         button11 = new JoystickButton(mainJoy, 11);
         
       
@@ -51,6 +53,7 @@ public class OI {
         	
         button8.whenPressed(new RotateForTime(0.05, -0.25));
         button9.whenPressed(new RotateForTime(0.05, 0.25));
+        button10.whenPressed(new MaintainDistance());
     }
     
     /*************************************

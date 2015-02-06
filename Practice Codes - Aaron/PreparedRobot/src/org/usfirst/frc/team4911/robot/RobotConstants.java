@@ -16,10 +16,10 @@ public class RobotConstants {
     public static final double DRIVESYSTEM_ENCODER_PULSE_PER_ROTATION = 1024.0;//Number of Pulse per One Rotation of the Encoder
     public static final double DRIVESYSTEM_ENCODER_DISTANCE_PER_PULSE = DRIVESYSTEM_GEAR_RATIO * DRIVESYSTEM_WHEEL_DIAMETER * Math.PI / DRIVESYSTEM_ENCODER_PULSE_PER_ROTATION;
     
-    public static final int LEFT_FRONT_CANTALON_PORT = 2;
-    public static final int LEFT_REAR_CANTALON_PORT = 1;
-    public static final int RIGHT_FRONT_CANTALON_PORT = 3;
-    public static final int RIGHT_REAR_CANTALON_PORT = 4;
+    public static final int LEFT_FRONT_CANTALON_PORT = 3;
+    public static final int LEFT_REAR_CANTALON_PORT = 4;
+    public static final int RIGHT_FRONT_CANTALON_PORT = 7;
+    public static final int RIGHT_REAR_CANTALON_PORT = 8;
 
     public static final double ROTATE_SPEED = 0.30;
     public static final double STANDARD_DRIVE_SPEED = 0.4;

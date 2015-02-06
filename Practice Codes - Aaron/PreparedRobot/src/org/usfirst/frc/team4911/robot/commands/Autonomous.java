@@ -16,11 +16,12 @@ public class Autonomous extends Command {
 	private PrintSystem printSystem;
 	private ContainerLiftSystem containerLiftSystem;
 	private HookLiftSystem hookLiftSystem;
-	private SensorSystem sensorSystem;
-	private MecanumDriveSystem mecanumDriveSystem;
 	
-	private double error;
-	private boolean endCommand;
+	//Testing variables for following the wall
+	//private SensorSystem sensorSystem;
+	//private MecanumDriveSystem mecanumDriveSystem;	
+	//private double error;
+	//private boolean endCommand;
 	
 	
 	@Override
@@ -28,6 +29,7 @@ public class Autonomous extends Command {
 		printSystem = Robot.printSystem;
 		containerLiftSystem = Robot.containerLiftSystem;
 		hookLiftSystem = Robot.hookLiftSystem;
+		/*
 		sensorSystem = Robot.sensorSystem;
 		mecanumDriveSystem = Robot.mecanumDriveSystem;
 		error = 0.0;
@@ -35,8 +37,8 @@ public class Autonomous extends Command {
 		sensorSystem.zeroYaw();
 		mecanumDriveSystem.setGoalHeading(0.0);
 		endCommand = false;
+		*/
 		
-		/*
 		//Test Code for the Completed Chassis
 		hookLiftSystem.getLeft().set(12.0 / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
 		Timer.delay(2.0);
@@ -52,33 +54,20 @@ public class Autonomous extends Command {
 		containerLiftSystem.getContainerContainer().set(12.0 / RobotConstants.CONTAINERSYSTEM_ENCODER_DISTANCE_PER_PULSE);
 		Timer.delay(2.0);
 		printSystem.print("ContainerClamp", containerLiftSystem.getClampDistance(), "Inches");
-		*/
+		
 	}
 
 	@Override
 	protected void execute() {
-		error = sensorSystem.getIN() - 16.0;
-		for(double startTime = Timer.getFPGATimestamp(); error > 10; ){
-			if(Timer.getFPGATimestamp() - startTime > 0.5){
-				endCommand = true;
-				break;
-			}
-			error = sensorSystem.getIN() - 16.0;
-		}
-		if(!endCommand){
-			mecanumDriveSystem.driveWithPID(-0.4, error * 0.002);
-		}
-		printSystem.print("ERROR", error * 0.05);
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return Math.abs(error) > 10.0 || endCommand;
+		return true;
 	}
 
 	@Override
 	protected void end() {	
-		printSystem.print("EndingError", error);
 	}
 
 	@Override
