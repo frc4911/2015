@@ -1,0 +1,70 @@
+package org.usfirst.frc.team4911.robot.commands;
+
+import org.usfirst.frc.team4911.robot.subsystems.MecanumDriveSystem;
+import org.usfirst.frc.team4911.robot.subsystems.SensorSystem;
+import org.usfirst.frc.team4911.robot.subsystems.PrintSystem;
+import org.usfirst.frc.team4911.robot.OI;
+import org.usfirst.frc.team4911.robot.Robot;
+
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
+
+
+public class MaintainDistance extends Command {
+	private MecanumDriveSystem mecanumDriveSystem;
+	private SensorSystem sensorSystem;
+	private PrintSystem printSystem;
+	private OperatorDrive operatorDrive;
+	private OI oi;
+
+	private double error;
+	private double goalDistance;
+	private boolean endCommand;
+	
+    public MaintainDistance() {
+    	//requires(mecanumDriveSystem);
+    	//requires(sensorSystem);
+    	mecanumDriveSystem = Robot.mecanumDriveSystem;
+    	sensorSystem = Robot.sensorSystem;
+    	printSystem = Robot.printSystem;
+    	operatorDrive = Robot.teleOp;
+    }
+
+    protected void initialize(){
+    	if(operatorDrive.driveSystemConflict){
+    		this.cancel();
+    	}    		
+    	operatorDrive.driveSystemConflict = true;
+    	oi = Robot.oi;
+    	goalDistance = sensorSystem.getIN();
+		mecanumDriveSystem.setGoalHeading(0.0);
+		sensorSystem.zeroYaw();
+    }
+
+    protected void execute() {
+		error = sensorSystem.getIN() - 16.0;
+		for(double startTime = Timer.getFPGATimestamp(); error > 10; ){
+			if(Timer.getFPGATimestamp() - startTime > 0.5){
+				endCommand = true;
+				break;
+			}
+			error = sensorSystem.getIN() - 16.0;
+		}
+		if(!endCommand){
+			mecanumDriveSystem.driveWithPID(-0.4, error * 0.002);
+		}
+		printSystem.print("ERROR", error * 0.05);
+    	
+    }
+
+    protected boolean isFinished() {
+		return Math.abs(error) > 10.0 || endCommand;
+    }
+
+    protected void end() {
+		printSystem.print("EndingError", error);
+    }
+
+    protected void interrupted() {
+    }
+}

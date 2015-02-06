@@ -1,0 +1,43 @@
+package org.usfirst.frc.team4911.robot.commands;
+
+import org.usfirst.frc.team4911.robot.subsystems.MecanumDriveSystem;
+import org.usfirst.frc.team4911.robot.subsystems.SensorSystem;
+import org.usfirst.frc.team4911.robot.subsystems.PrintSystem;
+import org.usfirst.frc.team4911.robot.Robot;
+import edu.wpi.first.wpilibj.command.Command;
+
+
+public class MaintainDistance extends Command {
+	private MecanumDriveSystem mecanumDriveSystem;
+	private SensorSystem sensorSystem;
+	private PrintSystem printSystem;
+
+	private double error;
+	
+    public MaintainDistance() {
+    	//requires(mecanumDriveSystem);
+    	//requires(sensorSystem);
+    	mecanumDriveSystem = Robot.mecanumDriveSystem;
+    	sensorSystem = Robot.sensorSystem;
+    	printSystem = Robot.printSystem;
+    }
+
+    protected void initialize() {
+		error = 0.0;
+		endCommand = false;
+    }
+
+    protected void execute() {
+    	
+    }
+
+    protected boolean isFinished() {
+        return false;
+    }
+
+    protected void end() {
+    }
+
+    protected void interrupted() {
+    }
+}
