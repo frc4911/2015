@@ -37,7 +37,6 @@ public class Autonomous extends Command {
 		endCommand = false;
 		
 		/*
-		//Test Code for the Completed Chassis
 		hookLiftSystem.getLeft().set(12.0 / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
 		Timer.delay(2.0);
 		hookLiftSystem.getRight().set(-12.0 / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
