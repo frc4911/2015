@@ -98,5 +98,7 @@ public class OI {
     public double getMainJoyThrottle() {
     	return ((-1*mainJoy.getThrottle()) + 1.0) * 0.5;
     }
+    
+    
         
 }
