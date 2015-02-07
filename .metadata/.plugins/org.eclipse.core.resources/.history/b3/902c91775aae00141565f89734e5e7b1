@@ -48,7 +48,7 @@ public class PIDAxisDrive extends Command {
     }
 
     protected boolean isFinished() {
-        return joystick.getPOV(RobotConstants.JOYSTICK_POV_NUM) != povDir;
+        return !(joystick.getPOV(RobotConstants.JOYSTICK_POV_NUM) == povDir);
     }
 
     protected void end() {

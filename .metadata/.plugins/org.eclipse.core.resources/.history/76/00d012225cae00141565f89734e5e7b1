@@ -72,7 +72,6 @@ public class EnableRotate extends Command {
     	up which sends values every 50 milliseconds. 
     	This gives us a more accurate reading of speed
     	=========================================*/
-    	
     	if(numIteration % 5 == 0){
     		currentDegree = sensorSystem.getYaw();
         	deltaDegree = Math.abs(previousDegree - currentDegree);        	
