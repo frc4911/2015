@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class SetGoalHeading extends Command {
 
 	private double goalHeading;
-	private double desiredGoalHeading;
 	private double deltaGoalHeading;
 	private JoystickButton button;
 	private MecanumDriveSystem mecanumDriveSystem;
@@ -21,12 +20,6 @@ public class SetGoalHeading extends Command {
 		this.deltaGoalHeading = deltaGoalHeading;
 		this.button = button;
 		addingHeading = true;
-    }
-    
-    public SetGoalHeading(int desiredGoalHeading, JoystickButton button) {
-		this.goalHeading = desiredGoalHeading;
-		this.button = button;
-		addingHeading = false;
     }
 
     protected void initialize() {
