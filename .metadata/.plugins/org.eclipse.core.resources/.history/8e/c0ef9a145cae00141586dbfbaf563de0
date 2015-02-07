@@ -31,6 +31,8 @@ public class MecanumDriveSystem extends Subsystem {
 	
 	private double goalHeading;
 	
+	public double kPAddition;
+	
 	private IMUAdvanced imu = RobotMap.imu;		
 	
 	public MecanumDriveSystem(){
@@ -43,6 +45,7 @@ public class MecanumDriveSystem extends Subsystem {
 		
 		goalHeading = 0.0;
 		
+		kPAddition = 0.0;
 	}
 	
 	@Override
@@ -69,8 +72,8 @@ public class MecanumDriveSystem extends Subsystem {
     	if ( currError * lastError <0){
     		integration = 0.0;
     	}
-    	
-    	rotation = RobotConstants.DRIVESYSTEM_kP * currError + RobotConstants.DRIVESYSTEM_kI * integration + RobotConstants.DRIVESYSTEM_kD * derivative;//[-1.0 - 1.0] percentage
+    	System.out.println("KP Addition: " + kPAddition);
+    	rotation = (RobotConstants.DRIVESYSTEM_kP + kPAddition) * currError + RobotConstants.DRIVESYSTEM_kI * integration + RobotConstants.DRIVESYSTEM_kD * derivative;//[-1.0 - 1.0] percentage
     	rotation = (rotation < 0) ? Math.max(-0.5, rotation) : Math.min(0.5, rotation);
     	drive(x, y, rotation);
 	}
