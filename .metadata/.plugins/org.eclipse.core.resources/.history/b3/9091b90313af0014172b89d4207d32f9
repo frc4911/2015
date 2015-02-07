@@ -17,13 +17,15 @@ public class SetGoalHeading extends Command {
 	private MecanumDriveSystem mecanumDriveSystem;
 	private boolean addingHeading;
 	
-    public SetGoalHeading(double deltaGoalHeading) {
+    public SetGoalHeading(double deltaGoalHeading, JoystickButton button) {
 		this.deltaGoalHeading = deltaGoalHeading;
+		this.button = button;
 		addingHeading = true;
     }
     
-    public SetGoalHeading(int desiredGoalHeading) {
+    public SetGoalHeading(int desiredGoalHeading, JoystickButton button) {
 		this.goalHeading = desiredGoalHeading;
+		this.button = button;
 		addingHeading = false;
     }
 

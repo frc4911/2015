@@ -17,13 +17,15 @@ public class SetGoalHeading extends Command {
 	private MecanumDriveSystem mecanumDriveSystem;
 	private boolean addingHeading;
 	
-    public SetGoalHeading(double deltaGoalHeading) {
+    public SetGoalHeading(double deltaGoalHeading, JoystickButton button) {
 		this.deltaGoalHeading = deltaGoalHeading;
+		this.button = button;
 		addingHeading = true;
     }
     
-    public SetGoalHeading(int desiredGoalHeading) {
+    public SetGoalHeading(int desiredGoalHeading, JoystickButton button) {
 		this.goalHeading = desiredGoalHeading;
+		this.button = button;
 		addingHeading = false;
     }
 
@@ -45,8 +47,7 @@ public class SetGoalHeading extends Command {
     }
 
     protected boolean isFinished() {
-    	//testing now - in theory, the command should finish and not restart if the button is held
-        return true;
+        return !button.get();
     }
 
     protected void end() {
