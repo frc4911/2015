@@ -64,17 +64,20 @@ public class RobotMap {
 
       	hookLeft = new CANTalon(RobotConstants.HOOK_LEFT_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
       	hookLeft.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-      	hookLeft.changeControlMode(CANTalon.ControlMode.Position);
+      	//hookLeft.changeControlMode(CANTalon.ControlMode.Position);
+      	hookLeft.changeControlMode(CANTalon.ControlMode.PercentVbus);
       	hookLeft.setPID(1.0, 0.0, 0.0);
 
       	hookRight = new CANTalon(RobotConstants.HOOK_RIGHT_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
       	hookRight.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-      	hookRight.changeControlMode(CANTalon.ControlMode.Position);
+      	//hookRight.changeControlMode(CANTalon.ControlMode.Position);
+      	hookRight.changeControlMode(CANTalon.ControlMode.PercentVbus);
       	hookRight.setPID(1.0, 0.0, 0.0);
       	
       	containerLift = new CANTalon(RobotConstants.CONTAINER_LIFT_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
       	containerLift.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-      	containerLift.changeControlMode(CANTalon.ControlMode.Position);
+      	//containerLift.changeControlMode(CANTalon.ControlMode.Position);
+      	containerLift.changeControlMode(CANTalon.ControlMode.PercentVbus);
       	containerLift.setPID(1.0, 0.0, 0.0);
       	
       	containerContainer = new CANTalon(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
@@ -95,7 +98,7 @@ public class RobotMap {
 	     * IMU INITIALIZATION
 	     ***************************************/
 		try {
-			serial_port = new SerialPort(57600,SerialPort.Port.kUSB );
+			serial_port = new SerialPort(57600,SerialPort.Port.kOnboard );
 		          
 			// You can add a second parameter to modify the 
 			// update rate (in hz) from 4 to 100.  The default is 100.
