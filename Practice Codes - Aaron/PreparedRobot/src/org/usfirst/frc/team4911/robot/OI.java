@@ -10,6 +10,8 @@ import org.usfirst.frc.team4911.robot.commands.*;
 
 public class OI {
     public Joystick mainJoy;
+    public Joystick payloadJoy;
+    
     
     public JoystickButton lockButton;
     public JoystickButton button2;
@@ -24,12 +26,24 @@ public class OI {
     public JoystickButton button11;
     public JoystickButton trigger;
     
-    public Joystick benJoy;
+    public Joystick.AxisType leftPayloadJoy;
+    public Joystick.AxisType rightPayloadJoy;
+    public JoystickButton payloadButton1;
+    public JoystickButton payloadButton2;
+    public JoystickButton payloadButton3;
+    
+    public JoystickButton payloadButton5;
+    public JoystickButton payloadButton6;
+    public JoystickButton payloadButton7;
+    public JoystickButton payloadButton8;
     
 
     public OI() {
+    	
     	mainJoy = new Joystick(RobotConstants.JOYSTICK_MAIN);
+    	payloadJoy = new Joystick(RobotConstants.JOYSTICK_OPERATOR);
         
+    	// DEFINING MAINJOY BUTTONS
     	trigger = new JoystickButton(mainJoy, 1);
     	button2 = new JoystickButton(mainJoy, 2);
         button3 = new JoystickButton(mainJoy, 3);
@@ -42,6 +56,16 @@ public class OI {
         button10 = new JoystickButton(mainJoy, 10);
         button11 = new JoystickButton(mainJoy, 11);
         
+        // DEFINING PAYLOADJOY BUTTONS
+        payloadButton1 = new JoystickButton(payloadJoy, 1);
+    	payloadButton2 = new JoystickButton(payloadJoy, 2);
+        payloadButton3 = new JoystickButton(payloadJoy, 3);
+        payloadButton5 = new JoystickButton(payloadJoy, 5);
+    	payloadButton6 = new JoystickButton(payloadJoy, 6);
+        payloadButton7 = new JoystickButton(payloadJoy, 7);
+        payloadButton8 = new JoystickButton(payloadJoy, 8);
+        
+        //leftPayloadJoy = payloadJoy.getAxis();
       
         trigger.whenPressed(new EnableRotate(trigger));
         	

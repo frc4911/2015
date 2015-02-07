@@ -28,6 +28,14 @@ public class ContainerLiftSystem extends Subsystem {
     	isLiftBeingUsed = false;
     }
     
+    public void runLiftManually(double speed) {
+    	containerLift.set(speed);
+    }
+    
+    public void runClampManually(double speed) {
+    	containerContainer.set(speed);
+    }
+    
     public void liftViaPercent(double position){
     	containerLift.set(RobotConstants.CONTAINERSYSTEM_TOTAL_DISTANCE * position / RobotConstants.CONTAINERSYSTEM_ENCODER_DISTANCE_PER_PULSE);
     }
