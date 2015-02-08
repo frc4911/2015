@@ -65,8 +65,13 @@ public class EnableRotate extends Command {
     }
 
     protected boolean isFinished() {
-    	// Causes the code to check the imu value every 100 milliseconds as opposed to every 20 milliseconds, allowing the
-    	// IMU to keep up which sends values every 50 milliseconds. This gives us a more accurate reading of speed
+    	/*=========================================
+    	Causes the code to check the IMU value
+    	every 100 milliseconds as opposed to every
+    	20 milliseconds, allowing the IMU to keep 
+    	up which sends values every 50 milliseconds. 
+    	This gives us a more accurate reading of speed
+    	=========================================*/
     	
     	if(numIteration % 5 == 0){
     		currentDegree = sensorSystem.getYaw();

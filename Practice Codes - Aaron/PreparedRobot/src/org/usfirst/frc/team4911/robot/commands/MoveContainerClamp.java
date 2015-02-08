@@ -14,7 +14,7 @@ public class MoveContainerClamp extends Command {
 	
     public MoveContainerClamp(ContainerLiftSystem.ContainerStatus val) {
     	//requires(...) not necessary because "MoveContainerLift" command
-    	//	is already using it.
+    	//is already using it.
     	this.val = val;
     }
 
@@ -27,6 +27,9 @@ public class MoveContainerClamp extends Command {
     }
 
     protected void execute() {
+    	// one should be negative, one should be negative
+    	// depending on which way the motors go
+    	
     	if(RobotConstants.CONTAINERSYSTEM_CLAMP_CLOSING_DISTANCE - containerLiftSystem.getClampDistance() < 0) {
     		containerLiftSystem.driveClamp(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
     	} else {
@@ -47,6 +50,7 @@ public class MoveContainerClamp extends Command {
     }
 
     protected void end() {
+    	containerLiftSystem.setClampBeingUsed(false);
     }
 
     protected void interrupted() {

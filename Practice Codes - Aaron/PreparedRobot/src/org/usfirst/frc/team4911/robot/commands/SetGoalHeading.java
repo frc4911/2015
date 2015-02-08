@@ -11,15 +11,20 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class SetGoalHeading extends Command {
 
 	private double goalHeading;
+	private double desiredGoalHeading;
 	private double deltaGoalHeading;
 	private JoystickButton button;
 	private MecanumDriveSystem mecanumDriveSystem;
 	private boolean addingHeading;
 	
-    public SetGoalHeading(double deltaGoalHeading, JoystickButton button) {
+    public SetGoalHeading(double deltaGoalHeading) {
 		this.deltaGoalHeading = deltaGoalHeading;
-		this.button = button;
 		addingHeading = true;
+    }
+    
+    public SetGoalHeading(int desiredGoalHeading) {
+		this.goalHeading = desiredGoalHeading;
+		addingHeading = false;
     }
 
     protected void initialize() {
@@ -40,7 +45,8 @@ public class SetGoalHeading extends Command {
     }
 
     protected boolean isFinished() {
-        return !button.get();
+    	//testing now - in theory, the command should finish and not restart if the button is held
+        return true;
     }
 
     protected void end() {

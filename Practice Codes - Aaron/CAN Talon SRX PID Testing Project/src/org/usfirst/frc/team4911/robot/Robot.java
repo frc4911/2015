@@ -88,7 +88,7 @@ public class Robot extends SampleRobot {
 		/*
 		server = CameraServer.getInstance();
 		server.setQuality(50);
-		server.startAutomaticCapture("cam0");
+		//server.startAutomaticCapture("cam1");
 		*/
 		/***************************************
 		 *
@@ -114,12 +114,11 @@ public class Robot extends SampleRobot {
 			ex.printStackTrace();
 			
 		}
-		imu.initIMU();
+		imu.initIMU();*/
 		Timer.delay(0.3);
 	}
 	
 	public void operatorControl() {
-		
 		try {
 			output = new PrintStream(new File("/home/lvuser/natinst/teleLog.txt"));
 			System.setOut(output);
@@ -127,6 +126,7 @@ public class Robot extends SampleRobot {
 			
 		}
 		
+		server.startAutomaticCapture("cam2");
 		while(isOperatorControl() && isEnabled()){
 			robot.mecanumDrive_Cartesian(stick1.getX(), -stick1.getY(), 0.0, 0.0);
 			/*
@@ -170,9 +170,6 @@ public class Robot extends SampleRobot {
 				kI -= .00001;
 			}
 			rightFront.setPID(kP, kI, kD);*/
-			//Timer.delay(.15);
-			//System.out.println("IMU: " + imu.getYaw());
-			
 		}
 		output.close();
 		

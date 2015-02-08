@@ -14,32 +14,41 @@ public class HookLiftSystem extends Subsystem {
     	
     }
     
+    
     public HookLiftSystem(){
     	leftHook = RobotMap.hookLeft;
     	rightHook = RobotMap.hookRight;
     	isBeingUsed = false;
     }
-
-    //CHECK IF THE SIGNS ARE CORRECT
-    public void liftViaPercent(double position){
-    	leftHook.set(RobotConstants.HOOKSYSTEM_TOTAL_DISTANCE * position / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
-    	rightHook.set(-RobotConstants.HOOKSYSTEM_TOTAL_DISTANCE * position / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
+    
+    public void runLiftManually(double speed) {
+    	leftHook.set(speed);
+    	rightHook.set(speed);
     }
     
-    //CHECK IF THE SIGNS ARE CORRECT
+    public void setLiftToPoint(double pos) {
+    	leftHook.setPosition(pos);
+    	rightHook.setPosition(pos);
+    }
+    
+
+    public void liftViaPercent(double position){
+    	leftHook.set(RobotConstants.HOOKSYSTEM_TOTAL_DISTANCE * position / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
+    	rightHook.set(RobotConstants.HOOKSYSTEM_TOTAL_DISTANCE * position / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
+    }
+    
     //This will move the Lift right upto the lips of the Tote specified
     //toteNum = level of the tote on the ground
     public void liftViaTote(double toteNum){
     	if(toteNum > 0){
 	    	leftHook.set(RobotConstants.TOTE_HEIGHT * (toteNum - 1) / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
-	    	rightHook.set(-RobotConstants.TOTE_HEIGHT * (toteNum - 1) / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
+	    	rightHook.set(RobotConstants.TOTE_HEIGHT * (toteNum - 1) / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
     	}
     }
     
-    //CHECK IF THE SIGNS ARE CORRECT
     //returns values in inches from the ground
     public double getDistance(){
-    	return (leftHook.get() + (-1 * rightHook.get())) / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE;
+    	return (leftHook.get() + rightHook.get()) / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE;
     }
     
 
