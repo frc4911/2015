@@ -22,13 +22,17 @@ public class HookLiftSystem extends Subsystem {
     }
     
     public void runLiftManually(double speed) {
+    	leftHook.changeControlMode(CANTalon.ControlMode.PercentVbus);
+    	rightHook.changeControlMode(CANTalon.ControlMode.PercentVbus);
     	leftHook.set(speed);
     	rightHook.set(speed);
     }
     
     public void setLiftToPoint(double pos) {
-    	leftHook.setPosition(pos);
-    	rightHook.setPosition(pos);
+    	leftHook.changeControlMode(CANTalon.ControlMode.Position);
+    	rightHook.changeControlMode(CANTalon.ControlMode.Position);
+    	leftHook.set(pos);
+    	rightHook.set(pos);
     }
     
 

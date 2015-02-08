@@ -15,6 +15,7 @@ public class OperatorDrive extends Command {
 	private PrintSystem printSystem = Robot.printSystem;
 	private OI oi = Robot.oi;
 	private Runtime runtime;
+	private boolean liftPreset;
 	
 	public double speed;
 	
@@ -33,38 +34,75 @@ public class OperatorDrive extends Command {
 		driveSystemConflict = false;
 		speed = RobotConstants.STANDARD_DRIVE_SPEED;
 		runtime = Runtime.getRuntime();
+		liftPreset = true;
 	}
 
 	@Override
 	protected void execute() {
 		
-		// Moves the hook lift to the stack point
-		if(oi.payloadJoy.getPOV() == 90 || oi.payloadJoy.getPOV() == 45 || oi.payloadJoy.getPOV() == 135){
-			hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_STACK_POSITION);
-		}
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//
+		// Hook Lift Controls
+		//
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
-		// Moves the hook lift to the aquire point
-		if(oi.payloadButton5.get()){
-			hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_AQUIRE_POSITION);
-		}
 		
-		// Moves the hook lift to the release point
-		if(oi.payloadJoy.getPOV() == 270 || oi.payloadJoy.getPOV() == 225 || oi.payloadJoy.getPOV() == 315){
-			hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_GROUND_POSITION);
-		}
+		if(liftPreset) {
+			// Moves the hook lift to the stack point
+			if(oi.payloadJoy.getPOV() == 0 || oi.payloadJoy.getPOV() == 45 || oi.payloadJoy.getPOV() == 315){
+				hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_STACK_POSITION);
+			}
+		
+			// Moves the hook lift to the aquire point
+			else if(oi.payloadButton5.get()){
+				hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_AQUIRE_POSITION);
+			}
+		
+			// Moves the hook lift to the release point
+			else if(oi.payloadJoy.getPOV() == 180 || oi.payloadJoy.getPOV() == 135 || oi.payloadJoy.getPOV() == 225){
+				hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_GROUND_POSITION);
+			}
 				
-		// Grounds the hook lift
-		if(oi.payloadButton7.get()){
-			hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_RELEASE_POSITION);
+			// Grounds the hook lift
+			else if(oi.payloadButton7.get()){
+				hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_RELEASE_POSITION);
+			}
+			else {
+				liftPreset = false;
+			}
 		}
 		
-		if(Math.abs(oi.payloadJoy.getX()) >= 0.1){
-			hookLiftSystem.runLiftManually(oi.payloadJoy.getX());
+		if(!liftPreset) {
+			if(Math.abs(oi.payloadJoy.getY()) >= 0.1){
+				hookLiftSystem.runLiftManually(oi.payloadJoy.getX());
+			}
+			else{
+				hookLiftSystem.runLiftManually(0);
+				liftPreset = true;
+			}
 		}
 		
-		
+	///////////////////////////////////////////////////////////////////////////
+	//
+	// Runs container lift manually
 		if(Math.abs(oi.payloadJoy.getZ()) >= 0.1){
 			containerLiftSystem.runLiftManually(oi.payloadJoy.getZ());
+		}
+		else{
+			containerLiftSystem.runLiftManually(0.0);
+		}
+		
+	////////////////////////////////////////////////////////////////////////////
+	//
+	//  Runs container clamp manually
+		if(oi.payloadButton1.get()){
+			containerLiftSystem.runClampManually(0.3);
+		}
+		else if(oi.payloadButton3.get()){
+			containerLiftSystem.runClampManually(-0.3);
+		}
+		else {
+			containerLiftSystem.runClampManually(0.0);
 		}
 		
 		// only for commands that use the Drive System
