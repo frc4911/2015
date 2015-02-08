@@ -62,6 +62,7 @@ public class OperatorDrive extends Command {
 			hookLiftSystem.runLiftManually(oi.payloadJoy.getX());
 		}
 		
+		
 		if(Math.abs(oi.payloadJoy.getZ()) >= 0.1){
 			containerLiftSystem.runLiftManually(oi.payloadJoy.getZ());
 		}

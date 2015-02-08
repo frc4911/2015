@@ -79,6 +79,9 @@ public class OI {
         button8.whenPressed(new RotateForTime(0.05, -0.25));
         button9.whenPressed(new RotateForTime(0.05, 0.25));
         button10.whenPressed(new MaintainDistance());
+        
+        payloadButton4.whenPressed(new MoveContainerLift(6));
+        payloadButton2.whenPressed(new MoveContainerLift(0));
     }
     
     /*************************************
