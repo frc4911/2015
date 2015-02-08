@@ -25,12 +25,6 @@ public class HookLiftSystem extends Subsystem {
     	leftHook.set(speed);
     	rightHook.set(speed);
     }
-    
-    public void setLiftToPoint(double pos) {
-    	leftHook.setPosition(pos);
-    	rightHook.setPosition(pos);
-    }
-    
 
     public void liftViaPercent(double position){
     	leftHook.set(RobotConstants.HOOKSYSTEM_TOTAL_DISTANCE * position / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);

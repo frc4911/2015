@@ -39,7 +39,7 @@ public class OperatorDrive extends Command {
 	protected void execute() {
 		
 		// Moves the hook lift to the stack point
-		if(oi.payloadJoy.getPOV() == 90 || oi.payloadJoy.getPOV() == 45 || oi.payloadJoy.getPOV() == 135){
+		if(oi.payloadJoy.getPOV() == 90){
 			hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_STACK_POSITION);
 		}
 		
@@ -49,21 +49,13 @@ public class OperatorDrive extends Command {
 		}
 		
 		// Moves the hook lift to the release point
-		if(oi.payloadJoy.getPOV() == 270 || oi.payloadJoy.getPOV() == 225 || oi.payloadJoy.getPOV() == 315){
-			hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_GROUND_POSITION);
+		if(oi.payloadJoy.getPOV() == 270){
+			hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_RELEASE_POSITION);
 		}
 				
 		// Grounds the hook lift
-		if(oi.payloadButton7.get()){
-			hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_RELEASE_POSITION);
-		}
-		
-		if(Math.abs(oi.payloadJoy.getX()) >= 0.1){
-			hookLiftSystem.runLiftManually(oi.payloadJoy.getX());
-		}
-		
-		if(Math.abs(oi.payloadJoy.getZ()) >= 0.1){
-			containerLiftSystem.runLiftManually(oi.payloadJoy.getZ());
+		if(oi.payloadButton2.get()){
+			hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_GROUND_POSITION);
 		}
 		
 		// only for commands that use the Drive System

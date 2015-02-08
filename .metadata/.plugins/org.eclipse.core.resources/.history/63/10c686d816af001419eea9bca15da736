@@ -38,32 +38,37 @@ public class OperatorDrive extends Command {
 	@Override
 	protected void execute() {
 		
-		// Moves the hook lift to the stack point
-		if(oi.payloadJoy.getPOV() == 90 || oi.payloadJoy.getPOV() == 45 || oi.payloadJoy.getPOV() == 135){
-			hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_STACK_POSITION);
+		// Checks for the Container Lift Buttons
+		if(oi.payloadButton6.get()){
+			containerLiftSystem.runLiftManually(RobotConstants.CONTAINERSYSTEM_LIFT_SPEED);
+		}
+		else if (oi.payloadButton8.get()){
+			containerLiftSystem.runLiftManually(-RobotConstants.CONTAINERSYSTEM_LIFT_SPEED);
+		}
+		else{
+			containerLiftSystem.runLiftManually(0.0);
 		}
 		
-		// Moves the hook lift to the aquire point
+		// Checks for the Tote Lift Buttons
 		if(oi.payloadButton5.get()){
-			hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_AQUIRE_POSITION);
+			hookLiftSystem.runLiftManually(RobotConstants.TOTE_LIFT_SPEED);
+		}
+		else if (oi.payloadButton7.get()){
+			hookLiftSystem.runLiftManually(-RobotConstants.TOTE_LIFT_SPEED);
+		}
+		else{
+			hookLiftSystem.runLiftManually(0.0);
 		}
 		
-		// Moves the hook lift to the release point
-		if(oi.payloadJoy.getPOV() == 270 || oi.payloadJoy.getPOV() == 225 || oi.payloadJoy.getPOV() == 315){
-			hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_GROUND_POSITION);
+		// Checks for the clamp button
+		if(oi.payloadButton3.get()){
+			containerLiftSystem.runClampManually(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
 		}
-				
-		// Grounds the hook lift
-		if(oi.payloadButton7.get()){
-			hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_RELEASE_POSITION);
+		else if(oi.payloadButton1.get()){
+			containerLiftSystem.runClampManually(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
 		}
-		
-		if(Math.abs(oi.payloadJoy.getX()) >= 0.1){
-			hookLiftSystem.runLiftManually(oi.payloadJoy.getX());
-		}
-		
-		if(Math.abs(oi.payloadJoy.getZ()) >= 0.1){
-			containerLiftSystem.runLiftManually(oi.payloadJoy.getZ());
+		else{
+			containerLiftSystem.runClampManually(0.0);
 		}
 		
 		// only for commands that use the Drive System

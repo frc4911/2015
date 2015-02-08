@@ -58,12 +58,8 @@ public class OperatorDrive extends Command {
 			hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_RELEASE_POSITION);
 		}
 		
-		if(Math.abs(oi.payloadJoy.getX()) >= 0.1){
+		if(oi.payloadJoy.getX() >= 0.1 || oi.payloadJoy.getX() <= -0.1){
 			hookLiftSystem.runLiftManually(oi.payloadJoy.getX());
-		}
-		
-		if(Math.abs(oi.payloadJoy.getZ()) >= 0.1){
-			containerLiftSystem.runLiftManually(oi.payloadJoy.getZ());
 		}
 		
 		// only for commands that use the Drive System
