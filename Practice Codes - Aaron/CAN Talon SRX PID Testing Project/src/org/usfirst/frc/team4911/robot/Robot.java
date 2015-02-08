@@ -70,13 +70,13 @@ public class Robot extends SampleRobot {
 		
 		server = CameraServer.getInstance();
 		server.setQuality(50);
-		server.startAutomaticCapture("cam0");
+		//server.startAutomaticCapture("cam1");
 		
 		/***************************************
 		 *
 	     * IMU INITIALIZATION
 	     ***************************************/
-		try {
+		/*try {
 			serial_port = new SerialPort(57600,SerialPort.Port.kUSB );
 		          
 			// You can add a second parameter to modify the 
@@ -96,12 +96,13 @@ public class Robot extends SampleRobot {
 			ex.printStackTrace();
 			
 		}
-		imu.initIMU();
+		imu.initIMU();*/
 		Timer.delay(0.3);
 	}
 	
 	public void operatorControl() {
-		
+
+		server.startAutomaticCapture("cam2");
 		while(isOperatorControl() && isEnabled()){
             /*if(stick1.getRawButton(3)) {
 				rightFront.set(1024);
@@ -121,7 +122,9 @@ public class Robot extends SampleRobot {
 			}
 			rightFront.setPID(kP, kI, kD);*/
 			Timer.delay(.15);
-			System.out.println("IMU: " + imu.getYaw());
+			if(stick1.getTrigger()) {
+				server.startAutomaticCapture("cam2");
+			}
 		}
 	}  
 	
