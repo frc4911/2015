@@ -39,7 +39,7 @@ public class OperatorDrive extends Command {
 	protected void execute() {
 		
 		// Moves the hook lift to the stack point
-		if(oi.payloadJoy.getPOV() == 315 || oi.payloadJoy.getPOV() == 0 || oi.payloadJoy.getPOV() == 45){
+		if(oi.payloadJoy.getPOV() == 90 || oi.payloadJoy.getPOV() == 45 || oi.payloadJoy.getPOV() == 135){
 			hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_STACK_POSITION);
 		}
 		
@@ -48,12 +48,12 @@ public class OperatorDrive extends Command {
 			hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_AQUIRE_POSITION);
 		}
 		
-		// Moves the hook lift to the ground
-		if(oi.payloadJoy.getPOV() == 135 || oi.payloadJoy.getPOV() == 180 || oi.payloadJoy.getPOV() == 225){
+		// Moves the hook lift to the release point
+		if(oi.payloadJoy.getPOV() == 270 || oi.payloadJoy.getPOV() == 225 || oi.payloadJoy.getPOV() == 315){
 			hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_GROUND_POSITION);
 		}
 				
-		// Moves the hook lift to the release poisiton
+		// Grounds the hook lift
 		if(oi.payloadButton7.get()){
 			hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_RELEASE_POSITION);
 		}

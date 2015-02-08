@@ -1802,3 +1802,9 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-08 13:28:00.163
 !MESSAGE Installedjava
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-08 13:40:21.215
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-08 13:40:21.278
+!MESSAGE Targets: deploy, Mode: run
