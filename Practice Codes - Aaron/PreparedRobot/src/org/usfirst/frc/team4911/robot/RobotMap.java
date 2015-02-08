@@ -95,7 +95,7 @@ public class RobotMap {
 	     * IMU INITIALIZATION
 	     ***************************************/
 		try {
-			serial_port = new SerialPort(57600,SerialPort.Port.kUSB );
+			serial_port = new SerialPort(57600,SerialPort.Port.kOnboard );
 		          
 			// You can add a second parameter to modify the 
 			// update rate (in hz) from 4 to 100.  The default is 100.

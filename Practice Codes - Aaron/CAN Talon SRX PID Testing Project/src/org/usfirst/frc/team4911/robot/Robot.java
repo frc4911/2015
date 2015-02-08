@@ -1,9 +1,13 @@
 package org.usfirst.frc.team4911.robot;
 
+import java.io.File;
+
 import java.io.PrintStream;
+import java.io.PrintWriter;
 
 import com.kauailabs.nav6.frc.IMUAdvanced;
 
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.CANTalon;
@@ -18,6 +22,11 @@ import ExternalLibs.LIDAR;
 public class Robot extends SampleRobot {
 	Joystick stick1;
 	Joystick stick2;
+	
+	RobotDrive robot;
+	
+	JoystickButton button11;
+	double goal;
 	
 	CANTalon leftFront;
 	CANTalon leftRear;
@@ -35,11 +44,18 @@ public class Robot extends SampleRobot {
 	double kI;
 	double kD;
 	
+	boolean prevPressed;
+	
 	CameraServer server;
 	
 	public Robot() {
 		stick1 = new Joystick(0);
 		stick2 = new Joystick(1);
+		
+		button11 = new JoystickButton(stick1, 11);
+		
+		goal = 0.0;
+		prevPressed = false;
 		
 		kP = 1.1;
 		kI = 0.00001;//0.0002;
@@ -65,19 +81,21 @@ public class Robot extends SampleRobot {
 		rightRear.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		rightRear.setPID(1.0, 0.0, 0.0);
 		
+		robot = new RobotDrive(leftFront, leftRear, rightFront, rightRear);
+		
 		lidar = new LIDAR(I2C.Port.kMXP);
 		lidar.start();
-		
+		/*
 		server = CameraServer.getInstance();
 		server.setQuality(50);
 		server.startAutomaticCapture("cam0");
-		
+		*/
 		/***************************************
 		 *
 	     * IMU INITIALIZATION
 	     ***************************************/
 		try {
-			serial_port = new SerialPort(57600,SerialPort.Port.kUSB );
+			serial_port = new SerialPort(57600,SerialPort.Port.kOnboard);
 		          
 			// You can add a second parameter to modify the 
 			// update rate (in hz) from 4 to 100.  The default is 100.
@@ -102,8 +120,40 @@ public class Robot extends SampleRobot {
 	
 	public void operatorControl() {
 		
+		try {
+			output = new PrintStream(new File("/home/lvuser/natinst/teleLog.txt"));
+			System.setOut(output);
+		} catch (Exception e){
+			
+		}
+		
 		while(isOperatorControl() && isEnabled()){
-            /*if(stick1.getRawButton(3)) {
+			robot.mecanumDrive_Cartesian(stick1.getX(), -stick1.getY(), 0.0, 0.0);
+			/*
+			//PID Control Mode Switch Tests
+            if(button11.get()){
+            	if(!prevPressed){
+		        	if(rightFront.getControlMode().equals(CANTalon.ControlMode.Position)){
+		         		rightFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
+		         		prevPressed = true;
+		         		System.out.println("PERCENT V BUS");
+		        	} else {
+		         		rightFront.changeControlMode(CANTalon.ControlMode.Position);
+		         		prevPressed = true;
+		         		goal = rightFront.get();
+		         		System.out.println("POSITION");
+		        	}
+            	}
+            } else {
+            	prevPressed = false;
+            	if(rightFront.getControlMode().equals(CANTalon.ControlMode.Position)){
+            		rightFront.set(goal);
+                } else {
+                	rightFront.set(stick1.getY());
+                }
+            }
+            */
+			/*if(stick1.getRawButton(3)) {
 				rightFront.set(1024);
 				System.out.println("Position 1!");
 		
@@ -120,9 +170,12 @@ public class Robot extends SampleRobot {
 				kI -= .00001;
 			}
 			rightFront.setPID(kP, kI, kD);*/
-			Timer.delay(.15);
-			System.out.println("IMU: " + imu.getYaw());
+			//Timer.delay(.15);
+			//System.out.println("IMU: " + imu.getYaw());
+			
 		}
+		output.close();
+		
 	}  
 	
 	public void autonomous(){
