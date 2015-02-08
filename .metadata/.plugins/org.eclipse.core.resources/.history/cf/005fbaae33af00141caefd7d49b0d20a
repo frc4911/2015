@@ -31,7 +31,7 @@ public class OI {
     public JoystickButton payloadButton1;
     public JoystickButton payloadButton2;
     public JoystickButton payloadButton3;
-    public JoystickButton payloadButton4;
+    
     public JoystickButton payloadButton5;
     public JoystickButton payloadButton6;
     public JoystickButton payloadButton7;
@@ -60,7 +60,6 @@ public class OI {
         payloadButton1 = new JoystickButton(payloadJoy, 1);
     	payloadButton2 = new JoystickButton(payloadJoy, 2);
         payloadButton3 = new JoystickButton(payloadJoy, 3);
-        payloadButton4 = new JoystickButton(payloadJoy, 4);
         payloadButton5 = new JoystickButton(payloadJoy, 5);
     	payloadButton6 = new JoystickButton(payloadJoy, 6);
         payloadButton7 = new JoystickButton(payloadJoy, 7);
@@ -70,9 +69,9 @@ public class OI {
       
         trigger.whenPressed(new EnableRotate(trigger));
         	
-        button2.whenPressed(new SetGoalHeading(0));
-        button3.whenPressed(new SetGoalHeading(-90.0));
-        button4.whenPressed(new SetGoalHeading(90.0));
+        button2.whenPressed(new SetGoalHeading(0, button2));
+        button3.whenPressed(new SetGoalHeading(-90.0, button3));
+        button4.whenPressed(new SetGoalHeading(90.0, button4));
         	
         button5.whenPressed(new ZeroYaw(button5));
         	
