@@ -2281,3 +2281,33 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.eclipse.core.resources 4 567 2015-02-08 15:40:04.360
 !MESSAGE The project description file (.project) for 'PreparedRobot' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-08 16:38:25.161
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-08 16:38:25.161
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-08 16:46:41.479
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-08 16:46:41.479
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-08 16:58:01.727
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-08 16:58:01.727
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-08 16:59:54.699
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-08 16:59:54.703
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-08 17:01:47.181
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-08 17:01:47.186
+!MESSAGE Targets: deploy, Mode: run

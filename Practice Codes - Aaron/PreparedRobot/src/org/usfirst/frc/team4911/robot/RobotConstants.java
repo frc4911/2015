@@ -46,7 +46,7 @@ public class RobotConstants {
     
     public static final double TOTE_GROUND_POSITION = 50.0;
     public static final double TOTE_RELEASE_POSITION = 50.0;
-    public static final double TOTE_AQUIRE_POSITION = 50.0;
+    public static final double TOTE_ACQUIRE_POSITION = 50.0;
     public static final double TOTE_STACK_POSITION = 5.0;
     
     //CONTAINER SYSTEM CONSTANTS

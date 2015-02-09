@@ -99,6 +99,7 @@ public class Robot extends SampleRobot {
 			
 		}
 		imu.initIMU();*/
+		
 		Timer.delay(0.3);
 	}
 	
@@ -122,8 +123,21 @@ public class Robot extends SampleRobot {
 				kI -= .00001;
 			}
 			rightFront.setPID(kP, kI, kD);*/
-			System.out.println("POV: " + opStick.getPOV());
-			Timer.delay(.15);
+			if(Math.abs(opStick.getY()) >= 1.0) {
+				rightFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
+				rightFront.set(opStick.getY());
+			}
+			else {
+				if(opStick.getRawButton(1)) {
+					rightFront.changeControlMode(CANTalon.ControlMode.Position);
+					rightFront.set(1000);
+				}
+				else if(rightFront.getControlMode() == CANTalon.ControlMode.PercentVbus) {
+					rightFront.set(0);
+				}
+			}
+			//System.out.println("Control Mode: " + rightFront.getControlMode());
+			//Timer.delay(.15);
 			
 		}
 	}  
