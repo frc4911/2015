@@ -6,6 +6,7 @@ import org.usfirst.frc.team4911.robot.RobotMap;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 
 /**
  *
@@ -17,6 +18,9 @@ public class ContainerLiftSystem extends Subsystem {
 	private DigitalInput switchOut;
 	private boolean isLiftBeingUsed;
 	private boolean isClampBeingUsed;
+	private AnalogPotentiometer clampPot;
+	
+	private double previousClampPos;
 	
     public void initDefaultCommand() {
 
@@ -25,6 +29,7 @@ public class ContainerLiftSystem extends Subsystem {
     public ContainerLiftSystem(){
     	containerLift = RobotMap.containerLift;
     	containerContainer = RobotMap.containerContainer;
+    	clampPot = RobotMap.clampPot;
     	isLiftBeingUsed = false;
     }
     
@@ -33,7 +38,19 @@ public class ContainerLiftSystem extends Subsystem {
     }
     
     public void runClampManually(double speed) {
-    	containerContainer.set(speed);
+    	if((switchIn.get() &&  speed <= 0) || 
+    			(clampPot.get() >= RobotConstants.CONTAINERSYSTEM_CLAMP_MAX_WIDTH  
+    				&&  speed > 0)){
+    		containerContainer.set(0);
+    	}
+    	else if (Math.abs(clampPot.get() - previousClampPos) >= RobotConstants.CONTAINERSYSTEM_CLAMP_STOPPED_THRESHOLD){
+    		containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
+    	}
+    	else{
+    		containerContainer.set(speed);
+    	}
+    	
+    	previousClampPos = clampPot.get();
     }
     
     public void liftViaPercent(double position){

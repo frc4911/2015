@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import ExternalLibs.LIDAR;
 
 //import edu.wpi.first.wpilibj.vision.AxisCamera;
@@ -27,6 +28,8 @@ public class RobotMap {
 	public static CANTalon hookRight;	
 	public static CANTalon containerLift;
 	public static CANTalon containerContainer;
+	
+	public static AnalogPotentiometer clampPot;
 	
 	public static DigitalInput limitSwitchIn;
 	public static DigitalInput limitSwitchOut;
@@ -84,6 +87,8 @@ public class RobotMap {
       	containerContainer.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
       	containerContainer.changeControlMode(CANTalon.ControlMode.PercentVbus);
       	containerContainer.setPID(1.0, 0.0, 0.0);
+      	
+      	clampPot = new AnalogPotentiometer(RobotConstants.CONTAINERSYSTEM_CLAMP_POTENTIOMETER_PORT);
 
       	limitSwitchIn = new DigitalInput(RobotConstants.CONTAINERSYSTEM_CLAMP_LIMIT_SWITCH_IN_PORT);
       	limitSwitchOut = new DigitalInput(RobotConstants.CONTAINERSYSTEM_CLAMP_LIMIT_SWITCH_OUT_PORT);
@@ -93,6 +98,8 @@ public class RobotMap {
 		lidar = new LIDAR(I2C.Port.kMXP);
 		cameraServo = new Servo(RobotConstants.CAMERA_SERVO_PORT);
 		cameraServo.set(RobotConstants.CAMERA_SERVO_MID);
+		
+		
 
 	    /***************************************
 	     * IMU INITIALIZATION
