@@ -3,4 +3,6 @@
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Joystick"/>
 <fullyQualifiedTypeName name="com.ni.vision.NIVision.IMAQdxCameraControlMode"/>
 <fullyQualifiedTypeName name="com.ni.vision.NIVision"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CANTalon"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CANTalon.ControlMode"/>
 </qualifiedTypeNameHistroy>

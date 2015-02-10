@@ -71,5 +71,9 @@ public class HookLiftSystem extends Subsystem {
     public CANTalon getRight(){
     	return rightHook;
     }
+    
+    public CANTalon.ControlMode getControlMode() {
+    	return leftHook.getControlMode();
+    }
 }
 

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4911.robot.commands;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team4911.robot.subsystems.*;
@@ -40,28 +41,44 @@ public class OperatorDrive extends Command {
 	@Override
 	protected void execute() {
 		
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0951e508c0000183701d31f1e830581d9489ffb9
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//
 		// Hook Lift Controls
 		//
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<<<<<<< HEAD
 		if(liftPreset) {
 			// Moves the hook lift to the stack point
+=======
+
+		if(Math.abs(oi.payloadJoy.getY()) > 0.1) {
+			hookLiftSystem.runLiftManually(oi.payloadJoy.getY());
+		}
+		else {						
+>>>>>>> 0951e508c0000183701d31f1e830581d9489ffb9
 			if(oi.payloadJoy.getPOV() == 0 || oi.payloadJoy.getPOV() == 45 || oi.payloadJoy.getPOV() == 315){
 				hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_STACK_POSITION);
 			}
 		
-			// Moves the hook lift to the aquire point
+			// Moves the hook lift to the acquire point
 			else if(oi.payloadButton5.get()){
-				hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_AQUIRE_POSITION);
+				hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_ACQUIRE_POSITION);
 			}
 		
+<<<<<<< HEAD
 			// Moves the hook lift to the ground
+=======
+			// Moves the hook lift to the ground point
+>>>>>>> 0951e508c0000183701d31f1e830581d9489ffb9
 			else if(oi.payloadJoy.getPOV() == 180 || oi.payloadJoy.getPOV() == 135 || oi.payloadJoy.getPOV() == 225){
 				hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_GROUND_POSITION);
 			}
 				
+<<<<<<< HEAD
 			// Moves the hook lift to release position
 			else if(oi.payloadButton7.get()){
 				hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_RELEASE_POSITION);
@@ -78,6 +95,16 @@ public class OperatorDrive extends Command {
 				hookLiftSystem.runLiftManually(0);
 				liftPreset = true;
 			}
+=======
+			// Moves the hook lift to the release position
+			else if(oi.payloadButton7.get()){
+				hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_RELEASE_POSITION);
+			}
+			
+			else if(hookLiftSystem.getControlMode() == CANTalon.ControlMode.PercentVbus) {
+				hookLiftSystem.runLiftManually(0.0);
+			}		
+>>>>>>> 0951e508c0000183701d31f1e830581d9489ffb9
 		}
 		
 	///////////////////////////////////////////////////////////////////////////
@@ -93,10 +120,10 @@ public class OperatorDrive extends Command {
 	////////////////////////////////////////////////////////////////////////////
 	//
 	//  Runs container clamp manually
-		if(oi.payloadButton1.get()){
+		if(oi.payloadButton3.get()){
 			containerLiftSystem.runClampManually(0.3);
 		}
-		else if(oi.payloadButton3.get()){
+		else if(oi.payloadButton1.get()){
 			containerLiftSystem.runClampManually(-0.3);
 		}
 		else {
