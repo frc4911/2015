@@ -128,10 +128,6 @@ public class ContainerLiftSystem extends Subsystem {
     	return containerContainer;
     }
     
-    public CANTalon.ControlMode getLiftControlMode() {
-    	return containerLift.getControlMode();
-    }
-    
     public enum ContainerStatus {
     	CLOSE, OPEN, CLAMP;
     }

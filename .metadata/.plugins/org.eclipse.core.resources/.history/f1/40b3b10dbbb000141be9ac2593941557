@@ -75,37 +75,19 @@ public class OperatorDrive extends Command {
 			}		
 		}
 		
-		///////////////////////////////////////////////////////////////////////////
-		//
-		// Container Lift Controls
-		//
-		///////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////
+	//
+	// Runs container lift manually
 		if(Math.abs(oi.payloadJoy.getZ()) >= 0.1){
 			containerLiftSystem.runLiftManually(oi.payloadJoy.getZ());
 		}
 		else{
-			if(oi.payloadButton8.get()) {
-				containerLiftSystem.runLiftToPreset(RobotConstants.CONTAINER_LIFT_RELEASE);
-			}
-			else if(oi.payloadButton6.get()) {
-				containerLiftSystem.runLiftToPreset(RobotConstants.CONTAINER_LIFT_TEST);
-			}
-			else if(oi.payloadButton4.get()) {
-				containerLiftSystem.runLiftToPreset(RobotConstants.CONTAINER_LIFT_TOP);
-			}
-			else if(oi.payloadButton2.get()) {
-				containerLiftSystem.runLiftToPreset(RobotConstants.CONTAINER_LIFT_GROUND);
-			}
-			else if(containerLiftSystem.getLiftControlMode() == CANTalon.ControlMode.PercentVbus) {
-				containerLiftSystem.runLiftManually(0.0);
-			}
+			containerLiftSystem.runLiftManually(0.0);
 		}
 		
-		////////////////////////////////////////////////////////////////////////////
-		//
-		//  Container Clamp Controls
-		//
-		////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////
+	//
+	//  Runs container clamp manually
 		if(oi.payloadButton3.get()){
 			containerLiftSystem.runClampManually(0.3);
 		}
@@ -116,11 +98,7 @@ public class OperatorDrive extends Command {
 			containerLiftSystem.runClampManually(0.0);
 		}
 		
-		//////////////////////////////////////////////////////////////////////////////////////////////////////////
-		//
-		// Drive System Controls
-		//
-		//////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// only for commands that use the Drive System
 		if(!driveSystemConflict){
 			speed = oi.getMainJoyThrottle();
 			mecanumDriveSystem.driveWithPID(oi.getMainJoyX() * speed, oi.getMainJoyY() * speed);

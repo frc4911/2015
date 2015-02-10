@@ -96,7 +96,7 @@ public class OperatorDrive extends Command {
 			else if(oi.payloadButton2.get()) {
 				containerLiftSystem.runLiftToPreset(RobotConstants.CONTAINER_LIFT_GROUND);
 			}
-			else if(containerLiftSystem.getLiftControlMode() == CANTalon.ControlMode.PercentVbus) {
+			else if(containerLiftSystem.getControlMode() == CANTalon.ControlMode.PercentVbus) {
 				containerLiftSystem.runLiftManually(0.0);
 			}
 		}

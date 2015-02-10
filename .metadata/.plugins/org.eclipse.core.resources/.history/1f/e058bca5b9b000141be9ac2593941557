@@ -52,13 +52,6 @@ public class RobotConstants {
     //CONTAINER SYSTEM CONSTANTS
     public static final int CONTAINER_LIFT_CANTALON_PORT = 5;
     public static final int CONTAINER_CONTAINER_CANTALON_PORT = 6;
-    
-    //TEST FOR THESE VALUES
-    public static final double CONTAINER_LIFT_GROUND = 	0.0;
-    public static final double CONTAINER_LIFT_TEST = 	0.0;
-    public static final double CONTAINER_LIFT_TOP = 	0.0;
-    public static final double CONTAINER_LIFT_RELEASE = 0.0;
-    
 
     public static final double CONTAINERSYSTEM_TOTAL_DISTANCE = 76.0;//Measured in Inches
     public static final double CONTAINERSYSTEM_WHEEL_DIAMETER = 0.67; //Measured in Inches
