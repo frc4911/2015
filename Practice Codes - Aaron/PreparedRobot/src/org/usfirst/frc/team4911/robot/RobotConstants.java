@@ -46,7 +46,7 @@ public class RobotConstants {
     
     public static final double TOTE_GROUND_POSITION = 50.0;
     public static final double TOTE_RELEASE_POSITION = 50.0;
-    public static final double TOTE_AQUIRE_POSITION = 50.0;
+    public static final double TOTE_ACQUIRE_POSITION = 50.0;
     public static final double TOTE_STACK_POSITION = 5.0;
     
     //CONTAINER SYSTEM CONSTANTS
@@ -69,6 +69,11 @@ public class RobotConstants {
     
     public static final double CONTAINERSYSTEM_CLAMP_SPEED = 1.0;
     public static final double CONTAINERSYSTEM_LIFT_SPEED = 0.5;
+    public static final double CONTAINERSYSTEM_CLAMP_HOLD_POWER = 0.1;
+    public static final double CONTAINERSYSTEM_CLAMP_STOPPED_THRESHOLD = 0.1;
+    public static final double CONTAINERSYSTEM_CLAMP_MAX_WIDTH = 1.0;
+    
+    public static final int CONTAINERSYSTEM_CLAMP_POTENTIOMETER_PORT = 0;
     
     public static final int CONTAINERSYSTEM_CLAMP_LIMIT_SWITCH_IN_PORT = 1;//Digital IO
     public static final int CONTAINERSYSTEM_CLAMP_LIMIT_SWITCH_OUT_PORT = 2;//Digital IO

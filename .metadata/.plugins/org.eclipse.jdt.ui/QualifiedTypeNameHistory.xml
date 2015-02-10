@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Joystick"/>
+<fullyQualifiedTypeName name="com.ni.vision.NIVision.IMAQdxCameraControlMode"/>
+<fullyQualifiedTypeName name="com.ni.vision.NIVision"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CANTalon"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CANTalon.ControlMode"/>
+</qualifiedTypeNameHistroy>

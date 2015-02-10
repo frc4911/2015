@@ -23,6 +23,7 @@ import ExternalLibs.LIDAR;
 public class Robot extends SampleRobot {
 	Joystick stick1;
 	Joystick stick2;
+	Joystick opStick;
 	
 	RobotDrive robot;
 
@@ -66,6 +67,7 @@ public class Robot extends SampleRobot {
 		
 		goal = 0.0;
 		prevPressed = false;
+		opStick = new Joystick(2);
 		
 		kP = 1.1;
 		kI = 0.00001;//0.0002;
