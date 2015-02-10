@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4911.robot.subsystems;
 
 import org.usfirst.frc.team4911.robot.Robot;
+
 import org.usfirst.frc.team4911.robot.RobotConstants;
 import org.usfirst.frc.team4911.robot.RobotMap;
 import org.usfirst.frc.team4911.robot.subsystems.*;
@@ -22,6 +23,7 @@ public class MecanumDriveSystem extends Subsystem {
 	private CANTalon rearRight = RobotMap.rightRear;
 	private RobotDrive robot = new RobotDrive(frontLeft, rearLeft, frontRight, rearRight);
 	private SerialPort serial_port;	
+	private PrintSystem printSystem;
 	
 	private double rotation;
 	private double currError;
@@ -42,6 +44,7 @@ public class MecanumDriveSystem extends Subsystem {
 		robot.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 		
 		goalHeading = 0.0;
+		printSystem = Robot.printSystem;
 		
 	}
 	
@@ -73,6 +76,9 @@ public class MecanumDriveSystem extends Subsystem {
     	rotation = RobotConstants.DRIVESYSTEM_kP * currError + RobotConstants.DRIVESYSTEM_kI * integration + RobotConstants.DRIVESYSTEM_kD * derivative;//[-1.0 - 1.0] percentage
     	rotation = (rotation < 0) ? Math.max(-0.5, rotation) : Math.min(0.5, rotation);
     	drive(x, y, rotation);
+    	printSystem.print("Drive X", x);
+    	printSystem.print("Drive Y", y);
+    	printSystem.print("Drive Rotation", rotation);
 	}
 	public void drive(double left, double right){
 		robot.tankDrive(left, right);

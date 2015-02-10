@@ -54,9 +54,13 @@ public class RunPrintServer extends Command {
     	printSystem.print("IMU Yaw", PrintSystem.format(sensorSystem.getYawWithCompensation()), "Degrees");
     	printSystem.print("IMU Pitch", PrintSystem.format(sensorSystem.getPitch()), "Degrees");
     	printSystem.print("IMU Roll", PrintSystem.format(sensorSystem.getRoll()), "Degrees");
-    	printSystem.print("IMU Accel X", PrintSystem.format(sensorSystem.getAccelX()), "m/s^2");
-    	printSystem.print("IMU Accel Y", PrintSystem.format(sensorSystem.getAccelY()), "m/s^2");
-    	printSystem.print("IMU Accel Z", PrintSystem.format(sensorSystem.getAccelZ()), "m/s^2");
+    	printSystem.print("IMU Accel X", PrintSystem.format(sensorSystem.getAccelX()), "ft/s^2");
+    	printSystem.print("IMU Accel Y", PrintSystem.format(sensorSystem.getAccelY()), "ft/s^2");
+    	printSystem.print("IMU Accel Z", PrintSystem.format(sensorSystem.getAccelZ()), "ft/s^2");
+    	printSystem.print("IMU Average", PrintSystem.format(sensorSystem.getAverageLinearAccel()));
+    	printSystem.print("RoboAccel X", PrintSystem.format(sensorSystem.getX()), "g");
+    	printSystem.print("RoboAccel Y", PrintSystem.format(sensorSystem.getY()), "g");
+    	printSystem.print("RoboAccel Z", PrintSystem.format(sensorSystem.getZ()), "g");
     	printSystem.print("IMU Temp", PrintSystem.format(sensorSystem.getTemp()), "Celsius");
     	printSystem.print("BrownOut", driverStation.isBrownedOut()); 
     	printSystem.print("Memory Usage", PrintSystem.format(memoryUsage * 100.0), "%");
@@ -66,7 +70,7 @@ public class RunPrintServer extends Command {
     			+ PrintSystem.format(driveSystem.getRightFrontCurrent())
     			+ " A\n\t\t\t\t\t\t\t\t\t\t  |2              3|"
     			+ "\n\t\t\t\t\t\t\t\t\t\t  |     ROBOT      |"
-    			+ "\n\t\t\t\t\t\t\t\t\t  " 
+    			+ "\n\t\t\t\t\t\t\t\t\t" 
     			+ PrintSystem.format(driveSystem.getLeftRearCurrent()) 
     			+ " A |1______________4| " 
     			+ PrintSystem.format(driveSystem.getRightRearCurrent())

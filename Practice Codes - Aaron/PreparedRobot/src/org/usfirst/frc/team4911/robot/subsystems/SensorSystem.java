@@ -70,14 +70,18 @@ public class SensorSystem extends Subsystem {
     	return imu.getTempC();
     }
     public float getAccelX(){
-    	return imu.getWorldLinearAccelX();
+    	return imu.getWorldLinearAccelX() * RobotConstants.SENSORSYSTEM_GRAVITATIONAL_ACCELERATION;
     }
     public float getAccelY(){
-    	return imu.getWorldLinearAccelY();
+    	return imu.getWorldLinearAccelY() * RobotConstants.SENSORSYSTEM_GRAVITATIONAL_ACCELERATION;
     }
     public float getAccelZ(){
-    	return imu.getWorldLinearAccelZ();
+    	return imu.getWorldLinearAccelZ() * RobotConstants.SENSORSYSTEM_GRAVITATIONAL_ACCELERATION;
     }
+    public float getAverageLinearAccel(){
+    	return imu.getAverageFromWorldLinearAccelHistory();
+    }
+    
     public float getCompass(){
     	return imu.getCompassHeading();
     }
