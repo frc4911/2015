@@ -40,12 +40,21 @@ public class OperatorDrive extends Command {
 	@Override
 	protected void execute() {
 		
-
+<<<<<<< HEAD
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//
 		// Hook Lift Controls
 		//
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+=======
+		// Moves the hook lift to the stack point
+		if(oi.payloadJoy.getPOV() == 315 || oi.payloadJoy.getPOV() == 0 || oi.payloadJoy.getPOV() == 45){
+			hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_STACK_POSITION);
+		}
+>>>>>>> d73d0dd2020052a47cf406cd36cf5dc547774a9c
+		
+		
+<<<<<<< HEAD
 		if(liftPreset) {
 			// Moves the hook lift to the stack point
 			if(oi.payloadJoy.getPOV() == 0 || oi.payloadJoy.getPOV() == 45 || oi.payloadJoy.getPOV() == 315){
@@ -57,19 +66,30 @@ public class OperatorDrive extends Command {
 				hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_AQUIRE_POSITION);
 			}
 		
-			// Moves the hook lift to the ground
+			// Moves the hook lift to the release point
 			else if(oi.payloadJoy.getPOV() == 180 || oi.payloadJoy.getPOV() == 135 || oi.payloadJoy.getPOV() == 225){
 				hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_GROUND_POSITION);
 			}
 				
-			// Moves the hook lift to release position
+			// Grounds the hook lift
 			else if(oi.payloadButton7.get()){
 				hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_RELEASE_POSITION);
 			}
 			else {
 				liftPreset = false;
 			}
+=======
+		// Moves the hook lift to the ground
+		if(oi.payloadJoy.getPOV() == 135 || oi.payloadJoy.getPOV() == 180 || oi.payloadJoy.getPOV() == 225){
+			hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_GROUND_POSITION);
 		}
+				
+		// Moves the hook lift to the release poisiton
+		if(oi.payloadButton7.get()){
+			hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_RELEASE_POSITION);
+>>>>>>> d73d0dd2020052a47cf406cd36cf5dc547774a9c
+		}
+		
 		if(!liftPreset) {
 			if(Math.abs(oi.payloadJoy.getY()) >= 0.1){
 				hookLiftSystem.runLiftManually(oi.payloadJoy.getX());

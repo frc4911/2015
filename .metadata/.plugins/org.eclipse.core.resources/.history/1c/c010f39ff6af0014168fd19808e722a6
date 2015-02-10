@@ -69,7 +69,7 @@ public class OperatorDrive extends Command {
 			else {
 				liftPreset = false;
 			}
-		}
+		
 		if(!liftPreset) {
 			if(Math.abs(oi.payloadJoy.getY()) >= 0.1){
 				hookLiftSystem.runLiftManually(oi.payloadJoy.getX());
