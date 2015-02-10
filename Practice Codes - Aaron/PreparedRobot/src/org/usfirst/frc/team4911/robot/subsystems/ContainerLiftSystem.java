@@ -34,7 +34,13 @@ public class ContainerLiftSystem extends Subsystem {
     }
     
     public void runLiftManually(double speed) {
+    	containerLift.changeControlMode(CANTalon.ControlMode.PercentVbus);
     	containerLift.set(speed);
+    }
+    
+    public void runLiftToPreset(double pos) {
+    	containerLift.changeControlMode(CANTalon.ControlMode.Position);
+    	containerLift.set(pos);
     }
     
     public void runClampManually(double speed) {
@@ -120,6 +126,10 @@ public class ContainerLiftSystem extends Subsystem {
     }
     public CANTalon getContainerContainer(){
     	return containerContainer;
+    }
+    
+    public CANTalon.ControlMode getLiftControlMode() {
+    	return containerLift.getControlMode();
     }
     
     public enum ContainerStatus {

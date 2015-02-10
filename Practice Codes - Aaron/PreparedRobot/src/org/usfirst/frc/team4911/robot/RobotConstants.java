@@ -5,10 +5,10 @@ public class RobotConstants {
     public static final int JOYSTICK_MAIN = 1;
     public static final double JOYSTICK_SENSITIVITY = 10.0;
     public static final int JOYSTICK_POV_NUM = 0;
-    public static final int POV_UP = 180;
-    public static final int POV_DOWN = 0;
-    public static final int POV_LEFT = 90;
-    public static final int POV_RIGHT = 270;
+    public static final int POV_UP = 0;
+    public static final int POV_DOWN = 180;
+    public static final int POV_LEFT = 270;
+    public static final int POV_RIGHT = 90;
     
     public static final int JOYSTICK_OPERATOR = 2;
     
@@ -26,9 +26,9 @@ public class RobotConstants {
     public static final double ROTATE_SPEED = 0.50;
     public static final double STANDARD_DRIVE_SPEED = 0.4;
     
-    public static final double DRIVESYSTEM_kP = 0.05;  //1.00/175;
+    public static final double DRIVESYSTEM_kP = 0.05;  //1.0 / 175.0;
     public static final double DRIVESYSTEM_kI = 0.0;
-    public static final double DRIVESYSTEM_kD = 0.0; //.005
+    public static final double DRIVESYSTEM_kD = 0.0; //0.005
     
     //HOOK SYSTEM CONSTANTS
     public static final int HOOK_LEFT_CANTALON_PORT = 1;
@@ -52,6 +52,13 @@ public class RobotConstants {
     //CONTAINER SYSTEM CONSTANTS
     public static final int CONTAINER_LIFT_CANTALON_PORT = 5;
     public static final int CONTAINER_CONTAINER_CANTALON_PORT = 6;
+    
+    //TEST FOR THESE VALUES
+    public static final double CONTAINER_LIFT_GROUND = 	0.0;
+    public static final double CONTAINER_LIFT_TEST = 	0.0;
+    public static final double CONTAINER_LIFT_TOP = 	0.0;
+    public static final double CONTAINER_LIFT_RELEASE = 0.0;
+    
 
     public static final double CONTAINERSYSTEM_TOTAL_DISTANCE = 76.0;//Measured in Inches
     public static final double CONTAINERSYSTEM_WHEEL_DIAMETER = 0.67; //Measured in Inches
@@ -85,6 +92,7 @@ public class RobotConstants {
     
     //IMU CONSTANTS
     public static final double YAW_DRIFT_PER_TICK = 0.004;
+    public static final float SENSORSYSTEM_GRAVITATIONAL_ACCELERATION = 32.174f;//ft/s^2
     
     //CAMERA
     public static final int CAMERA_SERVO_PORT = 0;

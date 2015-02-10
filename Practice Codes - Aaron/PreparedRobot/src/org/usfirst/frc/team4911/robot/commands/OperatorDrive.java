@@ -40,7 +40,6 @@ public class OperatorDrive extends Command {
 
 	@Override
 	protected void execute() {
-		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//
 		// Hook Lift Controls
@@ -74,19 +73,37 @@ public class OperatorDrive extends Command {
 			}
 		}
 		
-	///////////////////////////////////////////////////////////////////////////
-	//
-	// Runs container lift manually
+		///////////////////////////////////////////////////////////////////////////
+		//
+		// Container Lift Controls
+		//
+		///////////////////////////////////////////////////////////////////////////
 		if(Math.abs(oi.payloadJoy.getZ()) >= 0.1){
 			containerLiftSystem.runLiftManually(oi.payloadJoy.getZ());
 		}
 		else{
-			containerLiftSystem.runLiftManually(0.0);
+			if(oi.payloadButton8.get()) {
+				containerLiftSystem.runLiftToPreset(RobotConstants.CONTAINER_LIFT_RELEASE);
+			}
+			else if(oi.payloadButton6.get()) {
+				containerLiftSystem.runLiftToPreset(RobotConstants.CONTAINER_LIFT_TEST);
+			}
+			else if(oi.payloadButton4.get()) {
+				containerLiftSystem.runLiftToPreset(RobotConstants.CONTAINER_LIFT_TOP);
+			}
+			else if(oi.payloadButton2.get()) {
+				containerLiftSystem.runLiftToPreset(RobotConstants.CONTAINER_LIFT_GROUND);
+			}
+			else if(containerLiftSystem.getLiftControlMode() == CANTalon.ControlMode.PercentVbus) {
+				containerLiftSystem.runLiftManually(0.0);
+			}
 		}
 		
-	////////////////////////////////////////////////////////////////////////////
-	//
-	//  Runs container clamp manually
+		////////////////////////////////////////////////////////////////////////////
+		//
+		//  Container Clamp Controls
+		//
+		////////////////////////////////////////////////////////////////////////////
 		if(oi.payloadButton3.get()){
 			containerLiftSystem.runClampManually(0.3);
 		}
@@ -97,22 +114,27 @@ public class OperatorDrive extends Command {
 			containerLiftSystem.runClampManually(0.0);
 		}
 		
-		// only for commands that use the Drive System
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//
+		// Drive System Controls
+		//
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////
 		if(!driveSystemConflict){
 			speed = oi.getMainJoyThrottle();
 			mecanumDriveSystem.driveWithPID(oi.getMainJoyX() * speed, oi.getMainJoyY() * speed);
+			//mecanumDriveSystem.drive(oi.getMainJoyX() * speed, oi.getMainJoyY() * speed, 0.0);
 			
 			if(oi.getPOV() == RobotConstants.POV_UP) {
-	        	new PIDAxisDrive(0.0, 0.3, 0.0, oi.mainJoy, RobotConstants.POV_UP).start();
+	        	new PIDAxisDrive(0.05, -0.3, 0.0, oi.mainJoy, RobotConstants.POV_UP).start();
 	        }
 	        else if(oi.getPOV() == RobotConstants.POV_DOWN) {
-	        	new PIDAxisDrive(0.0, -0.3, 0.0, oi.mainJoy, RobotConstants.POV_DOWN).start();
+	        	new PIDAxisDrive(-0.05, 0.3, 0.0, oi.mainJoy, RobotConstants.POV_DOWN).start();
 	        }
 	        else if(oi.getPOV() == RobotConstants.POV_LEFT) {
-	        	new PIDAxisDrive(0.3, 0.0, 0.0, oi.mainJoy, RobotConstants.POV_LEFT).start();
+	        	new PIDAxisDrive(-0.3, 0.0, 0.0, oi.mainJoy, RobotConstants.POV_LEFT).start();
 	        }
 	        else if(oi.getPOV() == RobotConstants.POV_RIGHT) {
-	        	new PIDAxisDrive(-0.3, 0.0, 0.0, oi.mainJoy, RobotConstants.POV_RIGHT).start();
+	        	new PIDAxisDrive(0.3, 0.0, 0.0, oi.mainJoy, RobotConstants.POV_RIGHT).start();
 	        }
 		}
 	}
