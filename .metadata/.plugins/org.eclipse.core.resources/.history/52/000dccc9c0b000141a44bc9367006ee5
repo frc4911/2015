@@ -72,7 +72,6 @@ public class OperatorDrive extends Command {
 			else if(hookLiftSystem.getControlMode() == CANTalon.ControlMode.PercentVbus) {
 				hookLiftSystem.runLiftManually(0.0);
 			}
-		}
 		
 	///////////////////////////////////////////////////////////////////////////
 	//
