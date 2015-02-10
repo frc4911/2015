@@ -88,10 +88,10 @@ public class OperatorDrive extends Command {
 	////////////////////////////////////////////////////////////////////////////
 	//
 	//  Runs container clamp manually
-		if(oi.payloadButton1.get()){
+		if(oi.payloadButton3.get()){
 			containerLiftSystem.runClampManually(0.3);
 		}
-		else if(oi.payloadButton3.get()){
+		else if(oi.payloadButton1.get()){
 			containerLiftSystem.runClampManually(-0.3);
 		}
 		else {

@@ -38,10 +38,9 @@ public class ContainerLiftSystem extends Subsystem {
     }
     
     public void runClampManually(double speed) {
-    	if(switchIn.get() &&  speed <= 0){
-    		containerContainer.set(0);
-    	}
-    	else if(clampPot.get() >= RobotConstants.CONTAINERSYSTEM_CLAMP_MAX_WIDTH  &&  speed > 0){
+    	if((switchIn.get() &&  speed <= 0) || 
+    			(clampPot.get() >= RobotConstants.CONTAINERSYSTEM_CLAMP_MAX_WIDTH  
+    				&&  speed > 0)){
     		containerContainer.set(0);
     	}
     	else if (Math.abs(clampPot.get() - previousClampPos) >= RobotConstants.CONTAINERSYSTEM_CLAMP_STOPPED_THRESHOLD){
