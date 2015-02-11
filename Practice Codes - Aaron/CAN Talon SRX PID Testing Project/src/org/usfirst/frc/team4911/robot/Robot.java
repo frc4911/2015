@@ -117,14 +117,49 @@ public class Robot extends SampleRobot {
 		}
 		
 		while(isOperatorControl() && isEnabled()){
-			
-			if(button9.get()){
-				//Right
-				leftFront3.set(0.3);
-				leftRear4.set(-0.3);
-				rightFront7.set(0.3);
-				rightRear8.set(-0.3);
-				
+			/*
+			//CONTAINER CONTAINER TEST CODE
+			if(opStick.getRawButton(1)) {
+				if(!atLowSpeed) {
+					if(rightFront.getOutputCurrent() > 7.5) {
+						rightFront.set(0.1);
+						atLowSpeed = true;
+					}
+					else {
+						rightFront.set(0.5);
+					}
+				}
+				else {
+					if(rightFront.getOutputCurrent() < 0.15) {
+						rightFront.set(0.5);
+						atLowSpeed = false;
+					}
+					else {
+						rightFront.set(0.1);
+					}
+				}
+			}
+			else if(opStick.getRawButton(3)) {
+				rightFront.set(-0.3);
+			}
+			System.out.println("--------------------------------");
+			System.out.println("Encoder: " + rightFront.getEncPosition());
+			System.out.println("Current: " + rightFront.getOutputCurrent());
+			System.out.println("Low speed?: " + atLowSpeed);
+			*/
+			/*if(button9.get()){
+				//Forward
+				leftFront.set(0.5);
+				leftRear.set(-0.5);
+				rightFront.set(0.5);
+				rightRear.set(-0.5);
+			}
+			if(button10.get()){
+				//Backwards
+				leftFront.set(-0.5);
+				leftRear.set(0.5);
+				rightFront.set(-0.5);
+				rightRear.set(0.5);				
 			}
 			else if(button10.get()){
 				//Left
@@ -140,7 +175,6 @@ public class Robot extends SampleRobot {
 				leftRear4.set(0.3);
 				rightFront7.set(-0.3);
 				rightRear8.set(-0.3);
-				
 			}
 			else if(button12.get()){
 				//Backward				
@@ -179,8 +213,58 @@ public class Robot extends SampleRobot {
 				//driveWithPID(inX, inY);
 				robot.mecanumDrive_Cartesian(x, y, 0.0, 0.0);
 			}
+			
+			/*
+			//IMU Accelerometer Testing
+			iX %= x.length;
+			iY %= y.length;
+			x[iX] = imu.getWorldLinearAccelX() * 32.174f;
+			y[iY] = imu.getWorldLinearAccelY() * 32.174f;
+			
+			float aveX = 0f;
+			for(float i : x){
+				aveX += i;
+			}
+			aveX = aveX / (float)x.length;
+
+			float aveY = 0f;
+			for(float i : y){
+				aveY += i;
+			}
+			aveY = aveY / (float)y.length;
+
+			
+			robot.mecanumDrive_Cartesian(stick1.getX(), -stick1.getY(), 0.0, 0.0);
+			System.out.println("Accel X:\t" + aveX + " ft/s^2");
+			System.out.println("Accel Y:\t" + aveY +  "ft/s^2");
+			System.out.println("===================================");
+			*/
+			/*
+			//PID Control Mode Switch Tests
+            if(button11.get()){
+            	if(!prevPressed){
+		        	if(rightFront.getControlMode().equals(CANTalon.ControlMode.Position)){
+		         		rightFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
+		         		prevPressed = true;
+		         		System.out.println("PERCENT V BUS");
+		        	} else {
+		         		rightFront.changeControlMode(CANTalon.ControlMode.Position);
+		         		prevPressed = true;
+		         		goal = rightFront.get();
+		         		System.out.println("POSITION");
+		        	}
+            	}
+            } else {
+            	prevPressed = false;
+            	if(rightFront.getControlMode().equals(CANTalon.ControlMode.Position)){
+            		rightFront.set(goal);
+                } else {
+                	rightFront.set(stick1.getY());
+                }
+            }
+            */
 		}
-		output.close();
+		//output.close();
 		
 	}
 	public void driveWithPID(double x, double y){

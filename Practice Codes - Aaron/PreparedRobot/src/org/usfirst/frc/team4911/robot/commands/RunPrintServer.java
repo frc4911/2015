@@ -68,11 +68,11 @@ public class RunPrintServer extends Command {
     				PrintSystem.format(driveSystem.getLeftFrontCurrent()) 
     			+ " A __________________ " 
     			+ PrintSystem.format(driveSystem.getRightFrontCurrent())
-    			+ " A\n\t\t\t\t\t\t\t\t\t\t  |2              3|"
+    			+ " A\n\t\t\t\t\t\t\t\t\t\t  |3              7|"
     			+ "\n\t\t\t\t\t\t\t\t\t\t  |     ROBOT      |"
     			+ "\n\t\t\t\t\t\t\t\t\t" 
     			+ PrintSystem.format(driveSystem.getLeftRearCurrent()) 
-    			+ " A |1______________4| " 
+    			+ " A |4______________8| " 
     			+ PrintSystem.format(driveSystem.getRightRearCurrent())
     			+ " A");
     }

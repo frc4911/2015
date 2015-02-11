@@ -32,8 +32,6 @@ public class EnableRotate extends Command {
 	double currentDegree;
 	double deltaDegree;
 	
-	private double speed;
-	
 	int numIteration;
 	
     private static double THRESHOLD = 2.0;//degrees
@@ -57,9 +55,8 @@ public class EnableRotate extends Command {
     }
 
     protected void execute() {
-    	speed = oi.getMainJoyThrottle();
     	if(button.get()){
-	    	mecanumDriveSystem.drive(oi.getMainJoyX() * speed, oi.getMainJoyY() * speed, oi.getMainJoyZ() * RobotConstants.ROTATE_SPEED);
+	    	mecanumDriveSystem.drive(oi.getMainJoyX(), oi.getMainJoyY(), oi.getMainJoyZ() * RobotConstants.ROTATE_SPEED);
     	}
     	mecanumDriveSystem.setGoalHeading(sensorSystem.getYaw());
     }
