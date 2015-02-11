@@ -144,6 +144,7 @@ public class Robot extends SampleRobot {
 	int iX;
 	int iY;
 	*/
+	boolean atLowSpeed = false;
 	public void operatorControl() {
 		/*
 		x = new float[100];
@@ -153,16 +154,43 @@ public class Robot extends SampleRobot {
 		iX = 0;
 		iY = 0;
 		*/
-		try {
+		/*try {
 			output = new PrintStream(new File("/home/lvuser/natinst/teleLog.txt"));
 			System.setOut(output);
 		} catch (Exception e){
 			
-		}
+		}*/
 		
 		//server.startAutomaticCapture("cam2");
 		while(isOperatorControl() && isEnabled()){
-			if(button9.get()){
+			if(opStick.getRawButton(1)) {
+				if(!atLowSpeed) {
+					if(rightFront.getOutputCurrent() > 7.5) {
+						rightFront.set(0.1);
+						atLowSpeed = true;
+					}
+					else {
+						rightFront.set(0.5);
+					}
+				}
+				else {
+					if(rightFront.getOutputCurrent() < 0.15) {
+						rightFront.set(0.5);
+						atLowSpeed = false;
+					}
+					else {
+						rightFront.set(0.1);
+					}
+				}
+			}
+			else if(opStick.getRawButton(3)) {
+				rightFront.set(-0.3);
+			}
+			System.out.println("--------------------------------");
+			System.out.println("Encoder: " + rightFront.getEncPosition());
+			System.out.println("Current: " + rightFront.getOutputCurrent());
+			System.out.println("Low speed?: " + atLowSpeed);
+			/*if(button9.get()){
 				//Forward
 				leftFront.set(0.5);
 				leftRear.set(-0.5);
@@ -195,7 +223,7 @@ public class Robot extends SampleRobot {
 				rightFront.set(0.5);
 				rightRear.set(0.5);
 				
-			}
+			}*/
 			
 			/*
 			//IMU Accelerometer Testing
@@ -246,25 +274,8 @@ public class Robot extends SampleRobot {
                 }
             }
             */
-			/*if(stick1.getRawButton(3)) {
-				rightFront.set(1024);
-				System.out.println("Position 1!");
-		
-			}
-			else if(stick1.getRawButton(4)) {
-				rightFront.set(0);
-				System.out.println("Position 0!");
-			}
-			
-			if(stick1.getRawButton(1)) {
-				kI += .00001;
-			}
-			else if (stick1.getRawButton(2)) {
-				kI -= .00001;
-			}
-			rightFront.setPID(kP, kI, kD);*/
 		}
-		output.close();
+		//output.close();
 		
 	}  
 	

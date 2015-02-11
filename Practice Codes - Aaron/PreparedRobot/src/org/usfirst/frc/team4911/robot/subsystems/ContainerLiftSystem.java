@@ -29,7 +29,6 @@ public class ContainerLiftSystem extends Subsystem {
     public ContainerLiftSystem(){
     	containerLift = RobotMap.containerLift;
     	containerContainer = RobotMap.containerContainer;
-    	clampPot = RobotMap.clampPot;
     	isLiftBeingUsed = false;
     }
     
@@ -49,14 +48,14 @@ public class ContainerLiftSystem extends Subsystem {
     				&&  speed > 0)){
     		containerContainer.set(0);
     	}
-    	else if ((Math.abs(clampPot.get() - previousClampPos) <= RobotConstants.CONTAINERSYSTEM_CLAMP_STOPPED_THRESHOLD) && speed < 0){
+    	else if ((Math.abs(containerContainer.getEncPosition() - previousClampPos) <= RobotConstants.CONTAINERSYSTEM_CLAMP_STOPPED_THRESHOLD) && speed < 0){
     		containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
     	}
     	else{
     		containerContainer.set(speed);
     	}
     	
-    	previousClampPos = clampPot.get();
+    	previousClampPos = containerContainer.getEncPosition();
     }
     
     public void liftViaPercent(double position){
