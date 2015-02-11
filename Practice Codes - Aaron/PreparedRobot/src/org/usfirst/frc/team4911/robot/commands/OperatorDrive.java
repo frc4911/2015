@@ -40,6 +40,7 @@ public class OperatorDrive extends Command {
 
 	@Override
 	protected void execute() {
+		/*
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//
 		// Hook Lift Controls
@@ -96,24 +97,32 @@ public class OperatorDrive extends Command {
 		else {
 			containerLiftSystem.runClampManually(0.0);
 		}
-		
+		*/
 		// only for commands that use the Drive System
+		printSystem.print("OPERATOR DRIVE");
 		if(!driveSystemConflict){
 			speed = oi.getMainJoyThrottle();
-			mecanumDriveSystem.driveWithPID(oi.getMainJoyX() * speed, oi.getMainJoyY() * speed);
-			//mecanumDriveSystem.drive(oi.getMainJoyX() * speed, oi.getMainJoyY() * speed, 0.0);
+			mecanumDriveSystem.drive(oi.getMainJoyX() * speed, oi.getMainJoyY() * speed, 0.0);
 			
 			if(oi.getPOV() == RobotConstants.POV_UP) {
-	        	new PIDAxisDrive(0.05, -0.3, 0.0, oi.mainJoy, RobotConstants.POV_UP).start();
-	        }
+	        	new PIDAxisDrive(0.0, -0.3, 0.0, oi.mainJoy, RobotConstants.POV_UP).start();
+	        	//0.05
+	        	printSystem.print("POV");
+			}
 	        else if(oi.getPOV() == RobotConstants.POV_DOWN) {
-	        	new PIDAxisDrive(-0.05, 0.3, 0.0, oi.mainJoy, RobotConstants.POV_DOWN).start();
+	        	new PIDAxisDrive(0.0, 0.3, 0.0, oi.mainJoy, RobotConstants.POV_DOWN).start();
+	        	//-0.05
+	        	printSystem.print("POV");
 	        }
 	        else if(oi.getPOV() == RobotConstants.POV_LEFT) {
 	        	new PIDAxisDrive(-0.3, 0.0, 0.0, oi.mainJoy, RobotConstants.POV_LEFT).start();
+
+	        	printSystem.print("POV");
 	        }
 	        else if(oi.getPOV() == RobotConstants.POV_RIGHT) {
 	        	new PIDAxisDrive(0.3, 0.0, 0.0, oi.mainJoy, RobotConstants.POV_RIGHT).start();
+
+	        	printSystem.print("POV");
 	        }
 		}
 	}

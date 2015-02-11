@@ -45,7 +45,6 @@ public class MecanumDriveSystem extends Subsystem {
 		
 		goalHeading = 0.0;
 		printSystem = Robot.printSystem;
-		
 	}
 	
 	@Override
@@ -80,6 +79,7 @@ public class MecanumDriveSystem extends Subsystem {
     	printSystem.print("Drive Y", y);
     	printSystem.print("Drive Rotation", rotation);
 	}
+	
 	public void drive(double left, double right){
 		robot.tankDrive(left, right);
 	}
@@ -109,5 +109,11 @@ public class MecanumDriveSystem extends Subsystem {
 	}
 	public double getRightRearCurrent(){
 		return rearRight.getOutputCurrent();
+	}
+	public static double average(double[] array){
+		double result = 0.0;
+		//for(double val :)
+		
+		return 0.0;
 	}
 }
