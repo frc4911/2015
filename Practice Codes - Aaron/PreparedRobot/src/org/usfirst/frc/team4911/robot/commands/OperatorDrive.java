@@ -58,20 +58,19 @@ public class OperatorDrive extends Command {
 			else if(oi.payloadButton5.get()){
 				hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_ACQUIRE_POSITION);
 			}
-		
-			// Moves the hook lift to the ground point
+			// Moves the hook lift to the ground
+
 			else if(oi.payloadJoy.getPOV() == 180 || oi.payloadJoy.getPOV() == 135 || oi.payloadJoy.getPOV() == 225){
 				hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_GROUND_POSITION);
 			}
-				
-			// Moves the hook lift to the release position
+			// Moves the hook lift to release position
 			else if(oi.payloadButton7.get()){
 				hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_RELEASE_POSITION);
 			}
 			
 			else if(hookLiftSystem.getControlMode() == CANTalon.ControlMode.PercentVbus) {
 				hookLiftSystem.runLiftManually(0.0);
-			}		
+			}
 		}
 		
 		///////////////////////////////////////////////////////////////////////////
