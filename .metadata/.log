@@ -8227,3 +8227,156 @@ org.xml.sax.SAXParseException; lineNumber: 13; columnNumber: 2; The content of e
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:648)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:603)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
+
+!ENTRY org.eclipse.core.resources 4 273 2015-02-11 16:22:50.754
+!MESSAGE Problems cleaning up history store.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Could not read metadata for 'C:\Users\pratz_000\Documents\GitHub\2015\.metadata\.plugins\org.eclipse.core.resources\.projects\PreparedRobot\.indexes\e4\e4\2e\17\be\6a\history.index'. Unexpected version: 0.
+	at org.eclipse.core.internal.localstore.Bucket.load(Bucket.java:303)
+	at org.eclipse.core.internal.localstore.Bucket.load(Bucket.java:274)
+	at org.eclipse.core.internal.localstore.BucketTree.internalAccept(BucketTree.java:98)
+	at org.eclipse.core.internal.localstore.BucketTree.internalAccept(BucketTree.java:109)
+	at org.eclipse.core.internal.localstore.BucketTree.internalAccept(BucketTree.java:109)
+	at org.eclipse.core.internal.localstore.BucketTree.internalAccept(BucketTree.java:109)
+	at org.eclipse.core.internal.localstore.BucketTree.internalAccept(BucketTree.java:109)
+	at org.eclipse.core.internal.localstore.BucketTree.internalAccept(BucketTree.java:109)
+	at org.eclipse.core.internal.localstore.BucketTree.internalAccept(BucketTree.java:109)
+	at org.eclipse.core.internal.localstore.BucketTree.accept(BucketTree.java:73)
+	at org.eclipse.core.internal.localstore.HistoryStore2.clean(HistoryStore2.java:157)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1191)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2344)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:509)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+!SUBENTRY 1 org.eclipse.core.resources 4 567 2015-02-11 16:22:50.754
+!MESSAGE Could not read metadata for 'C:\Users\pratz_000\Documents\GitHub\2015\.metadata\.plugins\org.eclipse.core.resources\.projects\PreparedRobot\.indexes\e4\e4\2e\17\be\6a\history.index'. Unexpected version: 0.
+!SESSION 2015-02-11 17:29:00.785 -----------------------------------------------
+eclipse.buildId=4.4.1.M20140925-0400
+java.version=1.8.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.m2e.logback.configuration 2 0 2015-02-11 17:29:05.129
+!MESSAGE Exception while setting up logging:org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+!STACK 0
+java.lang.ClassCastException: org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+	at org.eclipse.m2e.logback.configuration.LogHelper.logJavaProperties(LogHelper.java:26)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.loadConfiguration(LogPlugin.java:189)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.configureLogback(LogPlugin.java:144)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.access$2(LogPlugin.java:107)
+	at org.eclipse.m2e.logback.configuration.LogPlugin$1.run(LogPlugin.java:62)
+	at java.util.TimerThread.mainLoop(Unknown Source)
+	at java.util.TimerThread.run(Unknown Source)
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-02-11 17:29:18.158
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-02-11 17:29:18.173
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\pratz_000'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-11 17:29:18.423
+!MESSAGE Installing tools if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-11 17:29:18.470
+!MESSAGE Installedtools
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-11 17:29:18.548
+!MESSAGE Installing java if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-11 17:29:18.564
+!MESSAGE Installedjava
+
+!ENTRY org.eclipse.core.resources 4 567 2015-02-11 18:54:21.319
+!MESSAGE The project description file (.project) for 'PreparedRobot' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+
+!ENTRY org.eclipse.core.resources 4 568 2015-02-11 18:54:27.273
+!MESSAGE Internal error in history store
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Could not read metadata for 'C:\Users\pratz_000\Documents\GitHub\2015\.metadata\.plugins\org.eclipse.core.resources\.projects\PreparedRobot\.indexes\e4\e4\2e\17\be\6a\history.index'. Unexpected version: 0.
+	at org.eclipse.core.internal.localstore.Bucket.load(Bucket.java:303)
+	at org.eclipse.core.internal.localstore.Bucket.load(Bucket.java:274)
+	at org.eclipse.core.internal.localstore.BucketTree.internalAccept(BucketTree.java:98)
+	at org.eclipse.core.internal.localstore.BucketTree.internalAccept(BucketTree.java:109)
+	at org.eclipse.core.internal.localstore.BucketTree.internalAccept(BucketTree.java:109)
+	at org.eclipse.core.internal.localstore.BucketTree.internalAccept(BucketTree.java:109)
+	at org.eclipse.core.internal.localstore.BucketTree.internalAccept(BucketTree.java:109)
+	at org.eclipse.core.internal.localstore.BucketTree.internalAccept(BucketTree.java:109)
+	at org.eclipse.core.internal.localstore.BucketTree.internalAccept(BucketTree.java:109)
+	at org.eclipse.core.internal.localstore.BucketTree.accept(BucketTree.java:76)
+	at org.eclipse.core.internal.localstore.HistoryStore2.remove(HistoryStore2.java:326)
+	at org.eclipse.core.internal.resources.Resource.clearHistory(Resource.java:497)
+	at org.eclipse.core.internal.resources.Project.deleteResource(Project.java:358)
+	at org.eclipse.core.internal.resources.ResourceTree.deletedProject(ResourceTree.java:169)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteProject(ResourceTree.java:870)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1987)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:803)
+	at org.eclipse.core.internal.resources.Project.delete(Project.java:344)
+	at org.eclipse.ltk.core.refactoring.resource.DeleteResourceChange.perform(DeleteResourceChange.java:160)
+	at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+	at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation$1.run(PerformChangeOperation.java:258)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2313)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.executeChange(PerformChangeOperation.java:306)
+	at org.eclipse.ltk.internal.ui.refactoring.UIPerformChangeOperation.executeChange(UIPerformChangeOperation.java:92)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.run(PerformChangeOperation.java:218)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2313)
+	at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+!SUBENTRY 1 org.eclipse.core.resources 4 567 2015-02-11 18:54:27.273
+!MESSAGE Could not read metadata for 'C:\Users\pratz_000\Documents\GitHub\2015\.metadata\.plugins\org.eclipse.core.resources\.projects\PreparedRobot\.indexes\e4\e4\2e\17\be\6a\history.index'. Unexpected version: 0.
+!SESSION 2015-02-11 20:53:56.550 -----------------------------------------------
+eclipse.buildId=4.4.1.M20140925-0400
+java.version=1.8.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.m2e.logback.configuration 2 0 2015-02-11 20:54:00.831
+!MESSAGE Exception while setting up logging:org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+!STACK 0
+java.lang.ClassCastException: org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+	at org.eclipse.m2e.logback.configuration.LogHelper.logJavaProperties(LogHelper.java:26)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.loadConfiguration(LogPlugin.java:189)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.configureLogback(LogPlugin.java:144)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.access$2(LogPlugin.java:107)
+	at org.eclipse.m2e.logback.configuration.LogPlugin$1.run(LogPlugin.java:62)
+	at java.util.TimerThread.mainLoop(Unknown Source)
+	at java.util.TimerThread.run(Unknown Source)
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-02-11 20:54:13.398
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-02-11 20:54:13.413
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\pratz_000'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-11 20:54:14.929
+!MESSAGE Installing tools if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-11 20:54:14.945
+!MESSAGE Installedtools
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-11 20:54:14.976
+!MESSAGE Installing java if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-11 20:54:14.976
+!MESSAGE Installedjava
