@@ -36,23 +36,23 @@ public class Robot extends SampleRobot {
                 NIVision.IMAQdxCameraControlMode.CameraControlModeController);
         NIVision.IMAQdxConfigureGrab(session);
         
-        session2 = NIVision.IMAQdxOpenCamera("cam2", 
+        /*session2 = NIVision.IMAQdxOpenCamera("cam2", 
         		NIVision.IMAQdxCameraControlMode.CameraControlModeController);
         
         session3 = NIVision.IMAQdxOpenCamera("cam3", 
         		NIVision.IMAQdxCameraControlMode.CameraControlModeController);
         
         session4 = NIVision.IMAQdxOpenCamera("cam4", 
-        		NIVision.IMAQdxCameraControlMode.CameraControlModeController);
+        		NIVision.IMAQdxCameraControlMode.CameraControlModeController);*/
         
         joy1 = new Joystick(0);
         camOneOn = false;
         
         sessions = new int[4];
         sessions[0] = session;
-        sessions[1] = session2;
-        sessions[2] = session3;
-        sessions[3] = session4;
+        //sessions[1] = session2;
+        //sessions[2] = session3;
+        //sessions[3] = session4;
         
         int currSession = 0;
     }
