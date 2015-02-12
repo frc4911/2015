@@ -48,17 +48,11 @@ public class Robot extends SampleRobot {
         joy1 = new Joystick(0);
         camOneOn = false;
         
-        sessions = new int[4];
-        sessions[0] = session;
-        sessions[1] = session2;
-        sessions[2] = session3;
-        sessions[3] = session4;
-        
-        int currSession = 0;
+        int[] sessions = {session, session2, session3, session4};
     }
 
     public void operatorControl() {
-        NIVision.IMAQdxStartAcquisition(sessions[currSession]);
+        NIVision.IMAQdxStartAcquisition(session);
 
         /**
          * grab an image, draw the circle, and provide it for the camera server
@@ -66,19 +60,28 @@ public class Robot extends SampleRobot {
          */
 
         while (isOperatorControl() && isEnabled()) {
-            
-            NIVision.IMAQdxGrab(sessions[currSession], frame, 1);
-   
+        	if(!camOneOn) {
+        		NIVision.IMAQdxGrab(session, frame, 1);
+        	}
+        	else {
+        		NIVision.IMAQdxGrab(session2, frame, 1);
+        	}
             CameraServer.getInstance().setImage(frame);
             
             if(joy1.getTrigger()) {
-            	NIVision.IMAQdxStopAcquisition(sessions[currSession++]);
-            	if(currSession > 3) {
-            		currSession = 0;
+            	if(camOneOn) {
+            		NIVision.IMAQdxStopAcquisition(session2);
+            		NIVision.IMAQdxConfigureGrab(session);
+            		NIVision.IMAQdxStartAcquisition(session);
             	}
-            	NIVision.IMAQdxConfigureGrab(sessions[currSession]);
-            	NIVision.IMAQdxStartAcquisition(sessions[currSession]);
+            	else {
+            		NIVision.IMAQdxStopAcquisition(session);
+            		NIVision.IMAQdxConfigureGrab(session2);
+            		NIVision.IMAQdxStartAcquisition(session2);
+            	}
+            	camOneOn = !camOneOn;
             }
+
             /** robot code here! **/
             Timer.delay(0.005);		// wait for a motor update time
         }
