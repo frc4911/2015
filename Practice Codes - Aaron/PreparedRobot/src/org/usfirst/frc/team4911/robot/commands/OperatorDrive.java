@@ -105,13 +105,13 @@ public class OperatorDrive extends Command {
 		//
 		////////////////////////////////////////////////////////////////////////////
 		if(oi.payloadButton3.get()){
-			containerLiftSystem.runClampManually(0.3);
+			containerLiftSystem.runClampManuallyForward();
 		}
 		else if(oi.payloadButton1.get()){
-			containerLiftSystem.runClampManually(-0.3);
+			containerLiftSystem.runClampManuallyBackward();
 		}
-		else {
-			containerLiftSystem.runClampManually(0.0);
+		else{
+			containerLiftSystem.stopClamp();
 		}
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////

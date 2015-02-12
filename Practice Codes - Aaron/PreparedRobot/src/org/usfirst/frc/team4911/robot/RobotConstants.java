@@ -74,11 +74,15 @@ public class RobotConstants {
     public static final double CONTAINERSYSTEM_CLAMP_ENCODER_PULSE_PER_ROTATION = 1024.0;//Number of Pulse per One Rotation of the Encoder
     public static final double CONTAINERSYSTEM_CLAMP_ENCODER_DISTANCE_PER_PULSE = CONTAINERSYSTEM_CLAMP_GEAR_RATIO * CONTAINERSYSTEM_CLAMP_AXLE_CIRCUMFERENCE / CONTAINERSYSTEM_CLAMP_ENCODER_PULSE_PER_ROTATION;
     
-    public static final double CONTAINERSYSTEM_CLAMP_SPEED = 1.0;
     public static final double CONTAINERSYSTEM_LIFT_SPEED = 0.5;
+    public static final double CONTAINERSYSTEM_CLAMP_SPEED = 0.5;
     public static final double CONTAINERSYSTEM_CLAMP_HOLD_POWER = 0.1;
     public static final double CONTAINERSYSTEM_CLAMP_STOPPED_THRESHOLD = 0.1;
     public static final double CONTAINERSYSTEM_CLAMP_MAX_WIDTH = 1.0;
+    public static final double CONTAINERSYSTEM_CLAMP_MIN_WIDTH = 0;
+    
+    public static final double CONTAINERSYSTEM_CLAMP_LOW_VOLTAGE_THRESHHOLD = 0.15;
+    public static final double CONTAINERSYSTEM_CLAMP_HIGH_VOLTAGE_THRESHHOLD = 7.5;
     
     public static final int CONTAINERSYSTEM_CLAMP_POTENTIOMETER_PORT = 0;
     

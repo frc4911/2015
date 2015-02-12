@@ -19,6 +19,7 @@ public class ContainerLiftSystem extends Subsystem {
 	private boolean isLiftBeingUsed;
 	private boolean isClampBeingUsed;
 	private AnalogPotentiometer clampPot;
+	private boolean atLowSpeed = false;
 	
 	private double previousClampPos;
 	
@@ -42,21 +43,37 @@ public class ContainerLiftSystem extends Subsystem {
     	containerLift.set(pos);
     }
     
-    public void runClampManually(double speed) {
-    	if((switchIn.get() &&  speed <= 0) || 
-    			(clampPot.get() >= RobotConstants.CONTAINERSYSTEM_CLAMP_MAX_WIDTH  
-    				&&  speed > 0)){
-    		containerContainer.set(0);
+    public void runClampManuallyForward() {
+    	if (containerContainer.getEncPosition() < RobotConstants.CONTAINERSYSTEM_CLAMP_MAX_WIDTH){
+			if(!atLowSpeed) {
+				if(containerContainer.getOutputCurrent() > RobotConstants.CONTAINERSYSTEM_CLAMP_HIGH_VOLTAGE_THRESHHOLD) {
+					containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
+					atLowSpeed = true;
+				}
+				else {
+					containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+				}
+			}
+			else {
+				if(containerContainer.getOutputCurrent() < RobotConstants.CONTAINERSYSTEM_CLAMP_LOW_VOLTAGE_THRESHHOLD) {
+					containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+					atLowSpeed = false;
+				}
+				else {
+					containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
+				}
+			}
     	}
-    	else if ((Math.abs(containerContainer.getEncPosition() - previousClampPos) <= RobotConstants.CONTAINERSYSTEM_CLAMP_STOPPED_THRESHOLD) && speed < 0){
-    		containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
-    	}
-    	else{
-    		containerContainer.set(speed);
-    	}
-    	
-    	previousClampPos = containerContainer.getEncPosition();
     }
+    public void stopClamp(){
+    	containerContainer.set(0.0);
+	}
+	
+	public void runClampManuallyBackward(){
+		if(!switchIn.get() && containerContainer.getEncPosition() > RobotConstants.CONTAINERSYSTEM_CLAMP_MIN_WIDTH){
+			containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+		}
+	}
     
     public void liftViaPercent(double position){
     	containerLift.set(RobotConstants.CONTAINERSYSTEM_TOTAL_DISTANCE * position / RobotConstants.CONTAINERSYSTEM_ENCODER_DISTANCE_PER_PULSE);
