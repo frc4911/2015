@@ -23,7 +23,7 @@ public class RobotConstants {
     public static final int RIGHT_FRONT_CANTALON_PORT = 7;
     public static final int RIGHT_REAR_CANTALON_PORT = 8;
 
-    public static final double ROTATE_SPEED = 0.50;
+    public static final double ROTATE_SPEED = 0.75;
     public static final double STANDARD_DRIVE_SPEED = 0.4;
     
     public static final double DRIVESYSTEM_kP = 0.05;  //1.0 / 175.0;

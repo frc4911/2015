@@ -78,7 +78,7 @@ public class MecanumDriveSystem extends Subsystem {
     	}
     	
     	rotation = RobotConstants.DRIVESYSTEM_kP * currError + RobotConstants.DRIVESYSTEM_kI * integration + RobotConstants.DRIVESYSTEM_kD * derivative;//[-1.0 - 1.0] percentage
-    	rotation = (rotation < 0) ? Math.max(-0.5, rotation) : Math.min(0.5, rotation);
+    	rotation = (rotation < 0) ? Math.max(-0.75, rotation) : Math.min(0.75, rotation);
     	
     	//Speed Correction 
     	x *= speed;

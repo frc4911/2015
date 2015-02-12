@@ -31,6 +31,8 @@ public class OperatorDrive extends Command {
 	@Override
 	protected void initialize() {
 		sensorSystem.zeroYaw();
+		sensorSystem.clearAccelBuffer();
+		
 		mecanumDriveSystem.setGoalHeading(0.0);
 		driveSystemConflict = false;
 		speed = RobotConstants.STANDARD_DRIVE_SPEED;
@@ -123,10 +125,23 @@ public class OperatorDrive extends Command {
 
 		mecanumDriveSystem.setSpeed(oi.getMainJoyThrottle());
 		if(!driveSystemConflict){
-			double xIn = Math.pow(oi.getMainJoyX(), 3);
-			double yIn = Math.pow(oi.getMainJoyY(), 3);			
-			mecanumDriveSystem.driveWithPID(xIn, yIn);
-			
+			if(oi.getPOV() == RobotConstants.POV_UP){
+	        	mecanumDriveSystem.driveWithPID(0.0, -1.0);
+			}
+	        else if(oi.getPOV() == RobotConstants.POV_DOWN) {
+	        	mecanumDriveSystem.driveWithPID(0.0, 1.0);
+	        }
+	        else if(oi.getPOV() == RobotConstants.POV_LEFT) {
+	        	mecanumDriveSystem.driveWithPID(-1.0, 0.0);
+	        }
+	        else if(oi.getPOV() == RobotConstants.POV_RIGHT) {
+	        	mecanumDriveSystem.driveWithPID(1.0, 0.0);
+	        } else {		
+				double xIn = Math.pow(oi.getMainJoyX(), 3);
+				double yIn = Math.pow(oi.getMainJoyY(), 3);	
+				mecanumDriveSystem.driveWithPID(xIn, yIn);	        	
+	        }
+			/*
 			if(oi.getPOV() == RobotConstants.POV_UP) {
 	        	new PIDAxisDrive(0.0, -1.0, 0.0, oi.mainJoy, RobotConstants.POV_UP).start();
 	        	//0.05 for x
@@ -146,7 +161,7 @@ public class OperatorDrive extends Command {
 	        	new PIDAxisDrive(1.0, 0.0, 0.0, oi.mainJoy, RobotConstants.POV_RIGHT).start();
 	        	//0.3 for x
 	        	//0.0 for y
-	        }
+	        }*/
 		}
 	}
 

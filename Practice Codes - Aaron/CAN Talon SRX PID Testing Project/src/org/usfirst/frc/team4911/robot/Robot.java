@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4911.robot;
 
 import java.io.File;
+
 import java.util.Arrays;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -212,6 +213,8 @@ public class Robot extends SampleRobot {
 				System.out.println(x + "\t" + y);
 				//driveWithPID(inX, inY);
 				robot.mecanumDrive_Cartesian(x, y, 0.0, 0.0);
+				System.out.println("Pitch:\t" + imu.getPitch());
+				System.out.println("Roll:\t" + imu.getRoll());
 			}
 			
 			/*
@@ -266,7 +269,6 @@ public class Robot extends SampleRobot {
 		}
 		//output.close();
 		
-	}
 	public void driveWithPID(double x, double y){
 		double currYaw = imu.getYaw();
 		currError = goalHeading - currYaw;//[-180 - 180] degrees

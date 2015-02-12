@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 2 packages to &apos;RingBufferProject/src&apos;&#x0D;&#x0A;- Original project: &apos;CAN Talon SRX PID Testing Project&apos;&#x0D;&#x0A;- Destination element: &apos;RingBufferProject/src&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     CAN Talon SRX PID Testing Project/src/com.kauailabs.nav6&#x0D;&#x0A;     CAN Talon SRX PID Testing Project/src/com.kauailabs.nav6.frc" description="Copy packages" destination="=RingBufferProject/src" element1="/src&lt;com.kauailabs.nav6" element2="/src&lt;com.kauailabs.nav6.frc" flags="589830" fragments="2" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1423720183902" version="1.0"/>
+</session>
