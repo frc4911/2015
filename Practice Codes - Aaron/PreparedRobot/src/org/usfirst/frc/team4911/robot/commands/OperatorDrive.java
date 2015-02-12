@@ -31,6 +31,8 @@ public class OperatorDrive extends Command {
 	@Override
 	protected void initialize() {
 		sensorSystem.zeroYaw();
+		sensorSystem.clearAccelBuffer();
+		
 		mecanumDriveSystem.setGoalHeading(0.0);
 		driveSystemConflict = false;
 		speed = RobotConstants.STANDARD_DRIVE_SPEED;
@@ -40,6 +42,7 @@ public class OperatorDrive extends Command {
 
 	@Override
 	protected void execute() {
+		/*
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//
 		// Hook Lift Controls
@@ -113,29 +116,52 @@ public class OperatorDrive extends Command {
 		else{
 			containerLiftSystem.stopClamp();
 		}
-		
+		 */
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//
 		// Drive System Controls
 		//
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		mecanumDriveSystem.setSpeed(oi.getMainJoyThrottle());
 		if(!driveSystemConflict){
-			speed = oi.getMainJoyThrottle();
-			mecanumDriveSystem.driveWithPID(oi.getMainJoyX() * speed, oi.getMainJoyY() * speed);
-			//mecanumDriveSystem.drive(oi.getMainJoyX() * speed, oi.getMainJoyY() * speed, 0.0);
-			
-			if(oi.getPOV() == RobotConstants.POV_UP) {
-	        	new PIDAxisDrive(0.05, -0.3, 0.0, oi.mainJoy, RobotConstants.POV_UP).start();
-	        }
+			if(oi.getPOV() == RobotConstants.POV_UP){
+	        	mecanumDriveSystem.driveWithPID(0.0, -1.0);
+			}
 	        else if(oi.getPOV() == RobotConstants.POV_DOWN) {
-	        	new PIDAxisDrive(-0.05, 0.3, 0.0, oi.mainJoy, RobotConstants.POV_DOWN).start();
+	        	mecanumDriveSystem.driveWithPID(0.0, 1.0);
 	        }
 	        else if(oi.getPOV() == RobotConstants.POV_LEFT) {
-	        	new PIDAxisDrive(-0.3, 0.0, 0.0, oi.mainJoy, RobotConstants.POV_LEFT).start();
+	        	mecanumDriveSystem.driveWithPID(-1.0, 0.0);
 	        }
 	        else if(oi.getPOV() == RobotConstants.POV_RIGHT) {
-	        	new PIDAxisDrive(0.3, 0.0, 0.0, oi.mainJoy, RobotConstants.POV_RIGHT).start();
+	        	mecanumDriveSystem.driveWithPID(1.0, 0.0);
+	        } else {		
+				double xIn = Math.pow(oi.getMainJoyX(), 3);
+				double yIn = Math.pow(oi.getMainJoyY(), 3);	
+				mecanumDriveSystem.driveWithPID(xIn, yIn);	        	
 	        }
+			/*
+			if(oi.getPOV() == RobotConstants.POV_UP) {
+	        	new PIDAxisDrive(0.0, -1.0, 0.0, oi.mainJoy, RobotConstants.POV_UP).start();
+	        	//0.05 for x
+	        	//0.3 for y
+			}
+	        else if(oi.getPOV() == RobotConstants.POV_DOWN) {
+	        	new PIDAxisDrive(0.0, 1.0, 0.0, oi.mainJoy, RobotConstants.POV_DOWN).start();
+	        	//-0.05 for x
+	        	//0.3 for y
+	        }
+	        else if(oi.getPOV() == RobotConstants.POV_LEFT) {
+	        	new PIDAxisDrive(-1.0, 0.0, 0.0, oi.mainJoy, RobotConstants.POV_LEFT).start();
+	        	//-0.3 for x
+	        	//0.0 for y
+	        }
+	        else if(oi.getPOV() == RobotConstants.POV_RIGHT) {
+	        	new PIDAxisDrive(1.0, 0.0, 0.0, oi.mainJoy, RobotConstants.POV_RIGHT).start();
+	        	//0.3 for x
+	        	//0.0 for y
+	        }*/
 		}
 	}
 

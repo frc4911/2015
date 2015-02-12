@@ -32,7 +32,7 @@ public class MecanumDriveSystem extends Subsystem {
 	private double derivative;
 	
 	private double goalHeading;
-	
+	private double speed;
 	private IMUAdvanced imu = RobotMap.imu;		
 	
 	public MecanumDriveSystem(){
@@ -45,7 +45,7 @@ public class MecanumDriveSystem extends Subsystem {
 		
 		goalHeading = 0.0;
 		printSystem = Robot.printSystem;
-		
+		speed = 1.0;
 	}
 	
 	@Override
@@ -54,6 +54,10 @@ public class MecanumDriveSystem extends Subsystem {
 	}
 	
 	public void drive(double x, double y, double rotation){
+		//Speed Correction 
+    	x *= speed;
+    	y *= speed;
+    	rotation *= speed;
 		robot.mecanumDrive_Cartesian(x, y, rotation, (double)imu.getYaw());
 	}
 	
@@ -74,13 +78,24 @@ public class MecanumDriveSystem extends Subsystem {
     	}
     	
     	rotation = RobotConstants.DRIVESYSTEM_kP * currError + RobotConstants.DRIVESYSTEM_kI * integration + RobotConstants.DRIVESYSTEM_kD * derivative;//[-1.0 - 1.0] percentage
-    	rotation = (rotation < 0) ? Math.max(-0.5, rotation) : Math.min(0.5, rotation);
+    	rotation = (rotation < 0) ? Math.max(-0.75, rotation) : Math.min(0.75, rotation);
+    	
+    	//Speed Correction 
+    	x *= speed;
+    	y *= speed;
+    	
     	drive(x, y, rotation);
     	printSystem.print("Drive X", x);
     	printSystem.print("Drive Y", y);
     	printSystem.print("Drive Rotation", rotation);
+    	printSystem.print("Speed Constant", speed);
 	}
+	
 	public void drive(double left, double right){
+		//Speed Correction 
+    	left *= speed;
+    	right *= speed;
+    	
 		robot.tankDrive(left, right);
 	}
 	public void stop(){
@@ -96,6 +111,9 @@ public class MecanumDriveSystem extends Subsystem {
 	}
 	public double getGoalHeading() {
 		return goalHeading;
+	}
+	public void setSpeed(double speed){
+		this.speed = speed;
 	}
 	
 	public double getLeftFrontCurrent(){

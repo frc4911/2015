@@ -48,31 +48,37 @@ public class RunPrintServer extends Command {
     	Runtime runtime = Runtime.getRuntime();
         double memoryUsage = (double)runtime.totalMemory() / (double)runtime.maxMemory();
 
-    	printSystem.print("Battery", PrintSystem.format(driverStation.getBatteryVoltage()), "Volts");
-    	printSystem.print("LIDAR", sensorSystem.getIN(), "inches");
-    	printSystem.print("GoalHeading", driveSystem.getGoalHeading(), "degree");
-    	printSystem.print("IMU Yaw", PrintSystem.format(sensorSystem.getYawWithCompensation()), "Degrees");
+    	//printSystem.print("Battery", PrintSystem.format(driverStation.getBatteryVoltage()), "Volts");
+    	//printSystem.print("LIDAR", sensorSystem.getIN(), "inches");
+    	//printSystem.print("GoalHeading", driveSystem.getGoalHeading(), "degree");
+    	
+    	//printSystem.print("IMU Yaw", PrintSystem.format(sensorSystem.getYawWithCompensation()), "Degrees");
     	printSystem.print("IMU Pitch", PrintSystem.format(sensorSystem.getPitch()), "Degrees");
     	printSystem.print("IMU Roll", PrintSystem.format(sensorSystem.getRoll()), "Degrees");
     	printSystem.print("IMU Accel X", PrintSystem.format(sensorSystem.getAccelX()), "ft/s^2");
     	printSystem.print("IMU Accel Y", PrintSystem.format(sensorSystem.getAccelY()), "ft/s^2");
     	printSystem.print("IMU Accel Z", PrintSystem.format(sensorSystem.getAccelZ()), "ft/s^2");
-    	printSystem.print("IMU Average", PrintSystem.format(sensorSystem.getAverageLinearAccel()));
-    	printSystem.print("RoboAccel X", PrintSystem.format(sensorSystem.getX()), "g");
-    	printSystem.print("RoboAccel Y", PrintSystem.format(sensorSystem.getY()), "g");
-    	printSystem.print("RoboAccel Z", PrintSystem.format(sensorSystem.getZ()), "g");
-    	printSystem.print("IMU Temp", PrintSystem.format(sensorSystem.getTemp()), "Celsius");
-    	printSystem.print("BrownOut", driverStation.isBrownedOut()); 
-    	printSystem.print("Memory Usage", PrintSystem.format(memoryUsage * 100.0), "%");
+    	
+    	printSystem.print("BufferedAccel X", PrintSystem.format(sensorSystem.getBufferedAccelX()), "ft/s^2");
+    	printSystem.print("BufferedAccel Y", PrintSystem.format(sensorSystem.getBufferedAccelY()), "ft/s^2");
+    	printSystem.print("XBuffer", sensorSystem.accelXBufferToString());
+    	printSystem.print("YBuffer", sensorSystem.accelYBufferToString());
+    	
+    	//printSystem.print("RoboAccel X", PrintSystem.format(sensorSystem.getX()), "g");
+    	//printSystem.print("RoboAccel Y", PrintSystem.format(sensorSystem.getY()), "g");
+    	//printSystem.print("RoboAccel Z", PrintSystem.format(sensorSystem.getZ()), "g");
+    	//printSystem.print("IMU Temp", PrintSystem.format(sensorSystem.getTemp()), "Celsius");
+    	//printSystem.print("BrownOut", driverStation.isBrownedOut()); 
+    	//printSystem.print("Memory Usage", PrintSystem.format(memoryUsage * 100.0), "%");
     	printSystem.print("MotorCurrent", 
     				PrintSystem.format(driveSystem.getLeftFrontCurrent()) 
     			+ " A __________________ " 
     			+ PrintSystem.format(driveSystem.getRightFrontCurrent())
-    			+ " A\n\t\t\t\t\t\t\t\t\t\t  |2              3|"
+    			+ " A\n\t\t\t\t\t\t\t\t\t\t  |3              7|"
     			+ "\n\t\t\t\t\t\t\t\t\t\t  |     ROBOT      |"
     			+ "\n\t\t\t\t\t\t\t\t\t" 
     			+ PrintSystem.format(driveSystem.getLeftRearCurrent()) 
-    			+ " A |1______________4| " 
+    			+ " A |4______________8| " 
     			+ PrintSystem.format(driveSystem.getRightRearCurrent())
     			+ " A");
     }
