@@ -19,6 +19,10 @@ import edu.wpi.first.wpilibj.Joystick;
 public class Robot extends SampleRobot {
     int session;
     int session2;
+    int session3;
+    int session4;
+    int[] sessions;
+    int currSession;
     Image frame;
     Joystick joy1;
     boolean camOneOn;
@@ -28,22 +32,33 @@ public class Robot extends SampleRobot {
         frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
 
         // the camera name (ex "cam0") can be found through the roborio web interface
-        session = NIVision.IMAQdxOpenCamera("cam2",
+        session = NIVision.IMAQdxOpenCamera("cam1",
                 NIVision.IMAQdxCameraControlMode.CameraControlModeController);
         NIVision.IMAQdxConfigureGrab(session);
         
-        session2 = NIVision.IMAQdxOpenCamera("cam1", 
+        session2 = NIVision.IMAQdxOpenCamera("cam2", 
         		NIVision.IMAQdxCameraControlMode.CameraControlModeController);
-        //NIVision.IMAQdxConfigureGrab(id);
-        //NIVision.IMAQdxConfigureGrab(session2);
+        
+        session3 = NIVision.IMAQdxOpenCamera("cam3", 
+        		NIVision.IMAQdxCameraControlMode.CameraControlModeController);
+        
+        session4 = NIVision.IMAQdxOpenCamera("cam4", 
+        		NIVision.IMAQdxCameraControlMode.CameraControlModeController);
         
         joy1 = new Joystick(0);
         camOneOn = false;
+        
+        sessions = new int[4];
+        sessions[0] = session;
+        sessions[1] = session2;
+        sessions[2] = session3;
+        sessions[3] = session4;
+        
+        int currSession = 0;
     }
 
     public void operatorControl() {
-        NIVision.IMAQdxStartAcquisition(session);
-        //NIVision.IMAQdxStartAcquisition(session2);
+        NIVision.IMAQdxStartAcquisition(sessions[currSession]);
 
         /**
          * grab an image, draw the circle, and provide it for the camera server
@@ -51,28 +66,19 @@ public class Robot extends SampleRobot {
          */
 
         while (isOperatorControl() && isEnabled()) {
-        	if(!camOneOn) {
-        		NIVision.IMAQdxGrab(session, frame, 1);
-        	}
-        	else {
-        		NIVision.IMAQdxGrab(session2, frame, 1);
-        	}
+            
+            NIVision.IMAQdxGrab(sessions[currSession], frame, 1);
+   
             CameraServer.getInstance().setImage(frame);
             
             if(joy1.getTrigger()) {
-            	if(camOneOn) {
-            		NIVision.IMAQdxStopAcquisition(session2);
-            		NIVision.IMAQdxConfigureGrab(session);
-            		NIVision.IMAQdxStartAcquisition(session);
+            	NIVision.IMAQdxStopAcquisition(sessions[currSession++]);
+            	if(currSession > 3) {
+            		currSession = 0;
             	}
-            	else {
-            		NIVision.IMAQdxStopAcquisition(session);
-            		NIVision.IMAQdxConfigureGrab(session2);
-            		NIVision.IMAQdxStartAcquisition(session2);
-            	}
-            	camOneOn = !camOneOn;
+            	NIVision.IMAQdxConfigureGrab(sessions[currSession]);
+            	NIVision.IMAQdxStartAcquisition(sessions[currSession]);
             }
-
             /** robot code here! **/
             Timer.delay(0.005);		// wait for a motor update time
         }
