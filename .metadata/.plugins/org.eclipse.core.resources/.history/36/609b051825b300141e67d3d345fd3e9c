@@ -164,17 +164,6 @@ public class Robot extends SampleRobot {
 		
 		//server.startAutomaticCapture("cam2");
 		while(isOperatorControl() && isEnabled()){
-			
-			if(Math.abs(opStick.getY()) > 0.1) {
-				rightFront.set(opStick.getY());
-			}
-			System.out.println("Y: " + opStick.getY());
-			///////////////////////////////////////////////////////////////////////////////////////////////
-			//
-			// Voltage limiter code
-			//
-			///////////////////////////////////////////////////////////////////////////////////////////////
-			/*
 			if(opStick.getRawButton(1)) {
 				if(!atLowSpeed) {
 					if(rightFront.getOutputCurrent() > 7.5) {
@@ -198,12 +187,10 @@ public class Robot extends SampleRobot {
 			else if(opStick.getRawButton(3)) {
 				rightFront.set(-0.3);
 			}
-			
 			System.out.println("--------------------------------");
 			System.out.println("Encoder: " + rightFront.getEncPosition());
 			System.out.println("Current: " + rightFront.getOutputCurrent());
 			System.out.println("Low speed?: " + atLowSpeed);
-			*/
 			/*if(button9.get()){
 				//Forward
 				leftFront.set(0.5);
@@ -264,6 +251,30 @@ public class Robot extends SampleRobot {
 			System.out.println("Accel Y:\t" + aveY +  "ft/s^2");
 			System.out.println("===================================");
 			*/
+			/*
+			//PID Control Mode Switch Tests
+            if(button11.get()){
+            	if(!prevPressed){
+		        	if(rightFront.getControlMode().equals(CANTalon.ControlMode.Position)){
+		         		rightFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
+		         		prevPressed = true;
+		         		System.out.println("PERCENT V BUS");
+		        	} else {
+		         		rightFront.changeControlMode(CANTalon.ControlMode.Position);
+		         		prevPressed = true;
+		         		goal = rightFront.get();
+		         		System.out.println("POSITION");
+		        	}
+            	}
+            } else {
+            	prevPressed = false;
+            	if(rightFront.getControlMode().equals(CANTalon.ControlMode.Position)){
+            		rightFront.set(goal);
+                } else {
+                	rightFront.set(stick1.getY());
+                }
+            }
+            */
 		}
 		//output.close();
 		

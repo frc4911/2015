@@ -165,10 +165,10 @@ public class Robot extends SampleRobot {
 		//server.startAutomaticCapture("cam2");
 		while(isOperatorControl() && isEnabled()){
 			
-			if(Math.abs(opStick.getY()) > 0.1) {
-				rightFront.set(opStick.getY());
+			if(Math.abs(opStick.getRawAxis(1)) > 0.1) {
+				
 			}
-			System.out.println("Y: " + opStick.getY());
+			
 			///////////////////////////////////////////////////////////////////////////////////////////////
 			//
 			// Voltage limiter code

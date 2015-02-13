@@ -168,7 +168,7 @@ public class Robot extends SampleRobot {
 			if(Math.abs(opStick.getY()) > 0.1) {
 				rightFront.set(opStick.getY());
 			}
-			System.out.println("Y: " + opStick.getY());
+			
 			///////////////////////////////////////////////////////////////////////////////////////////////
 			//
 			// Voltage limiter code
