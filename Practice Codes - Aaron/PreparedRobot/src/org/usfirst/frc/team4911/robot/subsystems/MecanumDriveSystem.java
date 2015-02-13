@@ -85,10 +85,10 @@ public class MecanumDriveSystem extends Subsystem {
     	y *= speed;
     	
     	drive(x, y, rotation);
-    	printSystem.print("Drive X", x);
-    	printSystem.print("Drive Y", y);
-    	printSystem.print("Drive Rotation", rotation);
-    	printSystem.print("Speed Constant", speed);
+    	//printSystem.print("Drive X", x);
+    	//printSystem.print("Drive Y", y);
+    	//printSystem.print("Drive Rotation", rotation);
+    	//printSystem.print("Speed Constant", speed);
 	}
 	
 	public void drive(double left, double right){

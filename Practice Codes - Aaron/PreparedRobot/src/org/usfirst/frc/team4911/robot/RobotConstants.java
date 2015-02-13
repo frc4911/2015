@@ -81,8 +81,8 @@ public class RobotConstants {
     public static final double CONTAINERSYSTEM_CLAMP_MAX_WIDTH = 1.0;
     public static final double CONTAINERSYSTEM_CLAMP_MIN_WIDTH = 0;
     
-    public static final double CONTAINERSYSTEM_CLAMP_LOW_VOLTAGE_THRESHHOLD = 0.15;
-    public static final double CONTAINERSYSTEM_CLAMP_HIGH_VOLTAGE_THRESHHOLD = 7.5;
+    public static final double CONTAINERSYSTEM_CLAMP_LOW_AMPERAGE_THRESHHOLD = 0.15;
+    public static final double CONTAINERSYSTEM_CLAMP_HIGH_AMPERAGE_THRESHHOLD = 7.5;
     
     public static final int CONTAINERSYSTEM_CLAMP_POTENTIOMETER_PORT = 0;
     

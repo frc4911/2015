@@ -16,12 +16,8 @@ public class ContainerLiftSystem extends Subsystem {
 	private CANTalon containerContainer;
 	private DigitalInput switchIn;
 	private DigitalInput switchOut;
-	private boolean isLiftBeingUsed;
-	private boolean isClampBeingUsed;
 	private AnalogPotentiometer clampPot;
 	private boolean atLowSpeed = false;
-	
-	private double previousClampPos;
 	
     public void initDefaultCommand() {
 
@@ -30,7 +26,6 @@ public class ContainerLiftSystem extends Subsystem {
     public ContainerLiftSystem(){
     	containerLift = RobotMap.containerLift;
     	containerContainer = RobotMap.containerContainer;
-    	isLiftBeingUsed = false;
     }
     
     public void runLiftManually(double speed) {
@@ -44,9 +39,9 @@ public class ContainerLiftSystem extends Subsystem {
     }
     
     public void runClampManuallyForward() {
-    	if (containerContainer.getEncPosition() < RobotConstants.CONTAINERSYSTEM_CLAMP_MAX_WIDTH){
+    	if (!switchIn.get() && containerContainer.getEncPosition() > RobotConstants.CONTAINERSYSTEM_CLAMP_MIN_WIDTH){
 			if(!atLowSpeed) {
-				if(containerContainer.getOutputCurrent() > RobotConstants.CONTAINERSYSTEM_CLAMP_HIGH_VOLTAGE_THRESHHOLD) {
+				if(containerContainer.getOutputCurrent() > RobotConstants.CONTAINERSYSTEM_CLAMP_HIGH_AMPERAGE_THRESHHOLD) {
 					containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
 					atLowSpeed = true;
 				}
@@ -55,7 +50,7 @@ public class ContainerLiftSystem extends Subsystem {
 				}
 			}
 			else {
-				if(containerContainer.getOutputCurrent() < RobotConstants.CONTAINERSYSTEM_CLAMP_LOW_VOLTAGE_THRESHHOLD) {
+				if(containerContainer.getOutputCurrent() < RobotConstants.CONTAINERSYSTEM_CLAMP_LOW_AMPERAGE_THRESHHOLD) {
 					containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
 					atLowSpeed = false;
 				}
@@ -70,7 +65,7 @@ public class ContainerLiftSystem extends Subsystem {
 	}
 	
 	public void runClampManuallyBackward(){
-		if(!switchIn.get() && containerContainer.getEncPosition() > RobotConstants.CONTAINERSYSTEM_CLAMP_MIN_WIDTH){
+		if(containerContainer.getEncPosition() < RobotConstants.CONTAINERSYSTEM_CLAMP_MAX_WIDTH){
 			containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
 		}
 	}
@@ -107,22 +102,6 @@ public class ContainerLiftSystem extends Subsystem {
     	} else {
     		containerContainer.set(input);
     	}
-    }
-    
-    public boolean isLiftBeingUsed(){
-    	return isLiftBeingUsed;
-    }
-    
-    public void setLiftBeingUsed(boolean b){
-    	this.isLiftBeingUsed = b;
-    }
-    
-    public boolean isClampBeingUsed(){
-    	return isClampBeingUsed;
-    }
-    
-    public void setClampBeingUsed(boolean b){
-    	this.isClampBeingUsed = b;
     }
     
     //CHECK IF THE SIGNS ARE CORRECT
