@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <session version="1.0">
 <refactoring comment="Delete resource &apos;Graphics Interface&apos;" deleteContents="false" description="Delete resource &apos;Graphics Interface&apos;" element1="/Graphics Interface" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1423785278291"/>
+=======
+<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;PreparedRobot&apos;" deleteContents="false" description="Delete resource &apos;PreparedRobot&apos;" element1="/PreparedRobot" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1423709667304"/>&#x0A;<refactoring comment="Delete resource &apos;CAN Talon SRX PID Testing Project&apos;" deleteContents="false" description="Delete resource &apos;CAN Talon SRX PID Testing Project&apos;" element1="/CAN Talon SRX PID Testing Project" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1423791515300"/>&#x0A;<refactoring comment="Delete resource &apos;CAN Talon SRX PID Testing Project&apos;" deleteContents="false" description="Delete resource &apos;CAN Talon SRX PID Testing Project&apos;" element1="/CAN Talon SRX PID Testing Project" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1423808887859"/>
+>>>>>>> b5d38064a53061b843302ae290409096e5e048df
 </session>

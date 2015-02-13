@@ -68,17 +68,11 @@ public class SensorSystem extends Subsystem {
     	return imu.getRoll();
     }
     public float getYaw(){
-    	return getYawWithCompensation();
-<<<<<<< HEAD
-    	//return imu.getYaw();
-=======
->>>>>>> b5d38064a53061b843302ae290409096e5e048df
+    	return imu.getYaw();
     }
     public float getYawWithCompensation(){
     	Double ellapsedTime = Timer.getFPGATimestamp() - startTime;
     	return imu.getYaw() + (float)(RobotConstants.YAW_DRIFT_PER_TICK * ellapsedTime);
-    	
-    
     	
     }
     public float getTemp(){
