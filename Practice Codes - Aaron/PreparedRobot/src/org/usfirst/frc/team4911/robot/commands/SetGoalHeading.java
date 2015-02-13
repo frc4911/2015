@@ -1,9 +1,9 @@
 package org.usfirst.frc.team4911.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+
 import org.usfirst.frc.team4911.robot.Robot;
 import org.usfirst.frc.team4911.robot.subsystems.MecanumDriveSystem;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  *
@@ -13,7 +13,6 @@ public class SetGoalHeading extends Command {
 	private double goalHeading;
 	private double desiredGoalHeading;
 	private double deltaGoalHeading;
-	private JoystickButton button;
 	private MecanumDriveSystem mecanumDriveSystem;
 	private boolean addingHeading;
 	

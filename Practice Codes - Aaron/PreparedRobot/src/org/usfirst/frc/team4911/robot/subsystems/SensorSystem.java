@@ -1,5 +1,7 @@
 package org.usfirst.frc.team4911.robot.subsystems;
 
+import java.util.Arrays;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.Gyro;
@@ -27,12 +29,19 @@ public class SensorSystem extends Subsystem {
 	public static LIDAR lidar = RobotMap.lidar;
 	
 	public double startTime;
+	public DataBuffer accelXBuffer;
+	public DataBuffer accelYBuffer;
+	int binNumber = 50;
+	
 	
 	public SensorSystem(){
 	    gyro.setSensitivity(RobotConstants.GYRO_SENSITIVITY);
 	    gyro.initGyro();
     	startTime = Timer.getFPGATimestamp();
     	lidar.start();
+    	
+    	accelXBuffer = new DataBuffer(binNumber);
+    	accelYBuffer = new DataBuffer(binNumber);    	
 	}
 	
     public void initDefaultCommand() {
@@ -59,7 +68,7 @@ public class SensorSystem extends Subsystem {
     	return imu.getRoll();
     }
     public float getYaw(){
-    	return imu.getYaw();
+    	return getYawWithCompensation();
     }
     public float getYawWithCompensation(){
     	Double ellapsedTime = Timer.getFPGATimestamp() - startTime;
@@ -78,12 +87,27 @@ public class SensorSystem extends Subsystem {
     public float getAccelZ(){
     	return imu.getWorldLinearAccelZ() * RobotConstants.SENSORSYSTEM_GRAVITATIONAL_ACCELERATION;
     }
-    public float getAverageLinearAccel(){
-    	return imu.getAverageFromWorldLinearAccelHistory();
-    }
-    
     public float getCompass(){
     	return imu.getCompassHeading();
+    }
+    
+    public double getBufferedAccelX(){
+    	accelXBuffer.add(this.getAccelX());
+    	return accelXBuffer.get();
+    }
+    public double getBufferedAccelY(){
+    	accelYBuffer.add(this.getAccelY());
+    	return accelYBuffer.get();
+    }
+    public void clearAccelBuffer(){
+    	accelXBuffer = new DataBuffer(binNumber);
+    	accelYBuffer = new DataBuffer(binNumber);
+    }
+    public String accelXBufferToString(){
+    	return accelXBuffer.toString();
+    }
+    public String accelYBufferToString(){
+    	return accelYBuffer.toString();
     }
     
     /***************************************
@@ -141,6 +165,34 @@ public class SensorSystem extends Subsystem {
     
     public double getIN() {
     	return ((double)lidar.getDistance() / (RobotConstants.inToCM));
+    }
+    
+    public class DataBuffer{
+    	private double[] buffer;
+    	private int size;
+    	private int currIndex;
+    	
+    	public DataBuffer(int size){
+    		this.size = size;
+    		this.buffer = new double[this.size];
+    		currIndex = 0;
+    	}
+    	public void add(double value){
+    		buffer[currIndex] = value;
+    		currIndex++;
+    		currIndex %= size;
+    	}
+    	public double get(){
+    		double temp = 0.0;
+    		for(double d : this.buffer){
+    			temp += d;
+    		}
+    		temp /= this.size;
+    		return temp;
+    	}
+    	public String toString(){
+    		return Arrays.toString(buffer);
+    	}
     }
 }
 
