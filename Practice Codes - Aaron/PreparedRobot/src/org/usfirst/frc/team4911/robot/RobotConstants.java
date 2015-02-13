@@ -81,8 +81,8 @@ public class RobotConstants {
     public static final double CONTAINERSYSTEM_CLAMP_MAX_WIDTH = 1.0;
     public static final double CONTAINERSYSTEM_CLAMP_MIN_WIDTH = 0;
     
-    public static final double CONTAINERSYSTEM_CLAMP_LOW_VOLTAGE_THRESHHOLD = 0.15;
-    public static final double CONTAINERSYSTEM_CLAMP_HIGH_VOLTAGE_THRESHHOLD = 7.5;
+    public static final double CONTAINERSYSTEM_CLAMP_LOW_AMPERAGE_THRESHHOLD = 0.15;
+    public static final double CONTAINERSYSTEM_CLAMP_HIGH_AMPERAGE_THRESHHOLD = 7.5;
     
     public static final int CONTAINERSYSTEM_CLAMP_POTENTIOMETER_PORT = 0;
     
@@ -112,6 +112,6 @@ public class RobotConstants {
     
     //PrintSystem Constants
     public static final int printFrequency = 10;
-    public static final boolean STATIC_INFO_ALLOWED = true;
+    public static final boolean STATIC_INFO_ALLOWED = false;
     
 }

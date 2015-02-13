@@ -162,7 +162,11 @@ public class OperatorDrive extends Command {
 	        	//0.3 for x
 	        	//0.0 for y
 	        }*/
+			
 		}
+		
+		printSystem.print("IMU value: " + sensorSystem.getYaw());
+		printSystem.print("IMU value with compensation: " + sensorSystem.getYawWithCompensation());
 	}
 
 	@Override
