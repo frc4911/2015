@@ -68,8 +68,19 @@ public class ContainerLiftSystem extends Subsystem {
 		if(containerContainer.getEncPosition() < RobotConstants.CONTAINERSYSTEM_CLAMP_MAX_WIDTH){
 			containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
 		}
+		else {
+			containerContainer.set(0.0);
+		}
 	}
     
+	public boolean lowSpeed() {
+		return atLowSpeed;
+	}
+	
+	public void setLowSpeed(boolean on) {
+		atLowSpeed = on;
+	}
+	
     public void liftViaPercent(double position){
     	containerLift.set(RobotConstants.CONTAINERSYSTEM_TOTAL_DISTANCE * position / RobotConstants.CONTAINERSYSTEM_ENCODER_DISTANCE_PER_PULSE);
     }

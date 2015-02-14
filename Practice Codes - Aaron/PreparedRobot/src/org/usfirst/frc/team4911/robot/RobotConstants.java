@@ -30,6 +30,8 @@ public class RobotConstants {
     public static final double DRIVESYSTEM_kI = 0.0;
     public static final double DRIVESYSTEM_kD = 0.0; //0.005
     
+    public static final double DRIVE_ONE_STAGE_ZONE = 0.0;
+    
     //HOOK SYSTEM CONSTANTS
     public static final int HOOK_LEFT_CANTALON_PORT = 1;
     public static final int HOOK_RIGHT_CANTALON_PORT = 2;
