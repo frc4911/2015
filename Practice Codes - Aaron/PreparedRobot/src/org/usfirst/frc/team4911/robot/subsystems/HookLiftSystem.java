@@ -45,8 +45,7 @@ public class HookLiftSystem extends Subsystem {
     //toteNum = level of the tote on the ground
     public void liftViaTote(double toteNum){
     	if(toteNum > 0){
-	    	leftHook.set(RobotConstants.TOTE_HEIGHT * (toteNum - 1) / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
-	    	rightHook.set(RobotConstants.TOTE_HEIGHT * (toteNum - 1) / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
+    		setLiftToPoint(RobotConstants.TOTE_HEIGHT * (toteNum - 1) / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
     	}
     }
     

@@ -10,6 +10,7 @@ import java.math.*;
 
 import com.kauailabs.nav6.frc.IMUAdvanced;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.RobotDrive.MotorType;
@@ -24,6 +25,7 @@ public class MecanumDriveSystem extends Subsystem {
 	private RobotDrive robot = new RobotDrive(frontLeft, rearLeft, frontRight, rearRight);
 	private SerialPort serial_port;	
 	private PrintSystem printSystem;
+	private Encoder distanceEncoder = RobotMap.distanceEncoder;
 	
 	private double rotation;
 	private double currError;
@@ -115,6 +117,14 @@ public class MecanumDriveSystem extends Subsystem {
 	public void setSpeed(double speed){
 		this.speed = speed;
 	}
+	
+	public double getDistanceEncoder() {
+		return frontLeft.getEncPosition();
+	}
+	public void setDistanceEncoder(double value) {
+		frontLeft.setPosition(value);
+	}
+	
 	
 	public double getLeftFrontCurrent(){
 		return frontLeft.getOutputCurrent();
