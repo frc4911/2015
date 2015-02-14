@@ -69,6 +69,10 @@ public class SensorSystem extends Subsystem {
     }
     public float getYaw(){
     	return getYawWithCompensation();
+<<<<<<< HEAD
+    	//return imu.getYaw();
+=======
+>>>>>>> 7b299824cb9a10ee6f6f20e62ba8ea94b91199e9
     }
     public float getYawWithCompensation(){
     	Double ellapsedTime = Timer.getFPGATimestamp() - startTime;
