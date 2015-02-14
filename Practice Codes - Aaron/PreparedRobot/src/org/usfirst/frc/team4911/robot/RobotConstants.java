@@ -34,6 +34,7 @@ public class RobotConstants {
     public static final int Y_SLIDE_ENCODER_PORT_B = 1;
     public static final int X_SLIDE_ENCODER_PORT_A = 1;
     public static final int X_SLIDE_ENCODER_PORT_B = 1;
+    public static final double DRIVE_ONE_STAGE_ZONE = 0.0;
     
     //HOOK SYSTEM CONSTANTS
     public static final int HOOK_LEFT_CANTALON_PORT = 1;
