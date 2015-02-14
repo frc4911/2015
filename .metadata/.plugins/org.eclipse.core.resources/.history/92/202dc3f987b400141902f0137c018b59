@@ -1,7 +1,11 @@
 package org.usfirst.frc.team4911.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+
+<<<<<<< HEAD
 import org.usfirst.frc.team4911.robot.commands.*;
+=======
+>>>>>>> f5dd7384060ce786d105eba601104d5ef26d1b12
 import org.usfirst.frc.team4911.robot.RobotConstants;
 
 /**
