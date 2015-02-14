@@ -5,6 +5,7 @@ import org.usfirst.frc.team4911.robot.subsystems.PrintSystem;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Gyro;
@@ -37,6 +38,8 @@ public class RobotMap {
 	public static IMUAdvanced imu;
 	public static BuiltInAccelerometer accelerometer;
 	public static Gyro gyro;
+	
+	public static Encoder distanceEncoder;
 
 	public static LIDAR lidar;	
 	public static Servo cameraServo;
@@ -98,6 +101,9 @@ public class RobotMap {
 		lidar = new LIDAR(I2C.Port.kMXP);
 		cameraServo = new Servo(RobotConstants.CAMERA_SERVO_PORT);
 		cameraServo.set(RobotConstants.CAMERA_SERVO_MID);
+		
+
+		//distanceEncoder = new Encoder(1);
 		
 		
 
