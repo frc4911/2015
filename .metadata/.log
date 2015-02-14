@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+!SESSION 2015-02-14 10:54:20.298 -----------------------------------------------
+=======
 !SESSION 2015-02-13 16:27:19.319 -----------------------------------------------
+>>>>>>> d99e71e5830229e34ebfb77c1aefb9976e235d56
 eclipse.buildId=4.4.1.M20140925-0400
 java.version=1.8.0_25
 java.vendor=Oracle Corporation
@@ -6,6 +10,49 @@ BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
 Framework arguments:  -product org.eclipse.epp.package.java.product
 Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
 
+<<<<<<< HEAD
+This is a continuation of log file C:\Users\Jack\Documents\GitHub\2015\.metadata\.bak_0.log
+Created Time: 2015-02-14 11:34:15.584
+
+!ENTRY org.eclipse.debug.ui 4 120 2015-02-14 11:34:15.584
+!MESSAGE Error logged from Debug UI: 
+!STACK 0
+org.xml.sax.SAXParseException; lineNumber: 12; columnNumber: 2; The content of elements must consist of well-formed character data or markup.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(Unknown Source)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLScanner.reportFatalError(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.startOfMarkup(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(Unknown Source)
+	at org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationManager.restoreLaunchHistory(LaunchConfigurationManager.java:502)
+	at org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationManager.loadLaunchHistories(LaunchConfigurationManager.java:1069)
+	at org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationManager.getLaunchHistory(LaunchConfigurationManager.java:1041)
+	at org.eclipse.debug.ui.actions.AbstractLaunchHistoryAction.internalGetHistory(AbstractLaunchHistoryAction.java:540)
+	at org.eclipse.debug.ui.actions.AbstractLaunchHistoryAction.getToolTip(AbstractLaunchHistoryAction.java:233)
+	at org.eclipse.debug.ui.actions.AbstractLaunchHistoryAction.updateTooltip(AbstractLaunchHistoryAction.java:198)
+	at org.eclipse.debug.ui.actions.AbstractLaunchHistoryAction.initialize(AbstractLaunchHistoryAction.java:168)
+	at org.eclipse.debug.ui.actions.AbstractLaunchHistoryAction.selectionChanged(AbstractLaunchHistoryAction.java:506)
+	at org.eclipse.ui.internal.PluginAction.refreshEnablement(PluginAction.java:206)
+	at org.eclipse.ui.internal.PluginAction.createDelegate(PluginAction.java:126)
+	at org.eclipse.ui.internal.WWinPluginAction.refreshActionList(WWinPluginAction.java:167)
+	at org.eclipse.ui.plugin.AbstractUIPlugin$1.run(AbstractUIPlugin.java:492)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:136)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4147)
+	at org.eclipse.swt.widgets.Display.msgFilterProc(Display.java:3479)
+	at org.eclipse.swt.internal.win32.OS.TrackPopupMenu(Native Method)
+	at org.eclipse.swt.widgets.Menu._setVisible(Menu.java:256)
+	at org.eclipse.swt.widgets.Display.runPopups(Display.java:4213)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3755)
+=======
 This is a continuation of log file C:\Users\pratz_000\Documents\GitHub\2015\.metadata\.bak_0.log
 Created Time: 2015-02-13 19:16:11.439
 
@@ -233,6 +280,7 @@ java.lang.IllegalArgumentException: Index out of bounds
 	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1061)
 	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4172)
 	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3761)
+>>>>>>> d99e71e5830229e34ebfb77c1aefb9976e235d56
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1151)
 	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1032)
@@ -255,6 +303,134 @@ java.lang.IllegalArgumentException: Index out of bounds
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:603)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
 
+<<<<<<< HEAD
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-14 11:35:13.102
+!MESSAGE [org.usfirst.frc.team4911.robot.commands [in src [in PreparedRobot]]
+  EnableRotate.java
+    package org.usfirst.frc.team4911.robot.commands
+    import org.usfirst.frc.team4911.robot.OI
+    import org.usfirst.frc.team4911.robot.Robot
+    import org.usfirst.frc.team4911.robot.RobotConstants
+    import org.usfirst.frc.team4911.robot.subsystems.MecanumDriveSystem
+    import org.usfirst.frc.team4911.robot.subsystems.SensorSystem
+    import org.usfirst.frc.team4911.robot.subsystems.PrintSystem
+    import edu.wpi.first.wpilibj.Timer
+    import edu.wpi.first.wpilibj.command.Command
+    import edu.wpi.first.wpilibj.buttons.*
+    class EnableRotate
+      MecanumDriveSystem mecanumDriveSystem
+      SensorSystem sensorSystem
+      PrintSystem printSystem
+      OI oi
+      OperatorDrive operatorDrive
+      JoystickButton button
+      boolean driveSystemConflict
+      boolean gridLocked
+      double previousDegree
+      double currentDegree
+      double deltaDegree
+      int numIteration
+      double THRESHOLD
+      EnableRotate(JoystickButton)
+      void initialize()
+      void execute()
+      boolean isFinished()
+      void end()
+      void interrupted()
+  MoveContainerLift.java
+    package org.usfirst.frc.team4911.robot.commands
+    import org.usfirst.frc.team4911.robot.Robot
+    import org.usfirst.frc.team4911.robot.RobotConstants
+    import org.usfirst.frc.team4911.robot.subsystems.ContainerLiftSystem
+    import edu.wpi.first.wpilibj.command.Command
+    class MoveContainerLift
+      ContainerLiftSystem containerLiftSystem
+      double toteLevel
+      double THRESHOLD
+      MoveContainerLift(double)
+      void initialize()
+      void execute()
+      boolean isFinished()
+      void end()
+      void interrupted()
+  RunPrintServer.java
+    package org.usfirst.frc.team4911.robot.commands
+    import edu.wpi.first.wpilibj.DriverStation
+    import edu.wpi.first.wpilibj.command.Command
+    import org.usfirst.frc.team4911.robot.Robot
+    import org.usfirst.frc.team4911.robot.RobotConstants
+    import org.usfirst.frc.team4911.robot.subsystems.*
+    class RunPrintServer
+      PrintSystem printSystem
+      SensorSystem sensorSystem
+      MecanumDriveSystem driveSystem
+      RunPrintServer()
+      void initialize()
+      void execute()
+      boolean isFinished()
+      void end()
+      void interrupted()
+      void addStaticInfo()
+  ZeroYaw.java
+    package org.usfirst.frc.team4911.robot.commands
+    import edu.wpi.first.wpilibj.command.Command
+    import org.usfirst.frc.team4911.robot.subsystems.MecanumDriveSystem
+    import org.usfirst.frc.team4911.robot.Robot
+    import edu.wpi.first.wpilibj.buttons.JoystickButton
+    class ZeroYaw
+      JoystickButton button
+      ZeroYaw(JoystickButton)
+      void initialize()
+      void execute()
+      boolean isFinished()
+      void end()
+      void interrupted()
+  MaintainDistance.java
+    package org.usfirst.frc.team4911.robot.commands
+    import org.usfirst.frc.team4911.robot.subsystems.MecanumDriveSystem
+    import org.usfirst.frc.team4911.robot.subsystems.SensorSystem
+    import org.usfirst.frc.team4911.robot.subsystems.PrintSystem
+    import org.usfirst.frc.team4911.robot.OI
+    import org.usfirst.frc.team4911.robot.Robot
+    import edu.wpi.first.wpilibj.Timer
+    import edu.wpi.first.wpilibj.command.Command
+    class MaintainDistance
+      MecanumDriveSystem mecanumDriveSystem
+      SensorSystem sensorSystem
+      PrintSystem printSystem
+      OperatorDrive operatorDrive
+      OI oi
+      double error
+      double previousError
+      double derivative
+      double goalDistance
+      boolean endCommand
+      double threshold
+      MaintainDistance()
+      void initialize()
+      void execute()
+      boolean isFinished()
+      void end()
+      void interrupted()
+  MoveContainerClamp.java
+    package org.usfirst.frc.team4911.robot.commands
+    import org.usfirst.frc.team4911.robot.Robot
+    import org.usfirst.frc.team4911.robot.Robot#2
+    import org.usfirst.frc.team4911.robot.RobotConstants
+    import org.usfirst.frc.team4911.robot.subsystems.ContainerLiftSystem
+    import edu.wpi.first.wpilibj.command.Command
+    class MoveContainerClamp
+      ContainerLiftSystem containerLiftSystem
+      ContainerLiftSystem.ContainerStatus val
+      double THRESHOLD
+      MoveContainerClamp(ContainerLiftSystem.ContainerStatus)
+      void initialize()
+      void execute()
+      boolean isFinished()
+      void end()
+      void interrupted()
+  PIDAxisDrive.java
+=======
 !ENTRY org.eclipse.ui 4 0 2015-02-13 19:16:11.689
 !MESSAGE Unhandled event loop exception
 !STACK 0
@@ -1084,6 +1260,7 @@ java.lang.IllegalArgumentException: Index out of bounds
   MaintainDistance.java (not open)
   MoveContainerClamp.java (not open)
   [Working copy] PIDAxisDrive.java
+>>>>>>> d99e71e5830229e34ebfb77c1aefb9976e235d56
     package org.usfirst.frc.team4911.robot.commands
     import edu.wpi.first.wpilibj.command.Command
     import edu.wpi.first.wpilibj.Joystick
@@ -1125,8 +1302,31 @@ java.lang.IllegalArgumentException: Index out of bounds
       boolean isFinished()
       void end()
       void interrupted()
+<<<<<<< HEAD
+  SetDriveSpeed.java
+    package org.usfirst.frc.team4911.robot.commands
+    import edu.wpi.first.wpilibj.command.Command
+    import edu.wpi.first.wpilibj.Joystick
+    import edu.wpi.first.wpilibj.buttons.JoystickButton
+    import org.usfirst.frc.team4911.robot.subsystems.*
+    import org.usfirst.frc.team4911.robot.Robot
+    import org.usfirst.frc.team4911.robot.RobotConstants
+    import org.usfirst.frc.team4911.robot.OI
+    import org.usfirst.frc.team4911.robot.RobotConstants#2
+    class SetDriveSpeed
+      double speed
+      JoystickButton button
+      SetDriveSpeed(double, JoystickButton)
+      void initialize()
+      void execute()
+      boolean isFinished()
+      void end()
+      void interrupted()
+  Autonomous.java
+=======
   SetDriveSpeed.java (not open)
   [Working copy] Autonomous.java
+>>>>>>> d99e71e5830229e34ebfb77c1aefb9976e235d56
     package org.usfirst.frc.team4911.robot.commands
     import org.usfirst.frc.team4911.robot.Robot
     import org.usfirst.frc.team4911.robot.RobotConstants
@@ -1146,10 +1346,92 @@ java.lang.IllegalArgumentException: Index out of bounds
       boolean isFinished()
       void end()
       void interrupted()
+<<<<<<< HEAD
+  SetCameraServo.java
+    package org.usfirst.frc.team4911.robot.commands
+    import edu.wpi.first.wpilibj.command.Command
+    import org.usfirst.frc.team4911.robot.Robot
+    import org.usfirst.frc.team4911.robot.subsystems.CameraSystem
+    class SetCameraServo
+      CameraSystem cameraSystem
+      double pos
+      SetCameraServo(double)
+      void initialize()
+      void execute()
+      boolean isFinished()
+      void end()
+      void interrupted()
+  RotateForTime.java
+    package org.usfirst.frc.team4911.robot.commands
+    import edu.wpi.first.wpilibj.Timer
+    import edu.wpi.first.wpilibj.buttons.JoystickButton
+    import edu.wpi.first.wpilibj.command.Command
+    import org.usfirst.frc.team4911.robot.OI
+    import org.usfirst.frc.team4911.robot.Robot
+    import org.usfirst.frc.team4911.robot.RobotConstants
+    import org.usfirst.frc.team4911.robot.commands.OperatorDrive
+    import org.usfirst.frc.team4911.robot.subsystems.MecanumDriveSystem
+    import org.usfirst.frc.team4911.robot.subsystems.SensorSystem
+    import org.usfirst.frc.team4911.robot.subsystems.PrintSystem
+    class RotateForTime
+      MecanumDriveSystem mecanumDriveSystem
+      SensorSystem sensorSystem
+      PrintSystem printSystem
+      OI oi
+      double startTime
+      double maxRotateTime
+      OperatorDrive operatorDrive
+      double rotateSpeed
+      RotateForTime(double, double)
+      void initialize()
+      void execute()
+      boolean isFinished()
+      void end()
+      void interrupted()
+  SetGoalHeading.java
+    package org.usfirst.frc.team4911.robot.commands
+    import edu.wpi.first.wpilibj.command.Command
+    import org.usfirst.frc.team4911.robot.Robot
+    import org.usfirst.frc.team4911.robot.subsystems.MecanumDriveSystem
+    class SetGoalHeading
+      double goalHeading
+      double desiredGoalHeading
+      double deltaGoalHeading
+      MecanumDriveSystem mecanumDriveSystem
+      boolean addingHeading
+      SetGoalHeading(double)
+      SetGoalHeading(int)
+      void initialize()
+      void execute()
+      boolean isFinished()
+      void end()
+      void interrupted()
+  DrivePastObstacle.java
+    package org.usfirst.frc.team4911.robot.commands
+    import edu.wpi.first.wpilibj.command.Command
+    import org.usfirst.frc.team4911.robot.subsystems.*
+    import org.usfirst.frc.team4911.robot.Robot
+    import org.usfirst.frc.team4911.robot.OI
+    import org.usfirst.frc.team4911.robot.RobotConstants
+    class DrivePastObstacle
+      OperatorDrive operatorDrive
+      SensorSystem sensorSystem
+      MecanumDriveSystem mecanumDriveSystem
+      int expectedObstacles
+      int obstaclesFound
+      boolean obstacleExpected
+      DrivePastObstacle(int)
+      void initialize()
+      void execute()
+      boolean isFinished()
+      void end()
+      void interrupted()
+=======
   SetCameraServo.java (not open)
   RotateForTime.java (not open)
   SetGoalHeading.java (not open)
   DrivePastObstacle.java (not open)
+>>>>>>> d99e71e5830229e34ebfb77c1aefb9976e235d56
   OperatorDrive.java
     package org.usfirst.frc.team4911.robot.commands
     import edu.wpi.first.wpilibj.CANTalon
@@ -1175,7 +1457,11 @@ java.lang.IllegalArgumentException: Index out of bounds
       boolean isFinished()
       void end()
       void interrupted()
+<<<<<<< HEAD
+  [Working copy] AutoStackCrate.java
+=======
   [Working copy] AutonomousStackCrates.java
+>>>>>>> d99e71e5830229e34ebfb77c1aefb9976e235d56
     package org.usfirst.frc.team4911.robot.commands
     import org.usfirst.frc.team4911.robot.commands.*
     import org.usfirst.frc.team4911.robot.OI
@@ -1187,13 +1473,32 @@ java.lang.IllegalArgumentException: Index out of bounds
     import org.usfirst.frc.team4911.robot.subsystems.PrintSystem
     import org.usfirst.frc.team4911.robot.subsystems.SensorSystem
     import edu.wpi.first.wpilibj.command.CommandGroup
+<<<<<<< HEAD
+    class AutoStackCrate
+=======
     class AutonomousStackCrates
+>>>>>>> d99e71e5830229e34ebfb77c1aefb9976e235d56
       MecanumDriveSystem mecanumDriveSystem
       SensorSystem sensorSystem
       ContainerLiftSystem containerLiftSystem
       HookLiftSystem hookLiftSystem
       PrintSystem printSystem
       OI oi
+<<<<<<< HEAD
+      AutoStackCrate()]
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-14 11:35:13.102
+!MESSAGE class org.eclipse.jdt.internal.core.PackageFragment
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-14 11:35:13.140
+!MESSAGE initialize
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-14 11:35:13.140
+!MESSAGE Project: P/PreparedRobot
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-14 11:35:49.498
+!MESSAGE Class: AutonomousStackAndDrive Package: org.usfirst.frc.team4911.robot.commands
+=======
       AutonomousStackCrates()]
 
 !ENTRY WPILib_Java_Robot_Development 1 0 2015-02-13 19:16:22.942
@@ -12415,6 +12720,7 @@ org.xml.sax.SAXParseException; lineNumber: 12; columnNumber: 2; The content of e
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:648)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:603)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
+<<<<<<< HEAD
 !SESSION 2015-02-14 12:11:35.124 -----------------------------------------------
 eclipse.buildId=4.4.1.M20140925-0400
 java.version=1.8.0_25
@@ -12461,3 +12767,6 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-14 12:11:49.524
 !MESSAGE Installedjava
+=======
+>>>>>>> d99e71e5830229e34ebfb77c1aefb9976e235d56
+>>>>>>> 4a310d20b4a8c2d8be7e4562c25211724348e858
