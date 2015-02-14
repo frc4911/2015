@@ -1,0 +1,28 @@
+package org.usfirst.frc.team4911.robot.commands;
+
+import edu.wpi.first.wpilibj.command.CommandGroup;
+
+import org.usfirst.frc.team4911.robot.commands.*;
+import org.usfirst.frc.team4911.robot.OI;
+import org.usfirst.frc.team4911.robot.Robot;
+import org.usfirst.frc.team4911.robot.RobotConstants;
+import org.usfirst.frc.team4911.robot.subsystems.ContainerLiftSystem;
+import org.usfirst.frc.team4911.robot.subsystems.HookLiftSystem;
+import org.usfirst.frc.team4911.robot.subsystems.MecanumDriveSystem;
+import org.usfirst.frc.team4911.robot.subsystems.PrintSystem;
+import org.usfirst.frc.team4911.robot.subsystems.SensorSystem;
+
+/**
+ *
+ */
+public class AutonomousStackAndDrive extends CommandGroup {
+    
+    public  AutonomousStackAndDrive() {
+    	
+        addSequential(new AutoStackCrateLeft());
+        addSequential(new AutoStackCrateLeft());
+
+    	addSequential(new PIDAxisDrive(0.1, 0.0, 10.0)); // drives accross right 10 encoder pulses
+    	addSequential(new PIDAxisDrive(0.0, 0.5, 500.0)); // drives forward 500 encoder pulses
+    }
+}

@@ -25,7 +25,9 @@ public class MecanumDriveSystem extends Subsystem {
 	private RobotDrive robot = new RobotDrive(frontLeft, rearLeft, frontRight, rearRight);
 	private SerialPort serial_port;	
 	private PrintSystem printSystem;
-	private Encoder distanceEncoder = RobotMap.distanceEncoder;
+
+	private Encoder ySlideEncoder = RobotMap.ySlideEncoder;
+	private Encoder xSlideEncoder = RobotMap.xSlideEncoder;
 	
 	private double rotation;
 	private double currError;
@@ -54,6 +56,8 @@ public class MecanumDriveSystem extends Subsystem {
 	protected void initDefaultCommand() {
 
 	}
+	
+	//================ DRIVE CONTROL METHODS ==========================	
 	
 	public void drive(double x, double y, double rotation){
 		//Speed Correction 
@@ -118,6 +122,9 @@ public class MecanumDriveSystem extends Subsystem {
 		this.speed = speed;
 	}
 	
+	
+	//================ ENCODER METHODS =====================================
+	
 	public double getDistanceEncoder() {
 		return frontLeft.getEncPosition();
 	}
@@ -125,6 +132,27 @@ public class MecanumDriveSystem extends Subsystem {
 		frontLeft.setPosition(value);
 	}
 	
+	public double getXSlideEncoder() {
+		// Should return the slide encoder for the X axis
+		// Returns the wheel encoders for now
+		return frontLeft.getEncPosition();
+	}
+	public double getYSlideEncoder() {
+		// Gets the slide encoder for the Y axis
+		// Returns the wheel encoders for now
+		return frontLeft.getEncPosition();
+	}
+	public void resetXSlideEncoder() {
+		xSlideEncoder.reset();
+	}
+	public void resetYSlideEncoder() {
+		ySlideEncoder.reset();
+	}
+	
+	
+	
+	
+	//================ CANTALON METHODS =======================================
 	
 	public double getLeftFrontCurrent(){
 		return frontLeft.getOutputCurrent();

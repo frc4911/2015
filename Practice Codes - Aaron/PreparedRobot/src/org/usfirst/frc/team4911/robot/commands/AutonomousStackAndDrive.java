@@ -1,0 +1,37 @@
+package org.usfirst.frc.team4911.robot.commands;
+
+import edu.wpi.first.wpilibj.command.CommandGroup;
+
+import org.usfirst.frc.team4911.robot.commands.*;
+import org.usfirst.frc.team4911.robot.OI;
+import org.usfirst.frc.team4911.robot.Robot;
+import org.usfirst.frc.team4911.robot.RobotConstants;
+import org.usfirst.frc.team4911.robot.subsystems.ContainerLiftSystem;
+import org.usfirst.frc.team4911.robot.subsystems.HookLiftSystem;
+import org.usfirst.frc.team4911.robot.subsystems.MecanumDriveSystem;
+import org.usfirst.frc.team4911.robot.subsystems.PrintSystem;
+import org.usfirst.frc.team4911.robot.subsystems.SensorSystem;
+
+/**
+ *
+ */
+public class AutonomousStackAndDrive extends CommandGroup {
+    
+    public  AutonomousStackAndDrive() {
+    	
+    	// ======================= STARTING POSITION INSTRUCTIONS ===========================
+    	// For this command the robot must start in TOTE_ACQUIRE_POSITION ready to
+    	// acquire the tote on the FAR LEFT SIDE OF THE FIELD. It will move left and stack on
+    	// the next two totes to the left, giving it a stack of three. It will then drive into
+    	// the autonomous zone, deposit the totes, back up slightly, and stop.
+    	
+        addSequential(new AutoStackCrateLeft());
+        addSequential(new AutoStackCrateLeft());
+
+    	addSequential(new PIDAxisDrive(0.1, 0.0, 10.0)); // drives accross right 10 encoder pulses
+    	addSequential(new PIDAxisDrive(0.0, 0.5, 500.0)); // drives forward 500 encoder pulses
+    	
+    	addSequential(new MoveToteLift(RobotConstants.TOTE_GROUND_POSITION));
+    	addSequential(new PIDAxisDrive(0.0, -0.5, 10.0)); // drives backward 10 encoder pulses
+    }
+}

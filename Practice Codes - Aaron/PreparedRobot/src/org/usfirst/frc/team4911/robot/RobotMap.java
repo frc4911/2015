@@ -39,7 +39,8 @@ public class RobotMap {
 	public static BuiltInAccelerometer accelerometer;
 	public static Gyro gyro;
 	
-	public static Encoder distanceEncoder;
+	public static Encoder xSlideEncoder;
+	public static Encoder ySlideEncoder;
 
 	public static LIDAR lidar;	
 	public static Servo cameraServo;
@@ -102,8 +103,8 @@ public class RobotMap {
 		cameraServo = new Servo(RobotConstants.CAMERA_SERVO_PORT);
 		cameraServo.set(RobotConstants.CAMERA_SERVO_MID);
 		
-
-		//distanceEncoder = new Encoder(1);
+		xSlideEncoder = new Encoder(RobotConstants.X_SLIDE_ENCODER_PORT_A,RobotConstants.X_SLIDE_ENCODER_PORT_B);
+		ySlideEncoder = new Encoder(RobotConstants.Y_SLIDE_ENCODER_PORT_A,RobotConstants.Y_SLIDE_ENCODER_PORT_B);
 		
 		
 

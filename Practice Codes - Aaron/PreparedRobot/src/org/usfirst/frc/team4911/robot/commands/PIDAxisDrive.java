@@ -50,11 +50,12 @@ public class PIDAxisDrive extends Command {
     	operatorDrive.driveSystemConflict = true;
     	
     	mecanumDriveSystem.setDistanceEncoder(0.0);
+    	mecanumDriveSystem.resetYSlideEncoder();
+    	mecanumDriveSystem.resetXSlideEncoder();
     }
 
     protected void execute() {
     	mecanumDriveSystem.driveWithPID(x, y);
-    	//mecanumDriveSystem.drive(x, y, 0.0);
     }
 
     protected boolean isFinished() {
@@ -63,7 +64,10 @@ public class PIDAxisDrive extends Command {
     		return true;
     	}
     	else{
-    		return Math.abs(mecanumDriveSystem.getDistanceEncoder() - distance) < threshold;
+    		double totalDistance = Math.sqrt(Math.abs((Math.pow(mecanumDriveSystem.getXSlideEncoder(), 2) + Math.pow(mecanumDriveSystem.getYSlideEncoder(), 2))));
+    		return Math.abs(totalDistance - distance) < threshold;
+    		
+    		
     	}
     }
 
