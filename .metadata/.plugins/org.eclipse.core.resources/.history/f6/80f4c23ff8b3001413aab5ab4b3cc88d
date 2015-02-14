@@ -24,6 +24,13 @@ public class PIDAxisDrive extends Command {
 	private double distance;
 	private Joystick joystick;
 	
+	public PIDAxisDrive(double x, double y, double distance, Joystick joystick) {
+		this.x = x;
+		this.y = y;
+		this.distance = distance;
+		this.joystick = joystick;
+    }
+	
     public PIDAxisDrive(double x, double y, double distance) {
 		this.x = x;
 		this.y = y;
