@@ -2,14 +2,9 @@ package org.usfirst.frc.team4911.robot.commands;
 
 
 import org.usfirst.frc.team4911.robot.commands.*;
-import org.usfirst.frc.team4911.robot.OI;
 import org.usfirst.frc.team4911.robot.Robot;
 import org.usfirst.frc.team4911.robot.RobotConstants;
-import org.usfirst.frc.team4911.robot.subsystems.ContainerLiftSystem;
-import org.usfirst.frc.team4911.robot.subsystems.HookLiftSystem;
 import org.usfirst.frc.team4911.robot.subsystems.MecanumDriveSystem;
-import org.usfirst.frc.team4911.robot.subsystems.PrintSystem;
-import org.usfirst.frc.team4911.robot.subsystems.SensorSystem;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -18,11 +13,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class AutoStackCrateRight extends CommandGroup {
 	private MecanumDriveSystem mecanumDriveSystem = Robot.mecanumDriveSystem;
-	private SensorSystem sensorSystem = Robot.sensorSystem;
-	private ContainerLiftSystem containerLiftSystem = Robot.containerLiftSystem;
-	private HookLiftSystem hookLiftSystem = Robot.hookLiftSystem;
-	private PrintSystem printSystem = Robot.printSystem;
-	private OI oi = Robot.oi;
 	
     public  AutoStackCrateRight() {
     	// This Command Group will pick up a tote, lift it up over a container, 
@@ -34,13 +24,21 @@ public class AutoStackCrateRight extends CommandGroup {
     	// TOTE_ACQUIRE_POSITION on the next tote to the right.
     	
     	addParallel(new MoveToteLift(RobotConstants.TOTE_CLEAR_CONTAINER_POSITION));
-    	addSequential(new PIDAxisDrive(0.4,0.0, 1000.0)); // drives across right 1000 encoder pulses
+    	
+    	addSequential(new PIDAxisDrive(0.4,0.0, RobotConstants.HORIZONTAL_DISTANCE_BETWEEN_TOTES)); // drives across right 1000 encoder pulses
+    	
     	addSequential(new MoveToteLift(RobotConstants.TOTE_STACK_POSITION));
-    	addSequential(new PIDAxisDrive(-0.4,0.0, 10.0)); // drives across left 10 encoder pulses
+    	
+    	addSequential(new PIDAxisDrive(-0.4,0.0, RobotConstants.CLEAR_TOTE_LIP_DISTANCE)); // drives across left 10 encoder pulses
+    	
     	addSequential(new MoveToteLift(RobotConstants.TOTE_RELEASE_POSITION));
-    	addSequential(new PIDAxisDrive(0.0,-0.1, 10.0)); // drives backwards 10 encoder pulses
+    	
+    	addSequential(new PIDAxisDrive(0.0,-0.1, RobotConstants.CLEAR_TOTE_LIP_DISTANCE)); // drives backwards 10 encoder pulses
+    	
     	addSequential(new MoveToteLift(RobotConstants.TOTE_GROUND_POSITION));
-    	addSequential(new PIDAxisDrive(0.0,0.1, 10.0)); // drives forwards 10 encoder pulses
+    	
+    	addSequential(new PIDAxisDrive(0.0,0.1, RobotConstants.CLEAR_TOTE_LIP_DISTANCE)); // drives forwards 10 encoder pulses
+    	
     	addSequential(new MoveToteLift(RobotConstants.TOTE_ACQUIRE_POSITION));
     }
 }

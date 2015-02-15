@@ -121,4 +121,9 @@ public class RobotConstants {
     public static final int printFrequency = 10;
     public static final boolean STATIC_INFO_ALLOWED = false;
     
+    //Autonomous Movement Constants
+    public static final double HORIZONTAL_DISTANCE_BETWEEN_TOTES = 400;
+    public static final double FORWARD_DISTANCE_TO_AUTO_ZONE = 300;
+    public static final double CLEAR_TOTE_LIP_DISTANCE = 10;
+    
 }

@@ -1,7 +1,6 @@
 package org.usfirst.frc.team4911.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-
 import org.usfirst.frc.team4911.robot.RobotConstants;
 
 /**
@@ -20,10 +19,10 @@ public class AutonomousStackAndDrive extends CommandGroup {
         addSequential(new AutoStackCrateLeft());
         addSequential(new AutoStackCrateLeft());
 
-    	addSequential(new PIDAxisDrive(0.1, 0.0, 10.0)); // drives accross right 10 encoder pulses
-    	addSequential(new PIDAxisDrive(0.0, 0.5, 500.0)); // drives forward 500 encoder pulses
+    	addSequential(new PIDAxisDrive(0.1, 0.0, RobotConstants.CLEAR_TOTE_LIP_DISTANCE)); // drives accross right 10 encoder pulses
+    	addSequential(new PIDAxisDrive(0.0, 0.5, RobotConstants.FORWARD_DISTANCE_TO_AUTO_ZONE)); // drives forward 500 encoder pulses
     	
     	addSequential(new MoveToteLift(RobotConstants.TOTE_GROUND_POSITION));
-    	addSequential(new PIDAxisDrive(0.0, -0.5, 10.0)); // drives backward 10 encoder pulses
+    	addSequential(new PIDAxisDrive(0.0, -0.5, RobotConstants.CLEAR_TOTE_LIP_DISTANCE)); // drives backward 10 encoder pulses
     }
 }

@@ -8,9 +8,9 @@
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CANTalon.ControlMode"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.subsystems.PrintSystem"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.RobotDrive"/>
-<fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.Robot"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.RobotConstants"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.subsystems.ContainerLiftSystem.ContainerStatus"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Timer"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.Robot"/>
 </qualifiedTypeNameHistroy>
