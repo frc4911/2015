@@ -42,7 +42,7 @@ public class OperatorDrive extends Command {
 
 	@Override
 	protected void execute() {
-		/*
+		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//
 		// Hook Lift Controls
@@ -51,6 +51,7 @@ public class OperatorDrive extends Command {
 
 		if(Math.abs(oi.payloadJoy.getY()) > 0.1) {
 			hookLiftSystem.runLiftManually(oi.payloadJoy.getY());
+			printSystem.print("" + oi.payloadJoy.getY());
 		}
 		else {						
 			if(oi.payloadJoy.getPOV() == 0 || oi.payloadJoy.getPOV() == 45 || oi.payloadJoy.getPOV() == 315){
@@ -75,7 +76,7 @@ public class OperatorDrive extends Command {
 				hookLiftSystem.runLiftManually(0.0);
 			}
 		}
-		
+		/*
 		///////////////////////////////////////////////////////////////////////////
 		//
 		// Container Lift Controls

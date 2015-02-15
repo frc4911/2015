@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 2 packages to &apos;Tilt Compensation Project/src&apos;&#x0D;&#x0A;- Original project: &apos;RingBufferProject&apos;&#x0D;&#x0A;- Destination element: &apos;Tilt Compensation Project/src&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     RingBufferProject/src/com.kauailabs.nav6.frc&#x0D;&#x0A;     RingBufferProject/src/com.kauailabs.nav6" description="Copy packages" destination="=Tilt Compensation Project/src" element1="/src&lt;com.kauailabs.nav6.frc" element2="/src&lt;com.kauailabs.nav6" flags="589830" fragments="2" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1423872063001" version="1.0"/>
+</session>

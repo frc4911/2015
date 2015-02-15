@@ -23,6 +23,7 @@ import ExternalLibs.LIDAR;
 public class Robot extends SampleRobot {
 	Joystick stick1;
 	Joystick stick2;
+	Joystick stick3;
 	Joystick opStick;
 	
 	JoystickButton button1;
@@ -41,6 +42,8 @@ public class Robot extends SampleRobot {
 	CANTalon leftRear4;
 	CANTalon rightFront7;
 	CANTalon rightRear8;
+	CANTalon liftMotor1;
+	CANTalon liftMotor2;
 	PrintStream output;
 	RobotDrive robot;
 	IMUAdvanced imu;
@@ -59,7 +62,8 @@ public class Robot extends SampleRobot {
 	public Robot() {
 		stick1 = new Joystick(0);
 		stick2 = new Joystick(1);
-
+		stick3 = new Joystick(2);
+		
 		button1 = new JoystickButton(stick1, 1);
 		button2 = new JoystickButton(stick1, 2);
 		button3 = new JoystickButton(stick1, 3);
@@ -86,6 +90,13 @@ public class Robot extends SampleRobot {
 		//4  
 		rightRear8 = new CANTalon(8); // Initialize the CanTalonSRX on device 1.
 		rightRear8.changeControlMode(CANTalon.ControlMode.PercentVbus);
+
+		liftMotor1 = new CANTalon(1);
+		liftMotor1.changeControlMode(CANTalon.ControlMode.PercentVbus);
+		
+
+		liftMotor2 = new CANTalon(2);
+		liftMotor2.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		
 		robot = new RobotDrive(leftFront3, leftRear4, rightFront7, rightRear8);
 		//robot = new RobotDrive(leftRear4, leftFront3, rightRear8, leftRear4);
@@ -208,13 +219,16 @@ public class Robot extends SampleRobot {
 					inY = -b + (1.0 - b) * (a * Math.pow(inY, 3) + (1 - a) * inY);
 				}
 				*/
-				double x = stick1.getX();
-				double y = stick1.getY();
-				System.out.println(x + "\t" + y);
+				liftMotor1.set(-stick3.getY());
+				liftMotor2.set(-stick3.getY());
+				//System.out.println("LIDAR:\t" + (lidar.getDistance() / 2.54));
+				//double x = stick1.getX();
+				//double y = stick1.getY();
+				//System.out.println(x + "\t" + y);
 				//driveWithPID(inX, inY);
-				robot.mecanumDrive_Cartesian(x, y, 0.0, 0.0);
-				System.out.println("Pitch:\t" + imu.getPitch());
-				System.out.println("Roll:\t" + imu.getRoll());
+				//robot.mecanumDrive_Cartesian(x, y, 0.0, 0.0);
+				//System.out.println("Pitch:\t" + imu.getPitch());
+				//System.out.println("Roll:\t" + imu.getRoll());
 			}
 			
 			/*
