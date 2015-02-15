@@ -142,28 +142,11 @@ public class OperatorDrive extends Command {
 				double yIn = Math.pow(oi.getMainJoyY(), 3);	
 				mecanumDriveSystem.driveWithPID(xIn, yIn);	        	
 	        }
-			/*
-			if(oi.getPOV() == RobotConstants.POV_UP) {
-	        	new PIDAxisDrive(0.0, -1.0, 0.0, oi.mainJoy, RobotConstants.POV_UP).start();
-	        	//0.05 for x
-	        	//0.3 for y
-			}
-	        else if(oi.getPOV() == RobotConstants.POV_DOWN) {
-	        	new PIDAxisDrive(0.0, 1.0, 0.0, oi.mainJoy, RobotConstants.POV_DOWN).start();
-	        	//-0.05 for x
-	        	//0.3 for y
-	        }
-	        else if(oi.getPOV() == RobotConstants.POV_LEFT) {
-	        	new PIDAxisDrive(-1.0, 0.0, 0.0, oi.mainJoy, RobotConstants.POV_LEFT).start();
-	        	//-0.3 for x
-	        	//0.0 for y
-	        }
-	        else if(oi.getPOV() == RobotConstants.POV_RIGHT) {
-	        	new PIDAxisDrive(1.0, 0.0, 0.0, oi.mainJoy, RobotConstants.POV_RIGHT).start();
-	        	//0.3 for x
-	        	//0.0 for y
-	        }*/
+			
 		}
+		
+		printSystem.print("IMU value: " + sensorSystem.getYaw());
+		printSystem.print("IMU value with compensation: " + sensorSystem.getYawWithCompensation());
 	}
 
 	@Override

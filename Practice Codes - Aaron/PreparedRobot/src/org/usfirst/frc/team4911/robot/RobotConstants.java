@@ -30,6 +30,12 @@ public class RobotConstants {
     public static final double DRIVESYSTEM_kI = 0.0;
     public static final double DRIVESYSTEM_kD = 0.0; //0.005
     
+    public static final int Y_SLIDE_ENCODER_PORT_A = 1;
+    public static final int Y_SLIDE_ENCODER_PORT_B = 1;
+    public static final int X_SLIDE_ENCODER_PORT_A = 1;
+    public static final int X_SLIDE_ENCODER_PORT_B = 1;
+    public static final double DRIVE_ONE_STAGE_ZONE = 0.0;
+    
     //HOOK SYSTEM CONSTANTS
     public static final int HOOK_LEFT_CANTALON_PORT = 1;
     public static final int HOOK_RIGHT_CANTALON_PORT = 2;
@@ -48,6 +54,7 @@ public class RobotConstants {
     public static final double TOTE_RELEASE_POSITION = 50.0;
     public static final double TOTE_ACQUIRE_POSITION = 50.0;
     public static final double TOTE_STACK_POSITION = 5.0;
+    public static final double TOTE_CLEAR_CONTAINER_POSITION = 50.0;
     
     //CONTAINER SYSTEM CONSTANTS
     public static final int CONTAINER_LIFT_CANTALON_PORT = 5;
@@ -81,8 +88,8 @@ public class RobotConstants {
     public static final double CONTAINERSYSTEM_CLAMP_MAX_WIDTH = 1.0;
     public static final double CONTAINERSYSTEM_CLAMP_MIN_WIDTH = 0;
     
-    public static final double CONTAINERSYSTEM_CLAMP_LOW_VOLTAGE_THRESHHOLD = 0.15;
-    public static final double CONTAINERSYSTEM_CLAMP_HIGH_VOLTAGE_THRESHHOLD = 7.5;
+    public static final double CONTAINERSYSTEM_CLAMP_LOW_AMPERAGE_THRESHHOLD = 0.15;
+    public static final double CONTAINERSYSTEM_CLAMP_HIGH_AMPERAGE_THRESHHOLD = 7.5;
     
     public static final int CONTAINERSYSTEM_CLAMP_POTENTIOMETER_PORT = 0;
     
@@ -112,6 +119,11 @@ public class RobotConstants {
     
     //PrintSystem Constants
     public static final int printFrequency = 10;
-    public static final boolean STATIC_INFO_ALLOWED = true;
+    public static final boolean STATIC_INFO_ALLOWED = false;
+    
+    //Autonomous Movement Constants
+    public static final double HORIZONTAL_DISTANCE_BETWEEN_TOTES = 1000;
+    public static final double FORWARD_DISTANCE_TO_AUTO_ZONE = 500;
+    public static final double CLEAR_TOTE_LIP_DISTANCE = 10;
     
 }

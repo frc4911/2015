@@ -8,12 +8,12 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class MoveToteLift extends Command {
 	private HookLiftSystem hookLiftSystem;
-	private double toteLevel;
+	private double position;
 	private static double THRESHOLD = 1.0;//Inches
 
-    public MoveToteLift(double toteLvl) {
+    public MoveToteLift(double height) {
     	requires(hookLiftSystem);
-    	toteLevel = toteLvl;
+    	position = height;
     }
 
     protected void initialize() {
@@ -22,14 +22,15 @@ public class MoveToteLift extends Command {
     		this.cancel();
     	}    		
     	hookLiftSystem.setBeingused(true);
-    	hookLiftSystem.liftViaTote(toteLevel);
+    	
+    	hookLiftSystem.setLiftToPoint(position);
     }
 
     protected void execute() {
     }
 
     protected boolean isFinished() {
-        return Math.abs(hookLiftSystem.getDistance() - RobotConstants.TOTE_HEIGHT * toteLevel) < THRESHOLD ;
+        return Math.abs(hookLiftSystem.getDistance() - position) < THRESHOLD ;
     }
 
     protected void end() {

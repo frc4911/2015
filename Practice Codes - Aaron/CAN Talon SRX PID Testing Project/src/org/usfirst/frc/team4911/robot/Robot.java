@@ -129,6 +129,12 @@ public class Robot extends SampleRobot {
 		}
 		
 		while(isOperatorControl() && isEnabled()){
+			///////////////////////////////////////////////////////////////////////////////////////////////
+			//
+			// Voltage limiter code
+			//
+			///////////////////////////////////////////////////////////////////////////////////////////////
+			/*
 			/*
 			//CONTAINER CONTAINER TEST CODE
 			if(opStick.getRawButton(1)) {
@@ -154,6 +160,7 @@ public class Robot extends SampleRobot {
 			else if(opStick.getRawButton(3)) {
 				rightFront.set(-0.3);
 			}
+			
 			System.out.println("--------------------------------");
 			System.out.println("Encoder: " + rightFront.getEncPosition());
 			System.out.println("Current: " + rightFront.getOutputCurrent());
@@ -256,30 +263,6 @@ public class Robot extends SampleRobot {
 			System.out.println("Accel Y:\t" + aveY +  "ft/s^2");
 			System.out.println("===================================");
 			*/
-			/*
-			//PID Control Mode Switch Tests
-            if(button11.get()){
-            	if(!prevPressed){
-		        	if(rightFront.getControlMode().equals(CANTalon.ControlMode.Position)){
-		         		rightFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
-		         		prevPressed = true;
-		         		System.out.println("PERCENT V BUS");
-		        	} else {
-		         		rightFront.changeControlMode(CANTalon.ControlMode.Position);
-		         		prevPressed = true;
-		         		goal = rightFront.get();
-		         		System.out.println("POSITION");
-		        	}
-            	}
-            } else {
-            	prevPressed = false;
-            	if(rightFront.getControlMode().equals(CANTalon.ControlMode.Position)){
-            		rightFront.set(goal);
-                } else {
-                	rightFront.set(stick1.getY());
-                }
-            }
-            */
 		}
 		//output.close();
 		

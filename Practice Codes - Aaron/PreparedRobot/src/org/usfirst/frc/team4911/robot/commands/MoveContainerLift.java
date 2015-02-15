@@ -19,10 +19,7 @@ public class MoveContainerLift extends Command {
 
     protected void initialize() {
     	containerLiftSystem = Robot.containerLiftSystem;
-    	if(containerLiftSystem.isLiftBeingUsed()){
-    		this.cancel();
-    	}    		
-    	containerLiftSystem.setLiftBeingUsed(true);
+    	requires(containerLiftSystem);
     	containerLiftSystem.liftViaTote(toteLevel);
     }
 
@@ -34,7 +31,6 @@ public class MoveContainerLift extends Command {
     }
 
     protected void end() {
-    	containerLiftSystem.setLiftBeingUsed(false);
     }
 
     protected void interrupted() {
