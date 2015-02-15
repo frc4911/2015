@@ -17,6 +17,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.smartdashboard.*;
+
 import ExternalLibs.LIDAR;
 
 
@@ -85,10 +87,10 @@ public class Robot extends SampleRobot {
 		rightFront7 = new CANTalon(7); // Initialize the CanTalonSRX on device 1.
 		rightFront7.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		//4  
-		rightRear8 = new CANTalon(8); // Initialize the CanTalonSRX on device 1.
-		rightRear8.changeControlMode(CANTalon.ControlMode.PercentVbus);
+		//rightRear8 = new CANTalon(8); // Initialize the CanTalonSRX on device 1.
+		//rightRear8.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		
-		robot = new RobotDrive(leftFront3, leftRear4, rightFront7, rightRear8);
+		//robot = new RobotDrive(leftFront3, leftRear4, rightFront7, rightRear8);
 		//robot = new RobotDrive(leftRear4, leftFront3, rightRear8, leftRear4);
 		
 		lidar = new LIDAR(I2C.Port.kMXP);
@@ -117,7 +119,7 @@ public class Robot extends SampleRobot {
 		} catch (Exception e){
 			
 		}
-		
+		int i = 0;
 		while(isOperatorControl() && isEnabled()){
 			///////////////////////////////////////////////////////////////////////////////////////////////
 			//
@@ -216,7 +218,6 @@ public class Robot extends SampleRobot {
 				} else {
 					inY = -b + (1.0 - b) * (a * Math.pow(inY, 3) + (1 - a) * inY);
 				}
-				*/
 				double x = stick1.getX();
 				double y = stick1.getY();
 				System.out.println(x + "\t" + y);
@@ -224,6 +225,7 @@ public class Robot extends SampleRobot {
 				robot.mecanumDrive_Cartesian(x, y, 0.0, 0.0);
 				System.out.println("Pitch:\t" + imu.getPitch());
 				System.out.println("Roll:\t" + imu.getRoll());
+				*/
 			}
 			
 			/*
