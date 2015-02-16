@@ -19,7 +19,14 @@ public class AutoDriveIn extends CommandGroup {
 	//	  |		|____	-----	  |
 	//
 	////////////////////////////////////////////////////////////////////////
+	
     public  AutoDriveIn(double stagingZones) {
+    	
+    	// ======================= STARTING POSITION INSTRUCTIONS ===========================
+    	// For this command the robot will slide down the staging zone, into the autonomous
+    	// zone, and then back down the autonomous zone. For this the robot must be placed
+    	// a certain distance down the staging zone from the left proportional to the parameter
+    	// stagingZones 
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

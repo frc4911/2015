@@ -19,7 +19,7 @@ public class AutoStackCrateLeft extends CommandGroup {
     	// drive left, and place it on the next stack.
     	
     	// ======================= STARTING POSITION INSTRUCTIONS ===========================
-    	// For this command the robot must start in TOTE_ACQUIRE_POSITION ready to
+    	// For this command the robot tote lift must start in TOTE_ACQUIRE_POSITION ready to
     	// acquire a tote. It will move left towards the next tote and end in the
     	// TOTE_ACQUIRE_POSITION on the next tote to the left.
     	
