@@ -69,7 +69,7 @@ public class Robot extends SampleRobot {
 	public Robot() {
 		stick1 = new Joystick(0);
 		stick2 = new Joystick(1);
-		//stick3 = new Joystick(2);
+		stick3 = new Joystick(2);
 		
 		button1 = new JoystickButton(stick1, 1);
 		button2 = new JoystickButton(stick1, 2);
@@ -98,7 +98,7 @@ public class Robot extends SampleRobot {
 		rightRear8 = new CANTalon(8); // Initialize the CanTalonSRX on device 1.
 		rightRear8.changeControlMode(CANTalon.ControlMode.PercentVbus);
 
-		/*liftMotor1 = new CANTalon(1);
+		liftMotor1 = new CANTalon(1);
 		liftMotor1.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		
 
@@ -111,14 +111,14 @@ public class Robot extends SampleRobot {
 		cycleNum = 0;
 		
 		containerLift = new CANTalon(5);
-		containerLift.changeControlMode(CANTalon.ControlMode.PercentVbus);*/
+		containerLift.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		
 		
-		robot = new RobotDrive(leftFront3, leftRear4, rightFront7, rightRear8);
+		//robot = new RobotDrive(leftFront3, leftRear4, rightFront7, rightRear8);
 		//robot = new RobotDrive(leftRear4, leftFront3, rightRear8, leftRear4);
 		
-		//lidar = new LIDAR(I2C.Port.kMXP);
-		//lidar.start();
+		lidar = new LIDAR(I2C.Port.kMXP);
+		lidar.start();
 		/***************************************
 		 *
 	     * IMU INITIALIZATION
@@ -145,8 +145,6 @@ public class Robot extends SampleRobot {
 		}
 		int i = 0;
 		while(isOperatorControl() && isEnabled()){
-			
-			
 			///////////////////////////////////////////////////////////////////////////////////////////////
 			//
 			// Voltage limiter code
@@ -251,7 +249,7 @@ public class Robot extends SampleRobot {
 				System.out.println("Pitch:\t" + imu.getPitch());
 				System.out.println("Roll:\t" + imu.getRoll());
 				*/
-				/*if(Math.abs(stick3.getY()) > 0.1) {
+				if(Math.abs(stick3.getY()) > 0.1) {
 					liftMotor1.set(-stick3.getY());
 					liftMotor2.set(-stick3.getY());
 				}
@@ -279,7 +277,7 @@ public class Robot extends SampleRobot {
 					System.out.println("Claw Speed: " + clawSpeed);
 					System.out.println("Claw current: " + containerContainer.getOutputCurrent());
 					System.out.println("---------------------------------------------------------");
-				}*/
+				}
 				//System.out.println("LIDAR:\t" + (lidar.getDistance() / 2.54));
 				//double x = stick1.getX();
 				//double y = stick1.getY();
