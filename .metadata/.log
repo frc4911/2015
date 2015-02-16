@@ -226,3 +226,129 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-16 10:30:49.032
 !MESSAGE Installedjava
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 10:58:12.436
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 10:58:12.452
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:01:53.026
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:01:53.031
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:02:44.604
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:02:44.610
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:06:42.906
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:06:42.912
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:07:45.200
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:07:45.205
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:12:06.771
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:12:06.776
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:15:43.167
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:15:43.172
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:22:33.906
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:22:33.911
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:23:34.068
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:23:34.072
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:28:20.520
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:28:20.525
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:29:19.798
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:29:19.803
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:32:13.622
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:32:13.627
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:33:02.261
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:33:02.266
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:33:37.769
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:33:37.775
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:34:37.358
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:34:37.364
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:36:13.317
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:36:13.322
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:40:08.118
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:40:08.123
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:40:46.354
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:40:46.359
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:42:55.500
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:42:55.505
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:43:31.108
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:43:31.112
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:45:26.587
+!MESSAGE Running ant file: C:\Users\pratz_000\Documents\GitHub\2015\Practice Codes - Aaron\CAN Talon SRX PID Testing Project\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-16 11:45:26.591
+!MESSAGE Targets: deploy, Mode: run
