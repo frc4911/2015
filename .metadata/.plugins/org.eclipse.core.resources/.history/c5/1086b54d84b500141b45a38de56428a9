@@ -87,6 +87,10 @@ public class Robot extends SampleRobot {
 			SmartDashboard.putNumber("Tote val min", TOTE_VAL_RANGE.minValue);
 			SmartDashboard.putNumber("Tote val max", TOTE_VAL_RANGE.maxValue);
 			SmartDashboard.putNumber("Area min %", AREA_MINIMUM);
+			
+	        session = dxNIVision.IMAQOpenCamera("cam1",
+	                NIVision.IMAQdxCameraControlMode.CameraControlModeController);
+	        NIVision.IMAQdxConfigureGrab(session);
 		}
 
 		public void autonomous() {
