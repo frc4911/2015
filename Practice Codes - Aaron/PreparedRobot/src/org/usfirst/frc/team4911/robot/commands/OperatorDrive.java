@@ -76,14 +76,14 @@ public class OperatorDrive extends Command {
 				hookLiftSystem.runLiftManually(0.0);
 			}
 		}
-		/*
+		
 		///////////////////////////////////////////////////////////////////////////
 		//
 		// Container Lift Controls
 		//
 		///////////////////////////////////////////////////////////////////////////
-		if(Math.abs(oi.payloadJoy.getZ()) >= 0.1){
-			containerLiftSystem.runLiftManually(oi.payloadJoy.getZ());
+		if(Math.abs(oi.payloadJoy.getRawAxis(RobotConstants.CONTAINER_LIFT_AXIS)) >= 0.1){
+			containerLiftSystem.runLiftManually(oi.payloadJoy.getRawAxis(RobotConstants.CONTAINER_LIFT_AXIS));
 		}
 		else{
 			if(oi.payloadButton8.get()) {
@@ -102,7 +102,7 @@ public class OperatorDrive extends Command {
 				containerLiftSystem.runLiftManually(0.0);
 			}
 		}
-		
+		/*
 		////////////////////////////////////////////////////////////////////////////
 		//
 		//  Container Clamp Controls
