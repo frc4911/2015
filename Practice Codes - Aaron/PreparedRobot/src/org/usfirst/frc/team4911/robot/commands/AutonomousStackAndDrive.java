@@ -1,7 +1,6 @@
 package org.usfirst.frc.team4911.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import org.usfirst.frc.team4911.robot.commands.*;
 import org.usfirst.frc.team4911.robot.RobotConstants;
 
 /**
@@ -12,9 +11,9 @@ public class AutonomousStackAndDrive extends CommandGroup {
     public  AutonomousStackAndDrive() {
     	
     	// ======================= STARTING POSITION INSTRUCTIONS ===========================
-    	// For this command the robot must start in TOTE_ACQUIRE_POSITION ready to
+    	// For this command the robot tote lift must start in TOTE_ACQUIRE_POSITION ready to
     	// acquire the tote on the FAR LEFT SIDE OF THE FIELD. It will move left and stack on
-    	// the next two totes to the left, giving it a stack of three. It will then drive into
+    	// the next two totes to it's left, giving it a stack of three. It will then drive into
     	// the autonomous zone, deposit the totes, back up slightly, and stop.
     	
         addSequential(new AutoStackCrateLeft());

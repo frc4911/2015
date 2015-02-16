@@ -17,6 +17,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.smartdashboard.*;
+
 import ExternalLibs.LIDAR;
 
 
@@ -98,7 +100,7 @@ public class Robot extends SampleRobot {
 		liftMotor2 = new CANTalon(2);
 		liftMotor2.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		
-		robot = new RobotDrive(leftFront3, leftRear4, rightFront7, rightRear8);
+		//robot = new RobotDrive(leftFront3, leftRear4, rightFront7, rightRear8);
 		//robot = new RobotDrive(leftRear4, leftFront3, rightRear8, leftRear4);
 		
 		lidar = new LIDAR(I2C.Port.kMXP);
@@ -127,7 +129,7 @@ public class Robot extends SampleRobot {
 		} catch (Exception e){
 			
 		}
-		
+		int i = 0;
 		while(isOperatorControl() && isEnabled()){
 			///////////////////////////////////////////////////////////////////////////////////////////////
 			//
@@ -225,6 +227,14 @@ public class Robot extends SampleRobot {
 				} else {
 					inY = -b + (1.0 - b) * (a * Math.pow(inY, 3) + (1 - a) * inY);
 				}
+<<<<<<< HEAD
+				double x = stick1.getX();
+				double y = stick1.getY();
+				System.out.println(x + "\t" + y);
+				//driveWithPID(inX, inY);
+				robot.mecanumDrive_Cartesian(x, y, 0.0, 0.0);
+				System.out.println("Pitch:\t" + imu.getPitch());
+				System.out.println("Roll:\t" + imu.getRoll());
 				*/
 				liftMotor1.set(-stick3.getY());
 				liftMotor2.set(-stick3.getY());

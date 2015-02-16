@@ -34,6 +34,13 @@ public class DrivePastObstacle extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	/*============================================================
+    	 * This will check if we are directly in front of a container
+    	 * or tote and continue to drive until it has found an expected 
+    	 * number of objects. This number is defined as the parameter
+    	 * expected obstacles.
+    	 *==========================================================*/
+    	
     	if (sensorSystem.getCM() <= 20){
     		if(!obstacleExpected){
     			obstaclesFound ++;

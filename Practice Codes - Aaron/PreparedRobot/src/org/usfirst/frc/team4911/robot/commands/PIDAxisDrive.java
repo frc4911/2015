@@ -57,6 +57,7 @@ public class PIDAxisDrive extends Command {
     		return true;
     	}
     	else{
+    		//checks if we have moved the designated distance
     		double totalDistance = Math.sqrt(Math.abs((Math.pow(mecanumDriveSystem.getXSlideEncoder(), 2) + Math.pow(mecanumDriveSystem.getYSlideEncoder(), 2))));
     		return Math.abs(totalDistance - distance) < threshold;
     		
