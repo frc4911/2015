@@ -11,6 +11,7 @@ public class RobotConstants {
     public static final int POV_RIGHT = 90;
     
     public static final int JOYSTICK_OPERATOR = 2;
+    public static final int CONTAINER_LIFT_AXIS = 3;
     
     //DRIVE SYSTEM CONSTANTS
     public static final double DRIVESYSTEM_WHEEL_DIAMETER = 4.0; //Measured in Inches
@@ -30,10 +31,10 @@ public class RobotConstants {
     public static final double DRIVESYSTEM_kI = 0.0;
     public static final double DRIVESYSTEM_kD = 0.0; //0.005
     
-    public static final int Y_SLIDE_ENCODER_PORT_A = 1;
-    public static final int Y_SLIDE_ENCODER_PORT_B = 1;
-    public static final int X_SLIDE_ENCODER_PORT_A = 1;
-    public static final int X_SLIDE_ENCODER_PORT_B = 1;
+    public static final int Y_SLIDE_ENCODER_PORT_A = 3; //Digital IO
+    public static final int Y_SLIDE_ENCODER_PORT_B = 4; //Digital IO
+    public static final int X_SLIDE_ENCODER_PORT_A = 5; //Digital IO
+    public static final int X_SLIDE_ENCODER_PORT_B = 6; //Digital IO
     public static final double DRIVE_ONE_STAGE_ZONE = 0.0;
     
     //HOOK SYSTEM CONSTANTS

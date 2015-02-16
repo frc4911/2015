@@ -46,6 +46,8 @@ public class Robot extends SampleRobot {
 	CANTalon rightRear8;
 	CANTalon liftMotor1;
 	CANTalon liftMotor2;
+	CANTalon containerContainer;
+	CANTalon containerLift;
 	PrintStream output;
 	RobotDrive robot;
 	IMUAdvanced imu;
@@ -60,6 +62,9 @@ public class Robot extends SampleRobot {
 	private double derivative;
 
 	private double goalHeading;
+	
+	private double clawSpeed;
+	private int cycleNum;
 	
 	public Robot() {
 		stick1 = new Joystick(0);
@@ -99,6 +104,15 @@ public class Robot extends SampleRobot {
 
 		liftMotor2 = new CANTalon(2);
 		liftMotor2.changeControlMode(CANTalon.ControlMode.PercentVbus);
+		
+		containerContainer = new CANTalon(6);
+		containerContainer.changeControlMode(CANTalon.ControlMode.PercentVbus);
+		clawSpeed = 0.5;
+		cycleNum = 0;
+		
+		containerLift = new CANTalon(5);
+		containerLift.changeControlMode(CANTalon.ControlMode.PercentVbus);
+		
 		
 		//robot = new RobotDrive(leftFront3, leftRear4, rightFront7, rightRear8);
 		//robot = new RobotDrive(leftRear4, leftFront3, rightRear8, leftRear4);
@@ -227,7 +241,6 @@ public class Robot extends SampleRobot {
 				} else {
 					inY = -b + (1.0 - b) * (a * Math.pow(inY, 3) + (1 - a) * inY);
 				}
-<<<<<<< HEAD
 				double x = stick1.getX();
 				double y = stick1.getY();
 				System.out.println(x + "\t" + y);
@@ -236,8 +249,35 @@ public class Robot extends SampleRobot {
 				System.out.println("Pitch:\t" + imu.getPitch());
 				System.out.println("Roll:\t" + imu.getRoll());
 				*/
-				liftMotor1.set(-stick3.getY());
-				liftMotor2.set(-stick3.getY());
+				if(Math.abs(stick3.getY()) > 0.1) {
+					liftMotor1.set(-stick3.getY());
+					liftMotor2.set(-stick3.getY());
+				}
+				if(Math.abs(stick3.getRawAxis(2)) > 0.1) {
+					containerLift.set(stick3.getRawAxis(2));
+				}
+				if(stick3.getRawButton(1)) {
+					containerContainer.set(clawSpeed);
+				}
+				else if(stick3.getRawButton(3)) {
+					containerContainer.set(-clawSpeed);
+				}
+				else {
+					containerContainer.set(0.0);
+				}
+				
+				if(cycleNum++ % 5 == 0) {
+					if(stick3.getRawButton(7) && clawSpeed > 0.0) {
+						clawSpeed -= 0.1;
+					}
+					else if(stick3.getRawButton(8) && clawSpeed < 1.0) {
+						clawSpeed += 0.1;
+					}
+					
+					System.out.println("Claw Speed: " + clawSpeed);
+					System.out.println("Claw current: " + containerContainer.getOutputCurrent());
+					System.out.println("---------------------------------------------------------");
+				}
 				//System.out.println("LIDAR:\t" + (lidar.getDistance() / 2.54));
 				//double x = stick1.getX();
 				//double y = stick1.getY();
