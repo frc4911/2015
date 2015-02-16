@@ -122,8 +122,9 @@ public class Robot extends SampleRobot {
 				*/
 				
 				 NIVision.IMAQdxGrab(session, frame, 1);
+				 //cameraServer.setImage(frame);
 				 
-				 
+				 /*
 				//Update threshold values from SmartDashboard. For performance reasons it is recommended to remove this after calibration is finished.
 				TOTE_HUE_RANGE.minValue = (int)SmartDashboard.getNumber("Tote hue min", TOTE_HUE_RANGE.minValue);
 				TOTE_HUE_RANGE.maxValue = (int)SmartDashboard.getNumber("Tote hue max", TOTE_HUE_RANGE.maxValue);
@@ -131,7 +132,7 @@ public class Robot extends SampleRobot {
 				TOTE_SAT_RANGE.maxValue = (int)SmartDashboard.getNumber("Tote sat max", TOTE_SAT_RANGE.maxValue);
 				TOTE_VAL_RANGE.minValue = (int)SmartDashboard.getNumber("Tote val min", TOTE_VAL_RANGE.minValue);
 				TOTE_VAL_RANGE.maxValue = (int)SmartDashboard.getNumber("Tote val max", TOTE_VAL_RANGE.maxValue);
-
+				*/
 				//Threshold the image looking for yellow (tote color)
 				NIVision.imaqColorThreshold(binaryFrame, frame, 255, NIVision.ColorMode.HSV, TOTE_HUE_RANGE, TOTE_SAT_RANGE, TOTE_VAL_RANGE);
 
@@ -183,8 +184,6 @@ public class Robot extends SampleRobot {
 				} else {
 					SmartDashboard.putBoolean("IsTote", false);
 				}
-
-				Timer.delay(0.005);				// wait for a motor update time
 			}
 		}
 
