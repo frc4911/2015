@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item value="C:\Users\AaronBae\wpilib\java\current\lib" key="org.eclipse.jdt.ui.lastextjar"/>
+	<item value="C:\opencv\build\java" key="org.eclipse.jdt.ui.lastextjar"/>
 	<item value="C:\Users\AaronBae\sunspotfrcsdk\lib\nav6" key="org.eclipse.jdt.ui.last.external.project"/>
 	<section name="org.eclipse.ltk.ui.refactoring.settings">
 	</section>
@@ -47,7 +47,7 @@
 	<section name="RenameInformationPopup">
 	</section>
 	<section name="ClasspathContainerSelectionPage">
-		<item value="0" key="index"/>
+		<item value="3" key="index"/>
 	</section>
 	<section name="quick_assist_proposal_size">
 	</section>
