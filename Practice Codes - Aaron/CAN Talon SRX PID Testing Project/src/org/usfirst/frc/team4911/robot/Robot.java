@@ -1,7 +1,6 @@
 package org.usfirst.frc.team4911.robot;
 
 import java.io.File;
-
 import java.util.Arrays;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -10,6 +9,7 @@ import com.kauailabs.nav6.frc.IMUAdvanced;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.SampleRobot;
@@ -18,7 +18,6 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.smartdashboard.*;
-
 import ExternalLibs.LIDAR;
 
 
@@ -88,9 +87,10 @@ public class Robot extends SampleRobot {
 		leftFront3 = new CANTalon(3); // Initialize the CanTalonSRX on device 1.
 		leftFront3.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		leftFront3.setPID(1.0, 0.0, 0.0);
+		leftFront3.ConfigFwdLimitSwitchNormallyOpen(true);
 		//1  
 		leftRear4 = new CANTalon(4); // Initialize the CanTalonSRX on device 1.
-		leftRear4.changeControlMode(CANTalon.ControlMode.PercentVbus);
+		leftRear4.changeControlMode(CANTalon.ControlMode.Follower);
 		//3  
 		rightFront7 = new CANTalon(7); // Initialize the CanTalonSRX on device 1.
 		rightFront7.changeControlMode(CANTalon.ControlMode.PercentVbus);
@@ -98,7 +98,7 @@ public class Robot extends SampleRobot {
 		rightRear8 = new CANTalon(8); // Initialize the CanTalonSRX on device 1.
 		rightRear8.changeControlMode(CANTalon.ControlMode.PercentVbus);
 
-		liftMotor1 = new CANTalon(1);
+		/*liftMotor1 = new CANTalon(1);
 		liftMotor1.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		
 
@@ -111,14 +111,15 @@ public class Robot extends SampleRobot {
 		cycleNum = 0;
 		
 		containerLift = new CANTalon(5);
-		containerLift.changeControlMode(CANTalon.ControlMode.PercentVbus);
+		containerLift.changeControlMode(CANTalon.ControlMode.PercentVbus);*/
 		
 		
-		//robot = new RobotDrive(leftFront3, leftRear4, rightFront7, rightRear8);
+		robot = new RobotDrive(leftFront3, leftRear4, rightFront7, rightRear8);
+		robot.setInvertedMotor(MotorType.kRearLeft, true);
 		//robot = new RobotDrive(leftRear4, leftFront3, rightRear8, leftRear4);
 		
-		lidar = new LIDAR(I2C.Port.kMXP);
-		lidar.start();
+		//lidar = new LIDAR(I2C.Port.kMXP);
+		//lidar.start();
 		/***************************************
 		 *
 	     * IMU INITIALIZATION
@@ -137,14 +138,27 @@ public class Robot extends SampleRobot {
 		Timer.delay(0.3);
 	}
 	public void operatorControl() {
-		try {
+		/*try {
 			output = new PrintStream(new File("/home/lvuser/natinst/teleLog.txt"));
 			System.setOut(output);
 		} catch (Exception e){
 			
-		}
+		}*/
 		int i = 0;
 		while(isOperatorControl() && isEnabled()){
+			leftFront3.set(stick3.getY());
+			leftFront3.set(stick3.getY());
+			/*
+			System.out.println("Limit Switch: " + leftFront3.isFwdLimitSwitchClosed());
+			if(Math.abs(stick3.getY()) > 0.1) {
+				leftFront3.set(stick3.getY());
+				leftRear4.set(leftFront3.getDeviceID());
+			}
+			else {
+				leftFront3.set(0.0);
+				leftRear4.set(leftFront3.getDeviceID());
+			}
+			*/
 			///////////////////////////////////////////////////////////////////////////////////////////////
 			//
 			// Voltage limiter code
@@ -250,8 +264,7 @@ public class Robot extends SampleRobot {
 				System.out.println("Roll:\t" + imu.getRoll());
 				*/
 			
-				//Right Joystick on xBox controller
-				if(Math.abs(stick3.getY()) > 0.1) {
+				/*if(Math.abs(stick3.getY()) > 0.1) {
 					liftMotor1.set(-stick3.getY());
 					liftMotor2.set(-stick3.getY());
 				} else {
@@ -287,7 +300,7 @@ public class Robot extends SampleRobot {
 					System.out.println("Claw Speed: " + clawSpeed);
 					System.out.println("Claw current: " + containerContainer.getOutputCurrent());
 					System.out.println("---------------------------------------------------------");
-				}
+				}*/
 				//System.out.println("LIDAR:\t" + (lidar.getDistance() / 2.54));
 				//double x = stick1.getX();
 				//double y = stick1.getY();
