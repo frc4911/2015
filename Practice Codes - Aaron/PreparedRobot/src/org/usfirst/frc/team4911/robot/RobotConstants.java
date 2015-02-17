@@ -103,7 +103,7 @@ public class RobotConstants {
     public static final double GYRO_SENSITIVITY = 0.007;
     
     //IMU CONSTANTS
-    public static final double YAW_DRIFT_PER_TICK = 0.004;
+    public static final double YAW_DRIFT_PER_TICK = 0.006; // 0.004 for first chassis, 0.006 for second chassis
     public static final float SENSORSYSTEM_GRAVITATIONAL_ACCELERATION = 32.174f;//ft/s^2
     
     //CAMERA
@@ -113,7 +113,7 @@ public class RobotConstants {
     public static final double CAMERA_SERVO_RIGHT = 1.0;
     
     //DEBUG SWITCH
-    public static final boolean FLAG = false;
+    public static final boolean FLAG = true;
     
     //CM to IN conversion (LIDAR)
     public static final double inToCM = 2.54;
