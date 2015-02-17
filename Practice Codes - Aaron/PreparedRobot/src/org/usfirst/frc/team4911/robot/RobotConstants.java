@@ -60,6 +60,7 @@ public class RobotConstants {
     //CONTAINER SYSTEM CONSTANTS
     public static final int CONTAINER_LIFT_CANTALON_PORT = 5;
     public static final int CONTAINER_CONTAINER_CANTALON_PORT = 6;
+    public static final int CONTAINER_CONTAINER_SECOND_CANTALON_PORT = 9;
     
     //TEST FOR THESE VALUES
     public static final double CONTAINER_LIFT_GROUND = 	0.0;

@@ -29,6 +29,7 @@ public class RobotMap {
 	public static CANTalon hookRight;	
 	public static CANTalon containerLift;
 	public static CANTalon containerContainer;
+	public static CANTalon secondContainerContainer;
 	
 	public static AnalogPotentiometer clampPot;
 	
@@ -89,6 +90,10 @@ public class RobotMap {
       	
       	containerContainer = new CANTalon(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
       	containerContainer.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+      	containerContainer.changeControlMode(CANTalon.ControlMode.PercentVbus);
+      	containerContainer.setPID(1.0, 0.0, 0.0);
+      	
+      	secondContainerContainer = new CANTalon(RobotConstants.CONTAINER_CONTAINER_SECOND_CANTALON_PORT);
       	containerContainer.changeControlMode(CANTalon.ControlMode.PercentVbus);
       	containerContainer.setPID(1.0, 0.0, 0.0);
       	

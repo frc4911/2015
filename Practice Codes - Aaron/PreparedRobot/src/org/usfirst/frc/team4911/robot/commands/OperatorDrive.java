@@ -53,7 +53,13 @@ public class OperatorDrive extends Command {
 			hookLiftSystem.runLiftManually(oi.payloadJoy.getY());
 			printSystem.print("" + oi.payloadJoy.getY());
 		}
-		else {						
+		//manual stop code... use ONLY if presets are not running
+		else {
+			hookLiftSystem.runLiftManually(0.0);
+		}
+		
+		//Preset code
+		/*else {						
 			if(oi.payloadJoy.getPOV() == 0 || oi.payloadJoy.getPOV() == 45 || oi.payloadJoy.getPOV() == 315){
 				hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_STACK_POSITION);
 			}
@@ -75,7 +81,7 @@ public class OperatorDrive extends Command {
 			else if(hookLiftSystem.getControlMode() == CANTalon.ControlMode.PercentVbus) {
 				hookLiftSystem.runLiftManually(0.0);
 			}
-		}
+		}*/
 		
 		///////////////////////////////////////////////////////////////////////////
 		//
@@ -85,7 +91,15 @@ public class OperatorDrive extends Command {
 		if(Math.abs(oi.payloadJoy.getRawAxis(RobotConstants.CONTAINER_LIFT_AXIS)) >= 0.1){
 			containerLiftSystem.runLiftManually(oi.payloadJoy.getRawAxis(RobotConstants.CONTAINER_LIFT_AXIS));
 		}
-		else{
+		
+		//manual stop code...use ONLY if presets are not running
+		else {
+			containerLiftSystem.runLiftManually(0.0);
+		}
+		
+		//
+		//Preset Code
+		/*else{
 			if(oi.payloadButton8.get()) {
 				containerLiftSystem.runLiftToPreset(RobotConstants.CONTAINER_LIFT_RELEASE);
 			}
@@ -101,8 +115,8 @@ public class OperatorDrive extends Command {
 			else if(containerLiftSystem.getLiftControlMode() == CANTalon.ControlMode.PercentVbus) {
 				containerLiftSystem.runLiftManually(0.0);
 			}
-		}
-		/*
+		}*/
+		
 		////////////////////////////////////////////////////////////////////////////
 		//
 		//  Container Clamp Controls
@@ -117,7 +131,6 @@ public class OperatorDrive extends Command {
 		else{
 			containerLiftSystem.stopClamp();
 		}
-		 */
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//
 		// Drive System Controls

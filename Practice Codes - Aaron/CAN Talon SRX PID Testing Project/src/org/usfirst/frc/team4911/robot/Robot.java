@@ -1,7 +1,6 @@
 package org.usfirst.frc.team4911.robot;
 
 import java.io.File;
-
 import java.util.Arrays;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -10,6 +9,7 @@ import com.kauailabs.nav6.frc.IMUAdvanced;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.SampleRobot;
@@ -18,7 +18,6 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.smartdashboard.*;
-
 import ExternalLibs.LIDAR;
 
 
@@ -47,6 +46,7 @@ public class Robot extends SampleRobot {
 	CANTalon liftMotor1;
 	CANTalon liftMotor2;
 	CANTalon containerContainer;
+	CANTalon containerFollower;
 	CANTalon containerLift;
 	PrintStream output;
 	RobotDrive robot;
@@ -88,15 +88,24 @@ public class Robot extends SampleRobot {
 		leftFront3 = new CANTalon(3); // Initialize the CanTalonSRX on device 1.
 		leftFront3.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		leftFront3.setPID(1.0, 0.0, 0.0);
+		//leftFront3.ConfigFwdLimitSwitchNormallyOpen(true);
 		//1  
 		leftRear4 = new CANTalon(4); // Initialize the CanTalonSRX on device 1.
-		leftRear4.changeControlMode(CANTalon.ControlMode.PercentVbus);
+		leftRear4.changeControlMode(CANTalon.ControlMode.Follower);
 		//3  
 		rightFront7 = new CANTalon(7); // Initialize the CanTalonSRX on device 1.
 		rightFront7.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		//4  
 		rightRear8 = new CANTalon(8); // Initialize the CanTalonSRX on device 1.
 		rightRear8.changeControlMode(CANTalon.ControlMode.PercentVbus);
+		
+		containerContainer = new CANTalon(6);
+		containerContainer.changeControlMode(CANTalon.ControlMode.PercentVbus);
+		containerContainer.setPID(1.0, 0.0, 0.0);
+		
+		containerFollower = new CANTalon(9);
+		containerFollower.changeControlMode(CANTalon.ControlMode.PercentVbus);
+		containerFollower.setPID(1.0, 0.0, 0.0);
 
 		liftMotor1 = new CANTalon(1);
 		liftMotor1.changeControlMode(CANTalon.ControlMode.PercentVbus);
@@ -105,20 +114,16 @@ public class Robot extends SampleRobot {
 		liftMotor2 = new CANTalon(2);
 		liftMotor2.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		
-		containerContainer = new CANTalon(6);
-		containerContainer.changeControlMode(CANTalon.ControlMode.PercentVbus);
-		clawSpeed = 0.5;
-		cycleNum = 0;
-		
 		containerLift = new CANTalon(5);
 		containerLift.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		
 		
-		//robot = new RobotDrive(leftFront3, leftRear4, rightFront7, rightRear8);
+		robot = new RobotDrive(leftFront3, leftRear4, rightFront7, rightRear8);
+		//robot.setInvertedMotor(MotorType.kRearLeft, true);
 		//robot = new RobotDrive(leftRear4, leftFront3, rightRear8, leftRear4);
 		
-		lidar = new LIDAR(I2C.Port.kMXP);
-		lidar.start();
+		//lidar = new LIDAR(I2C.Port.kMXP);
+		//lidar.start();
 		/***************************************
 		 *
 	     * IMU INITIALIZATION
@@ -137,14 +142,32 @@ public class Robot extends SampleRobot {
 		Timer.delay(0.3);
 	}
 	public void operatorControl() {
-		try {
+		/*try {
 			output = new PrintStream(new File("/home/lvuser/natinst/teleLog.txt"));
 			System.setOut(output);
 		} catch (Exception e){
 			
-		}
+		}*/
 		int i = 0;
 		while(isOperatorControl() && isEnabled()){
+			
+			if(stick3.getRawButton(1)) {
+				containerContainer.set(1.0);
+				containerFollower.set(1.0);
+			}
+			else if(stick3.getRawButton(3)) {
+				containerContainer.set(-1.0);
+				containerFollower.set(-1.0);
+			}
+			else {
+				containerContainer.set(0.0);
+				containerFollower.set(0.0);
+			}								
+			if(i++%5 ==0) {
+				System.out.println("Container Container: " + containerContainer.getOutputCurrent());
+				System.out.println("Container Follower: " + containerFollower.getOutputCurrent());
+				System.out.println("---------------------------------------------------------------");
+			}
 			///////////////////////////////////////////////////////////////////////////////////////////////
 			//
 			// Voltage limiter code
@@ -253,9 +276,16 @@ public class Robot extends SampleRobot {
 					liftMotor1.set(-stick3.getY());
 					liftMotor2.set(-stick3.getY());
 				}
+				else {
+					liftMotor1.set(0.0);
+					liftMotor2.set(0.0);
+				}
 				if(Math.abs(stick3.getRawAxis(2)) > 0.1) {
 					containerLift.set(stick3.getRawAxis(2));
 				}
+				else{
+					containerLift.set(0.0);
+				}/*
 				if(stick3.getRawButton(1)) {
 					containerContainer.set(clawSpeed);
 				}
@@ -265,7 +295,7 @@ public class Robot extends SampleRobot {
 				else {
 					containerContainer.set(0.0);
 				}
-				
+				*//*
 				if(cycleNum++ % 5 == 0) {
 					if(stick3.getRawButton(7) && clawSpeed > 0.0) {
 						clawSpeed -= 0.1;
@@ -277,7 +307,7 @@ public class Robot extends SampleRobot {
 					System.out.println("Claw Speed: " + clawSpeed);
 					System.out.println("Claw current: " + containerContainer.getOutputCurrent());
 					System.out.println("---------------------------------------------------------");
-				}
+				}*/
 				//System.out.println("LIDAR:\t" + (lidar.getDistance() / 2.54));
 				//double x = stick1.getX();
 				//double y = stick1.getY();
