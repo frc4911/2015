@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
 public class ContainerLiftSystem extends Subsystem {
 	private CANTalon containerLift;
 	private CANTalon containerContainer;
+	private CANTalon secondContainerContainer;
 	private DigitalInput switchIn;
 	private DigitalInput switchOut;
 	private AnalogPotentiometer clampPot;
@@ -26,6 +27,7 @@ public class ContainerLiftSystem extends Subsystem {
     public ContainerLiftSystem(){
     	containerLift = RobotMap.containerLift;
     	containerContainer = RobotMap.containerContainer;
+    	secondContainerContainer = RobotMap.secondContainerContainer;
     }
     
     public void runLiftManually(double speed) {
@@ -39,7 +41,7 @@ public class ContainerLiftSystem extends Subsystem {
     }
     
     public void runClampManuallyForward() {
-    	if (!switchIn.get() && containerContainer.getEncPosition() > RobotConstants.CONTAINERSYSTEM_CLAMP_MIN_WIDTH){
+    	/*if (!switchIn.get() && containerContainer.getEncPosition() > RobotConstants.CONTAINERSYSTEM_CLAMP_MIN_WIDTH){
 			if(!atLowSpeed) {
 				if(containerContainer.getOutputCurrent() > RobotConstants.CONTAINERSYSTEM_CLAMP_HIGH_AMPERAGE_THRESHHOLD) {
 					containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
@@ -58,19 +60,24 @@ public class ContainerLiftSystem extends Subsystem {
 					containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
 				}
 			}
-    	}
+    	}*/
+    	containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+    	secondContainerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
     }
     public void stopClamp(){
     	containerContainer.set(0.0);
+    	secondContainerContainer.set(0.0);
 	}
 	
 	public void runClampManuallyBackward(){
-		if(containerContainer.getEncPosition() < RobotConstants.CONTAINERSYSTEM_CLAMP_MAX_WIDTH){
+		/*if(containerContainer.getEncPosition() < RobotConstants.CONTAINERSYSTEM_CLAMP_MAX_WIDTH){
 			containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
 		}
 		else {
 			containerContainer.set(0.0);
-		}
+		}*/
+		containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+		secondContainerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
 	}
     
 	public boolean lowSpeed() {
