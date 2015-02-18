@@ -3,13 +3,12 @@ package org.usfirst.frc.team4911.robot.subsystems;
 import org.usfirst.frc.team4911.robot.RobotConstants;
 import org.usfirst.frc.team4911.robot.subsystems.SensorSystem;
 import org.usfirst.frc.team4911.robot.Robot;
-import org.usfirst.frc.team4911.robot.RobotMap;
 
+import org.usfirst.frc.team4911.robot.RobotMap;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
-import edu.wpi.first.wpilibj.CANTalon.ControlMode;
 
 /**
  *
@@ -44,55 +43,61 @@ public class ContainerLiftSystem extends Subsystem {
     }
     
     public void runClampManuallyForward() {
-    	containerContainer.changeControlMode(ControlMode.PercentVbus);
-    	secondContainerContainer.changeControlMode(ControlMode.Follower);
-
-    	if(sensorSystem.getPot() < 0.42) {
+    	/*if (!switchIn.get() && containerContainer.getEncPosition() > RobotConstants.CONTAINERSYSTEM_CLAMP_MIN_WIDTH){
+			if(!atLowSpeed) {
+				if(containerContainer.getOutputCurrent() > RobotConstants.CONTAINERSYSTEM_CLAMP_HIGH_AMPERAGE_THRESHHOLD) {
+					containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
+					atLowSpeed = true;
+				}
+				else {
+					containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+				}
+			}
+			else {
+				if(containerContainer.getOutputCurrent() < RobotConstants.CONTAINERSYSTEM_CLAMP_LOW_AMPERAGE_THRESHHOLD) {
+					containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+					atLowSpeed = false;
+				}
+				else {
+					containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
+				}
+			}
+    	}*/
+    	if(sensorSystem.getPot() > 0.4) {
     		containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+    		secondContainerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
     	}
     	else {
-    		if(atLowSpeed) {
-    			if(containerContainer.getOutputCurrent() < 5.0) {
-    				containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
-    				atLowSpeed = false;
-    			}
-    			else {
-    				containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
-    			}
-    		}
-    		else {
-    			if(containerContainer.getOutputCurrent() > 14.0) {
-    				containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
-    				atLowSpeed = true;
-    			}
-    			else {
-    				containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
-    			}
-    		}
+    		containerContainer.set(0.0);
+    		secondContainerContainer.set(0.0);
     	}
-    	secondContainerContainer.set(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT);
     }
     public void stopClamp(){
-    	secondContainerContainer.changeControlMode(ControlMode.Follower);
     	containerContainer.set(0.0);
-    	secondContainerContainer.set(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT);
+    	secondContainerContainer.set(0.0);
 	}
 	
 	public void runClampManuallyBackward(){
-		secondContainerContainer.changeControlMode(ControlMode.Follower);
-		if(sensorSystem.getPot() < 0.73) {
-			containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+		/*if(containerContainer.getEncPosition() < RobotConstants.CONTAINERSYSTEM_CLAMP_MAX_WIDTH){
+			containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
 		}
 		else {
 			containerContainer.set(0.0);
+		}*/
+		if(sensorSystem.getPot() < 0.73) {
+			containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+			secondContainerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
 		}
-    	secondContainerContainer.set(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT);
+		else {
+			containerContainer.set(0.0);
+			secondContainerContainer.set(0.0);
+		}
 	}
     
 	public boolean lowSpeed() {
 		return atLowSpeed;
 	}
-	 
+	
 	public void setLowSpeed(boolean on) {
 		atLowSpeed = on;
 	}
