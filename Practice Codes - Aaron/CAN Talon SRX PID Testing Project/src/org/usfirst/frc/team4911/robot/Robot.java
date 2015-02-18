@@ -1,12 +1,14 @@
 package org.usfirst.frc.team4911.robot;
 
 import java.io.File;
+
 import java.util.Arrays;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 
 import com.kauailabs.nav6.frc.IMUAdvanced;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.RobotDrive.MotorType;
@@ -142,15 +144,15 @@ public class Robot extends SampleRobot {
 		Timer.delay(0.3);
 	}
 	public void operatorControl() {
-		/*try {
+		try {
 			output = new PrintStream(new File("/home/lvuser/natinst/teleLog.txt"));
 			System.setOut(output);
 		} catch (Exception e){
 			
-		}*/
+		}
 		int i = 0;
 		while(isOperatorControl() && isEnabled()){
-			
+			/*
 			if(stick3.getRawButton(1)) {
 				containerContainer.set(1.0);
 				containerFollower.set(1.0);
@@ -168,6 +170,21 @@ public class Robot extends SampleRobot {
 				System.out.println("Container Follower: " + containerFollower.getOutputCurrent());
 				System.out.println("---------------------------------------------------------------");
 			}
+			*/
+			if(stick3.getRawButton(1)){
+				containerContainer.set(1.0);
+				containerFollower.set(-1.0);
+			} else if(stick3.getRawButton(2)){
+				containerContainer.set(-1.0);
+				containerFollower.set(1.0);
+			}  else {
+				containerContainer.set(0.0);
+				containerFollower.set(0.0);
+			}
+			
+			
+			AnalogInput pot = new AnalogInput(0);
+			System.out.println("POT:\t" + pot.getVoltage());
 			
 			///////////////////////////////////////////////////////////////////////////////////////////////
 			//
@@ -280,16 +297,9 @@ public class Robot extends SampleRobot {
 					liftMotor1.set(0.0);
 					liftMotor2.set(0.0);
 				}
-				else {
-					liftMotor1.set(0.0);
-					liftMotor2.set(0.0);
-				}
 				if(Math.abs(stick3.getRawAxis(2)) > 0.1) {
 					containerLift.set(stick3.getRawAxis(2));
 				} else {
-					containerLift.set(0.0);
-				}
-				else{
 					containerLift.set(0.0);
 				}
 				/*

@@ -68,13 +68,14 @@ public class RobotConstants {
     public static final double CONTAINER_LIFT_TOP = 	0.0;
     public static final double CONTAINER_LIFT_RELEASE = 0.0;
     
-
+    
     public static final double CONTAINERSYSTEM_TOTAL_DISTANCE = 76.0;//Measured in Inches
     public static final double CONTAINERSYSTEM_WHEEL_DIAMETER = 0.67; //Measured in Inches
     public static final double CONTAINERSYSTEM_GEAR_RATIO = 1.0/ 13.5;
     public static final double CONTAINERSYSTEM_ENCODER_PULSE_PER_ROTATION = 1024.0;//Number of Pulse per One Rotation of the Encoder
     public static final double CONTAINERSYSTEM_ENCODER_DISTANCE_PER_PULSE = CONTAINERSYSTEM_GEAR_RATIO * CONTAINERSYSTEM_WHEEL_DIAMETER * Math.PI / CONTAINERSYSTEM_ENCODER_PULSE_PER_ROTATION;
-
+	
+    
     public static final double CONTAINERSYSTEM_CLAMP_CLOSING_DISTANCE = 30.0;//Measured in Inches
     public static final double CONTAINERSYSTEM_CLAMP_HOLDING_DISTANCE = 15.0;//Measured in Inches
     public static final double CONTAINERSYSTEM_CLAMP_OPENING_DISTANCE = 15.0;//Measured in Inches
@@ -84,11 +85,11 @@ public class RobotConstants {
     public static final double CONTAINERSYSTEM_CLAMP_ENCODER_DISTANCE_PER_PULSE = CONTAINERSYSTEM_CLAMP_GEAR_RATIO * CONTAINERSYSTEM_CLAMP_AXLE_CIRCUMFERENCE / CONTAINERSYSTEM_CLAMP_ENCODER_PULSE_PER_ROTATION;
     
     public static final double CONTAINERSYSTEM_LIFT_SPEED = 0.5;
-    public static final double CONTAINERSYSTEM_CLAMP_SPEED = 0.5;
-    public static final double CONTAINERSYSTEM_CLAMP_HOLD_POWER = 0.1;
-    public static final double CONTAINERSYSTEM_CLAMP_STOPPED_THRESHOLD = 0.1;
-    public static final double CONTAINERSYSTEM_CLAMP_MAX_WIDTH = 1.0;
-    public static final double CONTAINERSYSTEM_CLAMP_MIN_WIDTH = 0;
+    public static final double CONTAINERSYSTEM_CLAMP_SPEED = 1.0;
+    //public static final double CONTAINERSYSTEM_CLAMP_HOLD_POWER = 0.1;
+    //public static final double CONTAINERSYSTEM_CLAMP_STOPPED_THRESHOLD = 0.1;
+    //public static final double CONTAINERSYSTEM_CLAMP_MAX_WIDTH = 1.0;
+    //public static final double CONTAINERSYSTEM_CLAMP_MIN_WIDTH = 0;
     
     public static final double CONTAINERSYSTEM_CLAMP_LOW_AMPERAGE_THRESHHOLD = 0.15;
     public static final double CONTAINERSYSTEM_CLAMP_HIGH_AMPERAGE_THRESHHOLD = 7.5;

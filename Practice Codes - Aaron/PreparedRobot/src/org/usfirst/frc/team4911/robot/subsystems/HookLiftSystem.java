@@ -23,22 +23,22 @@ public class HookLiftSystem extends Subsystem {
     
     public void runLiftManually(double speed) {
     	leftHook.changeControlMode(CANTalon.ControlMode.PercentVbus);
-    	rightHook.changeControlMode(CANTalon.ControlMode.PercentVbus);
+    	rightHook.changeControlMode(CANTalon.ControlMode.Follower);
     	leftHook.set(-speed);
-    	rightHook.set(-speed);
+    	rightHook.set(RobotConstants.HOOK_LEFT_CANTALON_PORT);
     }
     
     public void setLiftToPoint(double pos) {
     	leftHook.changeControlMode(CANTalon.ControlMode.Position);
-    	rightHook.changeControlMode(CANTalon.ControlMode.Position);
+    	rightHook.changeControlMode(CANTalon.ControlMode.Follower);
     	leftHook.set(pos);
-    	rightHook.set(pos);
+    	rightHook.set(RobotConstants.HOOK_LEFT_CANTALON_PORT);
     }
     
 
     public void liftViaPercent(double position){
     	leftHook.set(RobotConstants.HOOKSYSTEM_TOTAL_DISTANCE * position / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
-    	rightHook.set(RobotConstants.HOOKSYSTEM_TOTAL_DISTANCE * position / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
+    	rightHook.set(RobotConstants.HOOK_LEFT_CANTALON_PORT);
     }
     
     //This will move the Lift right upto the lips of the Tote specified

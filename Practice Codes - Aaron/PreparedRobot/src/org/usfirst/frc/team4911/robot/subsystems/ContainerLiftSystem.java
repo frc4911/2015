@@ -61,7 +61,7 @@ public class ContainerLiftSystem extends Subsystem {
 				}
 			}
     	}*/
-    	containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+    	containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
     	secondContainerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
     }
     public void stopClamp(){
@@ -76,7 +76,7 @@ public class ContainerLiftSystem extends Subsystem {
 		else {
 			containerContainer.set(0.0);
 		}*/
-		containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+		containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
 		secondContainerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
 	}
     
