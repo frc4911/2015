@@ -86,7 +86,7 @@ public class RobotConstants {
     
     public static final double CONTAINERSYSTEM_LIFT_SPEED = 0.5;
     public static final double CONTAINERSYSTEM_CLAMP_SPEED = 1.0;
-    //public static final double CONTAINERSYSTEM_CLAMP_HOLD_POWER = 0.1;
+    public static final double CONTAINERSYSTEM_CLAMP_HOLD_POWER = 0.1;
     //public static final double CONTAINERSYSTEM_CLAMP_STOPPED_THRESHOLD = 0.1;
     //public static final double CONTAINERSYSTEM_CLAMP_MAX_WIDTH = 1.0;
     //public static final double CONTAINERSYSTEM_CLAMP_MIN_WIDTH = 0;

@@ -159,6 +159,9 @@ public class OperatorDrive extends Command {
 		
 		
 		printSystem.print("Pot Value", sensorSystem.getPot());
+		System.out.println("Pot: " + sensorSystem.getPot());
+		System.out.println("ContainerContainer: " + containerLiftSystem.getContainerContainer().getOutputCurrent());
+		System.out.println("Follower: " + containerLiftSystem.getSecondCC().getOutputCurrent());
 	}
 
 	@Override

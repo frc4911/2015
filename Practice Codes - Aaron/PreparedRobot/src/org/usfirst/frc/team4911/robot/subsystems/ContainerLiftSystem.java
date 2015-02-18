@@ -1,12 +1,15 @@
 package org.usfirst.frc.team4911.robot.subsystems;
 
 import org.usfirst.frc.team4911.robot.RobotConstants;
-
+import org.usfirst.frc.team4911.robot.subsystems.SensorSystem;
+import org.usfirst.frc.team4911.robot.Robot;
 import org.usfirst.frc.team4911.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.CANTalon.ControlMode;
 
 /**
  *
@@ -15,9 +18,9 @@ public class ContainerLiftSystem extends Subsystem {
 	private CANTalon containerLift;
 	private CANTalon containerContainer;
 	private CANTalon secondContainerContainer;
+	private SensorSystem sensorSystem = Robot.sensorSystem;
 	private DigitalInput switchIn;
 	private DigitalInput switchOut;
-	private AnalogPotentiometer clampPot;
 	private boolean atLowSpeed = false;
 	
     public void initDefaultCommand() {
@@ -41,49 +44,55 @@ public class ContainerLiftSystem extends Subsystem {
     }
     
     public void runClampManuallyForward() {
-    	/*if (!switchIn.get() && containerContainer.getEncPosition() > RobotConstants.CONTAINERSYSTEM_CLAMP_MIN_WIDTH){
-			if(!atLowSpeed) {
-				if(containerContainer.getOutputCurrent() > RobotConstants.CONTAINERSYSTEM_CLAMP_HIGH_AMPERAGE_THRESHHOLD) {
-					containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
-					atLowSpeed = true;
-				}
-				else {
-					containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
-				}
-			}
-			else {
-				if(containerContainer.getOutputCurrent() < RobotConstants.CONTAINERSYSTEM_CLAMP_LOW_AMPERAGE_THRESHHOLD) {
-					containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
-					atLowSpeed = false;
-				}
-				else {
-					containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
-				}
-			}
-    	}*/
-    	containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
-    	secondContainerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+    	containerContainer.changeControlMode(ControlMode.PercentVbus);
+    	secondContainerContainer.changeControlMode(ControlMode.Follower);
+
+    	if(sensorSystem.getPot() < 0.42) {
+    		containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+    	}
+    	else {
+    		if(atLowSpeed) {
+    			if(containerContainer.getOutputCurrent() < 5.0) {
+    				containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+    				atLowSpeed = false;
+    			}
+    			else {
+    				containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
+    			}
+    		}
+    		else {
+    			if(containerContainer.getOutputCurrent() > 14.0) {
+    				containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
+    				atLowSpeed = true;
+    			}
+    			else {
+    				containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+    			}
+    		}
+    	}
+    	secondContainerContainer.set(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT);
     }
     public void stopClamp(){
+    	secondContainerContainer.changeControlMode(ControlMode.Follower);
     	containerContainer.set(0.0);
-    	secondContainerContainer.set(0.0);
+    	secondContainerContainer.set(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT);
 	}
 	
 	public void runClampManuallyBackward(){
-		/*if(containerContainer.getEncPosition() < RobotConstants.CONTAINERSYSTEM_CLAMP_MAX_WIDTH){
-			containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+		secondContainerContainer.changeControlMode(ControlMode.Follower);
+		if(sensorSystem.getPot() < 0.73) {
+			containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
 		}
 		else {
 			containerContainer.set(0.0);
-		}*/
-		containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
-		secondContainerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+		}
+    	secondContainerContainer.set(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT);
 	}
     
 	public boolean lowSpeed() {
 		return atLowSpeed;
 	}
-	
+	 
 	public void setLowSpeed(boolean on) {
 		atLowSpeed = on;
 	}
@@ -139,6 +148,10 @@ public class ContainerLiftSystem extends Subsystem {
     }
     public CANTalon getContainerContainer(){
     	return containerContainer;
+    }
+    
+    public CANTalon getSecondCC() {
+    	return secondContainerContainer;
     }
     
     public CANTalon.ControlMode getLiftControlMode() {
