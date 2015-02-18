@@ -5,5 +5,9 @@
 1424068199838	Delete resource 'Intermediate Vision'
 1424068205775	Delete resource 'OpenCVTest'
 1424068210260	Delete resource 'PreparedRobot'
+<<<<<<< HEAD
 1424220964903	Delete resource 'JoystickTest'
 1424220987907	Delete resource 'testJoystick'
+=======
+1424110801190	Delete resource 'PreparedRobot'
+>>>>>>> 223473335c658fab1a5bfa6d923e7fb1c5a5b893

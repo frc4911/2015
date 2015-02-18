@@ -51,7 +51,6 @@ public class OperatorDrive extends Command {
 
 		if(Math.abs(oi.payloadJoy.getY()) > 0.1) {
 			hookLiftSystem.runLiftManually(oi.payloadJoy.getY());
-			printSystem.print("" + oi.payloadJoy.getY());
 		}
 		//manual stop code... use ONLY if presets are not running
 		else {
@@ -158,8 +157,11 @@ public class OperatorDrive extends Command {
 			
 		}
 		
-		printSystem.print("IMU value: " + sensorSystem.getYaw());
-		printSystem.print("IMU value with compensation: " + sensorSystem.getYawWithCompensation());
+		
+		printSystem.print("Pot Value", sensorSystem.getPot());
+		System.out.println("Pot: " + sensorSystem.getPot());
+		System.out.println("ContainerContainer: " + containerLiftSystem.getContainerContainer().getOutputCurrent());
+		System.out.println("Follower: " + containerLiftSystem.getSecondCC().getOutputCurrent());
 	}
 
 	@Override

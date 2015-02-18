@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.Joystick;
 public class Robot extends SampleRobot {
     int session;
     Image frame;
+    CameraServer camServer;
 
     public void robotInit() {
         session = 1;
@@ -28,6 +29,8 @@ public class Robot extends SampleRobot {
                 NIVision.IMAQdxCameraControlMode.CameraControlModeController);
         NIVision.IMAQdxConfigureGrab(session);
         
+        camServer = CameraServer.getInstance();
+        camServer.setQuality(50);
     }
 
     public void operatorControl() {
@@ -37,8 +40,7 @@ public class Robot extends SampleRobot {
             
             NIVision.IMAQdxGrab(session, frame, 1);
    
-            CameraServer.getInstance().setImage(frame);
-            Timer.delay(0.005);		// wait for a motor update time
+            camServer.setImage(frame);
         }
     }
 

@@ -1,6 +1,8 @@
 package org.usfirst.frc.team4911.robot.subsystems;
 
 import org.usfirst.frc.team4911.robot.RobotConstants;
+import org.usfirst.frc.team4911.robot.subsystems.SensorSystem;
+import org.usfirst.frc.team4911.robot.Robot;
 
 import org.usfirst.frc.team4911.robot.RobotMap;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -15,9 +17,9 @@ public class ContainerLiftSystem extends Subsystem {
 	private CANTalon containerLift;
 	private CANTalon containerContainer;
 	private CANTalon secondContainerContainer;
+	private SensorSystem sensorSystem = Robot.sensorSystem;
 	private DigitalInput switchIn;
 	private DigitalInput switchOut;
-	private AnalogPotentiometer clampPot;
 	private boolean atLowSpeed = false;
 	
     public void initDefaultCommand() {
@@ -61,8 +63,14 @@ public class ContainerLiftSystem extends Subsystem {
 				}
 			}
     	}*/
-    	containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
-    	secondContainerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+    	if(sensorSystem.getPot() > 0.4) {
+    		containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+    		secondContainerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+    	}
+    	else {
+    		containerContainer.set(0.0);
+    		secondContainerContainer.set(0.0);
+    	}
     }
     public void stopClamp(){
     	containerContainer.set(0.0);
@@ -76,8 +84,14 @@ public class ContainerLiftSystem extends Subsystem {
 		else {
 			containerContainer.set(0.0);
 		}*/
-		containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
-		secondContainerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+		if(sensorSystem.getPot() < 0.73) {
+			containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+			secondContainerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+		}
+		else {
+			containerContainer.set(0.0);
+			secondContainerContainer.set(0.0);
+		}
 	}
     
 	public boolean lowSpeed() {
@@ -139,6 +153,10 @@ public class ContainerLiftSystem extends Subsystem {
     }
     public CANTalon getContainerContainer(){
     	return containerContainer;
+    }
+    
+    public CANTalon getSecondCC() {
+    	return secondContainerContainer;
     }
     
     public CANTalon.ControlMode getLiftControlMode() {

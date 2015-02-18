@@ -2,11 +2,13 @@ package org.usfirst.frc.team4911.robot.subsystems;
 
 import java.util.Arrays;
 
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 
 import org.usfirst.frc.team4911.robot.RobotConstants;
 import org.usfirst.frc.team4911.robot.RobotMap;
@@ -27,6 +29,8 @@ public class SensorSystem extends Subsystem {
 	public static Gyro gyro = RobotMap.gyro;
 	
 	public static LIDAR lidar = RobotMap.lidar;
+	
+	public static AnalogPotentiometer clampPot = RobotMap.clampPot;
 	
 	public double startTime;
 	public DataBuffer accelXBuffer;
@@ -68,7 +72,8 @@ public class SensorSystem extends Subsystem {
     	return imu.getRoll();
     }
     public float getYaw(){
-    	return getYawWithCompensation();
+    	return imu.getYaw();
+    	//return getYawWithCompensation();
     }
     public float getYawWithCompensation(){
     	Double ellapsedTime = Timer.getFPGATimestamp() - startTime;
@@ -152,6 +157,12 @@ public class SensorSystem extends Subsystem {
     public double getRightDistance(){
         return left.getEncPosition() * RobotConstants.DRIVESYSTEM_ENCODER_DISTANCE_PER_PULSE;
 
+    }
+    /***************************************
+     * Potentiometer Methods
+     ***************************************/
+    public double getPot(){
+    	return clampPot.get();
     }
     
     /***************************************

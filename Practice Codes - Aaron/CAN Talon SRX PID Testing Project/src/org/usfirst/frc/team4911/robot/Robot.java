@@ -1,12 +1,14 @@
 package org.usfirst.frc.team4911.robot;
 
 import java.io.File;
+
 import java.util.Arrays;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 
 import com.kauailabs.nav6.frc.IMUAdvanced;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.RobotDrive.MotorType;
@@ -142,15 +144,15 @@ public class Robot extends SampleRobot {
 		Timer.delay(0.3);
 	}
 	public void operatorControl() {
-		/*try {
+		try {
 			output = new PrintStream(new File("/home/lvuser/natinst/teleLog.txt"));
 			System.setOut(output);
 		} catch (Exception e){
 			
-		}*/
+		}
 		int i = 0;
 		while(isOperatorControl() && isEnabled()){
-			
+			/*
 			if(stick3.getRawButton(1)) {
 				containerContainer.set(1.0);
 				containerFollower.set(1.0);
@@ -168,6 +170,22 @@ public class Robot extends SampleRobot {
 				System.out.println("Container Follower: " + containerFollower.getOutputCurrent());
 				System.out.println("---------------------------------------------------------------");
 			}
+			*/
+			if(stick3.getRawButton(1)){
+				containerContainer.set(1.0);
+				containerFollower.set(-1.0);
+			} else if(stick3.getRawButton(2)){
+				containerContainer.set(-1.0);
+				containerFollower.set(1.0);
+			}  else {
+				containerContainer.set(0.0);
+				containerFollower.set(0.0);
+			}
+			
+			
+			AnalogInput pot = new AnalogInput(0);
+			System.out.println("POT:\t" + pot.getVoltage());
+			
 			///////////////////////////////////////////////////////////////////////////////////////////////
 			//
 			// Voltage limiter code
@@ -275,20 +293,20 @@ public class Robot extends SampleRobot {
 				if(Math.abs(stick3.getY()) > 0.1) {
 					liftMotor1.set(-stick3.getY());
 					liftMotor2.set(-stick3.getY());
-				}
-				else {
+				} else {
 					liftMotor1.set(0.0);
 					liftMotor2.set(0.0);
 				}
 				if(Math.abs(stick3.getRawAxis(2)) > 0.1) {
 					containerLift.set(stick3.getRawAxis(2));
-				}
-				else{
+				} else {
 					containerLift.set(0.0);
-				}/*
+				}
+				/*
 				if(stick3.getRawButton(1)) {
 					containerContainer.set(clawSpeed);
 				}
+				//Left Button on xBox controller
 				else if(stick3.getRawButton(3)) {
 					containerContainer.set(-clawSpeed);
 				}
@@ -343,8 +361,21 @@ public class Robot extends SampleRobot {
 			System.out.println("Accel Y:\t" + aveY +  "ft/s^2");
 			System.out.println("===================================");
 			*/
+		
+
+			leftFront3.set(0.0);
+			//1  
+			leftRear4.set(0.0);
+			rightFront7.set(0.0);
+			rightRear8.set(0.0);
+			liftMotor1.set(0.0);
+	
+			liftMotor2.set(0.0);
+			containerContainer.set(0.0);
+			
+			containerLift.set(0.0);
+			output.close();
 		}
-		//output.close();
 		
 	public void driveWithPID(double x, double y){
 		double currYaw = imu.getYaw();
