@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.RobotConstants"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Joystick"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.subsystems.SensorSystem"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.Robot"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CANTalon.ControlMode"/>
 </qualifiedTypeNameHistroy>
