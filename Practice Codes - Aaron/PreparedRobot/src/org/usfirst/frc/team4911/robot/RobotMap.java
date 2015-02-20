@@ -32,6 +32,8 @@ public class RobotMap {
 	public static CANTalon secondContainerContainer;
 	
 	public static AnalogPotentiometer clampPot;
+	public static AnalogPotentiometer hookLiftPot;
+	public static AnalogPotentiometer containerLiftPot;
 	
 	public static DigitalInput limitSwitchIn;
 	public static DigitalInput limitSwitchOut;
@@ -43,8 +45,7 @@ public class RobotMap {
 	public static Encoder xSlideEncoder;
 	public static Encoder ySlideEncoder;
 
-	public static LIDAR lidar;	
-	public static Servo cameraServo;
+	public static LIDAR lidar;
 	
 	private static SerialPort serial_port;
 		
@@ -61,52 +62,52 @@ public class RobotMap {
 		leftRear.setPID(1.0, 0.0, 0.0);
 	  
 		rightFront = new CANTalon(RobotConstants.RIGHT_FRONT_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
-      	rightFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-      	rightFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
-      	rightFront.setPID(1.0, 0.0, 0.0);
-	  
-      	rightRear = new CANTalon(RobotConstants.RIGHT_REAR_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
-      	rightRear.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-      	rightRear.changeControlMode(CANTalon.ControlMode.PercentVbus);
-      	rightRear.setPID(1.0, 0.0, 0.0);
-
-      	hookLeft = new CANTalon(RobotConstants.HOOK_LEFT_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
-      	hookLeft.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-      	//hookLeft.changeControlMode(CANTalon.ControlMode.Position);
-      	hookLeft.changeControlMode(CANTalon.ControlMode.PercentVbus);
-      	hookLeft.setPID(1.0, 0.0, 0.0);
-
-      	hookRight = new CANTalon(RobotConstants.HOOK_RIGHT_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
-      	hookRight.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-      	//hookRight.changeControlMode(CANTalon.ControlMode.Position);
-      	hookRight.changeControlMode(CANTalon.ControlMode.PercentVbus);
-      	hookRight.setPID(1.0, 0.0, 0.0);
-      	
-      	containerLift = new CANTalon(RobotConstants.CONTAINER_LIFT_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
-      	containerLift.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-      	//containerLift.changeControlMode(CANTalon.ControlMode.Position);
-      	containerLift.changeControlMode(CANTalon.ControlMode.PercentVbus);
-      	containerLift.setPID(1.0, 0.0, 0.0);
-      	
-      	containerContainer = new CANTalon(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
-      	containerContainer.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-      	containerContainer.changeControlMode(CANTalon.ControlMode.PercentVbus);
-      	containerContainer.setPID(1.0, 0.0, 0.0);
-      	
-      	secondContainerContainer = new CANTalon(RobotConstants.CONTAINER_CONTAINER_SECOND_CANTALON_PORT);
-      	containerContainer.changeControlMode(CANTalon.ControlMode.PercentVbus);
-      	containerContainer.setPID(1.0, 0.0, 0.0);
-      	
-      	clampPot = new AnalogPotentiometer(RobotConstants.CONTAINERSYSTEM_CLAMP_POTENTIOMETER_PORT);
-
-      	limitSwitchIn = new DigitalInput(RobotConstants.CONTAINERSYSTEM_CLAMP_LIMIT_SWITCH_IN_PORT);
-      	limitSwitchOut = new DigitalInput(RobotConstants.CONTAINERSYSTEM_CLAMP_LIMIT_SWITCH_OUT_PORT);
+          	rightFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+          	rightFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
+          	rightFront.setPID(1.0, 0.0, 0.0);
+    	  
+          	rightRear = new CANTalon(RobotConstants.RIGHT_REAR_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
+          	rightRear.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+          	rightRear.changeControlMode(CANTalon.ControlMode.PercentVbus);
+          	rightRear.setPID(1.0, 0.0, 0.0);
+    
+          	hookLeft = new CANTalon(RobotConstants.HOOK_LEFT_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
+          	hookLeft.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+          	//hookLeft.changeControlMode(CANTalon.ControlMode.Position);
+          	hookLeft.changeControlMode(CANTalon.ControlMode.PercentVbus);
+          	hookLeft.setPID(1.0, 0.0, 0.0);
+    
+          	hookRight = new CANTalon(RobotConstants.HOOK_RIGHT_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
+          	hookRight.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+          	//hookRight.changeControlMode(CANTalon.ControlMode.Position);
+          	hookRight.changeControlMode(CANTalon.ControlMode.PercentVbus);
+          	hookRight.setPID(1.0, 0.0, 0.0);
+          	
+          	containerLift = new CANTalon(RobotConstants.CONTAINER_LIFT_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
+          	containerLift.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+          	//containerLift.changeControlMode(CANTalon.ControlMode.Position);
+          	containerLift.changeControlMode(CANTalon.ControlMode.PercentVbus);
+          	containerLift.setPID(1.0, 0.0, 0.0);
+          	
+          	containerContainer = new CANTalon(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
+          	containerContainer.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+          	containerContainer.changeControlMode(CANTalon.ControlMode.PercentVbus);
+          	containerContainer.setPID(1.0, 0.0, 0.0);
+          	
+          	secondContainerContainer = new CANTalon(RobotConstants.CONTAINER_CONTAINER_SECOND_CANTALON_PORT);
+          	containerContainer.changeControlMode(CANTalon.ControlMode.PercentVbus);
+          	containerContainer.setPID(1.0, 0.0, 0.0);
+          	
+          	clampPot = new AnalogPotentiometer(RobotConstants.CONTAINERSYSTEM_CLAMP_POTENTIOMETER_PORT);
+          	hookLiftPot = new AnalogPotentiometer(RobotConstants.TOTE_LIFT_POTENTIOMETER_PORT);
+          	containerLiftPot = new AnalogPotentiometer(RobotConstants.CONTAINER_LIFT_POTENTIOMETER_PORT);
+    
+          	limitSwitchIn = new DigitalInput(RobotConstants.CONTAINERSYSTEM_CLAMP_LIMIT_SWITCH_IN_PORT);
+          	limitSwitchOut = new DigitalInput(RobotConstants.CONTAINERSYSTEM_CLAMP_LIMIT_SWITCH_OUT_PORT);
       	
 		accelerometer = new BuiltInAccelerometer();
 		gyro = new Gyro(RobotConstants.MAIN_GYRO_PORT);
 		lidar = new LIDAR(I2C.Port.kMXP);
-		cameraServo = new Servo(RobotConstants.CAMERA_SERVO_PORT);
-		cameraServo.set(RobotConstants.CAMERA_SERVO_MID);
 		
 		xSlideEncoder = new Encoder(RobotConstants.X_SLIDE_ENCODER_PORT_A,RobotConstants.X_SLIDE_ENCODER_PORT_B);
 		ySlideEncoder = new Encoder(RobotConstants.Y_SLIDE_ENCODER_PORT_A,RobotConstants.Y_SLIDE_ENCODER_PORT_B);

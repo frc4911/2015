@@ -57,10 +57,15 @@ public class RobotConstants {
     public static final double TOTE_STACK_POSITION = 5.0;
     public static final double TOTE_CLEAR_CONTAINER_POSITION = 50.0;
     
+    public static final int TOTE_LIFT_POTENTIOMETER_PORT = 2;
+    
+    public static final double LIFT_ERROR_TOLERANCE = 0.0;
     //CONTAINER SYSTEM CONSTANTS
     public static final int CONTAINER_LIFT_CANTALON_PORT = 5;
     public static final int CONTAINER_CONTAINER_CANTALON_PORT = 6;
     public static final int CONTAINER_CONTAINER_SECOND_CANTALON_PORT = 9;
+    
+    public static final int CONTAINER_LIFT_POTENTIOMETER_PORT = 1;
     
     //TEST FOR THESE VALUES
     public static final double CONTAINER_LIFT_GROUND = 	0.0;
@@ -87,9 +92,6 @@ public class RobotConstants {
     public static final double CONTAINERSYSTEM_LIFT_SPEED = 0.5;
     public static final double CONTAINERSYSTEM_CLAMP_SPEED = 1.0;
     public static final double CONTAINERSYSTEM_CLAMP_HOLD_POWER = 0.1;
-    //public static final double CONTAINERSYSTEM_CLAMP_STOPPED_THRESHOLD = 0.1;
-    //public static final double CONTAINERSYSTEM_CLAMP_MAX_WIDTH = 1.0;
-    //public static final double CONTAINERSYSTEM_CLAMP_MIN_WIDTH = 0;
     
     public static final double CONTAINERSYSTEM_CLAMP_LOW_AMPERAGE_THRESHHOLD = 0.15;
     public static final double CONTAINERSYSTEM_CLAMP_HIGH_AMPERAGE_THRESHHOLD = 7.5;
@@ -108,11 +110,6 @@ public class RobotConstants {
     public static final double YAW_DRIFT_PER_TICK = 0.006; // 0.004 for first chassis, 0.006 for second chassis
     public static final float SENSORSYSTEM_GRAVITATIONAL_ACCELERATION = 32.174f;//ft/s^2
     
-    //CAMERA
-    public static final int CAMERA_SERVO_PORT = 0;
-    public static final double CAMERA_SERVO_LEFT = 0.0;
-    public static final double CAMERA_SERVO_MID = 0.5;
-    public static final double CAMERA_SERVO_RIGHT = 1.0;
     
     //DEBUG SWITCH
     public static final boolean FLAG = true;
