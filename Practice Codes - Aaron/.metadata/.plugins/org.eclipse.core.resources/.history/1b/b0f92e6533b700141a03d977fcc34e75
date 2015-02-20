@@ -80,7 +80,7 @@ public class ContainerLiftSystem extends Subsystem {
 	
 	public void runClampManuallyBackward(){
 		secondContainerContainer.changeControlMode(ControlMode.Follower);
-		if(sensorSystem.getPot() < 0.720) {
+		if(sensorSystem.getPot() < 0.73) {
 			containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
 		}
 		else {

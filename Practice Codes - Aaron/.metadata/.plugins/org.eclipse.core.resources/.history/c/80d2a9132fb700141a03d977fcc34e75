@@ -122,15 +122,12 @@ public class OperatorDrive extends Command {
 		//
 		////////////////////////////////////////////////////////////////////////////
 		if(oi.payloadButton3.get()){
-			printSystem.print("Backward");
-			containerLiftSystem.runClampManuallyBackward();
-		}
-		else if(oi.payloadButton1.get()){
-			printSystem.print("Forward");
 			containerLiftSystem.runClampManuallyForward();
 		}
+		else if(oi.payloadButton1.get()){
+			containerLiftSystem.runClampManuallyBackward();
+		}
 		else{
-			printSystem.print("Stopped");
 			containerLiftSystem.stopClamp();
 		}
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -162,9 +159,9 @@ public class OperatorDrive extends Command {
 		
 		
 		printSystem.print("Pot Value", sensorSystem.getPot());
-		printSystem.print("Pot: " + sensorSystem.getPot());
-		printSystem.print("ContainerContainer: " + containerLiftSystem.getContainerContainer().getOutputCurrent());
-		printSystem.print("Follower: " + containerLiftSystem.getSecondCC().getOutputCurrent());
+		System.out.println("Pot: " + sensorSystem.getPot());
+		System.out.println("ContainerContainer: " + containerLiftSystem.getContainerContainer().getOutputCurrent());
+		System.out.println("Follower: " + containerLiftSystem.getSecondCC().getOutputCurrent());
 	}
 
 	@Override
