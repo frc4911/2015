@@ -48,25 +48,25 @@ public class ContainerLiftSystem extends Subsystem {
     	secondContainerContainer.changeControlMode(ControlMode.Follower);
 
     	if(sensorSystem.getPot() < 0.42) {
-    		containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+    		containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
     	}
     	else {
     		if(atLowSpeed) {
     			if(containerContainer.getOutputCurrent() < 5.0) {
-    				containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+    				containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
     				atLowSpeed = false;
     			}
     			else {
-    				containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
+    				containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
     			}
     		}
     		else {
-    			if(containerContainer.getOutputCurrent() > 40.0) {
-    				containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
+    			if(containerContainer.getOutputCurrent() > 14.0) {
+    				containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
     				atLowSpeed = true;
     			}
     			else {
-    				containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+    				containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
     			}
     		}
     	}
@@ -80,8 +80,8 @@ public class ContainerLiftSystem extends Subsystem {
 	
 	public void runClampManuallyBackward(){
 		secondContainerContainer.changeControlMode(ControlMode.Follower);
-		if(sensorSystem.getPot() < 0.720) {
-			containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+		if(sensorSystem.getPot() < 0.73) {
+			containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
 		}
 		else {
 			containerContainer.set(0.0);
