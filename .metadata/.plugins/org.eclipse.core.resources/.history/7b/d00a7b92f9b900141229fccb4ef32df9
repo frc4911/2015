@@ -38,7 +38,7 @@ public class HookLiftSystem extends Subsystem {
     public void updateLift(double joyVal) {
 	leftHook.changeControlMode(ControlMode.PercentVbus);
 	rightHook.changeControlMode(ControlMode.Follower);
-	if(Math.abs(joyVal) >= 0.1) {
+	if(Math.abs(joyVal) > 0.1) {
 	    isBeingUsed = false;
 	}
 	if(isBeingUsed) {
