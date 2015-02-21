@@ -20,11 +20,12 @@ public class HookLiftSystem extends Subsystem {
     	
     }
     
+    
     public HookLiftSystem(){
     	leftHook = RobotMap.hookLeft;
     	rightHook = RobotMap.hookRight;
     	isBeingUsed = false;
-    	targetPos = sensorSystem.getHookLiftPot(); //TODO: add potentiometer and set targetPos to current reading
+    	targetPos = 0.0; //TODO: add potentiometer and set targetPos to current reading
     }
     
     public void runLiftManually(double speed) {

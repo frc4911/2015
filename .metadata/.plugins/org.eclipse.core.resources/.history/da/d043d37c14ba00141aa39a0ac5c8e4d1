@@ -121,11 +121,11 @@ public class OperatorDrive extends Command {
 		//  Container Clamp Controls
 		//
 		////////////////////////////////////////////////////////////////////////////
-		if(oi.payloadButton8.get()){
+		if(oi.payloadButton3.get()){
 			printSystem.print("Backward");
 			containerLiftSystem.runClampManuallyBackward();
 		}
-		else if(oi.payloadButton7.get()){
+		else if(oi.payloadButton1.get()){
 			printSystem.print("Forward");
 			containerLiftSystem.runClampManuallyForward();
 		}
