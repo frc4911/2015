@@ -96,15 +96,11 @@ public class OperatorDrive extends Command {
 		containerLiftSystem.runLiftManually(0.0);
 	    }
 		
-	    /*
-	    Potentiometer Code  
 	    if(oi.payloadJoy.getPOV() != -1) {
 		containerLiftSystem.setTargetPosition(RobotConstants.CONTAINER_LIFT_TOP);
 	    }
-	    containerLiftSystem.updateLift();
-	    */
 	    //
-	    //Preset Encoder Code
+	    //Preset Code
 	    /*else{
 		if(oi.payloadButton8.get()) {
 			containerLiftSystem.runLiftToPreset(RobotConstants.CONTAINER_LIFT_RELEASE);
