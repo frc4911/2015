@@ -169,7 +169,11 @@ public class Robot extends SampleRobot {
 		
 		motor.setPosition(0.0);
 		
+		motor.set(-1.0);
+		Timer.delay(1.0);
+		/*
 		while(isOperatorControl() && isEnabled()){
+			motor.set(stick3.getY());
 			
 			System.out.println("===========================================");
 			System.out.println("GET:\t" + motor.get());
@@ -178,8 +182,21 @@ public class Robot extends SampleRobot {
 			System.out.println("VELOCITY:\t" + motor.getEncVelocity());
 			System.out.println("SPEED:\t" + motor.getSpeed());
 			
-		}
+		}*/
+		System.out.println("===========================================");
+		System.out.println("START");
 		
+		double startTime = Timer.getFPGATimestamp();
+		double timeElapsed = 0.0;
+		while(timeElapsed <= 10.0){
+			motor.set(-1.0);
+			System.out.println("===========================================");
+			System.out.println("POS:\t" + motor.getPosition());
+			timeElapsed = Timer.getFPGATimestamp() - startTime;
+		}
+
+		System.out.println("===========================================");
+		System.out.println("POS:\t" + motor.getPosition());
 		motor.set(0.0);
 		output.close();
 	}
@@ -211,8 +228,19 @@ public class Robot extends SampleRobot {
 	}
 	
 	public void autonomous(){
-		while(isAutonomous() && isEnabled()) {
-			//rightFront.setPosition(1024);
+		
+		try {
+			output = new PrintStream(new File("/home/lvuser/natinst/autoLog.txt"));
+			System.setOut(output);
+		} catch (Exception e){
+			
 		}
+		
+		motor.setPosition(0.0);
+		while(isAutonomous() && isEnabled()) {
+			System.out.println("===========================================");
+			System.out.println("POS:\t" + motor.getPosition());
+		}
+		output.close();
 	}
 }
