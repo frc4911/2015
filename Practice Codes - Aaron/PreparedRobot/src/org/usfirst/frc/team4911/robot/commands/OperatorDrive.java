@@ -19,8 +19,9 @@ public class OperatorDrive extends Command {
 	private boolean liftPreset;
 	
 	public double speed;
+	public boolean containerClampConflict;
 	
-    public boolean driveSystemConflict;
+	public boolean driveSystemConflict;
 	
 	public OperatorDrive(){
 		requires(mecanumDriveSystem);
@@ -38,6 +39,7 @@ public class OperatorDrive extends Command {
 		speed = RobotConstants.STANDARD_DRIVE_SPEED;
 		runtime = Runtime.getRuntime();
 		liftPreset = true;
+		containerClampConflict = false;
 	}
 
 	@Override
@@ -128,17 +130,19 @@ public class OperatorDrive extends Command {
 	    //  Container Clamp Controls
 	    //
 	    ////////////////////////////////////////////////////////////////////////////
-	    if(oi.payloadButton8.get()){
-		printSystem.print("Backward");
-		containerLiftSystem.runClampManuallyBackward();
-	    }
-	    else if(oi.payloadButton7.get()){
-		printSystem.print("Forward");
-		containerLiftSystem.runClampManuallyForward();
-	    }
-	    else{
-		printSystem.print("Stopped");
-		containerLiftSystem.stopClamp();
+	    if(!containerClampConflict) {
+		if(oi.payloadButton8.get()){
+		    printSystem.print("Backward");
+		    containerLiftSystem.runClampManuallyBackward();
+		}
+		else if(oi.payloadButton7.get()){
+		    printSystem.print("Forward");
+		    containerLiftSystem.runClampManuallyForward();
+		}
+		else{
+		    printSystem.print("Stopped");
+		    containerLiftSystem.stopClamp();
+		}
 	    }
 	    //////////////////////////////////////////////////////////////////////////////////////////////////////////
 	    //
@@ -171,16 +175,17 @@ public class OperatorDrive extends Command {
 	    printSystem.print("Pot: " + sensorSystem.getPot());
 	    printSystem.print("ContainerContainer: " + containerLiftSystem.getContainerContainer().getOutputCurrent());
 	    printSystem.print("Follower: " + containerLiftSystem.getSecondCC().getOutputCurrent());
+	    printSystem.print("Low Speed: " + containerLiftSystem.lowSpeed());
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+	    return false;
 	}
 
 	@Override
 	protected void end() {		
-		this.cancel();
+	    this.cancel();
 	}
 
 	@Override

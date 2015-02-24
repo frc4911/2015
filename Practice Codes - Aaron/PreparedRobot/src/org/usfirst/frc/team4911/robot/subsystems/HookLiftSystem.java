@@ -24,7 +24,7 @@ public class HookLiftSystem extends Subsystem {
     	leftHook = RobotMap.hookLeft;
     	rightHook = RobotMap.hookRight;
     	isBeingUsed = false;
-    	targetPos = sensorSystem.getHookLiftPot(); //TODO: add potentiometer and set targetPos to current reading
+    	targetPos = 0.0;//sensorSystem.getHookLiftPot(); //TODO: add potentiometer and set targetPos to current reading
     }
     
     public void runLiftManually(double speed) {
@@ -41,7 +41,7 @@ public class HookLiftSystem extends Subsystem {
 	    isBeingUsed = false;
 	}
 	if(isBeingUsed) {
-	    double error = targetPos - sensorSystem.getHookLiftPot();
+	    double error = targetPos - 0.0;//sensorSystem.getHookLiftPot();
 	    if(Math.abs(error) > RobotConstants.LIFT_ERROR_TOLERANCE) {
 		leftHook.set(error * 1.0); //TODO: Fix this scaler value
 	    }

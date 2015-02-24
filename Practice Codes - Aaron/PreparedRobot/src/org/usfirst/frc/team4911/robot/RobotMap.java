@@ -32,8 +32,8 @@ public class RobotMap {
 	public static CANTalon secondContainerContainer;
 	
 	public static AnalogPotentiometer clampPot;
-	public static AnalogPotentiometer hookLiftPot;
-	public static AnalogPotentiometer containerLiftPot;
+	//public static AnalogPotentiometer hookLiftPot;
+	//public static AnalogPotentiometer containerLiftPot;
 	
 	public static DigitalInput limitSwitchIn;
 	public static DigitalInput limitSwitchOut;
@@ -99,8 +99,8 @@ public class RobotMap {
           	containerContainer.setPID(1.0, 0.0, 0.0);
           	
           	clampPot = new AnalogPotentiometer(RobotConstants.CONTAINERSYSTEM_CLAMP_POTENTIOMETER_PORT);
-          	hookLiftPot = new AnalogPotentiometer(RobotConstants.TOTE_LIFT_POTENTIOMETER_PORT);
-          	containerLiftPot = new AnalogPotentiometer(RobotConstants.CONTAINER_LIFT_POTENTIOMETER_PORT);
+          	//hookLiftPot = new AnalogPotentiometer(RobotConstants.TOTE_LIFT_POTENTIOMETER_PORT);
+          	//containerLiftPot = new AnalogPotentiometer(RobotConstants.CONTAINER_LIFT_POTENTIOMETER_PORT);
     
           	limitSwitchIn = new DigitalInput(RobotConstants.CONTAINERSYSTEM_CLAMP_LIMIT_SWITCH_IN_PORT);
           	limitSwitchOut = new DigitalInput(RobotConstants.CONTAINERSYSTEM_CLAMP_LIMIT_SWITCH_OUT_PORT);

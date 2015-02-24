@@ -33,7 +33,7 @@ public class ContainerLiftSystem extends Subsystem {
     	containerLift = RobotMap.containerLift;
     	containerContainer = RobotMap.containerContainer;
     	secondContainerContainer = RobotMap.secondContainerContainer;
-    	targetPosition = sensorSystem.getContainerLiftPot();
+    	targetPosition = 0.0;//sensorSystem.getContainerLiftPot();
     	usingLift = false;
     }
     
@@ -50,7 +50,7 @@ public class ContainerLiftSystem extends Subsystem {
 	    usingLift = false;
 	}
 	if(usingLift) {
-	    double error = targetPosition - sensorSystem.getHookLiftPot();
+	    double error = targetPosition - 0.0;
 	    if(Math.abs(error) > RobotConstants.LIFT_ERROR_TOLERANCE) {
 		containerLift.set(error * 1.0); //TODO: Fix this scaler vlaue
 	    }
@@ -79,55 +79,57 @@ public class ContainerLiftSystem extends Subsystem {
     	secondContainerContainer.changeControlMode(ControlMode.Follower);
 
     	if(sensorSystem.getPot() < 0.42) {
-    		containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+    	    containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
     	}
     	else {
-    		if(atLowSpeed) {
-    			if(containerContainer.getOutputCurrent() < 5.0) {
-    				containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
-    				atLowSpeed = false;
-    			}
-    			else {
-    				containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
-    			}
+    	    if(atLowSpeed) {
+    		if(containerContainer.getOutputCurrent() < 5.0) {
+    		    containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+    		    atLowSpeed = false;
     		}
     		else {
-    			if(containerContainer.getOutputCurrent() > 40.0) {
-    				containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
-    				atLowSpeed = true;
-    			}
-    			else {
-    				containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
-    			}
+    		    containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
     		}
+    	    }
+    	    else {
+    		if(containerContainer.getOutputCurrent() > 25.0) {
+    		    containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
+    		    atLowSpeed = true;
+    		}
+    		else {
+    		    containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+    		}
+    	    }
     	}
     	secondContainerContainer.set(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT);
     }
     
     public void stopClamp(){
+	containerContainer.changeControlMode(ControlMode.PercentVbus);
     	secondContainerContainer.changeControlMode(ControlMode.Follower);
     	containerContainer.set(0.0);
     	secondContainerContainer.set(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT);
-	}
+    }
 	
-	public void runClampManuallyBackward(){
-		secondContainerContainer.changeControlMode(ControlMode.Follower);
-		if(sensorSystem.getPot() < 0.720) {
-			containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
-		}
-		else {
-			containerContainer.set(0.0);
-		}
-    	secondContainerContainer.set(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT);
+    public void runClampManuallyBackward(){
+	containerContainer.changeControlMode(ControlMode.PercentVbus);
+	secondContainerContainer.changeControlMode(ControlMode.Follower);
+	if(sensorSystem.getPot() < 0.720) {
+	    containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
 	}
+	else {
+	    containerContainer.set(0.0);
+	}
+	secondContainerContainer.set(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT);
+    }
     
-	public boolean lowSpeed() {
-		return atLowSpeed;
-	}
+    public boolean lowSpeed() {
+	return atLowSpeed;
+    }
 	 
-	public void setLowSpeed(boolean on) {
-		atLowSpeed = on;
-	}
+    public void setLowSpeed(boolean on) {
+	atLowSpeed = on;
+    }
 	
     public void liftViaPercent(double position){
     	containerLift.set(RobotConstants.CONTAINERSYSTEM_TOTAL_DISTANCE * position / RobotConstants.CONTAINERSYSTEM_ENCODER_DISTANCE_PER_PULSE);
@@ -137,7 +139,7 @@ public class ContainerLiftSystem extends Subsystem {
     //toteNum = number of totes below the Container you want to lift
     public void liftViaTote(double toteNum){
     	if(toteNum >= 0){
-    		containerLift.set(RobotConstants.TOTE_HEIGHT * toteNum / RobotConstants.CONTAINERSYSTEM_ENCODER_DISTANCE_PER_PULSE);
+    	    containerLift.set(RobotConstants.TOTE_HEIGHT * toteNum / RobotConstants.CONTAINERSYSTEM_ENCODER_DISTANCE_PER_PULSE);
     	}
     }
     

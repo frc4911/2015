@@ -103,7 +103,7 @@ public class RobotConstants {
     
     
     //GYRO
-    public static final int MAIN_GYRO_PORT = 1;//Analog
+    public static final int MAIN_GYRO_PORT = 7;//Analog
     public static final double GYRO_SENSITIVITY = 0.007;
     
     //IMU CONSTANTS
@@ -112,13 +112,13 @@ public class RobotConstants {
     
     
     //DEBUG SWITCH
-    public static final boolean FLAG = true;
+    public static final boolean FLAG = false;
     
     //CM to IN conversion (LIDAR)
     public static final double inToCM = 2.54;
     
     //PrintSystem Constants
-    public static final int printFrequency = 10;
+    public static final int printFrequency = 1000;
     public static final boolean STATIC_INFO_ALLOWED = false;
     
     //Autonomous Movement Constants

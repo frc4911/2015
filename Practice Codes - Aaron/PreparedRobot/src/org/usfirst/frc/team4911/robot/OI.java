@@ -79,6 +79,8 @@ public class OI {
         button8.whenPressed(new RotateForTime(0.05, -0.25));
         button9.whenPressed(new RotateForTime(0.05, 0.25));
         button10.whenPressed(new MaintainDistance());
+        
+        payloadButton6.whenPressed(new ClampOpenTime(0.5));
     }
     
     /*************************************
@@ -90,7 +92,7 @@ public class OI {
     }
     
     public double getMainJoyX(){
-		double pow = 0;
+	double pow = 0;
     	if(Math.abs(mainJoy.getX()) >= 0.1) {
             pow = Math.round(mainJoy.getX() * RobotConstants.JOYSTICK_SENSITIVITY) 
             		/ RobotConstants.JOYSTICK_SENSITIVITY;  
