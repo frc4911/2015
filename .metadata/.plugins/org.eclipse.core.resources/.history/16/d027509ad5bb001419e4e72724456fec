@@ -19,9 +19,16 @@ public class OperatorDrive extends Command {
 	private boolean liftPreset;
 	
 	public double speed;
+<<<<<<< HEAD
 	public boolean containerClampConflict;
-	public boolean hookSystemConflict;	
+	public boolean hookSystemConflict;
+	
 	public boolean driveSystemConflict;
+=======
+
+	public boolean driveSystemConflict;
+	public boolean hookSystemConflict;
+>>>>>>> 402c81974294378c832238c892c0f9aae43c8337
 	
 	public OperatorDrive(){
 		requires(mecanumDriveSystem);
@@ -46,6 +53,7 @@ public class OperatorDrive extends Command {
 
 	@Override
 	protected void execute() {
+<<<<<<< HEAD
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 //
                 // Tote Lift Nudge Down
@@ -70,7 +78,25 @@ public class OperatorDrive extends Command {
         			hookLiftSystem.runLiftManually(0.0);
         		}
                 }
+		
 
+		
+=======
+		
+	    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	    //
+	    // Hook Lift Controls
+	    //
+	    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	    if(Math.abs(oi.payloadJoy.getY()) > 0.1) {
+		hookLiftSystem.runLiftManually(oi.payloadJoy.getY());
+	    }
+	    //manual stop code... use ONLY if presets are not running
+	    else {
+		hookLiftSystem.runLiftManually(0.0);
+	    }
+>>>>>>> b005f339bf7bf241129d87870e8d399ade4fca2d
 		
 	    //Preset code
 	    /*else {						
