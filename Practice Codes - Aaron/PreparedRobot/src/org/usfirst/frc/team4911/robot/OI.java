@@ -12,7 +12,6 @@ public class OI {
     public Joystick mainJoy;
     public Joystick payloadJoy;
     
-    
     public JoystickButton lockButton;
     public JoystickButton button2;
     public JoystickButton button3;

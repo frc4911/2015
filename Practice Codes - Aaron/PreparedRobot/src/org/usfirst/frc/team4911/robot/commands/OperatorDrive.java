@@ -19,8 +19,9 @@ public class OperatorDrive extends Command {
 	private boolean liftPreset;
 	
 	public double speed;
-	
-    public boolean driveSystemConflict;
+
+	public boolean driveSystemConflict;
+	public boolean hookSystemConflict;
 	
 	public OperatorDrive(){
 		requires(mecanumDriveSystem);
@@ -35,6 +36,7 @@ public class OperatorDrive extends Command {
 		
 		mecanumDriveSystem.setGoalHeading(0.0);
 		driveSystemConflict = false;
+		hookSystemConflict = false;
 		speed = RobotConstants.STANDARD_DRIVE_SPEED;
 		runtime = Runtime.getRuntime();
 		liftPreset = true;
@@ -42,20 +44,33 @@ public class OperatorDrive extends Command {
 
 	@Override
 	protected void execute() {
-		
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                //
+                // Tote Lift Nudge Down
+                //
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                
+                if (oi.payloadJoy.getPOV() != -1.0){
+                    new MoveToteLiftForTime(0.3, -0.5).start();
+                }
+                
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//
 		// Hook Lift Controls
 		//
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                if(!hookSystemConflict){
+        		if(Math.abs(oi.payloadJoy.getY()) > 0.1) {
+        			hookLiftSystem.runLiftManually(oi.payloadJoy.getY());
+        		}
+        		//manual stop code... use ONLY if presets are not running
+        		else {
+        			hookLiftSystem.runLiftManually(0.0);
+        		}
+                }
+		
 
-		if(Math.abs(oi.payloadJoy.getY()) > 0.1) {
-			hookLiftSystem.runLiftManually(oi.payloadJoy.getY());
-		}
-		//manual stop code... use ONLY if presets are not running
-		else {
-			hookLiftSystem.runLiftManually(0.0);
-		}
+		
 		
 		//Preset code
 		/*else {						

@@ -23,6 +23,7 @@ public class AutoStackCrateLeft extends CommandGroup {
     	// acquire a tote. It will move left towards the next tote and end in the
     	// TOTE_ACQUIRE_POSITION on the next tote to the left.
     	
+	/*
     	addSequential(new MoveToteLift(RobotConstants.TOTE_CLEAR_CONTAINER_POSITION));
     	
     	addSequential(new PIDAxisDrive(-0.4,0.0, RobotConstants.HORIZONTAL_DISTANCE_BETWEEN_TOTES/2)); // drives across left
@@ -40,5 +41,28 @@ public class AutoStackCrateLeft extends CommandGroup {
     	addSequential(new PIDAxisDrive(0.0, 0.1, RobotConstants.CLEAR_TOTE_LIP_DISTANCE)); // drives forwards a short amount
     	
     	addSequential(new MoveToteLift(RobotConstants.TOTE_ACQUIRE_POSITION));
-    }
+    	*/
+	double liftSpeed = 0.3;
+	double driveSpeed = 0.3;
+	
+	addSequential(new MoveToteLiftForTime(2.0, liftSpeed));//Lifting Tote
+	addSequential(new DriveForTime(-0.5, 0.0, 4.0));//Moving to Next Tote
+	addSequential(new MoveToteLiftForTime(1.5, -liftSpeed));//Releasing Tote
+	addSequential(new DriveForTime(0.0, -driveSpeed, 0.2));//Backing Up
+	addSequential(new MoveToteLiftForTime(0.5, -liftSpeed));//Lowering lift
+	addSequential(new DriveForTime(0.0,driveSpeed, 0.2));//MovingForward
+
+
+	addSequential(new MoveToteLiftForTime(2.0, liftSpeed));//Lifting Tote
+	addSequential(new DriveForTime(-0.5, 0.0, 4.0));//Moving to Next Tote
+	addSequential(new MoveToteLiftForTime(1.5, -liftSpeed));//Releasing Tote
+	addSequential(new DriveForTime(0.0, -driveSpeed, 0.2));//Backing Up
+	addSequential(new MoveToteLiftForTime(0.5, -liftSpeed));//Lowering lift
+	addSequential(new DriveForTime(0.0,driveSpeed, 0.2));//MovingForward
+	
+
+	addSequential(new MoveToteLiftForTime(1.0, liftSpeed));//Lifting Tote slightly
+	addSequential(new RotateForTime(0.5, -0.3)); // MAKE PID ROTATE
+	addSequential(new DriveForTime(0.0, driveSpeed, 4.0));//Drive into Auto zone (field oriented)
+	}
 }
