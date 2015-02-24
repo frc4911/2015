@@ -30,7 +30,7 @@ public class CloseContainerClamp extends Command {
 
     protected boolean isFinished() {
         return (containerLiftSystem.lowSpeed() && containerLiftSystem.getContainerContainer().getOutputCurrent() 
-        									      > RobotConstants.CONTAINERSYSTEM_CLAMP_LOW_AMPERAGE_THRESHHOLD);
+        		> RobotConstants.CONTAINERSYSTEM_CLAMP_LOW_AMPERAGE_THRESHHOLD);
     }
 
     protected void end() {

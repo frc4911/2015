@@ -21,28 +21,28 @@ public class DriveForTime extends Command {
 	
 	private double x;
 	private double y;
-	private double threshold = 1;
 	private double time;
-	private double startTime = Timer.getFPGATimestamp();
-	private Joystick joystick;
+	private double startTime;
 	
     public DriveForTime(double x, double y, double time) {
-		this.x = x;
-		this.y = y;
-		this.time = time;
+	this.x = x;
+	this.y = y;
+	this.time = time;
     }
 
     protected void initialize() {
     	oi = Robot.oi;
     	
+    	startTime = Timer.getFPGATimestamp();
+    	
     	operatorDrive = Robot.teleOp;
     	mecanumDriveSystem = Robot.mecanumDriveSystem;
     	if(DriverStation.getInstance().isOperatorControl()){
-	    	if(operatorDrive.driveSystemConflict){
-	    		this.cancel();
-	    	}    
+    	    if(operatorDrive.driveSystemConflict){
+    		this.cancel();
+	    }
+    	    operatorDrive.driveSystemConflict = true;
     	}
-    	operatorDrive.driveSystemConflict = true;
     }
 
     protected void execute() {
@@ -52,18 +52,20 @@ public class DriveForTime extends Command {
     protected boolean isFinished() {
 
     	if(DriverStation.getInstance().isOperatorControl()){
-    		return true;
+    	    return true;
     	}
     	else{
-    		//checks if we have moved for the designated time
-    		return ((Timer.getFPGATimestamp() - startTime) >= time);
+    	    //checks if we have moved for the designated time
+    	    return ((Timer.getFPGATimestamp() - startTime) >= time);
     		
     		
     	}
     }
 
     protected void end() {
-    	operatorDrive.driveSystemConflict = false;  
+    	if(DriverStation.getInstance().isOperatorControl()){
+    	    operatorDrive.driveSystemConflict = false;  
+    	}
     }
 
     protected void interrupted() {

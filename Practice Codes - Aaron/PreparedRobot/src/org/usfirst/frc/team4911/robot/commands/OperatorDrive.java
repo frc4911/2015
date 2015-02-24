@@ -20,6 +20,7 @@ public class OperatorDrive extends Command {
 	
 	public double speed;
 	public boolean containerClampConflict;
+	public boolean hookSystemConflict;
 	
 	public boolean driveSystemConflict;
 	
@@ -40,6 +41,7 @@ public class OperatorDrive extends Command {
 		runtime = Runtime.getRuntime();
 		liftPreset = true;
 		containerClampConflict = false;
+		hookSystemConflict = false;
 	}
 
 	@Override
