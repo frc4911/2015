@@ -38,10 +38,8 @@ public class ContainerLiftSystem extends Subsystem {
     }
     
     public void setTargetPosition(double pos) {
-	if(pos <= RobotConstants.CONTAINER_LIFT_TOP && pos >= RobotConstants.CONTAINER_LIFT_GROUND) {
-	    targetPosition = pos;
-	    usingLift = true;
-	}
+	targetPosition = pos;
+	usingLift = true;
     }
     
     public void updateLift(double joyVal) {

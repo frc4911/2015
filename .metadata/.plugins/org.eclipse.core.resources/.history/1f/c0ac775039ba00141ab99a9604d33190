@@ -43,7 +43,7 @@ public class HookLiftSystem extends Subsystem {
 	if(isBeingUsed) {
 	    double error = targetPos - sensorSystem.getHookLiftPot();
 	    if(Math.abs(error) > RobotConstants.LIFT_ERROR_TOLERANCE) {
-		leftHook.set(error * 1.0); //TODO: Fix this scaler value
+		leftHook.set(error * 1.0); //TODO: Fix this scaler vlaue
 	    }
 	    else {
 		leftHook.set(0.0);

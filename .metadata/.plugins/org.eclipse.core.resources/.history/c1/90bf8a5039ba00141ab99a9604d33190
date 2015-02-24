@@ -19,9 +19,8 @@ public class OperatorDrive extends Command {
 	private boolean liftPreset;
 	
 	public double speed;
-
-	public boolean driveSystemConflict;
-	public boolean hookSystemConflict;
+	
+    public boolean driveSystemConflict;
 	
 	public OperatorDrive(){
 		requires(mecanumDriveSystem);
@@ -36,7 +35,6 @@ public class OperatorDrive extends Command {
 		
 		mecanumDriveSystem.setGoalHeading(0.0);
 		driveSystemConflict = false;
-		hookSystemConflict = false;
 		speed = RobotConstants.STANDARD_DRIVE_SPEED;
 		runtime = Runtime.getRuntime();
 		liftPreset = true;
@@ -44,35 +42,6 @@ public class OperatorDrive extends Command {
 
 	@Override
 	protected void execute() {
-<<<<<<< HEAD
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                //
-                // Tote Lift Nudge Down
-                //
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                
-                if (oi.payloadJoy.getPOV() != -1.0){
-                    new MoveToteLiftForTime(0.3, -0.5).start();
-                }
-                
-		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		//
-		// Hook Lift Controls
-		//
-		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                if(!hookSystemConflict){
-        		if(Math.abs(oi.payloadJoy.getY()) > 0.1) {
-        			hookLiftSystem.runLiftManually(oi.payloadJoy.getY());
-        		}
-        		//manual stop code... use ONLY if presets are not running
-        		else {
-        			hookLiftSystem.runLiftManually(0.0);
-        		}
-                }
-		
-
-		
-=======
 		
 	    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	    //
@@ -87,7 +56,6 @@ public class OperatorDrive extends Command {
 	    else {
 		hookLiftSystem.runLiftManually(0.0);
 	    }
->>>>>>> b005f339bf7bf241129d87870e8d399ade4fca2d
 		
 	    //Preset code
 	    /*else {						
@@ -128,15 +96,11 @@ public class OperatorDrive extends Command {
 		containerLiftSystem.runLiftManually(0.0);
 	    }
 		
-	    /*
-	    Potentiometer Code  
 	    if(oi.payloadJoy.getPOV() != -1) {
 		containerLiftSystem.setTargetPosition(RobotConstants.CONTAINER_LIFT_TOP);
 	    }
-	    containerLiftSystem.updateLift();
-	    */
 	    //
-	    //Preset Encoder Code
+	    //Preset Code
 	    /*else{
 		if(oi.payloadButton8.get()) {
 			containerLiftSystem.runLiftToPreset(RobotConstants.CONTAINER_LIFT_RELEASE);
