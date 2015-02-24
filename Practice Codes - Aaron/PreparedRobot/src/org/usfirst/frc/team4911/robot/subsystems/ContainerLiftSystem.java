@@ -22,15 +22,46 @@ public class ContainerLiftSystem extends Subsystem {
 	private DigitalInput switchIn;
 	private DigitalInput switchOut;
 	private boolean atLowSpeed = false;
+	private double targetPosition;
+	private boolean usingLift;
 	
     public void initDefaultCommand() {
-
+	
     }
     
     public ContainerLiftSystem(){
     	containerLift = RobotMap.containerLift;
     	containerContainer = RobotMap.containerContainer;
     	secondContainerContainer = RobotMap.secondContainerContainer;
+    	targetPosition = sensorSystem.getContainerLiftPot();
+    	usingLift = false;
+    }
+    
+    public void setTargetPosition(double pos) {
+	if(pos <= RobotConstants.CONTAINER_LIFT_TOP && pos >= RobotConstants.CONTAINER_LIFT_GROUND) {
+	    targetPosition = pos;
+	    usingLift = true;
+	}
+    }
+    
+    public void updateLift(double joyVal) {
+	containerLift.changeControlMode(CANTalon.ControlMode.PercentVbus);
+	if(Math.abs(joyVal) >= 0.1) {
+	    usingLift = false;
+	}
+	if(usingLift) {
+	    double error = targetPosition - sensorSystem.getHookLiftPot();
+	    if(Math.abs(error) > RobotConstants.LIFT_ERROR_TOLERANCE) {
+		containerLift.set(error * 1.0); //TODO: Fix this scaler vlaue
+	    }
+	    else {
+		containerLift.set(0.0);
+		usingLift = false;
+	    }
+	}
+	else {
+	    containerLift.set(joyVal);
+	}
     }
     
     public void runLiftManually(double speed) {
@@ -72,6 +103,7 @@ public class ContainerLiftSystem extends Subsystem {
     	}
     	secondContainerContainer.set(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT);
     }
+    
     public void stopClamp(){
     	secondContainerContainer.changeControlMode(ControlMode.Follower);
     	containerContainer.set(0.0);

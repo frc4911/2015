@@ -40,7 +40,7 @@ public class Autonomous extends Command {
 		*/
 		
 		//Test Code for the Completed Chassis
-		hookLiftSystem.getLeft().set(12.0 / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
+		/*hookLiftSystem.getLeft().set(12.0 / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
 		Timer.delay(2.0);
 		hookLiftSystem.getRight().set(-12.0 / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
 		Timer.delay(2.0);
@@ -53,7 +53,7 @@ public class Autonomous extends Command {
 		//MUST STOP BEFORE IT HITS THE LIMIT SWITCH
 		containerLiftSystem.getContainerContainer().set(12.0 / RobotConstants.CONTAINERSYSTEM_ENCODER_DISTANCE_PER_PULSE);
 		Timer.delay(2.0);
-		printSystem.print("ContainerClamp", containerLiftSystem.getClampDistance(), "Inches");
+		printSystem.print("ContainerClamp", containerLiftSystem.getClampDistance(), "Inches");*/
 		
 	}
 

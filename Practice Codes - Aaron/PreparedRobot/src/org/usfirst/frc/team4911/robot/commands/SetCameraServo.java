@@ -16,8 +16,6 @@ public class SetCameraServo extends Command {
 
     
     protected void initialize() {
-    	cameraSystem = Robot.cameraSystem;
-    	requires(cameraSystem);
     }
 
     
@@ -31,7 +29,6 @@ public class SetCameraServo extends Command {
 
     
     protected void end() {
-    	cameraSystem.setServo(pos);
     }
 
     

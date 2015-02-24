@@ -10,16 +10,12 @@ import edu.wpi.first.wpilibj.Servo;
  */
 public class CameraSystem extends Subsystem {
     
-	public Servo cameraServo;
-	
-	public CameraSystem() {
-		cameraServo = RobotMap.cameraServo;
-	}
-    public void initDefaultCommand() {
+    public CameraSystem() {
+    
     }
     
-    public void setServo(double pos) {
-    	cameraServo.set(pos);
+    public void initDefaultCommand() {
+    
     }
    
 }
