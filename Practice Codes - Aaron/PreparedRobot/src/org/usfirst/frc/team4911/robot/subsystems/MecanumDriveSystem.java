@@ -23,8 +23,6 @@ public class MecanumDriveSystem extends Subsystem {
 	private CANTalon frontRight = RobotMap.rightFront;
 	private CANTalon rearRight = RobotMap.rightRear;
 	private RobotDrive robot = new RobotDrive(frontLeft, rearLeft, frontRight, rearRight);
-	private SerialPort serial_port;	
-	private PrintSystem printSystem;
 
 	private Encoder ySlideEncoder = RobotMap.ySlideEncoder;
 	private Encoder xSlideEncoder = RobotMap.xSlideEncoder;
@@ -48,7 +46,6 @@ public class MecanumDriveSystem extends Subsystem {
 		robot.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 		
 		goalHeading = 0.0;
-		printSystem = Robot.printSystem;
 		speed = 1.0;
 	}
 	
@@ -91,10 +88,6 @@ public class MecanumDriveSystem extends Subsystem {
     	y *= speed;
     	
     	drive(x, y, rotation);
-    	//printSystem.print("Drive X", x);
-    	//printSystem.print("Drive Y", y);
-    	//printSystem.print("Drive Rotation", rotation);
-    	//printSystem.print("Speed Constant", speed);
 	}
 	
 	public void drive(double left, double right){
@@ -107,6 +100,7 @@ public class MecanumDriveSystem extends Subsystem {
 	public void stop(){
 		drive(0.0, 0.0, 0.0);
 	}
+	
 	public void setGoalHeading (double goalHeading) {
 		double moddedHeading = goalHeading%360.0;
 		if(moddedHeading > 180) {

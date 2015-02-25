@@ -9,9 +9,6 @@ import org.usfirst.frc.team4911.robot.RobotConstants;
 import org.usfirst.frc.team4911.robot.OI;
 import org.usfirst.frc.team4911.robot.RobotConstants;
 
-/**
- *
- */
 public class SetDriveSpeed extends Command {
 	double speed;
 	JoystickButton button;

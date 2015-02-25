@@ -13,4 +13,7 @@
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Timer"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.Robot"/>
+<fullyQualifiedTypeName name="com.ni.vision.NIVision.DrawMode"/>
+<fullyQualifiedTypeName name="com.ni.vision.NIVision.GetImageSizeResult"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CANTalon.FeedbackDevice"/>
 </qualifiedTypeNameHistroy>

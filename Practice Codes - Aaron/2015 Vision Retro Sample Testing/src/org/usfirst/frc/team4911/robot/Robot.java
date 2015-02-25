@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4911.robot;
 
 import java.io.PrintStream;
+
 import java.io.File;
 import java.lang.Math;
 import java.util.Comparator;
@@ -123,6 +124,7 @@ public class Robot extends SampleRobot {
 			NIVision.Range valRange = TOTE_VAL_RANGE;
 			
 			
+			
 			try {
 				output = new PrintStream(new File("/home/lvuser/natinst/autoLog.txt"));
 				System.setOut(output);
@@ -130,11 +132,20 @@ public class Robot extends SampleRobot {
 				
 			}
 			
+			Image linedImage = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
 			
 			while (isAutonomous() && isEnabled())
 			{	
 				
 				 NIVision.IMAQdxGrab(session, frame, 1);
+				 //cameraServer.setImage(frame);
+				 NIVision.GetImageSizeResult dimension = NIVision.imaqGetImageSize(frame);
+				 
+				 NIVision.imaqDrawLineOnImage(linedImage, frame, NIVision.DrawMode.DRAW_VALUE,
+						 new NIVision.Point(dimension.width / 2 ,0),  
+						 new NIVision.Point(dimension.width / 2, dimension.height), 
+						 (float) (dimension.width * 0.1));
+				 //cameraServer.setImage(linedImage);
 				 cameraServer.setImage(frame);
 				 
 				//Update threshold values from SmartDashboard. For performance reasons it is recommended to remove this after calibration is finished.

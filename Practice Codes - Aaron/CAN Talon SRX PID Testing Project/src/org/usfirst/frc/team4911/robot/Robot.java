@@ -2,6 +2,8 @@ package org.usfirst.frc.team4911.robot;
 
 import java.io.File;
 
+
+
 import java.util.Arrays;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -10,6 +12,7 @@ import com.kauailabs.nav6.frc.IMUAdvanced;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.SerialPort;
@@ -50,6 +53,11 @@ public class Robot extends SampleRobot {
 	CANTalon containerContainer;
 	CANTalon containerFollower;
 	CANTalon containerLift;
+	
+	
+
+	CANTalon motor;
+	
 	PrintStream output;
 	RobotDrive robot;
 	IMUAdvanced imu;
@@ -86,6 +94,12 @@ public class Robot extends SampleRobot {
 		button11 = new JoystickButton(stick1, 11);
 		button12 = new JoystickButton(stick1, 12);
 		
+
+		motor = new CANTalon(3);
+		motor.changeControlMode(CANTalon.ControlMode.PercentVbus);
+		motor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		
+		/*
 		//2	  
 		leftFront3 = new CANTalon(3); // Initialize the CanTalonSRX on device 1.
 		leftFront3.changeControlMode(CANTalon.ControlMode.PercentVbus);
@@ -105,7 +119,7 @@ public class Robot extends SampleRobot {
 		containerContainer.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		containerContainer.setPID(1.0, 0.0, 0.0);
 		
-		containerFollower = new CANTalon(9);
+		containerFollower = new CANTalon(5);
 		containerFollower.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		containerFollower.setPID(1.0, 0.0, 0.0);
 
@@ -116,8 +130,9 @@ public class Robot extends SampleRobot {
 		liftMotor2 = new CANTalon(2);
 		liftMotor2.changeControlMode(CANTalon.ControlMode.PercentVbus);
 		
-		containerLift = new CANTalon(5);
+		containerLift = new CANTalon(9);
 		containerLift.changeControlMode(CANTalon.ControlMode.PercentVbus);
+		containerLift.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		
 		
 		robot = new RobotDrive(leftFront3, leftRear4, rightFront7, rightRear8);
@@ -126,6 +141,7 @@ public class Robot extends SampleRobot {
 		
 		//lidar = new LIDAR(I2C.Port.kMXP);
 		//lidar.start();
+		 */
 		/***************************************
 		 *
 	     * IMU INITIALIZATION
@@ -150,232 +166,40 @@ public class Robot extends SampleRobot {
 		} catch (Exception e){
 			
 		}
-		int i = 0;
-		while(isOperatorControl() && isEnabled()){
-			/*
-			if(stick3.getRawButton(1)) {
-				containerContainer.set(1.0);
-				containerFollower.set(1.0);
-			}
-			else if(stick3.getRawButton(3)) {
-				containerContainer.set(-1.0);
-				containerFollower.set(-1.0);
-			}
-			else {
-				containerContainer.set(0.0);
-				containerFollower.set(0.0);
-			}								
-			if(i++%5 ==0) {
-				System.out.println("Container Container: " + containerContainer.getOutputCurrent());
-				System.out.println("Container Follower: " + containerFollower.getOutputCurrent());
-				System.out.println("---------------------------------------------------------------");
-			}
-			*/
-			if(stick3.getRawButton(1)){
-				containerContainer.set(1.0);
-				containerFollower.set(-1.0);
-			} else if(stick3.getRawButton(2)){
-				containerContainer.set(-1.0);
-				containerFollower.set(1.0);
-			}  else {
-				containerContainer.set(0.0);
-				containerFollower.set(0.0);
-			}
-			
-			
-			AnalogInput pot = new AnalogInput(0);
-			System.out.println("POT:\t" + pot.getVoltage());
-			
-			///////////////////////////////////////////////////////////////////////////////////////////////
-			//
-			// Voltage limiter code
-			//
-			///////////////////////////////////////////////////////////////////////////////////////////////
-			/*
-			/*
-			//CONTAINER CONTAINER TEST CODE
-			if(opStick.getRawButton(1)) {
-				if(!atLowSpeed) {
-					if(rightFront.getOutputCurrent() > 7.5) {
-						rightFront.set(0.1);
-						atLowSpeed = true;
-					}
-					else {
-						rightFront.set(0.5);
-					}
-				}
-				else {
-					if(rightFront.getOutputCurrent() < 0.15) {
-						rightFront.set(0.5);
-						atLowSpeed = false;
-					}
-					else {
-						rightFront.set(0.1);
-					}
-				}
-			}
-			else if(opStick.getRawButton(3)) {
-				rightFront.set(-0.3);
-			}
-			
-			System.out.println("--------------------------------");
-			System.out.println("Encoder: " + rightFront.getEncPosition());
-			System.out.println("Current: " + rightFront.getOutputCurrent());
-			System.out.println("Low speed?: " + atLowSpeed);
-			*/
-			/*if(button9.get()){
-				//Forward
-				leftFront.set(0.5);
-				leftRear.set(-0.5);
-				rightFront.set(0.5);
-				rightRear.set(-0.5);
-			}
-			if(button10.get()){
-				//Backwards
-				leftFront.set(-0.5);
-				leftRear.set(0.5);
-				rightFront.set(-0.5);
-				rightRear.set(0.5);				
-			}
-			else if(button10.get()){
-				//Left
-				leftFront3.set(-0.3);
-				leftRear4.set(0.3);
-				rightFront7.set(-0.3);
-				rightRear8.set(0.3);
-				
-			}
-			else if(button11.get()){
-				//Forward
-				leftFront3.set(0.3);
-				leftRear4.set(0.3);
-				rightFront7.set(-0.3);
-				rightRear8.set(-0.3);
-			}
-			else if(button12.get()){
-				//Backward				
-				leftFront3.set(-0.3);
-				leftRear4.set(-0.3);
-				rightFront7.set(0.3);
-				rightRear8.set(0.3);
-				
-			} else {
-				/*
-				double inX = Math.pow(stick1.getX(), 3);
-				double inY = Math.pow(stick1.getY(), 3);
-				double b = 0.0;//Low Input Gain Adjustment
-				double a = 0.5;//Inverse Dead Band
-				*/
-				/*
-				if(inX == 0.0){
-					inX = 0.0;
-				} else if(inX > 0.0){
-					inX = b + (1.0 - b) * (a * Math.pow(inX, 3) + (1 - a) * inX);
-				} else {
-					inX = -b + (1.0 - b) * (a * Math.pow(inX, 3) + (1 - a) * inX);
-				}
-				
-				if(inY == 0.0){
-					inY = 0.0;
-				} else if(inY > 0.0){
-					inY = b + (1.0 - b) * (a * Math.pow(inY, 3) + (1 - a) * inY);
-				} else {
-					inY = -b + (1.0 - b) * (a * Math.pow(inY, 3) + (1 - a) * inY);
-				}
-				double x = stick1.getX();
-				double y = stick1.getY();
-				System.out.println(x + "\t" + y);
-				//driveWithPID(inX, inY);
-				robot.mecanumDrive_Cartesian(x, y, 0.0, 0.0);
-				System.out.println("Pitch:\t" + imu.getPitch());
-				System.out.println("Roll:\t" + imu.getRoll());
-				*/
-				if(Math.abs(stick3.getY()) > 0.1) {
-					liftMotor1.set(-stick3.getY());
-					liftMotor2.set(-stick3.getY());
-				} else {
-					liftMotor1.set(0.0);
-					liftMotor2.set(0.0);
-				}
-				if(Math.abs(stick3.getRawAxis(2)) > 0.1) {
-					containerLift.set(stick3.getRawAxis(2));
-				} else {
-					containerLift.set(0.0);
-				}
-				/*
-				if(stick3.getRawButton(1)) {
-					containerContainer.set(clawSpeed);
-				}
-				//Left Button on xBox controller
-				else if(stick3.getRawButton(3)) {
-					containerContainer.set(-clawSpeed);
-				}
-				else {
-					containerContainer.set(0.0);
-				}
-				*//*
-				if(cycleNum++ % 5 == 0) {
-					if(stick3.getRawButton(7) && clawSpeed > 0.0) {
-						clawSpeed -= 0.1;
-					}
-					else if(stick3.getRawButton(8) && clawSpeed < 1.0) {
-						clawSpeed += 0.1;
-					}
-					
-					System.out.println("Claw Speed: " + clawSpeed);
-					System.out.println("Claw current: " + containerContainer.getOutputCurrent());
-					System.out.println("---------------------------------------------------------");
-				}*/
-				//System.out.println("LIDAR:\t" + (lidar.getDistance() / 2.54));
-				//double x = stick1.getX();
-				//double y = stick1.getY();
-				//System.out.println(x + "\t" + y);
-				//driveWithPID(inX, inY);
-				//robot.mecanumDrive_Cartesian(x, y, 0.0, 0.0);
-				//System.out.println("Pitch:\t" + imu.getPitch());
-				//System.out.println("Roll:\t" + imu.getRoll());
-			}
-			
-			/*
-			//IMU Accelerometer Testing
-			iX %= x.length;
-			iY %= y.length;
-			x[iX] = imu.getWorldLinearAccelX() * 32.174f;
-			y[iY] = imu.getWorldLinearAccelY() * 32.174f;
-			
-			float aveX = 0f;
-			for(float i : x){
-				aveX += i;
-			}
-			aveX = aveX / (float)x.length;
-
-			float aveY = 0f;
-			for(float i : y){
-				aveY += i;
-			}
-			aveY = aveY / (float)y.length;
-
-			
-			robot.mecanumDrive_Cartesian(stick1.getX(), -stick1.getY(), 0.0, 0.0);
-			System.out.println("Accel X:\t" + aveX + " ft/s^2");
-			System.out.println("Accel Y:\t" + aveY +  "ft/s^2");
-			System.out.println("===================================");
-			*/
 		
-
-			leftFront3.set(0.0);
-			//1  
-			leftRear4.set(0.0);
-			rightFront7.set(0.0);
-			rightRear8.set(0.0);
-			liftMotor1.set(0.0);
-	
-			liftMotor2.set(0.0);
-			containerContainer.set(0.0);
+		motor.setPosition(0.0);
+		
+		motor.set(-1.0);
+		Timer.delay(1.0);
+		/*
+		while(isOperatorControl() && isEnabled()){
+			motor.set(stick3.getY());
 			
-			containerLift.set(0.0);
-			output.close();
+			System.out.println("===========================================");
+			System.out.println("GET:\t" + motor.get());
+			System.out.println("POS:\t" + motor.getPosition());
+			System.out.println("ENC POSITION:\t" + motor.getEncPosition());
+			System.out.println("VELOCITY:\t" + motor.getEncVelocity());
+			System.out.println("SPEED:\t" + motor.getSpeed());
+			
+		}*/
+		System.out.println("===========================================");
+		System.out.println("START");
+		
+		double startTime = Timer.getFPGATimestamp();
+		double timeElapsed = 0.0;
+		while(timeElapsed <= 10.0){
+			motor.set(-1.0);
+			System.out.println("===========================================");
+			System.out.println("POS:\t" + motor.getPosition());
+			timeElapsed = Timer.getFPGATimestamp() - startTime;
 		}
+
+		System.out.println("===========================================");
+		System.out.println("POS:\t" + motor.getPosition());
+		motor.set(0.0);
+		output.close();
+	}
 		
 	public void driveWithPID(double x, double y){
 		double currYaw = imu.getYaw();
@@ -404,8 +228,19 @@ public class Robot extends SampleRobot {
 	}
 	
 	public void autonomous(){
-		while(isAutonomous() && isEnabled()) {
-			//rightFront.setPosition(1024);
+		
+		try {
+			output = new PrintStream(new File("/home/lvuser/natinst/autoLog.txt"));
+			System.setOut(output);
+		} catch (Exception e){
+			
 		}
+		
+		motor.setPosition(0.0);
+		while(isAutonomous() && isEnabled()) {
+			System.out.println("===========================================");
+			System.out.println("POS:\t" + motor.getPosition());
+		}
+		output.close();
 	}
 }
