@@ -17,6 +17,7 @@ public class OperatorDrive extends Command {
 	private OI oi = Robot.oi;
 	private Runtime runtime;
 	private boolean liftPreset;
+	private double prevPOV;
 		
 	public double speed;
 	public boolean containerClampConflict;
@@ -42,6 +43,7 @@ public class OperatorDrive extends Command {
 		liftPreset = true;
 		containerClampConflict = false;
 		hookSystemConflict = false;
+		prevPOV = -1.0;
 	}
 	
 	@Override
@@ -52,10 +54,10 @@ public class OperatorDrive extends Command {
 		//
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
-		if (oi.payloadJoy.getPOV() != -1.0){
+		if (oi.payloadJoy.getPOV() != -1.0 && prevPOV == -1){
 		   new MoveToteLiftForTime(0.3, -0.5).start();
 		}
-	
+		prevPOV = oi.payloadJoy.getPOV();
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//
 		// Hook Lift Controls
@@ -69,13 +71,6 @@ public class OperatorDrive extends Command {
 			else {
 				hookLiftSystem.runLiftManually(0.0);
 			}
-		}
-		if(Math.abs(oi.payloadJoy.getY()) > 0.1) {
-			hookLiftSystem.runLiftManually(oi.payloadJoy.getY());
-		}
-		//manual stop code... use ONLY if presets are not running
-		else {
-			hookLiftSystem.runLiftManually(0.0);
 		}
 	
 		//Preset code

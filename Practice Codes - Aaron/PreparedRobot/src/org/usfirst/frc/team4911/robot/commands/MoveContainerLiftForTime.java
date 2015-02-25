@@ -16,8 +16,7 @@ public class MoveContainerLiftForTime extends Command {
 	private double power;
 
     public MoveContainerLiftForTime(double time, double power) {
-    	requires(containerLiftSystem);
-    	this.power = power;
+    	this.power = -power;
     	this.time = time;
     }
 

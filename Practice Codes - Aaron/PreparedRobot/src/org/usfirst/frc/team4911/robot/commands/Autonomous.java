@@ -10,6 +10,7 @@ public class Autonomous extends CommandGroup {
 	
 
 	public Autonomous(){
+		addSequential(new ZeroYaw());
 		switch(mode){
 			case 1: 
 				//////////////////////////////////////////////////////////////
@@ -18,8 +19,8 @@ public class Autonomous extends CommandGroup {
 				//
 				//	Start far Left, Ready to Grab the Container
 				//////////////////////////////////////////////////////////////		
-				addSequential(new CloseContainerClamp());
-				addSequential(new MoveContainerLiftForTime(0.5, 0.3));
+				addSequential(new CloseContainerClamp(0.25));
+				addSequential(new MoveContainerLiftForTime(0.25, 0.5));
 				addSequential(new DriveForTime(-0.3, 0, 4));
 				break;
 				
@@ -30,7 +31,7 @@ public class Autonomous extends CommandGroup {
 				//
 				// Start far Left, Ready to Grab the Tote
 				//////////////////////////////////////////////////////////////
-				addSequential(new MoveToteLiftForTime(0.5, 0.3));
+				addSequential(new MoveToteLiftForTime(0.5, 0.5));
 				addSequential(new DriveForTime(-0.3, 0, 4));     
 				break;
 				
@@ -62,7 +63,7 @@ public class Autonomous extends CommandGroup {
 				double driveSpeed = 0.3;
 				
 				addSequential(new MoveToteLiftForTime(2.0, liftSpeed));//Lifting Tote
-				addSequential(new DriveForTime(-0.5, 0.0, 4.0));//Moving to Next Tote
+				addSequential(new DriveForTime(-0.5, 0.0, 2.0));//Moving to Next Tote
 				addSequential(new MoveToteLiftForTime(1.5, -liftSpeed));//Releasing Tote
 				addSequential(new DriveForTime(0.0, -driveSpeed, 0.2));//Backing Up
 				addSequential(new MoveToteLiftForTime(0.5, -liftSpeed));//Lowering lift
@@ -70,7 +71,7 @@ public class Autonomous extends CommandGroup {
 			
 				//Re-Iterate
 				addSequential(new MoveToteLiftForTime(2.0, liftSpeed));
-				addSequential(new DriveForTime(-0.5, 0.0, 4.0));
+				addSequential(new DriveForTime(-0.5, 0.0, 2.0));
 				addSequential(new MoveToteLiftForTime(1.5, -liftSpeed));
 				addSequential(new DriveForTime(0.0, -driveSpeed, 0.2));
 				addSequential(new MoveToteLiftForTime(0.5, -liftSpeed));
@@ -78,8 +79,8 @@ public class Autonomous extends CommandGroup {
 				
 			
 				addSequential(new MoveToteLiftForTime(1.0, liftSpeed));//Lifting Tote slightly
-				addSequential(new RotateForTime(0.5, -0.3)); // MAKE PID ROTATE
-				addSequential(new DriveForTime(0.0, driveSpeed, 4.0));//Drive into Auto zone (field oriented)
+				addSequential(new RotateForTime(1.20, -0.6)); // MAKE PID ROTATE
+				//addSequential(new DriveForTime(0.0, -driveSpeed, 4.0));//Drive into Auto zone (field oriented)
 				break;
 		}
 	}
