@@ -113,14 +113,16 @@ public class OperatorDrive extends Command {
 		//Preset Encoder Code
 		/*else {
 			if(oi.payloadButton8.get()) {
-				//For both STEP and 
-				containerLiftSystem.runLiftToPreset(RobotConstants.CONTAINER_LIFT_ONE_TOTE);
+				containerLiftSystem.runLiftToPreset(RobotConstants.CONTAINER_LIFT_RELEASE);
+			}
+			else if(oi.payloadButton6.get()) {
+				containerLiftSystem.runLiftToPreset(RobotConstants.CONTAINER_LIFT_TEST);
 			}
 			else if(oi.payloadButton4.get()) {
 				containerLiftSystem.runLiftToPreset(RobotConstants.CONTAINER_LIFT_TOP);
 			}
 			else if(oi.payloadButton2.get()) {
-				containerLiftSystem.runLiftToPreset(RobotConstants.CONTAINER_LIFT_TRAVEL_HEIGHT);
+				containerLiftSystem.runLiftToPreset(RobotConstants.CONTAINER_LIFT_GROUND);
 			}
 			else if(containerLiftSystem.getLiftControlMode() == CANTalon.ControlMode.PercentVbus) {
 				containerLiftSystem.runLiftManually(0.0);

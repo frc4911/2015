@@ -58,11 +58,10 @@ public class RobotConstants {
     public static final int CONTAINER_LIFT_POTENTIOMETER_PORT = 1;
     
     //TODO: TEST FOR THESE VALUES
-    public static final double CONTAINER_LIFT_GROUND = 0.0;
-    public static final double CONTAINER_LIFT_TOP = 0.0;
-    public static final double CONTAINER_LIFT_ONE_TOTE = 0.0;
-    public static final double CONTAINER_LIFT_TRAVEL_HEIGHT = 0.0;
-    public static final double CONTAINER_LIFT_CLEAR_UPSIDE_DOWN_TOTE_OFFSET = 0.0;
+    public static final double CONTAINER_LIFT_GROUND = 	0.0;
+    public static final double CONTAINER_LIFT_TEST = 	0.0;
+    public static final double CONTAINER_LIFT_TOP = 	0.0;
+    public static final double CONTAINER_LIFT_RELEASE = 0.0;
     
     public static final double CONTAINERSYSTEM_LIFT_SPEED = 0.5;
     public static final double CONTAINERSYSTEM_CLAMP_SPEED = 1.0;
