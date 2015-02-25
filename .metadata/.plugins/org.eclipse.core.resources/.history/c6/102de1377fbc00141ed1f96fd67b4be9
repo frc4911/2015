@@ -46,30 +46,30 @@ public class OperatorDrive extends Command {
 
 	@Override
 	protected void execute() {
-	    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	    //
-	    // Tote Lift Nudge Down
-	    //
-	    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                //
+                // Tote Lift Nudge Down
+                //
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 
-	    if (oi.payloadJoy.getPOV() != -1.0){
-		new MoveToteLiftForTime(0.3, -0.5).start();
-	    }
+                if (oi.payloadJoy.getPOV() != -1.0){
+                    new MoveToteLiftForTime(0.3, -0.5).start();
+                }
                 
-	    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	    //
-	    // Hook Lift Controls
-	    //
-	    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	    if(!hookSystemConflict){
-		if(Math.abs(oi.payloadJoy.getY()) > 0.1) {
-		    hookLiftSystem.runLiftManually(oi.payloadJoy.getY());
-        	}
-		//manual stop code... use ONLY if presets are not running
-		else {
-		    hookLiftSystem.runLiftManually(0.0);
-		}
-	    }
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//
+		// Hook Lift Controls
+		//
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                if(!hookSystemConflict){
+        		if(Math.abs(oi.payloadJoy.getY()) > 0.1) {
+        			hookLiftSystem.runLiftManually(oi.payloadJoy.getY());
+        		}
+        		//manual stop code... use ONLY if presets are not running
+        		else {
+        			hookLiftSystem.runLiftManually(0.0);
+        		}
+                }
 
 		
 	    //Preset code
@@ -184,9 +184,10 @@ public class OperatorDrive extends Command {
 	        }
 			
 	    }
-	    printSystem.print("Container Pot: " + sensorSystem.getPot());
-	    printSystem.print("ContainerContainer Current: " + containerLiftSystem.getContainerContainer().getOutputCurrent());
-	    printSystem.print("Follower Current: " + containerLiftSystem.getSecondCC().getOutputCurrent());
+	    printSystem.print("Pot Value", sensorSystem.getPot());
+	    printSystem.print("Pot: " + sensorSystem.getPot());
+	    printSystem.print("ContainerContainer: " + containerLiftSystem.getContainerContainer().getOutputCurrent());
+	    printSystem.print("Follower: " + containerLiftSystem.getSecondCC().getOutputCurrent());
 	    printSystem.print("Low Speed: " + containerLiftSystem.lowSpeed());
 	}
 
