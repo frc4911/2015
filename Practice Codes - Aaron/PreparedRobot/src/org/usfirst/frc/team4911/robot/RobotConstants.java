@@ -104,7 +104,7 @@ public class RobotConstants {
     
     
     //GYRO
-    public static final int MAIN_GYRO_PORT = 7;//Analog
+    public static final int MAIN_GYRO_PORT = 1;//Analog
     public static final double GYRO_SENSITIVITY = 0.007;
     
     //IMU CONSTANTS

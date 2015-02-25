@@ -1,8 +1,11 @@
 package org.usfirst.frc.team4911.robot.commands;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
+
 import org.usfirst.frc.team4911.robot.subsystems.MecanumDriveSystem;
 import org.usfirst.frc.team4911.robot.Robot;
+
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
@@ -16,6 +19,10 @@ public class ZeroYaw extends Command {
         this.button = button;
     }
 
+    public ZeroYaw() {
+    	
+    }
+    
     protected void initialize() {
     }
 
@@ -25,7 +32,12 @@ public class ZeroYaw extends Command {
     }
 
     protected boolean isFinished() {
-        return !button.get();
+    	if(DriverStation.getInstance().isOperatorControl()) {
+    		return !button.get();
+    	}
+    	else {
+    		return true;
+    	}
     }
 
     protected void end() {
