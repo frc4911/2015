@@ -52,11 +52,11 @@ public class ContainerLiftSystem extends Subsystem {
 		if(usingLift) {
 		    double error = targetPosition - 0.0;
 		    if(Math.abs(error) > RobotConstants.LIFT_ERROR_TOLERANCE) {
-			containerLift.set(error * 1.0); //TODO: Fix this scaler vlaue
+		    	containerLift.set(error * 1.0); //TODO: Fix this scaler vlaue
 		    }
 		    else {
-			containerLift.set(0.0);
-			usingLift = false;
+		    	containerLift.set(0.0);
+		    	usingLift = false;
 		    }
 		}
 		else {
