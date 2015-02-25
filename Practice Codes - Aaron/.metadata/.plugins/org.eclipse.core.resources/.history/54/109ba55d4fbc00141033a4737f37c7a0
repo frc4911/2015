@@ -1,0 +1,91 @@
+package org.usfirst.frc.team4911.robot.commands;
+
+import edu.wpi.first.wpilibj.command.CommandGroup;
+
+import org.usfirst.frc.team4911.robot.RobotConstants;
+
+
+public class Autonomous extends CommandGroup {
+
+	public Autonomous(){		
+		//////////////////////////////////////////////////////////////
+		// 
+		// 	Moving One Container To AutoZone
+		//
+		//////////////////////////////////////////////////////////////
+		
+		// ======================= STARTING POSITION INSTRUCTIONS ===========================
+		// Start far Left, Ready to Grab the Container
+		
+		addSequential(new CloseContainerClamp());
+		addSequential(new MoveContainerLiftForTime(0.5, 0.3));
+		addSequential(new DriveForTime(-0.3, 0, 4));
+		
+		/*
+		//////////////////////////////////////////////////////////////
+		//  
+		// 	Moving One Tote To AutoZone
+		//
+		//////////////////////////////////////////////////////////////
+		
+		// ======================= STARTING POSITION INSTRUCTIONS ===========================
+		// Start far Left, Ready to Grab the Tote
+		addSequential(new MoveToteLiftForTime(0.5, 0.3));
+		addSequential(new DriveForTime(-0.3, 0, 4));     
+		
+		//////////////////////////////////////////////////////////////
+		// 
+		// 	Drive From Staging Zone Around Scoring Zone to AutoZone
+		//
+	 	//////////////////////////////////////////////////////////////
+	 	
+		// ======================= STARTING POSITION INSTRUCTIONS ===========================
+    	// For this command the robot will slide down the staging zone, into the autonomous
+    	// zone, and then back down the autonomous zone. For this the robot must be placed
+    	// a certain distance down the staging zone from the left proportional to the parameter
+    	// stagingZones 
+		
+		//What is the Unit?
+		double stagingZones = 3.0;
+		
+		addSequential(new PIDAxisDrive(-0.5, 0.0, RobotConstants.DRIVE_ONE_STAGE_ZONE * stagingZones));
+    	addSequential(new SetGoalHeading(90));
+    	addSequential(new PIDAxisDrive(0.0, 0.5,  1024.0*30.5*3.0));
+    	addSequential(new SetGoalHeading(0));
+    	addSequential(new PIDAxisDrive(0.5, 0.0, RobotConstants.DRIVE_ONE_STAGE_ZONE * (2.0-stagingZones)));
+    	
+    	
+    	
+    	//////////////////////////////////////////////////////////////
+		// 
+		// 	Stacking Three Totes
+		//
+	 	//////////////////////////////////////////////////////////////
+	 	 // Start far Right between the Scoring Zone and the Staging Zone
+    	
+    	double liftSpeed = 0.3;
+		double driveSpeed = 0.3;
+		
+		addSequential(new MoveToteLiftForTime(2.0, liftSpeed));//Lifting Tote
+		addSequential(new DriveForTime(-0.5, 0.0, 4.0));//Moving to Next Tote
+		addSequential(new MoveToteLiftForTime(1.5, -liftSpeed));//Releasing Tote
+		addSequential(new DriveForTime(0.0, -driveSpeed, 0.2));//Backing Up
+		addSequential(new MoveToteLiftForTime(0.5, -liftSpeed));//Lowering lift
+		addSequential(new DriveForTime(0.0,driveSpeed, 0.2));//MovingForward
+	
+	
+		addSequential(new MoveToteLiftForTime(2.0, liftSpeed));//Lifting Tote
+		addSequential(new DriveForTime(-0.5, 0.0, 4.0));//Moving to Next Tote
+		addSequential(new MoveToteLiftForTime(1.5, -liftSpeed));//Releasing Tote
+		addSequential(new DriveForTime(0.0, -driveSpeed, 0.2));//Backing Up
+		addSequential(new MoveToteLiftForTime(0.5, -liftSpeed));//Lowering lift
+		addSequential(new DriveForTime(0.0,driveSpeed, 0.2));//MovingForward
+		
+	
+		addSequential(new MoveToteLiftForTime(1.0, liftSpeed));//Lifting Tote slightly
+		addSequential(new RotateForTime(0.5, -0.3)); // MAKE PID ROTATE
+		addSequential(new DriveForTime(0.0, driveSpeed, 4.0));//Drive into Auto zone (field oriented)
+		*/
+	}
+
+}

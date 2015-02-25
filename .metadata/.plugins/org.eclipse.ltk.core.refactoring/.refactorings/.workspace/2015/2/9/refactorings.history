@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
+<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;PreparedRobot&apos;" deleteContents="false" description="Delete resource &apos;PreparedRobot&apos;" element1="/PreparedRobot" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1424738519473"/>&#x0A;<refactoring comment="Delete resource &apos;PreparedRobot&apos;" deleteContents="false" description="Delete resource &apos;PreparedRobot&apos;" element1="/PreparedRobot" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1424747776994"/>
+=======
+<session version="1.0">
+<refactoring comment="Delete resource &apos;PreparedRobot&apos;" deleteContents="false" description="Delete resource &apos;PreparedRobot&apos;" element1="/PreparedRobot" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1424738519473"/>
+>>>>>>> 402c81974294378c832238c892c0f9aae43c8337
+</session>

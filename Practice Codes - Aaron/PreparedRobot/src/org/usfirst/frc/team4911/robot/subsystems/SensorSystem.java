@@ -31,8 +31,8 @@ public class SensorSystem extends Subsystem {
 	public static LIDAR lidar = RobotMap.lidar;
 	
 	public static AnalogPotentiometer clampPot = RobotMap.clampPot;
-	public static AnalogPotentiometer hookLiftPot = RobotMap.hookLiftPot;
-	public static AnalogPotentiometer containerLiftPot = RobotMap.containerLiftPot;
+	//public static AnalogPotentiometer hookLiftPot = RobotMap.hookLiftPot;
+	//public static AnalogPotentiometer containerLiftPot = RobotMap.containerLiftPot;
 	
 	public double startTime;
 	public DataBuffer accelXBuffer;
@@ -167,13 +167,13 @@ public class SensorSystem extends Subsystem {
     	return clampPot.get();
     }
     
-    public double getHookLiftPot() {
+    /*public double getHookLiftPot() {
 	return hookLiftPot.get();
     }
     
     public double getContainerLiftPot() {
 	return containerLiftPot.get();
-    }
+    }*/
     /***************************************
      * LIDAR Methods
      ***************************************/

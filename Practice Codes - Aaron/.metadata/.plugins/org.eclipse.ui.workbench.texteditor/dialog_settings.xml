@@ -8,6 +8,7 @@
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="runLiftToPreset"/>
 			<item value="pot"/>
 			<item value="container"/>
 			<item value="System."/>
@@ -15,7 +16,6 @@
 			<item value="driveWithPID"/>
 			<item value="-0.3"/>
 			<item value="-.3"/>
-			<item value="robot"/>
 		</list>
 		<list key="replacehistory">
 		</list>
