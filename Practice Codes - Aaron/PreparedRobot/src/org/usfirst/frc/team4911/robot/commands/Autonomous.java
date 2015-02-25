@@ -6,7 +6,7 @@ import org.usfirst.frc.team4911.robot.RobotConstants;
 
 
 public class Autonomous extends CommandGroup {
-	private int mode = 1;//[1 - 4]
+	private int mode = 4;//[1 - 4]
 	
 
 	public Autonomous(){
@@ -59,23 +59,23 @@ public class Autonomous extends CommandGroup {
 			 	//////////////////////////////////////////////////////////////
 			 	 // Start far Right between the Scoring Zone and the Staging Zone
 		    	
-		    	double liftSpeed = 0.3;
+		    	double liftSpeed = 1.0;
 				double driveSpeed = 0.3;
 				
-				addSequential(new MoveToteLiftForTime(2.0, liftSpeed));//Lifting Tote
-				addSequential(new DriveForTime(-0.5, 0.0, 2.0));//Moving to Next Tote
-				addSequential(new MoveToteLiftForTime(1.5, -liftSpeed));//Releasing Tote
-				addSequential(new DriveForTime(0.0, -driveSpeed, 0.2));//Backing Up
-				addSequential(new MoveToteLiftForTime(0.5, -liftSpeed));//Lowering lift
-				addSequential(new DriveForTime(0.0,driveSpeed, 0.2));//MovingForward
+				addSequential(new MoveToteLiftForTime(4.0, liftSpeed));//Lifting Tote
+				addSequential(new DriveForTime(-0.5, 0.0, 2.25));//Moving to Next Tote
+				addSequential(new MoveToteLiftForTime(2, -liftSpeed));//Releasing Tote
+				addSequential(new DriveForTime(0.0, -driveSpeed, 1.0));//Backing Up
+				addSequential(new MoveToteLiftForTime(2, -liftSpeed));//Lowering lift
+				addSequential(new DriveForTime(0.0,driveSpeed, 1.0));//MovingForward
 			
 				//Re-Iterate
-				addSequential(new MoveToteLiftForTime(2.0, liftSpeed));
-				addSequential(new DriveForTime(-0.5, 0.0, 2.0));
-				addSequential(new MoveToteLiftForTime(1.5, -liftSpeed));
-				addSequential(new DriveForTime(0.0, -driveSpeed, 0.2));
-				addSequential(new MoveToteLiftForTime(0.5, -liftSpeed));
-				addSequential(new DriveForTime(0.0,driveSpeed, 0.2));
+				addSequential(new MoveToteLiftForTime(4.0, liftSpeed));//Lifting Tote
+				addSequential(new DriveForTime(-0.5, 0.0, 2.25));//Moving to Next Tote
+				addSequential(new MoveToteLiftForTime(2, -liftSpeed));//Releasing Tote
+				addSequential(new DriveForTime(0.0, -driveSpeed, 1.0));//Backing Up
+				addSequential(new MoveToteLiftForTime(2, -liftSpeed));//Lowering lift
+				addSequential(new DriveForTime(0.0,driveSpeed, 1.0));//MovingForwardd
 				
 			
 				addSequential(new MoveToteLiftForTime(1.0, liftSpeed));//Lifting Tote slightly

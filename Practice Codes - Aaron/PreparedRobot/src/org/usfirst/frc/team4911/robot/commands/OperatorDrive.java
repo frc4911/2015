@@ -63,13 +63,15 @@ public class OperatorDrive extends Command {
 		// Hook Lift Controls
 		//
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		printSystem.print("Joystick: "  +oi.payloadJoy.getY());
 		if(!hookSystemConflict){
-			if(Math.abs(oi.payloadJoy.getY()) > 0.1) {
-				hookLiftSystem.runLiftManually(oi.payloadJoy.getY());
+			if(Math.abs(oi.payloadJoy.getY()) > 0.25) {
+			    hookLiftSystem.runLiftManually(oi.payloadJoy.getY());
 			}
 			//manual stop code... use ONLY if presets are not running
 			else {
-				hookLiftSystem.runLiftManually(0.0);
+			    hookLiftSystem.runLiftManually(0.0);
+			    printSystem.print("Stopping!");
 			}
 		}
 	
@@ -143,6 +145,10 @@ public class OperatorDrive extends Command {
 				printSystem.print("Forward");
 				containerLiftSystem.runClampManuallyForward();
 			}
+			else if(oi.payloadButton5.get()) {
+			    printSystem.print("Stow");
+			    containerLiftSystem.stowClamp();
+			}
 			else{
 				printSystem.print("Stopped");
 				containerLiftSystem.stopClamp();
@@ -179,6 +185,7 @@ public class OperatorDrive extends Command {
 	    printSystem.print("ContainerContainer Current: " + containerLiftSystem.getContainerContainer().getOutputCurrent());
 	    printSystem.print("Follower Current: " + containerLiftSystem.getSecondCC().getOutputCurrent());
 	    printSystem.print("Low Speed: " + containerLiftSystem.lowSpeed());
+	    printSystem.print("Tote conflict: " + hookSystemConflict);
 	}
 	
 	@Override

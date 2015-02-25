@@ -44,6 +44,7 @@ public class ClampOpenTime extends Command {
 
     protected void end() {
     	containerSystem.stopClamp();
+    	containerSystem.setLowSpeed(false);
     	teleop.containerClampConflict = false;
     }
 

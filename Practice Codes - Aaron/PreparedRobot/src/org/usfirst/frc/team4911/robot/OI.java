@@ -78,7 +78,7 @@ public class OI {
         button8.whenPressed(new RotateForTime(0.05, -0.25));
         button9.whenPressed(new RotateForTime(0.05, 0.25));
         
-        payloadButton6.whenPressed(new ClampOpenTime(0.5));
+        payloadButton6.whenPressed(new ClampOpenTime(0.4));
     }
     
     /*************************************
