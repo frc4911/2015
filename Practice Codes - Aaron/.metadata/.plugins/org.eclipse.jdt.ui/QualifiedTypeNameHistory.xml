@@ -16,4 +16,5 @@
 <fullyQualifiedTypeName name="com.ni.vision.NIVision.DrawMode"/>
 <fullyQualifiedTypeName name="com.ni.vision.NIVision.GetImageSizeResult"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CANTalon.FeedbackDevice"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.DriverStation"/>
 </qualifiedTypeNameHistroy>

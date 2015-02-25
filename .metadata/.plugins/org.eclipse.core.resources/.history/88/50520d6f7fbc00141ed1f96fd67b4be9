@@ -20,7 +20,7 @@ public class OperatorDrive extends Command {
 	
 	public double speed;
 	public boolean containerClampConflict;
-	
+	public boolean hookSystemConflict;	
 	public boolean driveSystemConflict;
 	
 	public OperatorDrive(){
@@ -36,28 +36,41 @@ public class OperatorDrive extends Command {
 		
 		mecanumDriveSystem.setGoalHeading(0.0);
 		driveSystemConflict = false;
+		hookSystemConflict = false;
 		speed = RobotConstants.STANDARD_DRIVE_SPEED;
 		runtime = Runtime.getRuntime();
 		liftPreset = true;
 		containerClampConflict = false;
+		hookSystemConflict = false;
 	}
 
 	@Override
 	protected void execute() {
-		
-	    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	    //
-	    // Hook Lift Controls
-	    //
-	    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                //
+                // Tote Lift Nudge Down
+                //
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                
+                if (oi.payloadJoy.getPOV() != -1.0){
+                    new MoveToteLiftForTime(0.3, -0.5).start();
+                }
+                
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//
+		// Hook Lift Controls
+		//
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                if(!hookSystemConflict){
+        		if(Math.abs(oi.payloadJoy.getY()) > 0.1) {
+        			hookLiftSystem.runLiftManually(oi.payloadJoy.getY());
+        		}
+        		//manual stop code... use ONLY if presets are not running
+        		else {
+        			hookLiftSystem.runLiftManually(0.0);
+        		}
+                }
 
-	    if(Math.abs(oi.payloadJoy.getY()) > 0.1) {
-		hookLiftSystem.runLiftManually(oi.payloadJoy.getY());
-	    }
-	    //manual stop code... use ONLY if presets are not running
-	    else {
-		hookLiftSystem.runLiftManually(0.0);
-	    }
 		
 	    //Preset code
 	    /*else {						
@@ -171,10 +184,9 @@ public class OperatorDrive extends Command {
 	        }
 			
 	    }
-	    printSystem.print("Pot Value", sensorSystem.getPot());
-	    printSystem.print("Pot: " + sensorSystem.getPot());
-	    printSystem.print("ContainerContainer: " + containerLiftSystem.getContainerContainer().getOutputCurrent());
-	    printSystem.print("Follower: " + containerLiftSystem.getSecondCC().getOutputCurrent());
+	    printSystem.print("Container Pot: " + sensorSystem.getPot());
+	    printSystem.print("ContainerContainer Current: " + containerLiftSystem.getContainerContainer().getOutputCurrent());
+	    printSystem.print("Follower Current: " + containerLiftSystem.getSecondCC().getOutputCurrent());
 	    printSystem.print("Low Speed: " + containerLiftSystem.lowSpeed());
 	}
 
