@@ -48,6 +48,7 @@ public class OperatorDrive extends Command {
 	
 	@Override
 	protected void execute() {
+<<<<<<< HEAD
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//
 		// Tote Lift Nudge Down
@@ -72,6 +73,32 @@ public class OperatorDrive extends Command {
 				hookLiftSystem.runLiftManually(0.0);
 			}
 		}
+=======
+	    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	    //
+	    // Tote Lift Nudge Down
+	    //
+	    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                
+	    if (oi.payloadJoy.getPOV() != -1.0){
+		new MoveToteLiftForTime(0.3, -0.5).start();
+	    }
+                
+	    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	    //
+	    // Hook Lift Controls
+	    //
+	    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	    if(!hookSystemConflict){
+		if(Math.abs(oi.payloadJoy.getY()) > 0.1) {
+		    hookLiftSystem.runLiftManually(oi.payloadJoy.getY());
+        	}
+		//manual stop code... use ONLY if presets are not running
+		else {
+		    hookLiftSystem.runLiftManually(0.0);
+		}
+	    }
+>>>>>>> 6844257fd14fb5729a4065ff62c2e1a088bb7947
 	
 		//Preset code
 		/*else {						
