@@ -100,11 +100,7 @@ public class OperatorDrive extends Command {
 		///////////////////////////////////////////////////////////////////////////
 		if(Math.abs(oi.payloadJoy.getRawAxis(RobotConstants.CONTAINER_LIFT_AXIS)) >= 0.1){
 			containerLiftSystem.runLiftManually(oi.payloadJoy.getRawAxis(RobotConstants.CONTAINER_LIFT_AXIS));
-		} 
-		else if(oi.payloadButton2.get()) {
-		    containerLiftSystem.runLiftToPreset(RobotConstants.CONTAINER_LIFT_ONE_TOTE);
-		}
-		else if(containerLiftSystem.getLiftControlMode() == CANTalon.ControlMode.PercentVbus){
+		} else {
 			//manual stop code...use ONLY if presets are not running
 			containerLiftSystem.runLiftManually(0.0);
 		}
