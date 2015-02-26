@@ -144,7 +144,22 @@ public class SensorSystem extends Subsystem {
     public void resetGyro(){
     	gyro.reset();
     }
- 
+    
+    /***************************************
+     * Encoder Methods
+     ***************************************/
+    public double getDistance(){
+        return (getLeftDistance() + getRightDistance()) / 2.0;
+    }
+    
+    public double getLeftDistance(){
+        return left.getEncPosition() * RobotConstants.DRIVESYSTEM_ENCODER_DISTANCE_PER_PULSE;
+    }
+    
+    public double getRightDistance(){
+        return left.getEncPosition() * RobotConstants.DRIVESYSTEM_ENCODER_DISTANCE_PER_PULSE;
+
+    }
     /***************************************
      * Potentiometer Methods
      ***************************************/
