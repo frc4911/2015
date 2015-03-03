@@ -23,7 +23,11 @@ public class OperatorDrive extends Command {
 	public boolean containerClampConflict;
 	public boolean hookSystemConflict;	
 	public boolean driveSystemConflict;
-		
+	
+	
+	public boolean fieldOriented;
+	public boolean prevPressed11;
+	
 	public OperatorDrive(){
 		requires(mecanumDriveSystem);
 		requires(sensorSystem);
@@ -44,6 +48,9 @@ public class OperatorDrive extends Command {
 		containerClampConflict = false;
 		hookSystemConflict = false;
 		prevPOV = -1.0;
+		
+		fieldOriented = true;
+		prevPressed11 = false;
 	}
 	
 	@Override
@@ -64,12 +71,12 @@ public class OperatorDrive extends Command {
 		//
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		if(!hookSystemConflict){
-			if(Math.abs(oi.payloadJoy.getY()) > 0.1) {
-				hookLiftSystem.runLiftManually(oi.payloadJoy.getY());
+			if(Math.abs(oi.payloadJoy.getY()) > 0.25) {
+			    hookLiftSystem.runLiftManually(oi.payloadJoy.getY());
 			}
 			//manual stop code... use ONLY if presets are not running
 			else {
-				hookLiftSystem.runLiftManually(0.0);
+			    hookLiftSystem.runLiftManually(0.0);
 			}
 		}
 	
@@ -98,7 +105,11 @@ public class OperatorDrive extends Command {
 		///////////////////////////////////////////////////////////////////////////
 		if(Math.abs(oi.payloadJoy.getRawAxis(RobotConstants.CONTAINER_LIFT_AXIS)) >= 0.1){
 			containerLiftSystem.runLiftManually(oi.payloadJoy.getRawAxis(RobotConstants.CONTAINER_LIFT_AXIS));
-		} else {
+		} 
+		else if(oi.payloadButton2.get()) {
+		    containerLiftSystem.runLiftToPreset(RobotConstants.CONTAINER_LIFT_ONE_TOTE);
+		}
+		else if(containerLiftSystem.getLiftControlMode() == CANTalon.ControlMode.PercentVbus){
 			//manual stop code...use ONLY if presets are not running
 			containerLiftSystem.runLiftManually(0.0);
 		}
@@ -134,15 +145,15 @@ public class OperatorDrive extends Command {
 		////////////////////////////////////////////////////////////////////////////
 		if(!containerClampConflict) {
 			if(oi.payloadButton8.get()){
-				printSystem.print("Backward");
 				containerLiftSystem.runClampManuallyBackward();
 			}
 			else if(oi.payloadButton7.get()){
-				printSystem.print("Forward");
 				containerLiftSystem.runClampManuallyForward();
 			}
+			else if(oi.payloadButton5.get()) {
+			    containerLiftSystem.stowClamp();
+			}
 			else{
-				printSystem.print("Stopped");
 				containerLiftSystem.stopClamp();
 			}
 		}
@@ -152,31 +163,57 @@ public class OperatorDrive extends Command {
 		//
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
+		//Setting the Master Drive Speed
 		mecanumDriveSystem.setSpeed(oi.getMainJoyThrottle());
+		
+		//Toggling FieldOrientedDrive
+		if(oi.button11.get()){
+			if(!prevPressed11){
+				fieldOriented = !fieldOriented;
+				prevPressed11 = true;
+			}
+		} else {
+			prevPressed11 = false;
+		}
+		
 		if(!driveSystemConflict){
-			if(oi.getPOV() == RobotConstants.POV_UP){
-				mecanumDriveSystem.driveWithPID(0.0, -1.0);
-			}
-			else if(oi.getPOV() == RobotConstants.POV_DOWN) {
-				mecanumDriveSystem.driveWithPID(0.0, 1.0);
-			}
-			else if(oi.getPOV() == RobotConstants.POV_LEFT) {
-				mecanumDriveSystem.driveWithPID(-1.0, 0.0);
-			}
-			else if(oi.getPOV() == RobotConstants.POV_RIGHT) {
-				mecanumDriveSystem.driveWithPID(1.0, 0.0);
-			} 
-			else {		
-				double xIn = Math.pow(oi.getMainJoyX(), 3);
-				double yIn = Math.pow(oi.getMainJoyY(), 3);	
-				mecanumDriveSystem.driveWithPID(xIn, yIn);	        	
-			}
+			double xIn = Math.pow(oi.getMainJoyX(), 3);
+			double yIn = Math.pow(oi.getMainJoyY(), 3);	
+			double rIn = Math.pow(oi.getMainJoyZ(), 3);
 			
+			if(fieldOriented){	
+				if(oi.getPOV() == RobotConstants.POV_UP){
+					xIn = 0.0;
+					yIn = -1.0;
+				}
+				else if(oi.getPOV() == RobotConstants.POV_DOWN) {
+					xIn = 0.0;
+					yIn = 1.0;
+				}
+				else if(oi.getPOV() == RobotConstants.POV_LEFT) {
+					xIn = -1.0;
+					yIn = 0.0;
+				}
+				else if(oi.getPOV() == RobotConstants.POV_RIGHT) {
+					xIn = 1.0;
+					yIn = 0.0;
+				} 
+				
+				if(oi.trigger.get()){
+					mecanumDriveSystem.drive(xIn, yIn, rIn);
+					mecanumDriveSystem.setGoalHeading((double)(sensorSystem.getYawWithCompensation()));
+				} else {
+					mecanumDriveSystem.driveWithPID(xIn, yIn);
+				}	
+			}
+			else {	
+				if(!oi.trigger.get()){
+					rIn = 0.0;
+				}
+				mecanumDriveSystem.driveRobotOriented(xIn, yIn, rIn);
+			}
 	    }
-	    printSystem.print("Container Pot: " + sensorSystem.getPot());
-	    printSystem.print("ContainerContainer Current: " + containerLiftSystem.getContainerContainer().getOutputCurrent());
-	    printSystem.print("Follower Current: " + containerLiftSystem.getSecondCC().getOutputCurrent());
-	    printSystem.print("Low Speed: " + containerLiftSystem.lowSpeed());
+		printSystem.print("FieldOriented:\t" + fieldOriented );
 	}
 	
 	@Override

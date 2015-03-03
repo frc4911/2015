@@ -66,7 +66,7 @@ public class RobotConstants {
     
     public static final double CONTAINERSYSTEM_LIFT_SPEED = 0.5;
     public static final double CONTAINERSYSTEM_CLAMP_SPEED = 1.0;
-    public static final double CONTAINERSYSTEM_CLAMP_HOLD_POWER = 0.1;
+    public static final double CONTAINERSYSTEM_CLAMP_HOLD_POWER = 0.0;
     
     public static final double CONTAINERSYSTEM_CLAMP_LOW_AMPERAGE_THRESHHOLD = 0.15;
     public static final double CONTAINERSYSTEM_CLAMP_HIGH_AMPERAGE_THRESHHOLD = 7.5;
@@ -83,13 +83,13 @@ public class RobotConstants {
     
     
     //DEBUG SWITCH
-    public static final boolean FLAG = false;
+    public static final boolean FLAG = true;
     
     //CM to IN conversion (LIDAR)
     public static final double inToCM = 2.54;
     
     //PrintSystem Constants
-    public static final int printFrequency = 10;
+    public static final int printFrequency = 1;
     public static final boolean STATIC_INFO_ALLOWED = false;
     
     //Autonomous Movement Constants

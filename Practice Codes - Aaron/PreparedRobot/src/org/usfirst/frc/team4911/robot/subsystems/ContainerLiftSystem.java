@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.CANTalon.ControlMode;
 
 /**
@@ -22,7 +23,8 @@ public class ContainerLiftSystem extends Subsystem {
 	private boolean atLowSpeed = false;
 	private double targetPosition;
 	private boolean usingLift;
-	
+	private double prevCurrent = 0.0;
+	private double highCurrentStartTime = 0.0;
     public void initDefaultCommand() {
 	
     }
@@ -75,31 +77,47 @@ public class ContainerLiftSystem extends Subsystem {
     public void runClampManuallyForward() {
     	containerContainer.changeControlMode(ControlMode.PercentVbus);
     	secondContainerContainer.changeControlMode(ControlMode.Follower);
-
-    	if(sensorSystem.getPot() < 0.42) {
+    	//pot value:   0.4499214632998128 if greater, fast
+    	if(sensorSystem.getPot() > 0.4499214632998128) {
     	    containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
     	}
     	else {
-    	    if(atLowSpeed) {
-    		if(containerContainer.getOutputCurrent() < 5.0) {
-    		    containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
-    		    atLowSpeed = false;
-    		}
-    		else {
-    		    containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
-    		}
+    	    containerContainer.set(0.307);
+    	}
+    	/*if(sensorSystem.getPot() < 0.42) {
+    	    containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+    	}
+    	else {
+    	    /*if(atLowSpeed) {
+    		containerContainer.set(0.0);
     	    }
     	    else {
-    		if(containerContainer.getOutputCurrent() > 25.0) {
+    		if(containerContainer.getOutputCurrent() > 21.0) {
+    		    if(prevCurrent > 21.0) {
+    			    if(highCurrentStartTime == 0.0) {
+    				highCurrentStartTime = Timer.getFPGATimestamp();
+    			    }
+    			    else if(Timer.getFPGATimestamp() - highCurrentStartTime > .08) {
+    				containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
+    			    }
+    		    }
     		    containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
     		    atLowSpeed = true;
     		}
     		else {
     		    containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
     		}
-    	    }
-    	}
+    	    }*/
+    	    //containerContainer.set(0.307);
+    	//}
     	secondContainerContainer.set(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT);
+    }
+    
+    public void stowClamp() {
+	containerContainer.changeControlMode(ControlMode.PercentVbus);
+	secondContainerContainer.changeControlMode(ControlMode.Follower);
+	containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+	secondContainerContainer.set(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT);
     }
     
     public void stopClamp(){
@@ -119,7 +137,8 @@ public class ContainerLiftSystem extends Subsystem {
 		    containerContainer.set(0.0);
 		}
 		secondContainerContainer.set(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT);
-	    }
+		atLowSpeed = false;
+    }
 	    
 	    public boolean lowSpeed() {
 		return atLowSpeed;

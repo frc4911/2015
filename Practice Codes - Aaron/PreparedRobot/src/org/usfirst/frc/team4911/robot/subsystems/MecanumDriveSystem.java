@@ -55,6 +55,14 @@ public class MecanumDriveSystem extends Subsystem {
 	}
 	
 	//================ DRIVE CONTROL METHODS ==========================	
+	public void driveRobotOriented(double x, double y, double rotation){
+		//Speed Correction 
+    	x *= speed;
+    	y *= speed;
+    	rotation *= speed;
+    	
+		robot.mecanumDrive_Cartesian(x ,y ,rotation , 0.0);
+	}
 	
 	public void drive(double x, double y, double rotation){
 		//Speed Correction 
@@ -82,11 +90,7 @@ public class MecanumDriveSystem extends Subsystem {
     	
     	rotation = RobotConstants.DRIVESYSTEM_kP * currError + RobotConstants.DRIVESYSTEM_kI * integration + RobotConstants.DRIVESYSTEM_kD * derivative;//[-1.0 - 1.0] percentage
     	rotation = (rotation < 0) ? Math.max(-0.75, rotation) : Math.min(0.75, rotation);
-    	
-    	//Speed Correction 
-    	x *= speed;
-    	y *= speed;
-    	
+    	    	
     	drive(x, y, rotation);
 	}
 	
