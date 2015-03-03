@@ -15,22 +15,20 @@ import org.usfirst.frc.team4911.robot.subsystems.PrintSystem;
  * Jack Holt's Command
  */
 public class RotateForTime extends Command {
-	private MecanumDriveSystem mecanumDriveSystem;
-	private SensorSystem sensorSystem;	
-	private PrintSystem printSystem;	
-	private OI oi;
+    private MecanumDriveSystem mecanumDriveSystem;
+    private SensorSystem sensorSystem;	
+    private PrintSystem printSystem;	
+    private OI oi;
 	
-	private double startTime;
-	private double maxRotateTime;
-	private OperatorDrive operatorDrive;
-	private double rotateSpeed;
-	
+    private double startTime;
+    private double maxRotateTime;
+    private OperatorDrive operatorDrive;
+    private double rotateSpeed;
+		
 	
     public RotateForTime(double maxRotateTime, double rotateSpeed) {
-        this.maxRotateTime = maxRotateTime;
-        this.rotateSpeed = rotateSpeed;
-        
-        	
+	this.maxRotateTime = maxRotateTime;
+        this.rotateSpeed = rotateSpeed;     	
     }
 
     // Called just before this Command runs the first time
@@ -41,11 +39,10 @@ public class RotateForTime extends Command {
     	oi = Robot.oi;
     	operatorDrive = Robot.teleOp;
         if (operatorDrive.driveSystemConflict){
-        	this.cancel();
+            this.cancel();
         }
         operatorDrive.driveSystemConflict = true;
-        startTime = Timer.getFPGATimestamp();
-        
+        startTime = Timer.getFPGATimestamp();  
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -54,8 +51,7 @@ public class RotateForTime extends Command {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-    	
+    protected boolean isFinished() {	
         return ((Timer.getFPGATimestamp() - startTime) >= maxRotateTime);
     }
 
@@ -63,7 +59,7 @@ public class RotateForTime extends Command {
     protected void end() {
     	mecanumDriveSystem.setGoalHeading(Math.round(sensorSystem.getYawWithCompensation()));
     	operatorDrive.driveSystemConflict = false;
-    	
+    	Timer.delay(0.75);
     }
 
     // Called when another command which requires one or more of the same

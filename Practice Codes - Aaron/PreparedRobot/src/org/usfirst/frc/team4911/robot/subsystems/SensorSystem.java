@@ -19,35 +19,35 @@ import com.kauailabs.nav6.frc.IMUAdvanced;
 import ExternalLibs.LIDAR;
 
 public class SensorSystem extends Subsystem {
-	public static IMUAdvanced imu = RobotMap.imu;
+    public static IMUAdvanced imu = RobotMap.imu;
 
-	public static CANTalon left = RobotMap.leftFront;
-	public static CANTalon right = RobotMap.rightFront;
+    public static CANTalon left = RobotMap.leftFront;
+    public static CANTalon right = RobotMap.rightFront;
 	
-	public static BuiltInAccelerometer accelerometer = RobotMap.accelerometer;
-	public static Gyro gyro = RobotMap.gyro;
+    public static BuiltInAccelerometer accelerometer = RobotMap.accelerometer;
+    public static Gyro gyro = RobotMap.gyro;
 	
-	public static LIDAR lidar = RobotMap.lidar;
+    public static LIDAR lidar = RobotMap.lidar;
 	
-	public static AnalogPotentiometer clampPot = RobotMap.clampPot;
-	//public static AnalogPotentiometer hookLiftPot = RobotMap.hookLiftPot;
-	//public static AnalogPotentiometer containerLiftPot = RobotMap.containerLiftPot;
+    public static AnalogPotentiometer clampPot = RobotMap.clampPot;
+    //public static AnalogPotentiometer hookLiftPot = RobotMap.hookLiftPot;
+    //public static AnalogPotentiometer containerLiftPot = RobotMap.containerLiftPot;
 	
-	public double startTime;
-	public DataBuffer accelXBuffer;
-	public DataBuffer accelYBuffer;
-	int binNumber = 50;
+    public double startTime;
+    public DataBuffer accelXBuffer;
+    public DataBuffer accelYBuffer;
+    int binNumber = 50;
 	
 	
-	public SensorSystem(){
-	    gyro.setSensitivity(RobotConstants.GYRO_SENSITIVITY);
-	    gyro.initGyro();
+    public SensorSystem(){
+	gyro.setSensitivity(RobotConstants.GYRO_SENSITIVITY);
+	gyro.initGyro();
     	startTime = Timer.getFPGATimestamp();
     	lidar.start();
     	
     	accelXBuffer = new DataBuffer(binNumber);
     	accelYBuffer = new DataBuffer(binNumber);    	
-	}
+    }
 	
     public void initDefaultCommand() {
     }
@@ -78,10 +78,7 @@ public class SensorSystem extends Subsystem {
     }
     public float getYawWithCompensation(){
     	Double ellapsedTime = Timer.getFPGATimestamp() - startTime;
-    	return imu.getYaw() + (float)(RobotConstants.YAW_DRIFT_PER_TICK * ellapsedTime);
-    	
-    
-    	
+    	return imu.getYaw() + (float)(RobotConstants.YAW_DRIFT_PER_TICK * ellapsedTime);   	
     }
     public float getTemp(){
     	return imu.getTempC();
@@ -179,25 +176,25 @@ public class SensorSystem extends Subsystem {
     	private int currIndex;
     	
     	public DataBuffer(int size){
-    		this.size = size;
-    		this.buffer = new double[this.size];
-    		currIndex = 0;
+    	    this.size = size;
+    	    this.buffer = new double[this.size];
+    	    currIndex = 0;
     	}
     	public void add(double value){
-    		buffer[currIndex] = value;
-    		currIndex++;
-    		currIndex %= size;
+    	    buffer[currIndex] = value;
+    	    currIndex++;
+    	    currIndex %= size;
     	}
     	public double get(){
-    		double temp = 0.0;
-    		for(double d : this.buffer){
-    			temp += d;
-    		}
-    		temp /= this.size;
-    		return temp;
-    	}
+    	    double temp = 0.0;
+    	    for(double d : this.buffer){
+    		temp += d;
+    	    }
+    	    temp /= this.size;
+    	    return temp;
+    	}	
     	public String toString(){
-    		return Arrays.toString(buffer);
+    	    return Arrays.toString(buffer);
     	}
     }
 }

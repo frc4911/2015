@@ -56,9 +56,7 @@ public class DriveForTime extends Command {
     	}
     	else{
     	    //checks if we have moved for the designated time
-    	    return ((Timer.getFPGATimestamp() - startTime) >= time);
-    		
-    		
+    	    return ((Timer.getFPGATimestamp() - startTime) >= time);	
     	}
     }
 

@@ -83,14 +83,14 @@ public class RobotConstants {
     
     
     //DEBUG SWITCH
-    public static final boolean FLAG = true;
+    public static final boolean FLAG = false;
     
     //CM to IN conversion (LIDAR)
     public static final double inToCM = 2.54;
     
     //PrintSystem Constants
-    public static final int printFrequency = 1;
-    public static final boolean STATIC_INFO_ALLOWED = false;
+    public static final int printFrequency = 100;
+    public static final boolean STATIC_INFO_ALLOWED = true;
     
     //Autonomous Movement Constants
     public static final double HORIZONTAL_DISTANCE_BETWEEN_TOTES = 400;
