@@ -2,7 +2,6 @@ package org.usfirst.frc.team4911.robot.subsystems;
 
 import java.util.Arrays;
 
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.Gyro;
@@ -144,6 +143,7 @@ public class SensorSystem extends Subsystem {
     public void resetGyro(){
     	gyro.reset();
     }
+    
     /***************************************
      * Potentiometer Methods
      ***************************************/
@@ -152,12 +152,12 @@ public class SensorSystem extends Subsystem {
     }
     
     /*public double getHookLiftPot() {
-	return hookLiftPot.get();
-    }
-    
-    public double getContainerLiftPot() {
-	return containerLiftPot.get();
-    }*/
+   	return hookLiftPot.get();
+       }
+       
+       public double getContainerLiftPot() {
+   	return containerLiftPot.get();
+       }*/
     /***************************************
      * LIDAR Methods
      ***************************************/
