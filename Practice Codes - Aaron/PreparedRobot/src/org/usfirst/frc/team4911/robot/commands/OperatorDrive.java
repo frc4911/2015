@@ -200,6 +200,7 @@ public class OperatorDrive extends Command {
 				} 
 				
 				if(oi.trigger.get()){
+					
 					mecanumDriveSystem.drive(xIn, yIn, rIn);
 					mecanumDriveSystem.setGoalHeading((double)(sensorSystem.getYawWithCompensation()));
 				} else {

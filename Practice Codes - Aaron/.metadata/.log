@@ -6912,3 +6912,15 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-03-02 16:35:10.217
 !MESSAGE Installedjava
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-03-02 17:44:24.822
+!MESSAGE Running ant file: C:\Users\AaronBae\GitHub\2015\Practice Codes - Aaron\PreparedRobot\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-03-02 17:44:24.825
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-03-02 17:48:34.944
+!MESSAGE Running ant file: C:\Users\AaronBae\GitHub\2015\Practice Codes - Aaron\PreparedRobot\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-03-02 17:48:34.948
+!MESSAGE Targets: deploy, Mode: run
