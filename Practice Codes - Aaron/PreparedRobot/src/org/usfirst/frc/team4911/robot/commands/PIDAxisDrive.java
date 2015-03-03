@@ -14,31 +14,31 @@ import org.usfirst.frc.team4911.robot.RobotConstants;
  *
  */
 public class PIDAxisDrive extends Command {
-	private MecanumDriveSystem mecanumDriveSystem;
-	private OI oi;
-	private OperatorDrive operatorDrive;
+    private MecanumDriveSystem mecanumDriveSystem;
+    private OI oi;
+    private OperatorDrive operatorDrive;
 	
-	private double x;
-	private double y;
-	private double threshold = 1;
-	private double distance;
-	private Joystick joystick;
+    private double x;
+    private double y;
+    private double threshold = 1;
+    private double distance;
+    private Joystick joystick;
 	
     public PIDAxisDrive(double x, double y, double distance) {
-		this.x = x;
-		this.y = y;
-		this.distance = distance;
+	this.x = x;
+	this.y = y;
+	this.distance = distance;
     }
 
     protected void initialize() {
-    	oi = Robot.oi;
+	oi = Robot.oi;
     	
     	operatorDrive = Robot.teleOp;
     	mecanumDriveSystem = Robot.mecanumDriveSystem;
     	if(DriverStation.getInstance().isOperatorControl()){
-	    	if(operatorDrive.driveSystemConflict){
-	    		this.cancel();
-	    	}    
+    	    if(operatorDrive.driveSystemConflict){
+    		this.cancel();
+    	    }    
     	}
     	operatorDrive.driveSystemConflict = true;
     	
@@ -53,15 +53,13 @@ public class PIDAxisDrive extends Command {
 
     protected boolean isFinished() {
 
-    	if(DriverStation.getInstance().isOperatorControl()){
-    		return true;
+	if(DriverStation.getInstance().isOperatorControl()){
+    	    return true;
     	}
     	else{
-    		//checks if we have moved the designated distance
-    		double totalDistance = Math.sqrt(Math.abs((Math.pow(mecanumDriveSystem.getXSlideEncoder(), 2) + Math.pow(mecanumDriveSystem.getYSlideEncoder(), 2))));
-    		return Math.abs(totalDistance - distance) < threshold;
-    		
-    		
+    	    //checks if we have moved the designated distance
+    	    double totalDistance = Math.sqrt(Math.abs((Math.pow(mecanumDriveSystem.getXSlideEncoder(), 2) + Math.pow(mecanumDriveSystem.getYSlideEncoder(), 2))));
+    	    return Math.abs(totalDistance - distance) < threshold;	
     	}
     }
 

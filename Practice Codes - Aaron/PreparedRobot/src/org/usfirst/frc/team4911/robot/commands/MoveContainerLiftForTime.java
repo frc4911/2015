@@ -9,12 +9,12 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class MoveContainerLiftForTime extends Command {
-	private ContainerLiftSystem containerLiftSystem;
-
-	private double time;
-	private double startTime;
+    private ContainerLiftSystem containerLiftSystem;
+   
+    private double time;
+    private double startTime;
 	
-	private double power;
+    private double power;
 
     public MoveContainerLiftForTime(double time, double power) {
     	this.power = -power;
