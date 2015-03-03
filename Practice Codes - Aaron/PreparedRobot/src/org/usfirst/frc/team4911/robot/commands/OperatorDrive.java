@@ -32,8 +32,8 @@ public class OperatorDrive extends Command {
 		
 	@Override
 	protected void initialize() {
-		sensorSystem.zeroYaw();
-		sensorSystem.clearAccelBuffer();
+		//sensorSystem.zeroYaw();
+		//sensorSystem.clearAccelBuffer();
 			
 		mecanumDriveSystem.setGoalHeading(0.0);
 		driveSystemConflict = false;
@@ -44,6 +44,8 @@ public class OperatorDrive extends Command {
 		containerClampConflict = false;
 		hookSystemConflict = false;
 		prevPOV = -1.0;
+		
+		//containerLiftSystem.getContainerLift().setPosition(0.0);
 	}
 	
 	@Override
@@ -63,7 +65,7 @@ public class OperatorDrive extends Command {
 		// Hook Lift Controls
 		//
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		printSystem.print("Joystick: "  +oi.payloadJoy.getY());
+		//printSystem.print("Joystick: "  +oi.payloadJoy.getY());
 		if(!hookSystemConflict){
 			if(Math.abs(oi.payloadJoy.getY()) > 0.25) {
 			    hookLiftSystem.runLiftManually(oi.payloadJoy.getY());
@@ -71,7 +73,7 @@ public class OperatorDrive extends Command {
 			//manual stop code... use ONLY if presets are not running
 			else {
 			    hookLiftSystem.runLiftManually(0.0);
-			    printSystem.print("Stopping!");
+			    //printSystem.print("Stopping!");
 			}
 		}
 	
@@ -101,14 +103,14 @@ public class OperatorDrive extends Command {
 		if(Math.abs(oi.payloadJoy.getRawAxis(RobotConstants.CONTAINER_LIFT_AXIS)) >= 0.1){
 			containerLiftSystem.runLiftManually(oi.payloadJoy.getRawAxis(RobotConstants.CONTAINER_LIFT_AXIS));
 		} 
-		else if(oi.payloadButton2.get()) {
+		/*else if(oi.payloadButton2.get()) {
 		    containerLiftSystem.runLiftToPreset(RobotConstants.CONTAINER_LIFT_ONE_TOTE);
-		}
-		else if(containerLiftSystem.getLiftControlMode() == CANTalon.ControlMode.PercentVbus){
+		}*/
+		else {//if(containerLiftSystem.getLiftControlMode() == CANTalon.ControlMode.PercentVbus){
 			//manual stop code...use ONLY if presets are not running
 			containerLiftSystem.runLiftManually(0.0);
 		}
-	
+		//printSystem.print("EncoderPos: " + containerLiftSystem.getContainerLift().getPosition());
 		/*
 		//Potentiometer Code  
 		if(oi.payloadJoy.getPOV() != -1) {
@@ -140,19 +142,19 @@ public class OperatorDrive extends Command {
 		////////////////////////////////////////////////////////////////////////////
 		if(!containerClampConflict) {
 			if(oi.payloadButton8.get()){
-				printSystem.print("Backward");
+				//printSystem.print("Backward");
 				containerLiftSystem.runClampManuallyBackward();
 			}
 			else if(oi.payloadButton7.get()){
-				printSystem.print("Forward");
+				//printSystem.print("Forward");
 				containerLiftSystem.runClampManuallyForward();
 			}
 			else if(oi.payloadButton5.get()) {
-			    printSystem.print("Stow");
+			    //printSystem.print("Stow");
 			    containerLiftSystem.stowClamp();
 			}
 			else{
-				printSystem.print("Stopped");
+				//printSystem.print("Stopped");
 				containerLiftSystem.stopClamp();
 			}
 		}
@@ -183,11 +185,13 @@ public class OperatorDrive extends Command {
 			}
 			
 	    }
-	    printSystem.print("Container Pot: " + sensorSystem.getPot());
-	    printSystem.print("ContainerContainer Current: " + containerLiftSystem.getContainerContainer().getOutputCurrent());
-	    printSystem.print("Follower Current: " + containerLiftSystem.getSecondCC().getOutputCurrent());
-	    printSystem.print("Low Speed: " + containerLiftSystem.lowSpeed());
-	    printSystem.print("Tote conflict: " + hookSystemConflict);
+	    //printSystem.print("Container Pot: " + sensorSystem.getPot());
+	    //printSystem.print("ContainerContainer Current: " + containerLiftSystem.getContainerContainer().getOutputCurrent());
+	    //printSystem.print("Follower Current: " + containerLiftSystem.getSecondCC().getOutputCurrent());
+	    //printSystem.print("Low Speed: " + containerLiftSystem.lowSpeed());
+	    //printSystem.print("Tote conflict: " + hookSystemConflict);
+	    //printSystem.print("ContainerConflict: " + containerClampConflict);
+	    //printSystem.print("Container Limit: " + containerLiftSystem.getContainerContainer().isFwdLimitSwitchClosed());
 	}
 	
 	@Override

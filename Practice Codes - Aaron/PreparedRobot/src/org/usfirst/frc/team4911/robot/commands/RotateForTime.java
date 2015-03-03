@@ -63,7 +63,7 @@ public class RotateForTime extends Command {
     protected void end() {
     	mecanumDriveSystem.setGoalHeading(Math.round(sensorSystem.getYawWithCompensation()));
     	operatorDrive.driveSystemConflict = false;
-    	
+    	Timer.delay(0.75);
     }
 
     // Called when another command which requires one or more of the same

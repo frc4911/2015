@@ -6,7 +6,15 @@ import org.usfirst.frc.team4911.robot.RobotConstants;
 
 
 public class Autonomous extends CommandGroup {
-	private int mode = 4;//[1 - 4]
+	private int mode = 7;//[1 - 8]
+	//Case 1: Contaienr to auto - don't use yet
+	//Case 2: Tote to auto - don't use yet
+	//Case 3: Staging zone to auto zone - don't use yet
+	//Case 4: Stacking three totes - PLEASE PLEASE PLEASE DO NOT USE!!!
+	//Case 5: Move tote closest to auto zone - usable
+	//Case 6: Move Container closest to auto zone
+	//Case 7: Both Tote and the Container
+	//Case 8: None
 	
 
 	public Autonomous(){
@@ -31,7 +39,7 @@ public class Autonomous extends CommandGroup {
 				//
 				// Start far Left, Ready to Grab the Tote
 				//////////////////////////////////////////////////////////////
-				addSequential(new MoveToteLiftForTime(0.5, 0.5));
+				addSequential(new MoveToteLiftForTime(0.5, 1.0));
 				addSequential(new DriveForTime(-0.3, 0, 4));     
 				break;
 				
@@ -82,6 +90,58 @@ public class Autonomous extends CommandGroup {
 				addSequential(new RotateForTime(1.20, -0.6)); // MAKE PID ROTATE
 				//addSequential(new DriveForTime(0.0, -driveSpeed, 4.0));//Drive into Auto zone (field oriented)
 				break;
+				
+			case 5:
+			    
+			    addSequential(new MoveToteLiftForTime(1.0, 1.0));
+			    addSequential(new RotateForTime(1.20, -0.6));
+			    addSequential(new DriveForTime(0.0, -1.0, 1.50));//2 sec is too long
+			    addSequential(new RotateForTime(1.20, 0.6));
+
+			    //addSequential(new MoveToteLiftForTime(1.0, -1.0));//Lower the Tote Lift
+			    break;
+			    
+			case 6:  
+			    //Container Auto
+			    addSequential(new CloseContainerClamp(1.0));
+			    addSequential(new MoveContainerLiftForTime(1.0, 1.0));
+			    //Robot does not turn enough for 1.2 seconds
+			    addSequential(new RotateForTime(1.5, 0.6));
+			    //2 sec is too long, but 1.5 is not enough
+			    addSequential(new DriveForTime(0.0, 1.0, 1.75));
+			    addSequential(new RotateForTime(1.50, -0.6));
+			    
+			    break;
+			    
+			case 7:
+			    
+			    addSequential(new MoveToteLiftForTime(1.0, 1.0));
+			    addSequential(new RotateForTime(1.5, -0.7));
+			    //Grabbing Both the Tote and the Container
+
+			    //addSequential(new DriveForTime(-0.5, -0.5, 0.5));
+			    addSequential(new MoveContainerLiftForTime(3.5, -0.25));
+			    addSequential(new CloseContainerClamp(3.75));
+			    addSequential(new MoveContainerLiftForTime(0.8, 1.0));
+			    addSequential(new RotateForTime(0.6, 0.7));
+
+			    addSequential(new DriveForTime(0.0, -1.0, 1.75));
+			    /*
+			    //addSequential(new DriveForTime(0.0, -0.5, 2.0));
+			    addSequential(new RotateForTime(2.75, 0.6));
+			    addSequential(new DriveForTime(-0.5, 0.0, 0.5));
+			    //addSequential(new DriveForTime(0.0, 0.5, 2.0));
+			    addSequential(new RotateForTime(1.5, 0.6));
+			    //addSequential(new DriveForTime(0.0, 1.0, 1.75));
+			    //addSequential(new RotateForTime(1.50, -0.6));
+			    */
+			    break;
+			    
+			case 8:
+			    //Empty
+			    break;
+			    
+			    
 		}
 	}
 
