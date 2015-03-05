@@ -97,7 +97,4 @@ public class RobotConstants {
     public static final double FORWARD_DISTANCE_TO_AUTO_ZONE = 300;
     public static final double CLEAR_TOTE_LIP_DISTANCE = 10;
     
-    //Camera Constants
-    public static final String TOTE_CAMERA = "cam0";
-    
 }
