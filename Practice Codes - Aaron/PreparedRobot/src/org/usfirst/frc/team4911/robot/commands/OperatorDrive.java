@@ -39,7 +39,7 @@ public class OperatorDrive extends Command {
 		//sensorSystem.zeroYaw();
 		//sensorSystem.clearAccelBuffer();
 				
-		mecanumDriveSystem.setGoalHeading(0.0);
+		mecanumDriveSystem.setGoalHeading((double)sensorSystem.getYawWithCompensation());
 		driveSystemConflict = false;
 		hookSystemConflict = false;
 		speed = RobotConstants.STANDARD_DRIVE_SPEED;
@@ -50,6 +50,7 @@ public class OperatorDrive extends Command {
 		prevPOV = -1.0;
 		fieldOriented = true;
 		prevPressed11 = false;
+		
     }
 	
     @Override
@@ -169,8 +170,8 @@ public class OperatorDrive extends Command {
 		//Toggling FieldOrientedDrive
 		if(oi.button11.get()){
 		    if(!prevPressed11){
-			fieldOriented = !fieldOriented;
-			prevPressed11 = true;
+		    	fieldOriented = !fieldOriented;
+		    	prevPressed11 = true;
 		    }
 		} else {
 		    prevPressed11 = false;
@@ -180,32 +181,27 @@ public class OperatorDrive extends Command {
 		    double xIn = Math.pow(oi.getMainJoyX(), 3);
 		    double yIn = Math.pow(oi.getMainJoyY(), 3);	
 		    double rIn = Math.pow(oi.getMainJoyZ(), 3);
+		    double angle = sensorSystem.getYawWithCompensation();
 				
 		    if(fieldOriented){	
-			if(oi.getPOV() == RobotConstants.POV_UP){
-			    xIn = 0.0;
-			    yIn = -1.0;
-			}
-			else if(oi.getPOV() == RobotConstants.POV_DOWN) {
-			    xIn = 0.0;
-			    yIn = 1.0;
-			}
-			else if(oi.getPOV() == RobotConstants.POV_LEFT) {
-			    xIn = -1.0;
-			    yIn = 0.0;
-			}
-			else if(oi.getPOV() == RobotConstants.POV_RIGHT) {
-			    xIn = 1.0;
-			    yIn = 0.0;
-			} 
-					
-			if(oi.trigger.get()){
-					
-					mecanumDriveSystem.drive(xIn, yIn, rIn);
-					mecanumDriveSystem.setGoalHeading((double)(sensorSystem.getYawWithCompensation()));
-			} else {
-					mecanumDriveSystem.driveWithPID(xIn, yIn);
-				}	
+				if(oi.getPOV() == RobotConstants.POV_UP){
+				    xIn = 0.0;
+				    yIn = -1.0;
+				}
+				else if(oi.getPOV() == RobotConstants.POV_DOWN) {
+				    xIn = 0.0;
+				    yIn = 1.0;
+				}
+				else if(oi.getPOV() == RobotConstants.POV_LEFT) {
+				    xIn = -1.0;
+				    yIn = 0.0;
+				}
+				else if(oi.getPOV() == RobotConstants.POV_RIGHT) {
+				    xIn = 1.0;
+				    yIn = 0.0;
+				}
+			
+				mecanumDriveSystem.driveWithPID(xIn, yIn, angle);	
 			} else {	
 				if(!oi.trigger.get()){
 					rIn = 0.0;

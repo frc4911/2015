@@ -56,7 +56,9 @@ public class EnableRotate extends Command {
 
     protected void execute() {
     	if(button.get()){
-    	    mecanumDriveSystem.drive(oi.getMainJoyX(), oi.getMainJoyY(), oi.getMainJoyZ() * RobotConstants.ROTATE_SPEED);
+    	    mecanumDriveSystem.drive(oi.getMainJoyX(), oi.getMainJoyY(), 
+    	    		oi.getMainJoyZ() * RobotConstants.ROTATE_SPEED
+    	    		, (double)sensorSystem.getYawWithCompensation());
     	}
     	mecanumDriveSystem.setGoalHeading(sensorSystem.getYaw());
     }

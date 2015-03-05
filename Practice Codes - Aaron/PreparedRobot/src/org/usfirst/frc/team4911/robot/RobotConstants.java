@@ -89,8 +89,8 @@ public class RobotConstants {
     public static final double inToCM = 2.54;
     
     //PrintSystem Constants
-    public static final int printFrequency = 100;
-    public static final boolean STATIC_INFO_ALLOWED = true;
+    public static final int printFrequency = 10;
+    public static final boolean STATIC_INFO_ALLOWED = false;
     
     //Autonomous Movement Constants
     public static final double HORIZONTAL_DISTANCE_BETWEEN_TOTES = 400;
