@@ -67,7 +67,7 @@ public class OI {
         
         //leftPayloadJoy = payloadJoy.getAxis();
       
-        //trigger.whenPressed(new EnableRotate(trigger));
+        trigger.whenPressed(new EnableRotate(trigger));
         	
         button2.whenPressed(new SetGoalHeading(0));
         button3.whenPressed(new SetGoalHeading(-90.0));

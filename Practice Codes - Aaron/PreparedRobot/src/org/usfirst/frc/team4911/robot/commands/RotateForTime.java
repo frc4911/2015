@@ -47,7 +47,7 @@ public class RotateForTime extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	mecanumDriveSystem.drive(0 , 0, rotateSpeed);
+    	mecanumDriveSystem.drive(0 , 0, rotateSpeed, (double)sensorSystem.getYawWithCompensation());
     }
 
     // Make this return true when this Command no longer needs to run execute()

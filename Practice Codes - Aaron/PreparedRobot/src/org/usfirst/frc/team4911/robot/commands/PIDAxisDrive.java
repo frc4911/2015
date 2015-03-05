@@ -15,6 +15,7 @@ import org.usfirst.frc.team4911.robot.RobotConstants;
  */
 public class PIDAxisDrive extends Command {
     private MecanumDriveSystem mecanumDriveSystem;
+    private SensorSystem sensorSystem;
     private OI oi;
     private OperatorDrive operatorDrive;
 	
@@ -25,16 +26,17 @@ public class PIDAxisDrive extends Command {
     private Joystick joystick;
 	
     public PIDAxisDrive(double x, double y, double distance) {
-	this.x = x;
-	this.y = y;
-	this.distance = distance;
+    	this.x = x;
+    	this.y = y;
+    	this.distance = distance;
     }
 
     protected void initialize() {
-	oi = Robot.oi;
+    	oi = Robot.oi;
     	
     	operatorDrive = Robot.teleOp;
     	mecanumDriveSystem = Robot.mecanumDriveSystem;
+    	sensorSystem = Robot.sensorSystem;
     	if(DriverStation.getInstance().isOperatorControl()){
     	    if(operatorDrive.driveSystemConflict){
     		this.cancel();
@@ -48,7 +50,7 @@ public class PIDAxisDrive extends Command {
     }
 
     protected void execute() {
-    	mecanumDriveSystem.driveWithPID(x, y);
+    	mecanumDriveSystem.driveWithPID(x, y, (double)sensorSystem.getYawWithCompensation());
     }
 
     protected boolean isFinished() {

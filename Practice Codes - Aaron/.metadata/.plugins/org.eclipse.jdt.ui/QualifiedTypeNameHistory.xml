@@ -5,16 +5,16 @@
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Encoder"/>
 <fullyQualifiedTypeName name="com.kauailabs.nav6.frc.BufferingSerialPort"/>
 <fullyQualifiedTypeName name="com.kauailabs.nav6.frc.IMU"/>
-<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CANTalon.ControlMode"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.subsystems.PrintSystem"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.RobotDrive"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.RobotConstants"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.subsystems.ContainerLiftSystem.ContainerStatus"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Timer"/>
-<fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.Robot"/>
 <fullyQualifiedTypeName name="com.ni.vision.NIVision.DrawMode"/>
 <fullyQualifiedTypeName name="com.ni.vision.NIVision.GetImageSizeResult"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CANTalon.FeedbackDevice"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.DriverStation"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CANTalon.ControlMode"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
 </qualifiedTypeNameHistroy>
