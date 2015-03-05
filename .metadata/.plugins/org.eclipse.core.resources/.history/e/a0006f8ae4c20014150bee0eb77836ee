@@ -64,7 +64,7 @@ public class Robot extends IterativeRobot {
     		teleOp = new OperatorDrive();
     	}
     	//if(!cameraSystem.getServer().isAutoCaptureStarted()) {
-    	  //  cameraSystem.start();
+    	    cameraSystem.start();
     	//}
     	printServerCommand = new RunPrintServer();
     	printServerCommand.start();    	
