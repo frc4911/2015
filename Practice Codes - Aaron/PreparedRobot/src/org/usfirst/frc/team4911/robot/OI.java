@@ -72,12 +72,14 @@ public class OI {
         button2.whenPressed(new SetGoalHeading(0));
         button3.whenPressed(new SetGoalHeading(-90.0));
         button4.whenPressed(new SetGoalHeading(90.0));
+        button10.whenPressed(new SetGoalHeading(180));
         	
         button5.whenPressed(new ZeroYaw(button5));
         	
         button8.whenPressed(new RotateForTime(0.05, -0.25));
         button9.whenPressed(new RotateForTime(0.05, 0.25));
-        button10.whenPressed(new MaintainDistance());
+        
+        payloadButton6.whenPressed(new ClampOpenTime(0.4));
     }
     
     /*************************************
@@ -89,7 +91,7 @@ public class OI {
     }
     
     public double getMainJoyX(){
-		double pow = 0;
+	double pow = 0;
     	if(Math.abs(mainJoy.getX()) >= 0.1) {
             pow = Math.round(mainJoy.getX() * RobotConstants.JOYSTICK_SENSITIVITY) 
             		/ RobotConstants.JOYSTICK_SENSITIVITY;  

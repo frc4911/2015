@@ -10,11 +10,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.CANTalon;
 
 public class HookLiftSystem extends Subsystem {
-	private CANTalon leftHook;
-	private CANTalon rightHook;
-	private boolean isBeingUsed;
-	private double targetPos;
-	private SensorSystem sensorSystem = Robot.sensorSystem;
+    private CANTalon leftHook;
+    private CANTalon rightHook;
+    private boolean isBeingUsed;
+    private double targetPos;
+    private SensorSystem sensorSystem = Robot.sensorSystem;
 	
     public void initDefaultCommand() {
     	
@@ -24,7 +24,7 @@ public class HookLiftSystem extends Subsystem {
     	leftHook = RobotMap.hookLeft;
     	rightHook = RobotMap.hookRight;
     	isBeingUsed = false;
-    	targetPos = sensorSystem.getHookLiftPot(); //TODO: add potentiometer and set targetPos to current reading
+    	targetPos = 0.0;//sensorSystem.getHookLiftPot(); //TODO: add potentiometer and set targetPos to current reading
     }
     
     public void runLiftManually(double speed) {
@@ -41,7 +41,7 @@ public class HookLiftSystem extends Subsystem {
 	    isBeingUsed = false;
 	}
 	if(isBeingUsed) {
-	    double error = targetPos - sensorSystem.getHookLiftPot();
+	    double error = targetPos - 0.0;//sensorSystem.getHookLiftPot();
 	    if(Math.abs(error) > RobotConstants.LIFT_ERROR_TOLERANCE) {
 		leftHook.set(error * 1.0); //TODO: Fix this scaler value
 	    }
@@ -62,34 +62,12 @@ public class HookLiftSystem extends Subsystem {
     }
     
     public void setLiftToPoint(double pos) {
-    	
     	//Encoder code
     	leftHook.changeControlMode(CANTalon.ControlMode.Position);
     	rightHook.changeControlMode(CANTalon.ControlMode.Follower);
     	leftHook.set(pos);
     	rightHook.set(RobotConstants.HOOK_LEFT_CANTALON_PORT);
-
-    }
-    
-
-    public void liftViaPercent(double position){
-    	leftHook.set(RobotConstants.HOOKSYSTEM_TOTAL_DISTANCE * position / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
-    	rightHook.set(RobotConstants.HOOK_LEFT_CANTALON_PORT);
-    }
-    
-    //This will move the Lift right upto the lips of the Tote specified
-    //toteNum = level of the tote on the ground
-    public void liftViaTote(double toteNum){
-    	if(toteNum > 0){
-    		setLiftToPoint(RobotConstants.TOTE_HEIGHT * (toteNum - 1) / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE);
-    	}
-    }
-    
-    //returns values in inches from the ground
-    public double getDistance(){
-    	return (leftHook.get() + rightHook.get()) / RobotConstants.HOOKSYSTEM_ENCODER_DISTANCE_PER_PULSE;
-    }
-    
+    }    
 
     public boolean isBeingUsed(){
     	return isBeingUsed;

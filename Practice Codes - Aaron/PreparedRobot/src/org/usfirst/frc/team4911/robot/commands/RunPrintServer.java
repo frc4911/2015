@@ -28,7 +28,7 @@ public class RunPrintServer extends Command {
 
     protected void execute() {
     	if(RobotConstants.STATIC_INFO_ALLOWED){
-    		addStaticInfo();
+    	    addStaticInfo();
     	}
     	printSystem.updatePrint();
     }
@@ -71,7 +71,7 @@ public class RunPrintServer extends Command {
     	//printSystem.print("BrownOut", driverStation.isBrownedOut()); 
     	//printSystem.print("Memory Usage", PrintSystem.format(memoryUsage * 100.0), "%");
     	printSystem.print("MotorCurrent", 
-    				PrintSystem.format(driveSystem.getLeftFrontCurrent()) 
+    			PrintSystem.format(driveSystem.getLeftFrontCurrent()) 
     			+ " A __________________ " 
     			+ PrintSystem.format(driveSystem.getRightFrontCurrent())
     			+ " A\n\t\t\t\t\t\t\t\t\t\t  |3              7|"

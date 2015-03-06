@@ -9,22 +9,23 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.CANTalon.ControlMode;
 
 /**
  *
  */
 public class ContainerLiftSystem extends Subsystem {
-	private CANTalon containerLift;
-	private CANTalon containerContainer;
-	private CANTalon secondContainerContainer;
-	private SensorSystem sensorSystem = Robot.sensorSystem;
-	private DigitalInput switchIn;
-	private DigitalInput switchOut;
-	private boolean atLowSpeed = false;
-	private double targetPosition;
-	private boolean usingLift;
-	
+    private CANTalon containerLift;
+    private CANTalon containerContainer;
+    private CANTalon secondContainerContainer;
+    private SensorSystem sensorSystem = Robot.sensorSystem;
+    private boolean atLowSpeed = false;
+    private double targetPosition;
+    private boolean usingLift;
+    private double prevCurrent = 0.0;
+    private double highCurrentStartTime = 0.0;
+    
     public void initDefaultCommand() {
 	
     }
@@ -33,7 +34,7 @@ public class ContainerLiftSystem extends Subsystem {
     	containerLift = RobotMap.containerLift;
     	containerContainer = RobotMap.containerContainer;
     	secondContainerContainer = RobotMap.secondContainerContainer;
-    	targetPosition = sensorSystem.getContainerLiftPot();
+    	targetPosition = 0.0;//sensorSystem.getContainerLiftPot();
     	usingLift = false;
     }
     
@@ -50,7 +51,7 @@ public class ContainerLiftSystem extends Subsystem {
 	    usingLift = false;
 	}
 	if(usingLift) {
-	    double error = targetPosition - sensorSystem.getHookLiftPot();
+	    double error = targetPosition - 0.0;
 	    if(Math.abs(error) > RobotConstants.LIFT_ERROR_TOLERANCE) {
 		containerLift.set(error * 1.0); //TODO: Fix this scaler vlaue
 	    }
@@ -65,7 +66,7 @@ public class ContainerLiftSystem extends Subsystem {
     }
     
     public void runLiftManually(double speed) {
-    	containerLift.changeControlMode(CANTalon.ControlMode.PercentVbus);
+	containerLift.changeControlMode(CANTalon.ControlMode.PercentVbus);
     	containerLift.set(speed);
     }
     
@@ -77,104 +78,51 @@ public class ContainerLiftSystem extends Subsystem {
     public void runClampManuallyForward() {
     	containerContainer.changeControlMode(ControlMode.PercentVbus);
     	secondContainerContainer.changeControlMode(ControlMode.Follower);
-
-    	if(sensorSystem.getPot() < 0.42) {
-    		containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+    	//pot value:   0.4499214632998128 if greater, fast
+    	if(sensorSystem.getPot() > 0.4499214632998128) {
+    	    containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
     	}
     	else {
-    		if(atLowSpeed) {
-    			if(containerContainer.getOutputCurrent() < 5.0) {
-    				containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
-    				atLowSpeed = false;
-    			}
-    			else {
-    				containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
-    			}
-    		}
-    		else {
-    			if(containerContainer.getOutputCurrent() > 40.0) {
-    				containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
-    				atLowSpeed = true;
-    			}
-    			else {
-    				containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
-    			}
-    		}
+    	    containerContainer.set(0.307);
     	}
     	secondContainerContainer.set(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT);
+    }
+    
+    public void stowClamp() {
+	containerContainer.changeControlMode(ControlMode.PercentVbus);
+	secondContainerContainer.changeControlMode(ControlMode.Follower);
+	containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+	secondContainerContainer.set(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT);
     }
     
     public void stopClamp(){
+    	containerContainer.changeControlMode(ControlMode.PercentVbus);
     	secondContainerContainer.changeControlMode(ControlMode.Follower);
     	containerContainer.set(0.0);
     	secondContainerContainer.set(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT);
-	}
+    }
 	
-	public void runClampManuallyBackward(){
-		secondContainerContainer.changeControlMode(ControlMode.Follower);
-		if(sensorSystem.getPot() < 0.720) {
-			containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
-		}
-		else {
-			containerContainer.set(0.0);
-		}
-    	secondContainerContainer.set(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT);
+    public void runClampManuallyBackward(){
+	containerContainer.changeControlMode(ControlMode.PercentVbus);
+	secondContainerContainer.changeControlMode(ControlMode.Follower);
+	if(sensorSystem.getPot() < 0.720) {
+	    containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
 	}
-    
-	public boolean lowSpeed() {
-		return atLowSpeed;
+	else {
+	    containerContainer.set(0.0);
 	}
+	secondContainerContainer.set(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT);
+	atLowSpeed = false;
+    }
+	    
+    public boolean lowSpeed() {
+	return atLowSpeed;
+    }
 	 
-	public void setLowSpeed(boolean on) {
-		atLowSpeed = on;
-	}
+    public void setLowSpeed(boolean on) {
+    	atLowSpeed = on;
+    }
 	
-    public void liftViaPercent(double position){
-    	containerLift.set(RobotConstants.CONTAINERSYSTEM_TOTAL_DISTANCE * position / RobotConstants.CONTAINERSYSTEM_ENCODER_DISTANCE_PER_PULSE);
-    }
-
-    //This will move the bottom of the container to the height of the tote specified 
-    //toteNum = number of totes below the Container you want to lift
-    public void liftViaTote(double toteNum){
-    	if(toteNum >= 0){
-    		containerLift.set(RobotConstants.TOTE_HEIGHT * toteNum / RobotConstants.CONTAINERSYSTEM_ENCODER_DISTANCE_PER_PULSE);
-    	}
-    }
-    
-    //True = switch Triggered
-    //False = switch Not Triggered
-    public boolean getSwitchIn(){
-    	return switchIn.get();
-    }
-    
-    //True = switch Triggered
-    //False = switch Not Triggered
-    public boolean getSwitchOut(){
-    	return switchOut.get();
-    }
-
-    //input < 0 : moving In/ Clamping
-    //input > 0 : moving Out/ Releasing
-    public void driveClamp(double input){
-    	if((getSwitchIn() && input < 0.0)  || (getSwitchOut() && input > 0.0)){
-    		containerContainer.set(0.0);
-    	} else {
-    		containerContainer.set(input);
-    	}
-    }
-    
-    //CHECK IF THE SIGNS ARE CORRECT
-    //returns values in inches from the ground
-    public double getLiftDistance(){
-    	return containerLift.get() / RobotConstants.CONTAINERSYSTEM_ENCODER_DISTANCE_PER_PULSE;
-    }
-
-    //CHECK IF THE SIGNS ARE CORRECT
-    //returns values in inches from the ground
-    public double getClampDistance(){
-    	return containerLift.get() / RobotConstants.CONTAINERSYSTEM_CLAMP_ENCODER_DISTANCE_PER_PULSE;
-    }
-    
     public CANTalon getContainerLift(){
     	return containerLift;
     }
@@ -188,10 +136,6 @@ public class ContainerLiftSystem extends Subsystem {
     
     public CANTalon.ControlMode getLiftControlMode() {
     	return containerLift.getControlMode();
-    }
-    
-    public enum ContainerStatus {
-    	CLOSE, OPEN, CLAMP;
     }
 }
 

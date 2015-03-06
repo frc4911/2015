@@ -9,15 +9,12 @@ import org.usfirst.frc.team4911.robot.RobotConstants;
 import org.usfirst.frc.team4911.robot.OI;
 import org.usfirst.frc.team4911.robot.RobotConstants;
 
-/**
- *
- */
 public class SetDriveSpeed extends Command {
-	double speed;
-	JoystickButton button;
+    double speed;
+    JoystickButton button;
 	
     public SetDriveSpeed(double speed, JoystickButton button) {
-        this.speed = speed;
+	this.speed = speed;
         this.button = button;
     }
 
