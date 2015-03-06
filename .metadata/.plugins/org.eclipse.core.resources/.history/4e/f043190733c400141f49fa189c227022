@@ -45,6 +45,7 @@ public class OperatorDrive extends Command {
 		speed = RobotConstants.STANDARD_DRIVE_SPEED;
 		runtime = Runtime.getRuntime();
 		liftPreset = true;
+<<<<<<< HEAD
 	}
 
 	@Override
@@ -59,13 +60,24 @@ public class OperatorDrive extends Command {
                     new MoveToteLiftForTime(0.3, -0.5).start();
                 }
                 
-                
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                //
-                // Hook Lift Controls
-                //
-                /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                
+=======
+		containerClampConflict = false;
+		hookSystemConflict = false;
+		prevPOV = -1.0;
+		fieldOriented = true;
+		prevPressed11 = false;
+		
+    }
+	
+    @Override
+    protected void execute() {
+>>>>>>> 02006fc336dc2fc70edff5be8121c4df3422fcb1
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//
+		// Tote Lift Nudge Down
+		//
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<<<<<<< HEAD
                 if(!hookSystemConflict){
         		if(Math.abs(oi.payloadJoy.getY()) > 0.1) {
         			hookLiftSystem.runLiftManually(oi.payloadJoy.getY());

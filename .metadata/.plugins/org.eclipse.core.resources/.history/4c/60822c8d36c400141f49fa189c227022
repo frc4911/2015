@@ -14,7 +14,7 @@ public class Autonomous extends CommandGroup {
     //Case 5: Move tote closest to auto zone - usable
     //Case 6: Move Container closest to auto zone
     //Case 7: Both Tote and the Container
-    //Case 8: Both containers - untested
+    //Case 8: None
     //Case 9: None
 	
 
@@ -134,7 +134,6 @@ public class Autonomous extends CommandGroup {
 	    addSequential(new RotateForTime(0.6, 0.7));//-------------Rotates 180
 	    addSequential(new DriveForTime(0.0, 0.3, 1.0));//---------Driving Forward
 	    addSequential(new MoveToteLiftForTime(4.0, 1.0));//-------Lifting Container with tote lift
-	    addSequential(new DriveForTime(0.0, -1.0, 1.75));//--------Backing up to zone
 	    
     	    break;
     			    
