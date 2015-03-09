@@ -14,7 +14,6 @@ public class OperatorDrive extends Command {
     private ContainerLiftSystem containerLiftSystem = Robot.containerLiftSystem;
     private HookLiftSystem hookLiftSystem = Robot.hookLiftSystem;
     private PrintSystem printSystem = Robot.printSystem;
-    private CameraSystem cameraSystem = Robot.cameraSystem;
     
     private OI oi = Robot.oi;
     private Runtime runtime;
@@ -47,14 +46,10 @@ public class OperatorDrive extends Command {
 		speed = RobotConstants.STANDARD_DRIVE_SPEED;
 		runtime = Runtime.getRuntime();
 		liftPreset = true;
-		
-		//cameraSystem.start();
 	}
 
 	@Override
 	protected void execute() {
-			//cameraSystem.update();
-		
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////
             //
             // Tote Lift Nudge Down
@@ -186,6 +181,13 @@ public class OperatorDrive extends Command {
 			containerLiftSystem.stopClamp();
 		    }
 		}
+		
+		/////////////////////////////////////////////////////////////////////////////////
+		//
+		//  Camera Controls
+		//
+		/////////////////////////////////////////////////////////////////////////////////
+		//cameraSystem.updateSession();
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//
 		// Drive System Controls
@@ -212,30 +214,31 @@ public class OperatorDrive extends Command {
 		    double angle = sensorSystem.getYawWithCompensation();
 				
 		    if(fieldOriented){	
-				if(oi.getPOV() == RobotConstants.POV_UP){
-				    xIn = 0.0;
-				    yIn = -1.0;
-				}
-				else if(oi.getPOV() == RobotConstants.POV_DOWN) {
-				    xIn = 0.0;
-				    yIn = 1.0;
-				}
-				else if(oi.getPOV() == RobotConstants.POV_LEFT) {
-				    xIn = -1.0;
-				    yIn = 0.0;
-				}
-				else if(oi.getPOV() == RobotConstants.POV_RIGHT) {
-				    xIn = 1.0;
-				    yIn = 0.0;
-				}
-			
-				mecanumDriveSystem.driveWithPID(xIn, yIn, angle);	
-			} else {	
-				if(!oi.trigger.get()){
-					rIn = 0.0;
-				}
-				mecanumDriveSystem.driveRobotOriented(xIn, yIn, rIn);
+			if(oi.getPOV() == RobotConstants.POV_UP){
+			    xIn = 0.0;
+			    yIn = -1.0;
 			}
+			else if(oi.getPOV() == RobotConstants.POV_DOWN) {
+			    xIn = 0.0;
+			    yIn = 1.0;
+			}
+			else if(oi.getPOV() == RobotConstants.POV_LEFT) {
+			    xIn = -1.0;
+			    yIn = 0.0;
+			}
+			else if(oi.getPOV() == RobotConstants.POV_RIGHT) {
+			    xIn = 1.0;
+			    yIn = 0.0;
+			}
+			//mecanumDriveSystem.drive(xIn, yIn, rIn, angle);
+			mecanumDriveSystem.driveWithPID(xIn, yIn, angle);	
+		    } 
+		    else {	
+			if(!oi.trigger.get()){
+			    rIn = 0.0;
+			}
+			mecanumDriveSystem.driveRobotOriented(xIn, yIn, rIn);
+		    }
 		}
 		printSystem.print("FieldOriented:\t" + fieldOriented );
     }
@@ -246,7 +249,8 @@ public class OperatorDrive extends Command {
     }
 	
     @Override
-    protected void end() {		
+    protected void end() {
+	//cameraSystem.stop();
     	this.cancel();
     }
 	

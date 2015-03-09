@@ -32,7 +32,7 @@ public class Robot extends SampleRobot {
         frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
 
         // the camera name (ex "cam0") can be found through the roborio web interface
-        session = NIVision.IMAQdxOpenCamera("cam1",
+        session = NIVision.IMAQdxOpenCamera("cam2",
                 NIVision.IMAQdxCameraControlMode.CameraControlModeController);
         NIVision.IMAQdxConfigureGrab(session);
         
@@ -74,7 +74,7 @@ public class Robot extends SampleRobot {
             if(joy1.getTrigger()) {
             	NIVision.IMAQdxStopAcquisition(sessions[currSession++]);
             	if(currSession > 3) {
-            		currSession = 0;
+            	    currSession = 0;
             	}
             	NIVision.IMAQdxConfigureGrab(sessions[currSession]);
             	NIVision.IMAQdxStartAcquisition(sessions[currSession]);
