@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.RobotConstants"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Joystick"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.subsystems.SensorSystem"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CANTalon.ControlMode"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.subsystems.ContainerLiftSystem"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.OI"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.commands.OperatorDrive"/>
-<fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.Robot"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.subsystems.PrintSystem"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.RobotConstants"/>
+<fullyQualifiedTypeName name="com.ni.vision.NIVision.IMAQdxCameraControlMode"/>
+<fullyQualifiedTypeName name="com.ni.vision.NIVision"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.Robot"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.subsystems.MecanumDriveSystem"/>
 </qualifiedTypeNameHistroy>

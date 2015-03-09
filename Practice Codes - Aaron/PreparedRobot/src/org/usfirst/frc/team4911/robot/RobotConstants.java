@@ -1,4 +1,6 @@
 package org.usfirst.frc.team4911.robot;
+import com.ni.vision.NIVision;
+import com.ni.vision.NIVision.Image;
 
 public class RobotConstants {
     //JOYSTICK CONFIG
@@ -98,6 +100,9 @@ public class RobotConstants {
     public static final double CLEAR_TOTE_LIP_DISTANCE = 10;
     
     //Camera Constants
-    public static final String TOTE_CAMERA = "cam1";
+    public static final String TOTE_CAMERA = "cam2";
+    public static final int TOTE_SESSION = NIVision.IMAQdxOpenCamera("cam2", 
+	    				NIVision.IMAQdxCameraControlMode.CameraControlModeController);
+    public static final Image FRAME = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
     
 }

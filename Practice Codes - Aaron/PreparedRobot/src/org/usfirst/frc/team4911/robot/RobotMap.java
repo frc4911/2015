@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CameraServer;
+import com.ni.vision.NIVision.Image;
 import ExternalLibs.LIDAR;
 
 //import edu.wpi.first.wpilibj.vision.AxisCamera;
@@ -47,6 +48,9 @@ public class RobotMap {
     
     public static CameraServer server;
 	
+    public static Image frame;
+    public static int toteSession;
+    
     private static SerialPort serial_port;
 		
     public static void init(){
@@ -112,6 +116,8 @@ public class RobotMap {
 	server = CameraServer.getInstance();
 	server.setQuality(20);
 		
+	frame = RobotConstants.FRAME;
+	toteSession = RobotConstants.TOTE_SESSION;
 		
 	/***************************************
 	 * IMU INITIALIZATION

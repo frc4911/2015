@@ -61,6 +61,12 @@ public class MecanumDriveSystem extends Subsystem {
 	
     //================ DRIVE CONTROL METHODS ==========================	
     public void drive(double x, double y, double rotation, double angle){
+	//Speed Control
+	x *= speed;
+	y *= speed;
+	rotation *= speed;
+	robot.mecanumDrive_Cartesian(x, y, rotation, angle);
+	/*
 		double[] wheelSpeeds = new double[4];
 		byte syncGroup = 0;
 		
@@ -108,6 +114,7 @@ public class MecanumDriveSystem extends Subsystem {
 	        frontRight.set(wheelSpeeds[2], syncGroup);
 	        rearRight.set(wheelSpeeds[3], syncGroup);
 		}
+		*/
      
 	}
     private static double[] rotateVector(double x, double y, double angle) {

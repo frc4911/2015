@@ -2,11 +2,13 @@ package org.usfirst.frc.team4911.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
+import org.usfirst.frc.team4911.robot.Robot;
 import org.usfirst.frc.team4911.robot.RobotConstants;
+import org.usfirst.frc.team4911.robot.subsystems.SensorSystem;
 
 
 public class Autonomous extends CommandGroup {
-    private int mode = 7;//[1 - 8]
+    private int mode = 8;//[1 - 9]
     //Case 1: Contaienr to auto - don't use yet
     //Case 2: Tote to auto - don't use yet
     //Case 3: Staging zone to auto zone - don't use yet
@@ -14,8 +16,10 @@ public class Autonomous extends CommandGroup {
     //Case 5: Move tote closest to auto zone - usable
     //Case 6: Move Container closest to auto zone
     //Case 7: Both Tote and the Container
-    //Case 8: None
+    //Case 8: Two Containers
+    //Case 9: None
 	
+    private SensorSystem sensorSystem = Robot.sensorSystem;
 
     public Autonomous(){
 	addSequential(new ZeroYaw());
@@ -125,10 +129,20 @@ public class Autonomous extends CommandGroup {
     	    break;
     			    
     	case 8:
+
+    	    addSequential(new MoveToteLiftForTime(2.5, 1.0));
+    	    addSequential(new DriveForTime(-0.5, 0.0, 1.15));
+    	    addSequential(new RotateForTime(1.0, -0.7));
+    	    addSequential(new SetGoalHeading(sensorSystem.getYawWithCompensation()));
+    	    //addSequential(new DriveForTime(0.0, 0.25, .9));
+    	    addSequential(new DriveForTimeWithoutPID(0.0, 0.25, 1.8));
+    	    addSequential(new MoveContainerLiftForTime(1.0, -0.5));
+    	    addSequential(new CloseContainerClamp(2.5));
     	    //Empty
     	    break;
-    			    
-    			    
+    	
+    	case 9:	    
+    	    break;
 	}
     }
 }
