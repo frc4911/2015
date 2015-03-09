@@ -51,6 +51,7 @@ public class MecanumDriveSystem extends Subsystem {
 		speed = 1.0;
 		
 		printSystem = Robot.printSystem;
+		
     }
 	
     @Override
@@ -140,7 +141,6 @@ public class MecanumDriveSystem extends Subsystem {
     	rotation = RobotConstants.DRIVESYSTEM_kP * currError + RobotConstants.DRIVESYSTEM_kI * integration + RobotConstants.DRIVESYSTEM_kD * derivative;//[-1.0 - 1.0] percentage
     	rotation = (rotation < 0) ? Math.max(-1.0, rotation) : Math.min(1.0, rotation);
     	    	
-    	//robot.drive(x, y, rotation, angle);
     	drive(x, y, rotation, angle);
     }
 	

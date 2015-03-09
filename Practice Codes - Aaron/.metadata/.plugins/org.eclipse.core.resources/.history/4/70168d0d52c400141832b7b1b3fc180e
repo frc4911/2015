@@ -25,12 +25,6 @@ public class Robot extends SampleRobot {
 	CANTalon leftRear4;
 	CANTalon rightFront7;
 	CANTalon rightRear8;
-	
-	CANTalon hookLift1;
-	CANTalon hookLift2;
-	
-	CANTalon containerLift;
-	CANTalon containerContainer;
 
 	PrintStream output;
 	IMUAdvanced imu;
@@ -62,12 +56,6 @@ public class Robot extends SampleRobot {
 		rightRear8 = new CANTalon(8);
 		rightRear8.changeControlMode(CANTalon.ControlMode.Follower);
 		rightRear8.reverseOutput(true);
-		
-		hookLift1 = new CANTalon(1);
-		hookLift2 = new CANTalon(2);
-		
-		containerContainer = new CANTalon(6);
-		
 		
 		/***************************************
 		 *
@@ -104,20 +92,20 @@ public class Robot extends SampleRobot {
 			double z = modifyInput(stick.getZ());
 			double angle = imu.getYaw();
 			
-			
+			/*
 			if(button1.get()){
 				drive(x, y, z, angle);
 				goalHeading = angle;
 			} else {
 				driveWithPID(x, y, angle);
 			}
+			*/
 			
-			/*
 			if(!button1.get()){
 				z = 0.0;
 			}
 			drive(x, y, z, angle);
-			*/
+			
 		}
 
 		drive(0.0, 0.0, 0.0, 0.0);		

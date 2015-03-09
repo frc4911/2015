@@ -7,11 +7,11 @@ import java.io.PrintStream;
 import java.util.Arrays;
 
 import com.kauailabs.nav6.frc.IMUAdvanced;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Timer;
@@ -25,12 +25,6 @@ public class Robot extends SampleRobot {
 	CANTalon leftRear4;
 	CANTalon rightFront7;
 	CANTalon rightRear8;
-	
-	CANTalon hookLift1;
-	CANTalon hookLift2;
-	
-	CANTalon containerLift;
-	CANTalon containerContainer;
 
 	PrintStream output;
 	IMUAdvanced imu;
@@ -62,12 +56,6 @@ public class Robot extends SampleRobot {
 		rightRear8 = new CANTalon(8);
 		rightRear8.changeControlMode(CANTalon.ControlMode.Follower);
 		rightRear8.reverseOutput(true);
-		
-		hookLift1 = new CANTalon(1);
-		hookLift2 = new CANTalon(2);
-		
-		containerContainer = new CANTalon(6);
-		
 		
 		/***************************************
 		 *
@@ -125,21 +113,10 @@ public class Robot extends SampleRobot {
 	}
 	
 	public void autonomous(){
-		try {
-			output = new PrintStream(new File("/home/lvuser/natinst/AutoLog.txt"));
-			System.setOut(output);
-		} catch (Exception e){
-		}
-		
 		while(isAutonomous() && isEnabled()){
 			double dashData = SmartDashboard.getNumber("DB/Slider 0", 0.0);
-			
 		}
-		
-		output.close();
 	}
-	
-	
 	public void drive(double x, double y, double rotation, double angle){
 		
 		double[] wheelSpeeds = new double[4];

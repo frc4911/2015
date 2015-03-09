@@ -25,12 +25,6 @@ public class Robot extends SampleRobot {
 	CANTalon leftRear4;
 	CANTalon rightFront7;
 	CANTalon rightRear8;
-	
-	CANTalon hookLift1;
-	CANTalon hookLift2;
-	
-	CANTalon containerLift;
-	CANTalon containerContainer;
 
 	PrintStream output;
 	IMUAdvanced imu;
@@ -62,12 +56,6 @@ public class Robot extends SampleRobot {
 		rightRear8 = new CANTalon(8);
 		rightRear8.changeControlMode(CANTalon.ControlMode.Follower);
 		rightRear8.reverseOutput(true);
-		
-		hookLift1 = new CANTalon(1);
-		hookLift2 = new CANTalon(2);
-		
-		containerContainer = new CANTalon(6);
-		
 		
 		/***************************************
 		 *
@@ -130,13 +118,10 @@ public class Robot extends SampleRobot {
 			System.setOut(output);
 		} catch (Exception e){
 		}
-		
 		while(isAutonomous() && isEnabled()){
 			double dashData = SmartDashboard.getNumber("DB/Slider 0", 0.0);
 			
 		}
-		
-		output.close();
 	}
 	
 	
