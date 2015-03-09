@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.CameraServer;
 import ExternalLibs.LIDAR;
 
 //import edu.wpi.first.wpilibj.vision.AxisCamera;
@@ -43,22 +44,24 @@ public class RobotMap {
     public static Encoder ySlideEncoder;
 
     public static LIDAR lidar;
+    
+    public static CameraServer server;
 	
     private static SerialPort serial_port;
 		
     public static void init(){
 			
-	leftFront = new CANTalon(RobotConstants.LEFT_FRONT_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
-	leftFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-	leftFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
-	leftFront.setPID(1.0, 0.0, 0.0);
+		leftFront = new CANTalon(RobotConstants.LEFT_FRONT_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
+		leftFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+		leftFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
+		leftFront.setPID(1.0, 0.0, 0.0);
+			  
+		leftRear = new CANTalon(RobotConstants.LEFT_REAR_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
+		leftRear.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+		leftRear.changeControlMode(CANTalon.ControlMode.PercentVbus);
+		leftRear.setPID(1.0, 0.0, 0.0);
 		  
-	leftRear = new CANTalon(RobotConstants.LEFT_REAR_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
-	leftRear.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-	leftRear.changeControlMode(CANTalon.ControlMode.PercentVbus);
-	leftRear.setPID(1.0, 0.0, 0.0);
-	  
-	rightFront = new CANTalon(RobotConstants.RIGHT_FRONT_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
+		rightFront = new CANTalon(RobotConstants.RIGHT_FRONT_CANTALON_PORT); // Initialize the CanTalonSRX on device 1.
       	rightFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
       	rightFront.changeControlMode(CANTalon.ControlMode.PercentVbus);
       	rightFront.setPID(1.0, 0.0, 0.0);
@@ -99,33 +102,36 @@ public class RobotMap {
       	//hookLiftPot = new AnalogPotentiometer(RobotConstants.TOTE_LIFT_POTENTIOMETER_PORT);
       	//containerLiftPot = new AnalogPotentiometer(RobotConstants.CONTAINER_LIFT_POTENTIOMETER_PORT);
 
-	accelerometer = new BuiltInAccelerometer();
-	gyro = new Gyro(RobotConstants.MAIN_GYRO_PORT);
-	lidar = new LIDAR(I2C.Port.kMXP);
+		accelerometer = new BuiltInAccelerometer();
+		gyro = new Gyro(RobotConstants.MAIN_GYRO_PORT);
+		lidar = new LIDAR(I2C.Port.kMXP);
+			
+		xSlideEncoder = new Encoder(RobotConstants.X_SLIDE_ENCODER_PORT_A,RobotConstants.X_SLIDE_ENCODER_PORT_B);
+		ySlideEncoder = new Encoder(RobotConstants.Y_SLIDE_ENCODER_PORT_A,RobotConstants.Y_SLIDE_ENCODER_PORT_B);
 		
-	xSlideEncoder = new Encoder(RobotConstants.X_SLIDE_ENCODER_PORT_A,RobotConstants.X_SLIDE_ENCODER_PORT_B);
-	ySlideEncoder = new Encoder(RobotConstants.Y_SLIDE_ENCODER_PORT_A,RobotConstants.Y_SLIDE_ENCODER_PORT_B);
+		server = CameraServer.getInstance();
+		server.setQuality(10);
 		
 		
-	/***************************************
-	 * IMU INITIALIZATION
-	 ***************************************/
-	try {
-	    serial_port = new SerialPort(57600,SerialPort.Port.kOnboard );
-	          
-	    // You can add a second parameter to modify the 
-	    // update rate (in hz) from 4 to 100.  The default is 100.
-	    // If you need to minimize CPU load, you can set it to a
-	    // lower value, as shown here, depending upon your needs.
-		  
-	    // You can also use the IMUAdvanced class for advanced
-	    // features.
-		
-	    byte update_rate_hz = 20;
-	    imu = new IMUAdvanced(serial_port,update_rate_hz);
-	} catch (Exception ex) {
-	    ex.printStackTrace();
-	}
-	Timer.delay(0.3);
+		/***************************************
+		 * IMU INITIALIZATION
+		 ***************************************/
+		try {
+		    serial_port = new SerialPort(57600,SerialPort.Port.kOnboard );
+		          
+		    // You can add a second parameter to modify the 
+		    // update rate (in hz) from 4 to 100.  The default is 100.
+		    // If you need to minimize CPU load, you can set it to a
+		    // lower value, as shown here, depending upon your needs.
+			  
+		    // You can also use the IMUAdvanced class for advanced
+		    // features.
+			
+		    byte update_rate_hz = 20;
+		    imu = new IMUAdvanced(serial_port,update_rate_hz);
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+		Timer.delay(0.3);
     }
 }

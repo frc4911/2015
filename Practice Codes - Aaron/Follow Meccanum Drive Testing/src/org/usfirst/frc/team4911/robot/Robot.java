@@ -18,7 +18,8 @@ import edu.wpi.first.wpilibj.Timer;
 
 
 public class Robot extends SampleRobot {
-	Joystick stick;
+	Joystick mainJoystick;
+	Joystick operatorJoystick;
 	JoystickButton button1;
 	
 	CANTalon leftFront3;
@@ -30,7 +31,8 @@ public class Robot extends SampleRobot {
 	CANTalon hookLift2;
 	
 	CANTalon containerLift;
-	CANTalon containerContainer;
+	CANTalon containerContainer1;
+	CANTalon containerContainer2;
 
 	PrintStream output;
 	IMUAdvanced imu;
@@ -47,8 +49,9 @@ public class Robot extends SampleRobot {
 	
 	
 	public Robot() {
-		stick = new Joystick(0);
-		button1 = new JoystickButton(stick, 1);
+		mainJoystick = new Joystick(0);
+		operatorJoystick =  new Joystick(1);
+		button1 = new JoystickButton(mainJoystick, 1);
 		
 		leftFront3 = new CANTalon(3);
 		leftFront3.changeControlMode(CANTalon.ControlMode.PercentVbus);
@@ -64,9 +67,20 @@ public class Robot extends SampleRobot {
 		rightRear8.reverseOutput(true);
 		
 		hookLift1 = new CANTalon(1);
+		hookLift1.changeControlMode(CANTalon.ControlMode.PercentVbus);
+		hookLift1.reverseOutput(true);
 		hookLift2 = new CANTalon(2);
+		hookLift2.changeControlMode(CANTalon.ControlMode.Follower);
+		hookLift1.reverseOutput(true);
 		
-		containerContainer = new CANTalon(6);
+		containerLift = new CANTalon(5);	
+		containerLift.changeControlMode(CANTalon.ControlMode.PercentVbus);	
+		containerLift.reverseOutput(false);
+		
+		containerContainer1 = new CANTalon(6);
+		containerLift.changeControlMode(CANTalon.ControlMode.PercentVbus);	
+		containerContainer2 = new CANTalon(9);
+		containerLift.changeControlMode(CANTalon.ControlMode.Follower);	
 		
 		
 		/***************************************
@@ -79,7 +93,7 @@ public class Robot extends SampleRobot {
 			byte update_rate_hz = 20;
 			imu = new IMUAdvanced(serial_port,update_rate_hz);
 		} catch (Exception ex) {
-			System.out.println("Probs be happen\'n");
+			System.out.println("IMU Initialization Failed");
 			ex.printStackTrace();
 			
 		}
@@ -99,10 +113,13 @@ public class Robot extends SampleRobot {
 		
 		while (isOperatorControl() && isEnabled()) {
 			//Modify Joystick Inputs
-			double x = modifyInput(stick.getX());
-			double y = modifyInput(stick.getY());
-			double z = modifyInput(stick.getZ());
+			double x = modifyInput(mainJoystick.getX());
+			double y = modifyInput(mainJoystick.getY());
+			double z = modifyInput(mainJoystick.getZ());
 			double angle = imu.getYaw();
+			
+			double hookVal = operatorJoystick.getY();
+			double leftOperatorStick = operatorJoystick.getY();//hook
 			
 			
 			if(button1.get()){
@@ -111,13 +128,6 @@ public class Robot extends SampleRobot {
 			} else {
 				driveWithPID(x, y, angle);
 			}
-			
-			/*
-			if(!button1.get()){
-				z = 0.0;
-			}
-			drive(x, y, z, angle);
-			*/
 		}
 
 		drive(0.0, 0.0, 0.0, 0.0);		
@@ -199,7 +209,6 @@ public class Robot extends SampleRobot {
      
 	}
 	
-	
 	public void driveWithPID(double x, double y, double currYaw){
 		currError = goalHeading - currYaw;//[-180 - 180] degrees
 		if(Math.abs(currError) > 180) {
@@ -235,7 +244,6 @@ public class Robot extends SampleRobot {
     	return pow;
 	}
 	
-
 	private static double[] rotateVector(double x, double y, double angle) {
         double cosA = Math.cos(angle * (3.14159 / 180.0));
         double sinA = Math.sin(angle * (3.14159 / 180.0));

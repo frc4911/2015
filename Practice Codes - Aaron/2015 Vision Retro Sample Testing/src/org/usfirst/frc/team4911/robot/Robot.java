@@ -2,6 +2,7 @@ package org.usfirst.frc.team4911.robot;
 
 import java.io.PrintStream;
 
+
 import java.io.File;
 import java.lang.Math;
 import java.util.Comparator;
@@ -106,7 +107,7 @@ public class Robot extends SampleRobot {
 	        session = 1;
 	        frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
 
-	        session = NIVision.IMAQdxOpenCamera("cam1",
+	        session = NIVision.IMAQdxOpenCamera("cam2",
 	                NIVision.IMAQdxCameraControlMode.CameraControlModeController);
 	        NIVision.IMAQdxConfigureGrab(session);
 	        

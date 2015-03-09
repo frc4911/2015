@@ -66,7 +66,7 @@ public class ContainerLiftSystem extends Subsystem {
     }
     
     public void runLiftManually(double speed) {
-	containerLift.changeControlMode(CANTalon.ControlMode.PercentVbus);
+    	containerLift.changeControlMode(CANTalon.ControlMode.PercentVbus);
     	containerLift.set(speed);
     }
     

@@ -14,6 +14,8 @@ public class OperatorDrive extends Command {
     private ContainerLiftSystem containerLiftSystem = Robot.containerLiftSystem;
     private HookLiftSystem hookLiftSystem = Robot.hookLiftSystem;
     private PrintSystem printSystem = Robot.printSystem;
+    private CameraSystem cameraSystem = Robot.cameraSystem;
+    
     private OI oi = Robot.oi;
     private Runtime runtime;
     private boolean liftPreset;
@@ -45,21 +47,46 @@ public class OperatorDrive extends Command {
 		speed = RobotConstants.STANDARD_DRIVE_SPEED;
 		runtime = Runtime.getRuntime();
 		liftPreset = true;
-		containerClampConflict = false;
-		hookSystemConflict = false;
-		prevPOV = -1.0;
-		fieldOriented = true;
-		prevPressed11 = false;
 		
-    }
-	
-    @Override
-    protected void execute() {
-		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		//
-		// Tote Lift Nudge Down
-		//
-		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//cameraSystem.start();
+	}
+
+	@Override
+	protected void execute() {
+			//cameraSystem.update();
+		
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //
+            // Tote Lift Nudge Down
+            //
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            
+            if (oi.payloadJoy.getPOV() != -1.0){
+                new MoveToteLiftForTime(0.3, -0.5).start();
+            }
+                
+                
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //
+            // Hook Lift Controls
+            //
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            
+            if(!hookSystemConflict){
+        		if(Math.abs(oi.payloadJoy.getY()) > 0.1) {
+        			hookLiftSystem.runLiftManually(oi.payloadJoy.getY());
+        		}
+        		//manual stop code... use ONLY if presets are not running
+        		else {
+        			hookLiftSystem.runLiftManually(0.0);
+        		}
+            }
+		
+	    //Preset code
+	    /*else {						
+		if(oi.payloadJoy.getPOV() == 0 || oi.payloadJoy.getPOV() == 45 || oi.payloadJoy.getPOV() == 315){
+			hookLiftSystem.setLiftToPoint(RobotConstants.TOTE_STACK_POSITION);
+=======
 		
 		if (oi.payloadJoy.getPOV() != -1.0 && prevPOV == -1){
 		    new MoveToteLiftForTime(0.3, -0.5).start();
@@ -79,6 +106,7 @@ public class OperatorDrive extends Command {
 		    else {
 			hookLiftSystem.runLiftManually(0.0);
 		    }
+>>>>>>> 02006fc336dc2fc70edff5be8121c4df3422fcb1
 		}
 		
 		//Preset code

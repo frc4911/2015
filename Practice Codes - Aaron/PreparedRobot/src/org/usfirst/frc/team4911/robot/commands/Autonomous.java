@@ -6,15 +6,16 @@ import org.usfirst.frc.team4911.robot.RobotConstants;
 
 
 public class Autonomous extends CommandGroup {
-    private int mode = 7;//[1 - 8]
-    //Case 1: Contaienr to auto - don't use yet
+    private int mode = 7;//[1 - 9]
+    //Case 1: Container to auto - don't use yet
     //Case 2: Tote to auto - don't use yet
     //Case 3: Staging zone to auto zone - don't use yet
     //Case 4: Stacking three totes - PLEASE PLEASE PLEASE DO NOT USE!!!
     //Case 5: Move tote closest to auto zone - usable
     //Case 6: Move Container closest to auto zone
     //Case 7: Both Tote and the Container
-    //Case 8: None
+    //Case 8: Both containers - untested
+    //Case 9: None
 	
 
     public Autonomous(){
@@ -125,10 +126,22 @@ public class Autonomous extends CommandGroup {
     	    break;
     			    
     	case 8:
-    	    //Empty
+	    
+    	    //Grabbing two containers using both lifts
+    	    addSequential(new MoveContainerLiftForTime(4.0, 1.0));//--Lifting Container
+	    addSequential(new DriveForTime(-0.5, 0.0, 2.25));//-------Moving to Next Container
+	    addSequential(new DriveForTime(0.0, -0.3, 1.0));//--------Backing Up
+	    addSequential(new RotateForTime(0.6, 0.7));//-------------Rotates 180
+	    addSequential(new DriveForTime(0.0, 0.3, 1.0));//---------Driving Forward
+	    addSequential(new MoveToteLiftForTime(4.0, 1.0));//-------Lifting Container with tote lift
+	    addSequential(new DriveForTime(0.0, -1.0, 1.75));//--------Backing up to zone
+	    
     	    break;
     			    
-    			    
+    	case 9:
+    	    //Empty
+    	    break;
+    	    
 	}
     }
 }
