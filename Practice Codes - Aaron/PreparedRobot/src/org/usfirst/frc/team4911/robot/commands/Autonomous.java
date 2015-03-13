@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4911.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 import org.usfirst.frc.team4911.robot.Robot;
@@ -129,26 +130,26 @@ public class Autonomous extends CommandGroup {
     	    break;
     			    
     	case 8:
-
-    	    /*addSequential(new MoveToteLiftForTime(2.5, 1.0));
-    	    addSequential(new DriveForTime(-0.5, 0.0, 1.15));
-    	    addSequential(new RotateForTime(1.0, -0.7));
-    	    addSequential(new SetGoalHeading(sensorSystem.getYawWithCompensation()));
-    	    //addSequential(new DriveForTime(0.0, 0.25, .9));
-    	    addSequential(new DriveForTimeWithoutPID(0.0, 0.25, 1.8));
-    	    addSequential(new MoveContainerLiftForTime(1.0, -0.5));
-    	    addSequential(new CloseContainerClamp(2.5));
-    	    */
-    	    
+    	    //Grabbing two containers
     	    addSequential(new CloseContainerClamp(2.0));
-    	    addSequential(new MoveContainerLiftForTime(2.0, 1.0));
+    	    addParallel(new MoveContainerLiftForTime(2.0, 1.0));
     	    addSequential(new DriveForTime(0.5, 0.0, 1.3));
-    	    addSequential(new RotateForTime(2.45, 0.7));
-    	    addSequential(new DriveForTimeWithoutPID(0.0, -0.5, 1.5));
-    	    addSequential(new DriveForTimeWithoutPID(0.5, 0.0, 0.5));
-    	    addSequential(new MoveToteLiftForTime(3.0, 1.0));
+    	    addSequential(new RotateForTime(2.55, 0.7));
+    	    addSequential(new DriveForTimeWithoutPID(0.0, -0.5, 2.0));
+    	    addSequential(new DriveForTimeWithoutPID(0.5, 0.0, 0.9));
+    	    addSequential(new MoveToteLiftForTime(2.0, 1.0));
     	    addSequential(new RotateForTime(0.75, 0.9));
-    	    //addSequential(new DriveForTimeWithoutPID(0.0, 1.0, 1.75));
+    	    //addSequential(new DriveForTimeWithoutPID(0.0, 1.0, 1.75));*/
+    	    
+    	    /*addSequential(new CloseContainerClamp(2.0));
+	    addParallel(new MoveContainerLiftForTime(1.4, 1.0));
+	    addSequential(new DriveForTime(0.5, 0.0, 1.3));
+	    addSequential(new RotateForTime(2.55, 0.7));
+	    addSequential(new DriveForTimeWithoutPID(0.0, -0.5, 2.1));
+	    addSequential(new DriveForTimeWithoutPID(0.75, 0.0, 0.65)); //.5, 1.2
+	    addSequential(new MoveToteLiftForTime(2.0, 1.0)); //3.0
+	    addSequential(new RotateForTime(0.9, 0.9));*/
+	    //addSequential(new DriveForTimeWithoutPID(0.0, 1.0, 1.75));
     	    break;
     	
     	case 9:	    

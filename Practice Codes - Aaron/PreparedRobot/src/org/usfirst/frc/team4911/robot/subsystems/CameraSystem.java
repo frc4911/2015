@@ -16,11 +16,11 @@ import com.ni.vision.NIVision.Image;
 public class CameraSystem extends Subsystem {
     
     private CameraServer server = RobotMap.server;
-    private Image frame = RobotMap.frame;
-    private int toteSession = RobotMap.toteSession;
+    //private Image frame = RobotMap.frame;
+    //private int toteSession = RobotMap.toteSession;
     
     public CameraSystem() {
-	NIVision.IMAQdxConfigureGrab(toteSession);
+	//NIVision.IMAQdxConfigureGrab(toteSession);
     }
     
     public void initDefaultCommand() {
@@ -32,16 +32,16 @@ public class CameraSystem extends Subsystem {
     }
     
     public void start() {
-	NIVision.IMAQdxStartAcquisition(toteSession);
+	//NIVision.IMAQdxStartAcquisition(toteSession);
     }
     
     public void updateSession() {
-	NIVision.IMAQdxGrab(toteSession, frame, 1);
-        CameraServer.getInstance().setImage(frame);
+	//NIVision.IMAQdxGrab(toteSession, frame, 1);
+        //CameraServer.getInstance().setImage(frame);
     }
 
     public void stop() {
-	NIVision.IMAQdxStopAcquisition(toteSession);
+	//NIVision.IMAQdxStopAcquisition(toteSession);
     }
     public CameraServer getServer() {
 	return server;

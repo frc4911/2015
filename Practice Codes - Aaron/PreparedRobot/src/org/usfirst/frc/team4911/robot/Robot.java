@@ -35,7 +35,7 @@ public class Robot extends IterativeRobot {
     	sensorSystem = new SensorSystem();
         hookLiftSystem = new HookLiftSystem();
         containerLiftSystem = new ContainerLiftSystem();
-        cameraSystem = new CameraSystem();
+        //cameraSystem = new CameraSystem();
         
         autonomousCommand = new Autonomous();
         teleOp = new OperatorDrive();
