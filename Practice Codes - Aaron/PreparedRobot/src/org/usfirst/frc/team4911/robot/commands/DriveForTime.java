@@ -66,6 +66,7 @@ public class DriveForTime extends Command {
     	if(DriverStation.getInstance().isOperatorControl()){
     	    operatorDrive.driveSystemConflict = false;  
     	}
+    	Timer.delay(0.75);
     }
 
     protected void interrupted() {

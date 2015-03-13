@@ -2,6 +2,7 @@ package org.usfirst.frc.team4911.robot;
 
 import org.usfirst.frc.team4911.robot.subsystems.PrintSystem;
 
+
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Compressor;
@@ -115,6 +116,8 @@ public class RobotMap {
 		
 		server = CameraServer.getInstance();
 		server.setQuality(10);
+		//frame = RobotConstants.FRAME;
+		//toteSession = RobotConstants.TOTE_SESSION;
 		
 		
 		/***************************************

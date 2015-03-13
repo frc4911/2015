@@ -1,0 +1,61 @@
+package org.usfirst.frc.team4911.robot.subsystems;
+
+import org.usfirst.frc.team4911.robot.RobotConstants;
+import org.usfirst.frc.team4911.robot.RobotMap;
+
+import com.ni.vision.NIVision;
+import com.ni.vision.NIVision.Image;
+import com.ni.vision.NIVision.ImageType;
+
+import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.CameraServer;
+
+import com.ni.vision.NIVision;
+import com.ni.vision.NIVision.Image;
+
+/**
+ *
+ */
+public class CameraSystem extends Subsystem {
+    private CameraServer server = RobotMap.server;
+<<<<<<< HEAD
+    
+    public CameraSystem() {
+=======
+    //private Image frame = RobotMap.frame;
+    //private int toteSession = RobotMap.toteSession;
+    
+    public CameraSystem() {
+	//NIVision.IMAQdxConfigureGrab(toteSession);
+>>>>>>> dde06a8e5d35b94a150b85d21e5c974c1142bc74
+    }
+    
+    public void initDefaultCommand() {
+    
+    }
+    public void startServer() {
+    	server.startAutomaticCapture(RobotConstants.TOTE_CAMERA);
+    }
+    
+<<<<<<< HEAD
+=======
+    public void start() {
+	//NIVision.IMAQdxStartAcquisition(toteSession);
+    }
+    
+    public void updateSession() {
+	//NIVision.IMAQdxGrab(toteSession, frame, 1);
+        //CameraServer.getInstance().setImage(frame);
+    }
+
+    public void stop() {
+	//NIVision.IMAQdxStopAcquisition(toteSession);
+    }
+>>>>>>> dde06a8e5d35b94a150b85d21e5c974c1142bc74
+    public CameraServer getServer() {
+    	return server;
+    }
+   
+}
+

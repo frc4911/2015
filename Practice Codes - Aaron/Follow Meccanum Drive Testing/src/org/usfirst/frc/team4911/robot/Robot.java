@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4911.robot;
 
 import java.io.File;
+
 import java.io.PrintStream;
 
 import com.kauailabs.nav6.frc.IMUAdvanced;
@@ -66,9 +67,13 @@ public class Robot extends SampleRobot {
 	private boolean fieldOriented;
 
 	private PrintStream output;
-	
-	public Robot() {
 
+	/////////////////////////////////////////////////////////////
+	//
+	//	CONSTRUCTOR / INITIALIZATION
+	//
+	/////////////////////////////////////////////////////////////
+	public Robot() {
 		mainJoystick = new Joystick(1);
 		button1 = new JoystickButton(mainJoystick, 1);
 		button2 = new JoystickButton(mainJoystick, 2);
@@ -145,9 +150,12 @@ public class Robot extends SampleRobot {
 		fieldOriented = true;
 	}
 
+	/////////////////////////////////////////////////////////////
+	//
+	//	OPERATOR CONTROLLED PERIOD 
+	//
+	/////////////////////////////////////////////////////////////
 	public void operatorControl() {
-
-
 		boolean rotateEnabled = false;
 		
 		//Creating a File to Print to
@@ -162,7 +170,7 @@ public class Robot extends SampleRobot {
 		NIVision.IMAQdxStartAcquisition(session);
 		
 		//Direction Initialization
-		reinitializingIMU(2.0);
+		reinitializingIMU(2.0);//Two Second Max
 		
 		//CAMERA THREAD
 		Thread cameraThread = new Thread(new Runnable(){
@@ -337,7 +345,14 @@ public class Robot extends SampleRobot {
 		output.close();
 	}
 	
+
+	/////////////////////////////////////////////////////////////
+	//
+	//	AUTONOMOUS CONTROLLED PERIOD
+	//
+	/////////////////////////////////////////////////////////////
 	public void autonomous(){
+
 		//Creating a File to Print to
 		try {
 			output = new PrintStream(new File("/home/lvuser/natinst/autoLog.txt"));
@@ -345,20 +360,75 @@ public class Robot extends SampleRobot {
 		} catch (Exception e){
 		}
 		
-		while(isAutonomous() && isEnabled()){
-			System.out.println("==========================AUTONOMOUS==============================");
+		/*
+		//TWO CONTAINER AUTONOMOUS
+		double startTime = Timer.getFPGATimestamp();
+		double currTime = startTime;
+		//CLAMP IN and LIFT UP
+		while(currTime - startTime <= 2.0){
+			runClampInward();
+			runContainerLift(1.0);
+			currTime = Timer.getFPGATimestamp();
 		}
+		startTime = Timer.getFPGATimestamp();
+		currTime = startTime;
+		//STRAFE LEFT
+		while(currTime - startTime <= 1.3){
+			driveWithPID(0.5, 0.0, imu.getYaw());
+			currTime = Timer.getFPGATimestamp();
+		}
+		startTime = Timer.getFPGATimestamp();
+		currTime = startTime;
+		//ROTATING
+		while(currTime - startTime <= 2.55){
+			drive(0.0, 0.0, 0.7, imu.getYaw());
+			currTime = Timer.getFPGATimestamp();
+		}
+		startTime = Timer.getFPGATimestamp();
+		currTime = startTime;
+		//DRIVING IN
+		while(currTime - startTime <= 2.0){
+			drive(0.0, -0.5, 0.0, imu.getYaw());
+			currTime = Timer.getFPGATimestamp();
+		}
+		startTime = Timer.getFPGATimestamp();
+		currTime = startTime;
+		//STRAFING LEFT
+		while(currTime - startTime <= 0.9){
+			drive(0.5, 0.0, 0.0, imu.getYaw());
+			currTime = Timer.getFPGATimestamp();
+		}
+		startTime = Timer.getFPGATimestamp();
+		currTime = startTime;
+		//MOVING TOTE LIFT UP
+		while(currTime - startTime <= 2.0){
+			runHookLift(-1.0);
+			currTime = Timer.getFPGATimestamp();
+		}
+		startTime = Timer.getFPGATimestamp();
+		currTime = startTime;
+		//ROTATING
+		while(currTime - startTime <= 0.75){
+			drive(0.0, 0.0, 0.9, imu.getYaw());
+			currTime = Timer.getFPGATimestamp();
+		}
+		startTime = Timer.getFPGATimestamp();
+		currTime = startTime;
+		//DRIVING TO AUTOZONE
+		while(currTime - startTime <= 1.75){
+			drive(0.0, 1.0, 0.0, imu.getYaw());
+			currTime = Timer.getFPGATimestamp();
+		}
+		*/
 		drive(0.0, 0.0, 0.0, 0.0);	
 		output.close();
 	}
 	
-
-	
-	///////////////////////////////////
+	/////////////////////////////////////////////////////////////
 	//
 	//	OPERATOR INTERFACE METHODS
 	//
-	///////////////////////////////////	
+	/////////////////////////////////////////////////////////////
 	private double modifyInput(double val){
 		double pow = 0.0;
 		double sensitivity = 10.0;
@@ -369,13 +439,11 @@ public class Robot extends SampleRobot {
     	return pow;
 	}
 
-	
-	///////////////////////////////////
+	/////////////////////////////////////////////////////////////
 	//
 	//	DRIVE SYSTEM METHODS
 	//
-	///////////////////////////////////
-	
+	/////////////////////////////////////////////////////////////
 	public void drive(double x, double y, double rotation, double angle){
 
 		//Speed Correction
@@ -444,7 +512,6 @@ public class Robot extends SampleRobot {
      
 	}
 	
-	
 	public void driveWithPID(double x, double y, double currYaw){
 		currError = goalHeading - currYaw;//[-180 - 180] degrees
 		if(Math.abs(currError) > 180) {
@@ -473,7 +540,6 @@ public class Robot extends SampleRobot {
     	drive(x, y, rotation, currYaw);
 	}
 	
-	
 	private static double[] rotateVector(double x, double y, double angle) {
         double cosA = Math.cos(angle * (3.14159 / 180.0));
         double sinA = Math.sin(angle * (3.14159 / 180.0));
@@ -482,13 +548,12 @@ public class Robot extends SampleRobot {
         out[1] = x * sinA + y * cosA;
         return out;
     }
-	
-	///////////////////////////////////
+
+	/////////////////////////////////////////////////////////////
 	//
-	//	CONTAINER SYSTEM METHODS
+	//	CONTAINER LIFT METHODS
 	//
-	///////////////////////////////////
-	
+	/////////////////////////////////////////////////////////////	
 	public void runClampOutward(){
 		containerContainer1.changeControlMode(ControlMode.PercentVbus);
 		containerContainer2.changeControlMode(ControlMode.Follower);
@@ -500,7 +565,6 @@ public class Robot extends SampleRobot {
 		}
 		containerContainer2.set(containerContainer1.getDeviceID());
 	}
-	
 	
 	public void runClampInward() {
 		containerContainer1.changeControlMode(ControlMode.PercentVbus);
@@ -515,7 +579,6 @@ public class Robot extends SampleRobot {
 		containerContainer2.set(containerContainer1.getDeviceID());
     }
 	
-	
 	public void runClamp(double speed){
 		containerContainer1.changeControlMode(ControlMode.PercentVbus);
 		containerContainer2.changeControlMode(ControlMode.Follower);
@@ -523,17 +586,16 @@ public class Robot extends SampleRobot {
 		containerContainer2.set(containerContainer1.getDeviceID());
 	}
 	
-	
 	public void runContainerLift(double speed) {
     	containerLift.changeControlMode(CANTalon.ControlMode.PercentVbus);
     	containerLift.set(speed);
     }
-	
-	///////////////////////////////////
+
+	/////////////////////////////////////////////////////////////
 	//
-	//	HOOK SYSTEM METHODS
+	//	HOOK LIFT METHODS
 	//
-	///////////////////////////////////
+	/////////////////////////////////////////////////////////////
 	
 	public void runHookLift(double speed) {
 
@@ -557,11 +619,11 @@ public class Robot extends SampleRobot {
 		return t;
 	}
 	
-	///////////////////////////////////
+	/////////////////////////////////////////////////////////////
 	//
 	//	IMU METHODS
 	//
-	///////////////////////////////////
+	/////////////////////////////////////////////////////////////
 	public void reinitializingIMU(double overrideTime){
 		//Zero Yaw and goal heading
 		imu.zeroYaw();
