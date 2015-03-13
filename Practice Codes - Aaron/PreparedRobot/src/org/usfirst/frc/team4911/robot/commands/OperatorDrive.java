@@ -234,10 +234,10 @@ public class OperatorDrive extends Command {
 			mecanumDriveSystem.driveWithPID(xIn, yIn, angle);	
 		    } 
 		    else {	
-			if(!oi.trigger.get()){
-			    rIn = 0.0;
-			}
-			mecanumDriveSystem.driveRobotOriented(xIn, yIn, rIn);
+				if(!oi.trigger.get()){
+				    rIn = 0.0;
+				}
+				mecanumDriveSystem.driveRobotOriented(xIn, yIn, rIn);
 		    }
 		}
 		printSystem.print("FieldOriented:\t" + fieldOriented );

@@ -2,6 +2,7 @@ package org.usfirst.frc.team4911.robot.subsystems;
 
 import java.io.File;
 
+
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
@@ -25,12 +26,12 @@ public class PrintSystem extends Subsystem {
     private int numIteration;
 	
     public PrintSystem(){
-	autoFileNum = 1;
-	teleFileNum = 1;
-	this.numIteration = 0;
-	this.frequency = RobotConstants.printFrequency;
-	this.dataList = new LinkedList<String>();
-	resetIteration();
+		autoFileNum = 1;
+		teleFileNum = 1;
+		this.numIteration = 0;
+		this.frequency = RobotConstants.printFrequency;
+		this.dataList = new LinkedList<String>();
+		resetIteration();
     }
 	
     public void initDefaultCommand() {

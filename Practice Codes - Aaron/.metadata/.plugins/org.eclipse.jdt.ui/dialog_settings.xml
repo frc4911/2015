@@ -64,10 +64,10 @@
 			<item value="" key="javaElement"/>
 			<item value="0" key="scope"/>
 			<item value="11" key="includeMask"/>
-			<item value="DrivePastObstacle" key="pattern"/>
+			<item value="TOTE_GROUND_POSITION" key="pattern"/>
 			<item value="2" key="limitTo"/>
 			<item value="0" key="matchLocations"/>
-			<item value="1" key="searchFor"/>
+			<item value="4" key="searchFor"/>
 			<list key="workingSets">
 			</list>
 		</section>
@@ -76,7 +76,7 @@
 			<item value="" key="javaElement"/>
 			<item value="0" key="scope"/>
 			<item value="11" key="includeMask"/>
-			<item value="ContainerStatus" key="pattern"/>
+			<item value="DrivePastObstacle" key="pattern"/>
 			<item value="2" key="limitTo"/>
 			<item value="0" key="matchLocations"/>
 			<item value="1" key="searchFor"/>
@@ -88,7 +88,7 @@
 			<item value="" key="javaElement"/>
 			<item value="0" key="scope"/>
 			<item value="11" key="includeMask"/>
-			<item value="Y_SLIDE_ENCODER_PORT_A" key="pattern"/>
+			<item value="xSlideEncoder" key="pattern"/>
 			<item value="2" key="limitTo"/>
 			<item value="0" key="matchLocations"/>
 			<item value="4" key="searchFor"/>
@@ -100,7 +100,7 @@
 			<item value="" key="javaElement"/>
 			<item value="0" key="scope"/>
 			<item value="11" key="includeMask"/>
-			<item value="setTargetPosition" key="pattern"/>
+			<item value="updateLift" key="pattern"/>
 			<item value="2" key="limitTo"/>
 			<item value="0" key="matchLocations"/>
 			<item value="3" key="searchFor"/>
@@ -112,7 +112,7 @@
 			<item value="" key="javaElement"/>
 			<item value="0" key="scope"/>
 			<item value="11" key="includeMask"/>
-			<item value="TOTE_GROUND_POSITION" key="pattern"/>
+			<item value="Y_SLIDE_ENCODER_PORT_A" key="pattern"/>
 			<item value="2" key="limitTo"/>
 			<item value="0" key="matchLocations"/>
 			<item value="4" key="searchFor"/>
@@ -124,7 +124,7 @@
 			<item value="" key="javaElement"/>
 			<item value="0" key="scope"/>
 			<item value="11" key="includeMask"/>
-			<item value="SetGoalHeading" key="pattern"/>
+			<item value="setTargetPosition" key="pattern"/>
 			<item value="2" key="limitTo"/>
 			<item value="0" key="matchLocations"/>
 			<item value="3" key="searchFor"/>
@@ -136,7 +136,7 @@
 			<item value="" key="javaElement"/>
 			<item value="0" key="scope"/>
 			<item value="11" key="includeMask"/>
-			<item value="runLiftToPreset" key="pattern"/>
+			<item value="ContainerStatus" key="pattern"/>
 			<item value="2" key="limitTo"/>
 			<item value="0" key="matchLocations"/>
 			<item value="1" key="searchFor"/>
@@ -148,14 +148,26 @@
 			<item value="" key="javaElement"/>
 			<item value="0" key="scope"/>
 			<item value="11" key="includeMask"/>
-			<item value="updateLift" key="pattern"/>
+			<item value="runLiftToPreset" key="pattern"/>
 			<item value="2" key="limitTo"/>
 			<item value="0" key="matchLocations"/>
-			<item value="3" key="searchFor"/>
+			<item value="1" key="searchFor"/>
 			<list key="workingSets">
 			</list>
 		</section>
 		<section name="HISTORY2">
+			<item value="false" key="isCaseSensitive"/>
+			<item value="" key="javaElement"/>
+			<item value="0" key="scope"/>
+			<item value="11" key="includeMask"/>
+			<item value="mecanumDriveSystem" key="pattern"/>
+			<item value="3" key="limitTo"/>
+			<item value="0" key="matchLocations"/>
+			<item value="4" key="searchFor"/>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY3">
 			<item value="false" key="isCaseSensitive"/>
 			<item value="" key="javaElement"/>
 			<item value="0" key="scope"/>
@@ -167,24 +179,12 @@
 			<list key="workingSets">
 			</list>
 		</section>
-		<section name="HISTORY3">
-			<item value="false" key="isCaseSensitive"/>
-			<item value="" key="javaElement"/>
-			<item value="0" key="scope"/>
-			<item value="11" key="includeMask"/>
-			<item value="xSlideEncoder" key="pattern"/>
-			<item value="2" key="limitTo"/>
-			<item value="0" key="matchLocations"/>
-			<item value="4" key="searchFor"/>
-			<list key="workingSets">
-			</list>
-		</section>
 		<section name="HISTORY0">
 			<item value="false" key="isCaseSensitive"/>
 			<item value="" key="javaElement"/>
 			<item value="0" key="scope"/>
 			<item value="11" key="includeMask"/>
-			<item value="frontLeft.changeControlMode" key="pattern"/>
+			<item value="createNewFile" key="pattern"/>
 			<item value="2" key="limitTo"/>
 			<item value="0" key="matchLocations"/>
 			<item value="1" key="searchFor"/>
@@ -196,10 +196,10 @@
 			<item value="" key="javaElement"/>
 			<item value="0" key="scope"/>
 			<item value="11" key="includeMask"/>
-			<item value="mecanumDriveSystem" key="pattern"/>
-			<item value="3" key="limitTo"/>
+			<item value="frontLeft.changeControlMode" key="pattern"/>
+			<item value="2" key="limitTo"/>
 			<item value="0" key="matchLocations"/>
-			<item value="4" key="searchFor"/>
+			<item value="1" key="searchFor"/>
 			<list key="workingSets">
 			</list>
 		</section>
