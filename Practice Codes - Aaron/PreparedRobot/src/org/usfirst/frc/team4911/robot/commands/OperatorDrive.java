@@ -14,7 +14,7 @@ public class OperatorDrive extends Command {
     private ContainerLiftSystem containerLiftSystem = Robot.containerLiftSystem;
     private HookLiftSystem hookLiftSystem = Robot.hookLiftSystem;
     private PrintSystem printSystem = Robot.printSystem;
-    private CameraSystem cameraSystem = Robot.cameraSystem;
+    
     private OI oi = Robot.oi;
     private Runtime runtime;
     private boolean liftPreset;
@@ -52,24 +52,24 @@ public class OperatorDrive extends Command {
 
 	@Override
 	protected void execute() {
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                //
-                // Tote Lift Nudge Down
-                //
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //
+            // Tote Lift Nudge Down
+            //
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            
+            if (oi.payloadJoy.getPOV() != -1.0){
+                new MoveToteLiftForTime(0.3, -0.5).start();
+            }
                 
-                if (oi.payloadJoy.getPOV() != -1.0){
-                    new MoveToteLiftForTime(0.3, -0.5).start();
-                }
                 
-                
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                //
-                // Hook Lift Controls
-                //
-                /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                
-                if(!hookSystemConflict){
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //
+            // Hook Lift Controls
+            //
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            
+            if(!hookSystemConflict){
         		if(Math.abs(oi.payloadJoy.getY()) > 0.1) {
         			hookLiftSystem.runLiftManually(oi.payloadJoy.getY());
         		}
@@ -77,7 +77,7 @@ public class OperatorDrive extends Command {
         		else {
         			hookLiftSystem.runLiftManually(0.0);
         		}
-                }
+            }
 		
 	    //Preset code
 	    /*else {						
@@ -236,10 +236,10 @@ public class OperatorDrive extends Command {
 			mecanumDriveSystem.driveWithPID(xIn, yIn, angle);	
 		    } 
 		    else {	
-			if(!oi.trigger.get()){
-			    rIn = 0.0;
-			}
-			mecanumDriveSystem.driveRobotOriented(xIn, yIn, rIn);
+				if(!oi.trigger.get()){
+				    rIn = 0.0;
+				}
+				mecanumDriveSystem.driveRobotOriented(xIn, yIn, rIn);
 		    }
 		}
 		//printSystem.print("FieldOriented:\t" + fieldOriented );
