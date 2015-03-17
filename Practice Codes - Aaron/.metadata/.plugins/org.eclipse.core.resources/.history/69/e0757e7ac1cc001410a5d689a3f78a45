@@ -352,6 +352,7 @@ public class Robot extends SampleRobot {
 	//
 	/////////////////////////////////////////////////////////////
 	public void autonomous(){
+
 		//Creating a File to Print to
 		try {
 			output = new PrintStream(new File("/home/lvuser/natinst/autoLog.txt"));
