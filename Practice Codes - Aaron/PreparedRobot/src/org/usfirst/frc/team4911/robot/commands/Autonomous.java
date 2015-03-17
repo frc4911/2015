@@ -9,7 +9,7 @@ import org.usfirst.frc.team4911.robot.subsystems.SensorSystem;
 
 
 public class Autonomous extends CommandGroup {
-    private int mode = 8;//[1 - 9]
+    private int mode = 9;//[1 - 9]
     //Case 1: Contaienr to auto - don't use yet
     //Case 2: Tote to auto - don't use yet
     //Case 3: Staging zone to auto zone - don't use yet
@@ -17,7 +17,7 @@ public class Autonomous extends CommandGroup {
     //Case 5: Move tote closest to auto zone - usable
     //Case 6: Move Container closest to auto zone
     //Case 7: Both Tote and the Container
-    //Case 8: Two Containers
+    //Case 8: Two Containers - Don't run yet
     //Case 9: None
 	
     private SensorSystem sensorSystem = Robot.sensorSystem;
@@ -96,7 +96,7 @@ public class Autonomous extends CommandGroup {
     	    break;
     				
     	case 5:
-    			    
+    	    //Tote Auto
     	    addSequential(new MoveToteLiftForTime(1.0, 1.0));
     	    addSequential(new RotateForTime(1.20, -0.6));
     	    addSequential(new DriveForTime(0.0, -1.0, 1.50));//2 sec is too long
@@ -121,9 +121,9 @@ public class Autonomous extends CommandGroup {
     
     	    //Grabbing Both the Tote and the Container
     	    addSequential(new MoveToteLiftForTime(1.0, 1.0));
-    	    addSequential(new RotateForTime(1.5, -0.7));
+    	    addSequential(new RotateForTime(1.75, -0.7));
     	    addSequential(new MoveContainerLiftForTime(3.5, -0.25));
-    	    addSequential(new CloseContainerClamp(3.75));
+    	    addSequential(new CloseContainerClamp(3.5));
     	    addSequential(new MoveContainerLiftForTime(0.8, 1.0));
     	    addSequential(new RotateForTime(0.6, 0.7));
     	    addSequential(new DriveForTime(0.0, -1.0, 1.75));
@@ -152,8 +152,12 @@ public class Autonomous extends CommandGroup {
 	    //addSequential(new DriveForTimeWithoutPID(0.0, 1.0, 1.75));
     	    break;
     	
-    	case 9:	    
+    	case 9:
     	    break;
+	
+	
+	case 10: 
+	    addSequential(new DriveForTime(0.5, 0.0, 1.3));
 	}
     }
 }

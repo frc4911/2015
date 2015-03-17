@@ -79,7 +79,8 @@ public class ContainerLiftSystem extends Subsystem {
     	containerContainer.changeControlMode(ControlMode.PercentVbus);
     	secondContainerContainer.changeControlMode(ControlMode.Follower);
     	//pot value:   0.4499214632998128 if greater, fast
-    	if(sensorSystem.getPot() > 0.4499214632998128) {
+    	//pot logic: removed due to broken pot TODO: Add in once pot fixed
+    	if(sensorSystem.getPot() > 0.6863350027983585) {
     	    containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
     	}
     	else {
@@ -105,7 +106,8 @@ public class ContainerLiftSystem extends Subsystem {
     public void runClampManuallyBackward(){
 	containerContainer.changeControlMode(ControlMode.PercentVbus);
 	secondContainerContainer.changeControlMode(ControlMode.Follower);
-	if(sensorSystem.getPot() < 0.720) {
+	//TODO: add in once pot is fixed
+	if(sensorSystem.getPot() < 0.9491851645337156) { //0.720
 	    containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
 	}
 	else {

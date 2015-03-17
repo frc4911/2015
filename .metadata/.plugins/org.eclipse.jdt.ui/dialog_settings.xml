@@ -44,7 +44,7 @@
 			<item value="" key="javaElement"/>
 			<item value="0" key="scope"/>
 			<item value="11" key="includeMask"/>
-			<item value="xSlideEncoder" key="pattern"/>
+			<item value="containerContainer" key="pattern"/>
 			<item value="3" key="limitTo"/>
 			<item value="0" key="matchLocations"/>
 			<item value="4" key="searchFor"/>
@@ -56,98 +56,14 @@
 			<item value="" key="javaElement"/>
 			<item value="0" key="scope"/>
 			<item value="11" key="includeMask"/>
-			<item value="MoveToteLift" key="pattern"/>
+			<item value="xSlideEncoder" key="pattern"/>
 			<item value="3" key="limitTo"/>
 			<item value="0" key="matchLocations"/>
-			<item value="1" key="searchFor"/>
+			<item value="4" key="searchFor"/>
 			<list key="workingSets">
 			</list>
 		</section>
 		<section name="HISTORY4">
-			<item value="true" key="isCaseSensitive"/>
-			<item value="" key="javaElement"/>
-			<item value="0" key="scope"/>
-			<item value="11" key="includeMask"/>
-			<item value="org.usfirst.frc.team4911.robot.RobotConstants.CAMERA_SERVO_PORT" key="pattern"/>
-			<item value="3" key="limitTo"/>
-			<item value="0" key="matchLocations"/>
-			<item value="4" key="searchFor"/>
-			<list key="workingSets">
-			</list>
-		</section>
-		<section name="HISTORY10">
-			<item value="true" key="isCaseSensitive"/>
-			<item value="=PreparedRobot/src&lt;org.usfirst.frc.team4911.robot" key="javaElement"/>
-			<item value="0" key="scope"/>
-			<item value="11" key="includeMask"/>
-			<item value="org.usfirst.frc.team4911.robot" key="pattern"/>
-			<item value="2" key="limitTo"/>
-			<item value="0" key="matchLocations"/>
-			<item value="2" key="searchFor"/>
-			<list key="workingSets">
-			</list>
-		</section>
-		<section name="HISTORY5">
-			<item value="false" key="isCaseSensitive"/>
-			<item value="" key="javaElement"/>
-			<item value="0" key="scope"/>
-			<item value="11" key="includeMask"/>
-			<item value="containerContainer" key="pattern"/>
-			<item value="3" key="limitTo"/>
-			<item value="0" key="matchLocations"/>
-			<item value="4" key="searchFor"/>
-			<list key="workingSets">
-			</list>
-		</section>
-		<section name="HISTORY11">
-			<item value="false" key="isCaseSensitive"/>
-			<item value="" key="javaElement"/>
-			<item value="0" key="scope"/>
-			<item value="11" key="includeMask"/>
-			<item value="src" key="pattern"/>
-			<item value="2" key="limitTo"/>
-			<item value="0" key="matchLocations"/>
-			<item value="0" key="searchFor"/>
-			<list key="workingSets">
-			</list>
-		</section>
-		<section name="HISTORY8">
-			<item value="false" key="isCaseSensitive"/>
-			<item value="" key="javaElement"/>
-			<item value="0" key="scope"/>
-			<item value="11" key="includeMask"/>
-			<item value="ROTATE_SPEED" key="pattern"/>
-			<item value="2" key="limitTo"/>
-			<item value="0" key="matchLocations"/>
-			<item value="4" key="searchFor"/>
-			<list key="workingSets">
-			</list>
-		</section>
-		<section name="HISTORY9">
-			<item value="false" key="isCaseSensitive"/>
-			<item value="" key="javaElement"/>
-			<item value="0" key="scope"/>
-			<item value="11" key="includeMask"/>
-			<item value="USING_BEN_JOY" key="pattern"/>
-			<item value="2" key="limitTo"/>
-			<item value="0" key="matchLocations"/>
-			<item value="2" key="searchFor"/>
-			<list key="workingSets">
-			</list>
-		</section>
-		<section name="HISTORY2">
-			<item value="false" key="isCaseSensitive"/>
-			<item value="" key="javaElement"/>
-			<item value="0" key="scope"/>
-			<item value="11" key="includeMask"/>
-			<item value="driveWithPID" key="pattern"/>
-			<item value="3" key="limitTo"/>
-			<item value="0" key="matchLocations"/>
-			<item value="1" key="searchFor"/>
-			<list key="workingSets">
-			</list>
-		</section>
-		<section name="HISTORY3">
 			<item value="false" key="isCaseSensitive"/>
 			<item value="" key="javaElement"/>
 			<item value="0" key="scope"/>
@@ -159,12 +75,96 @@
 			<list key="workingSets">
 			</list>
 		</section>
+		<section name="HISTORY10">
+			<item value="false" key="isCaseSensitive"/>
+			<item value="" key="javaElement"/>
+			<item value="0" key="scope"/>
+			<item value="11" key="includeMask"/>
+			<item value="USING_BEN_JOY" key="pattern"/>
+			<item value="2" key="limitTo"/>
+			<item value="0" key="matchLocations"/>
+			<item value="2" key="searchFor"/>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY5">
+			<item value="true" key="isCaseSensitive"/>
+			<item value="" key="javaElement"/>
+			<item value="0" key="scope"/>
+			<item value="11" key="includeMask"/>
+			<item value="org.usfirst.frc.team4911.robot.RobotConstants.CAMERA_SERVO_PORT" key="pattern"/>
+			<item value="3" key="limitTo"/>
+			<item value="0" key="matchLocations"/>
+			<item value="4" key="searchFor"/>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY11">
+			<item value="true" key="isCaseSensitive"/>
+			<item value="=PreparedRobot/src&lt;org.usfirst.frc.team4911.robot" key="javaElement"/>
+			<item value="0" key="scope"/>
+			<item value="11" key="includeMask"/>
+			<item value="org.usfirst.frc.team4911.robot" key="pattern"/>
+			<item value="2" key="limitTo"/>
+			<item value="0" key="matchLocations"/>
+			<item value="2" key="searchFor"/>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY8">
+			<item value="false" key="isCaseSensitive"/>
+			<item value="" key="javaElement"/>
+			<item value="0" key="scope"/>
+			<item value="11" key="includeMask"/>
+			<item value="MoveToteLift" key="pattern"/>
+			<item value="3" key="limitTo"/>
+			<item value="0" key="matchLocations"/>
+			<item value="1" key="searchFor"/>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY9">
+			<item value="false" key="isCaseSensitive"/>
+			<item value="" key="javaElement"/>
+			<item value="0" key="scope"/>
+			<item value="11" key="includeMask"/>
+			<item value="ROTATE_SPEED" key="pattern"/>
+			<item value="2" key="limitTo"/>
+			<item value="0" key="matchLocations"/>
+			<item value="4" key="searchFor"/>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY2">
+			<item value="false" key="isCaseSensitive"/>
+			<item value="" key="javaElement"/>
+			<item value="0" key="scope"/>
+			<item value="11" key="includeMask"/>
+			<item value="setControlMode" key="pattern"/>
+			<item value="3" key="limitTo"/>
+			<item value="0" key="matchLocations"/>
+			<item value="1" key="searchFor"/>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY3">
+			<item value="false" key="isCaseSensitive"/>
+			<item value="" key="javaElement"/>
+			<item value="0" key="scope"/>
+			<item value="11" key="includeMask"/>
+			<item value="driveWithPID" key="pattern"/>
+			<item value="3" key="limitTo"/>
+			<item value="0" key="matchLocations"/>
+			<item value="1" key="searchFor"/>
+			<list key="workingSets">
+			</list>
+		</section>
 		<section name="HISTORY0">
 			<item value="false" key="isCaseSensitive"/>
 			<item value="" key="javaElement"/>
 			<item value="0" key="scope"/>
 			<item value="11" key="includeMask"/>
-			<item value="drive" key="pattern"/>
+			<item value="getPot" key="pattern"/>
 			<item value="3" key="limitTo"/>
 			<item value="0" key="matchLocations"/>
 			<item value="1" key="searchFor"/>
@@ -176,7 +176,7 @@
 			<item value="" key="javaElement"/>
 			<item value="0" key="scope"/>
 			<item value="11" key="includeMask"/>
-			<item value="setControlMode" key="pattern"/>
+			<item value="drive" key="pattern"/>
 			<item value="3" key="limitTo"/>
 			<item value="0" key="matchLocations"/>
 			<item value="1" key="searchFor"/>

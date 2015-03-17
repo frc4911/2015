@@ -116,8 +116,8 @@ public class RobotMap {
 	server = CameraServer.getInstance();
 	server.setQuality(20);
 		
-	frame = RobotConstants.FRAME;
-	toteSession = RobotConstants.TOTE_SESSION;
+	//frame = RobotConstants.FRAME;
+	//toteSession = RobotConstants.TOTE_SESSION;
 		
 	/***************************************
 	 * IMU INITIALIZATION

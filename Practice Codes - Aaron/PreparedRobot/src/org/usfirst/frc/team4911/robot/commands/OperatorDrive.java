@@ -46,6 +46,8 @@ public class OperatorDrive extends Command {
 		speed = RobotConstants.STANDARD_DRIVE_SPEED;
 		runtime = Runtime.getRuntime();
 		liftPreset = true;
+		fieldOriented = true; //JUST ADDED!
+		prevPressed11 = false; //JUST ADDED!
 	}
 
 	@Override
@@ -240,7 +242,8 @@ public class OperatorDrive extends Command {
 			mecanumDriveSystem.driveRobotOriented(xIn, yIn, rIn);
 		    }
 		}
-		printSystem.print("FieldOriented:\t" + fieldOriented );
+		//printSystem.print("FieldOriented:\t" + fieldOriented );
+		//System.out.println("IMU: " + sensorSystem.getYawWithCompensation());
     }
 	
     @Override
