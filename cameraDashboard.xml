@@ -9,17 +9,4 @@
 </dashboard>
 <live-window>
 </live-window>
-	<hidden field="Tote sat min"/>
-	<hidden field="Tote hue max"/>
-	<hidden field="Masked particles"/>
-	<hidden field="Aspect"/>
-	<hidden field="Filtered particles"/>
-	<hidden field="Area"/>
-	<hidden field="Tote sat max"/>
-	<hidden field="Tote val max"/>
-	<hidden field="Tote val min"/>
-	<hidden field="Tote hue min"/>
-	<hidden field="IsTote"/>
-	<hidden field="Area min %"/>
-	<hidden field="Distance"/>
 </xml>
