@@ -2,12 +2,13 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="createNewFile" key="selection"/>
+		<item value="runHookLift" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="runHookLIft"/>
 			<item value="createNewFile"/>
 			<item value="lowspeed"/>
 			<item value="atLowSpeed"/>
@@ -15,7 +16,6 @@
 			<item value="runClampManuallyBackward"/>
 			<item value="containerLift"/>
 			<item value="goalHeading"/>
-			<item value="setGoalHeading"/>
 		</list>
 		<list key="replacehistory">
 		</list>

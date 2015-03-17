@@ -358,6 +358,73 @@ public class Robot extends SampleRobot {
 			System.setOut(output);
 		} catch (Exception e){
 		}
+		speedLimit = 1.0;
+		imu.zeroYaw();
+		
+		//CONTAINER AND TOTE AUTONOMOUS
+		double startTime = Timer.getFPGATimestamp();
+		double currTime = startTime;
+		//MOVING TOTE LIFT UP
+		while(isAutonomous() && isEnabled() && currTime - startTime <= 1.0){
+			runHookLift(-1.0);
+			currTime = Timer.getFPGATimestamp();
+		}
+		runHookLift(0.0);
+		startTime = Timer.getFPGATimestamp();
+		currTime = startTime;
+		//ROTATE 
+		while(isAutonomous() && isEnabled() && currTime - startTime <= 1.75){
+			drive(0.0, 0.0, -0.7, imu.getYaw());
+			currTime = Timer.getFPGATimestamp();
+		}
+		drive(0.0, 0.0, 0.0, 0.0);
+		
+		startTime = Timer.getFPGATimestamp();
+		currTime = startTime;
+		//CONTAINER LIFT DOWN
+		while(isAutonomous() && isEnabled() && currTime - startTime <= 3.5){
+			runContainerLift(0.25);
+			currTime = Timer.getFPGATimestamp();
+		}
+		runContainerLift(0.0);
+		/*
+		startTime = Timer.getFPGATimestamp();
+		currTime = startTime;
+		//CLAMP IN
+		while(isAutonomous() && isEnabled() && currTime - startTime <= 3.75){
+			runClampInward();
+			currTime = Timer.getFPGATimestamp();
+		}
+		runClamp(0.0);
+		*/
+		startTime = Timer.getFPGATimestamp();
+		currTime = startTime;
+		//CONTAINER LIFT UP
+		while(isAutonomous() && isEnabled() && currTime - startTime <= 0.8){
+			runContainerLift(-1.0);
+			currTime = Timer.getFPGATimestamp();
+		}
+		runContainerLift(0.0);
+		startTime = Timer.getFPGATimestamp();
+		currTime = startTime;
+		//ROTATE 
+		while(isAutonomous() && isEnabled() && currTime - startTime <= 0.6){
+			drive(0.0, 0.0, 0.7, imu.getYaw());
+			currTime = Timer.getFPGATimestamp();
+		}
+		drive(0.0, 0.0, 0.0, 0.0);
+		/*
+		startTime = Timer.getFPGATimestamp();
+		currTime = startTime;
+		//STRAFE LEFT
+		while(isAutonomous() && isEnabled() && currTime - startTime <= 1.75){
+			driveWithPID(0.0, -1.0, imu.getYaw());
+			currTime = Timer.getFPGATimestamp();
+		}
+		drive(0.0, 0.0, 0.0, 0.0);
+		*/
+		
+		
 		
 		/*
 		//TWO CONTAINER AUTONOMOUS
@@ -444,7 +511,6 @@ public class Robot extends SampleRobot {
 	//
 	/////////////////////////////////////////////////////////////
 	public void drive(double x, double y, double rotation, double angle){
-
 		//Speed Correction
 		x *= speedLimit;
 		y *= speedLimit;
