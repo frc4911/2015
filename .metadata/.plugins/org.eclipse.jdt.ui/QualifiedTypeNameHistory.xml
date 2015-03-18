@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Joystick"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.subsystems.SensorSystem"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CANTalon.ControlMode"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.subsystems.ContainerLiftSystem"/>
@@ -13,4 +12,7 @@
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.Robot"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.subsystems.MecanumDriveSystem"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Timer"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CANTalon"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Joystick"/>
+<fullyQualifiedTypeName name="com.kauailabs.nav6.frc.IMU"/>
 </qualifiedTypeNameHistroy>

@@ -622,7 +622,7 @@ public class Robot extends SampleRobot {
 	public void runClampOutward(){
 		containerContainer1.changeControlMode(ControlMode.PercentVbus);
 		containerContainer2.changeControlMode(ControlMode.Follower);
-		if(clampPot.get() < 0.720) {
+		if(clampPot.get() < 0.9491851645337156) {
 			containerContainer1.set(-1.0);
 		}
 		else {
@@ -635,7 +635,7 @@ public class Robot extends SampleRobot {
 		containerContainer1.changeControlMode(ControlMode.PercentVbus);
 		containerContainer2.changeControlMode(ControlMode.Follower);
     	//pot value:   0.4499214632998128 if greater, fast
-    	if(clampPot.get() > 0.4499214632998128) {
+    	if(clampPot.get() > 0.6863350027983585) {
     	    containerContainer1.set(1.0);
     	}
     	else {
