@@ -21,7 +21,7 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     
-    private Joystick driverJoy = new Joystick(0);
+    private ModdedJoystick driverJoy = new ModdedJoystick(0);
     private DriveSystem robotDrive = new DriveSystem();
     private IMUAdvanced imu;
     private SerialPort serial_port;
@@ -56,14 +56,26 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         while(isEnabled() && isOperatorControl()) {
+            
+            if(driverJoy.getRawButton(2)) {
+        	robotDrive.setGoalHeading(0.0);
+            } else if(driverJoy.getRawButton(3)) {
+        	robotDrive.setGoalHeading(90.0);
+            } else if(driverJoy.getRawButton(4)) {
+        	robotDrive.setGoalHeading(270.0);
+            } else if(driverJoy.getRawButton(10)) {
+        	robotDrive.setGoalHeading(180.0);
+            }
+            
             if(driverJoy.getTrigger()) {
-        	rotation = driverJoy.getZ();
+        	rotation = driverJoy.getLimitedZValue();
         	robotDrive.setGoalHeading(imu.getYaw());
             }
             else {
         	rotation = 0.0;
             }
-            robotDrive.updateDrive(driverJoy.getX(), driverJoy.getY(), rotation, imu.getYaw(), driverJoy.getThrottle());
+            
+            robotDrive.updateDrive(driverJoy.getLimitedXValue(), driverJoy.getLimitedYValue(), rotation, imu.getYaw());
         }
     }
     

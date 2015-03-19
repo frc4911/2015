@@ -1,0 +1,16 @@
+package org.usfirst.frc.team4911.robot;
+
+import edu.wpi.first.wpilibj.Joystick;
+
+public class ModdedJoystick extends Joystick{
+    
+    
+    
+    public ModdedJoystick(int port) {
+	super(port);
+    }
+    
+    public double getRoundedValue(double value) {
+	return Math.round(value * 0.1) / 0.1;
+    }
+}

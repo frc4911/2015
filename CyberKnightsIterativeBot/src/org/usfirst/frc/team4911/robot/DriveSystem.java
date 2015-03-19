@@ -17,7 +17,6 @@ public class DriveSystem {
     private double derivative;
 	
     private double goalHeading;
-    private double speed;
     
     public DriveSystem() {
 	robot.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, false);
@@ -29,13 +28,11 @@ public class DriveSystem {
 	goalHeading = 0.0;
 	currError = 0.0;
 	lastError = 0.0;
-	speed = 1.0;
+	integration = 0.0;
+	derivative = 0.0;
     }
     
-    public void updateDrive(double x, double y, double rotation, double angle, double limiter) {
-	x *= limiter;
-	y *= limiter;
-	rotation *= limiter;
+    public void updateDrive(double x, double y, double rotation, double angle) {
 	if(rotation != 0.0) {
 	    drive(x, y, rotation, angle);
 	}
