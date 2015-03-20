@@ -11,8 +11,9 @@
 <fullyQualifiedTypeName name="com.ni.vision.NIVision"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.Robot"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team4911.robot.subsystems.MecanumDriveSystem"/>
-<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Timer"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CANTalon"/>
-<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Joystick"/>
 <fullyQualifiedTypeName name="com.kauailabs.nav6.frc.IMU"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Joystick"/>
+<fullyQualifiedTypeName name="java.lang.Math"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Timer"/>
 </qualifiedTypeNameHistroy>

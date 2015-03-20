@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.smartdashboard.*;
+import edu.wpi.first.wpilibj.Relay;
 import ExternalLibs.LIDAR;
 
 
@@ -54,7 +55,7 @@ public class Robot extends SampleRobot {
 	CANTalon containerFollower;
 	CANTalon containerLift;
 	
-	
+	Relay grabber;
 
 	CANTalon motor;
 	
@@ -78,7 +79,7 @@ public class Robot extends SampleRobot {
 	
 	public Robot() {
 		stick1 = new Joystick(0);
-		stick2 = new Joystick(1);
+		/*stick2 = new Joystick(1);
 		stick3 = new Joystick(2);
 		
 		button1 = new JoystickButton(stick1, 1);
@@ -92,8 +93,9 @@ public class Robot extends SampleRobot {
 		button9 = new JoystickButton(stick1, 9);
 		button10 = new JoystickButton(stick1, 10);
 		button11 = new JoystickButton(stick1, 11);
-		button12 = new JoystickButton(stick1, 12);
+		button12 = new JoystickButton(stick1, 12);*/
 		
+		grabber = new Relay(1);
 
 		motor = new CANTalon(3);
 		motor.changeControlMode(CANTalon.ControlMode.PercentVbus);
@@ -160,7 +162,19 @@ public class Robot extends SampleRobot {
 		Timer.delay(0.3);
 	}
 	public void operatorControl() {
-		try {
+	    while(isOperatorControl() && isEnabled()) {
+		System.out.println(grabber.get());
+		if(stick1.getRawButton(2)) {
+		    grabber.setDirection(Relay.Direction.kReverse);
+		}
+		else if(stick1.getRawButton(4)) {
+		    grabber.set(Relay.Value.kForward);
+		}
+		else {
+		    grabber.set(Relay.Value.kOff);
+		}
+	    }
+		/*try {
 			output = new PrintStream(new File("/home/lvuser/natinst/teleLog.txt"));
 			System.setOut(output);
 		} catch (Exception e){
@@ -183,7 +197,7 @@ public class Robot extends SampleRobot {
 			System.out.println("SPEED:\t" + motor.getSpeed());
 			
 		}*/
-		System.out.println("===========================================");
+		/*System.out.println("===========================================");
 		System.out.println("START");
 		
 		double startTime = Timer.getFPGATimestamp();
@@ -198,7 +212,7 @@ public class Robot extends SampleRobot {
 		System.out.println("===========================================");
 		System.out.println("POS:\t" + motor.getPosition());
 		motor.set(0.0);
-		output.close();
+		output.close();*/
 	}
 		
 	public void driveWithPID(double x, double y){

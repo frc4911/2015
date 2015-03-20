@@ -1,7 +1,6 @@
 package org.usfirst.frc.team4911.robot;
 
 import java.io.File;
-
 import java.io.PrintStream;
 
 import com.kauailabs.nav6.frc.IMUAdvanced;
@@ -15,9 +14,14 @@ import edu.wpi.first.wpilibj.CANTalon.ControlMode;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Relay.Direction;
 import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.Relay;
 
 public class Robot extends SampleRobot {
     private Joystick mainJoystick;
@@ -34,18 +38,22 @@ public class Robot extends SampleRobot {
     private JoystickButton closeClampButton;
     private JoystickButton openClampButton;
     private JoystickButton stowClampButton;
-	
+    private JoystickButton grabberDownButton;
+    private JoystickButton grabberUpButton;
+    
     private CANTalon leftFront3;
     private CANTalon leftRear4;
     private CANTalon rightFront7;
     private CANTalon rightRear8;
 	
     private CANTalon hookLift1;
-    private CANTalon hookLift2;
+    //private CANTalon hookLift2;
 	
     private CANTalon containerLift;
     private CANTalon containerContainer1;
     private CANTalon containerContainer2;
+    
+    private CANTalon canGrabber;
     
     private IMUAdvanced imu;
     private SerialPort serial_port;
@@ -89,6 +97,10 @@ public class Robot extends SampleRobot {
 	openClampButton = new JoystickButton(operatorJoystick, 8);
 	stowClampButton = new JoystickButton(operatorJoystick, 5);
 	
+	grabberDownButton = new JoystickButton(operatorJoystick, 2);
+	grabberUpButton = new JoystickButton(operatorJoystick, 4);
+	
+	
 	leftFront3 = new CANTalon(3);
 	leftFront3.changeControlMode(CANTalon.ControlMode.PercentVbus);
 	leftFront3.reverseOutput(false);
@@ -102,12 +114,15 @@ public class Robot extends SampleRobot {
 	rightRear8.changeControlMode(CANTalon.ControlMode.Follower);
 	rightRear8.reverseOutput(true);
 	
+	canGrabber = new CANTalon(2);
+	canGrabber.changeControlMode(ControlMode.PercentVbus);
+	
 	hookLift1 = new CANTalon(1);
 	hookLift1.changeControlMode(CANTalon.ControlMode.PercentVbus);
 	hookLift1.reverseOutput(true);
-	hookLift2 = new CANTalon(2);
-	hookLift2.changeControlMode(CANTalon.ControlMode.Follower);
-	hookLift1.reverseOutput(true);
+	//hookLift2 = new CANTalon(2);
+	//hookLift2.changeControlMode(CANTalon.ControlMode.Follower);
+	//hookLift1.reverseOutput(true);
 	
 	containerLift = new CANTalon(5);	
 	containerLift.changeControlMode(CANTalon.ControlMode.PercentVbus);	
@@ -121,13 +136,13 @@ public class Robot extends SampleRobot {
 	clampPot = new AnalogPotentiometer(0);
 		
 
-	frame = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
+	/*frame = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
         session = NIVision.IMAQdxOpenCamera("cam2",
         	NIVision.IMAQdxCameraControlMode.CameraControlModeController);
         NIVision.IMAQdxConfigureGrab(session);
 
         cameraServer = CameraServer.getInstance();
-        cameraServer.setQuality(30);
+        cameraServer.setQuality(30);*/
         
         /***************************************
          *
@@ -157,23 +172,23 @@ public class Robot extends SampleRobot {
     /////////////////////////////////////////////////////////////
     public void operatorControl() {
 	boolean rotateEnabled = false;
-		
+	//canGrabber.set(Relay.Value.kForward);
 	//Creating a File to Print to
-	try {
+	/*try {
 	    output = new PrintStream(new File("/home/lvuser/natinst/teleLog.txt"));
 	    System.setOut(output);
 	} catch (Exception e){
 			
-	}
+	}*/
 		
 	//Starting the USB Camera
-	NIVision.IMAQdxStartAcquisition(session);
+	//NIVision.IMAQdxStartAcquisition(session);
 		
 	//Direction Initialization
 	reinitializingIMU(2.0);//Two Second Max
 		
 	//CAMERA THREAD
-	Thread cameraThread = new Thread(new Runnable(){
+	/*Thread cameraThread = new Thread(new Runnable(){
 	    public void run(){
 		while(isOperatorControl() && isEnabled()){
 		    //Camera Update
@@ -182,7 +197,7 @@ public class Robot extends SampleRobot {
 		}
 	    }
 	});
-	cameraThread.start();
+	cameraThread.start();*/
 		
 	//PAYLOAD OPERATOR"S THREAD
 	Thread payloadOperatorThread = new Thread(new Runnable(){
@@ -206,6 +221,17 @@ public class Robot extends SampleRobot {
 		    else{
 			runClamp(0.0);
 		    }			
+		    
+		    if(grabberDownButton.get()) {
+			canGrabber.set(0.25);
+		    }
+		    else if(grabberUpButton.get()) {
+			canGrabber.set(-0.25);
+		    }
+		    else {
+			canGrabber.set(0.0);
+			
+		    }
 		    
 		    //CONTAINER LIFT LOGIC
 		    if(Math.abs(containerLiftVal) >= 0.1){
@@ -342,7 +368,7 @@ public class Robot extends SampleRobot {
 	}//END of Main TeleOp Loop
 		
 	drive(0.0, 0.0, 0.0, 0.0);	
-	output.close();
+	//output.close();
     }
 	
 
@@ -487,6 +513,7 @@ public class Robot extends SampleRobot {
 		drive(0.0, 0.0, 0.0, 0.0);	
 		output.close();
 		*/
+	    /*
 	    //NEW TWO CONTAINER AUTO
 	    //UNTESTED! BE CAREFUL!
 	    //Close clamp
@@ -508,7 +535,18 @@ public class Robot extends SampleRobot {
 	    //Rotate 90
 	    driveForTime(0.0, 0.0, 0.7, imu.getYaw(), 1.2525);
 	    //Stop
-	    drive(0.0, 0.0, 0.0, imu.getYaw());
+	    drive(0.0, 0.0, 0.0, imu.getYaw());*/
+	    
+	    //Can from step
+	    driveForTime(-0.5, 0.0, 0.0, imu.getYaw(), .1);
+	    Timer.delay(4.0);
+	    driveForTime(0.5, 0.0, 0.0, imu.getYaw(), 2.25);
+	    driveForTime(-0.5, 0.0, 0.0, imu.getYaw(), 1.25);
+	    Timer.delay(1.0);
+	    driveForTime(0.5, 0.0, 0.0, imu.getYaw(), 1.0);
+	    retractArm();
+	    driveForTime(0.0, 0.0, -0.7, imu.getYaw(), 1.2525);
+	    //driveForTime(0.5, 0.0, 0.0, imu.getYaw(), 0.5);
 	}
 	
 	/////////////////////////////////////////////////////////////
@@ -534,9 +572,10 @@ public class Robot extends SampleRobot {
 	
 	public void driveForTime(double x, double y, double rotation, double angle, double time) {
 	    double startTime = Timer.getFPGATimestamp();
-	    while(Timer.getFPGATimestamp() - startTime > time && (isAutonomous() && isEnabled())) {
+	    while(Timer.getFPGATimestamp() - startTime < time && (isAutonomous() && isEnabled())) {
 		drive(x, y, rotation, angle);
 	    }
+	    drive(0.0, 0.0, 0.0, imu.getYaw());
 	}
 	public void drive(double x, double y, double rotation, double angle){
 		//Speed Correction
@@ -648,6 +687,13 @@ public class Robot extends SampleRobot {
 	//
 	/////////////////////////////////////////////////////////////
 	
+	public void retractArm() {
+	    double startTime = Timer.getFPGATimestamp();
+	    while((Timer.getFPGATimestamp() - startTime < 2.5) && (isAutonomous() && isEnabled())) {
+		canGrabber.set(-0.25);
+	    }
+	}
+	
 	public void runClampInForTime(double time) {
 	    //Autonomous only command!
 	    double startTime = Timer.getFPGATimestamp();
@@ -714,9 +760,9 @@ public class Robot extends SampleRobot {
 	public void runHookLift(double speed) {
 
 	    hookLift1.changeControlMode(CANTalon.ControlMode.PercentVbus);
-	    hookLift2.changeControlMode(CANTalon.ControlMode.Follower);
+	    //hookLift2.changeControlMode(CANTalon.ControlMode.Follower);
 	    hookLift1.set(-speed);
-	    hookLift2.set(hookLift1.getDeviceID());
+	    //hookLift2.set(hookLift1.getDeviceID());
 	}
 
 	public Thread createNudgeToteLiftDownThread(){
