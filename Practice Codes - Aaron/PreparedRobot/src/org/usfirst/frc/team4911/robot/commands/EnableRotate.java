@@ -17,22 +17,22 @@ import edu.wpi.first.wpilibj.buttons.*;
  *
  */
 public class EnableRotate extends Command {
-	private MecanumDriveSystem mecanumDriveSystem;
-	private SensorSystem sensorSystem;	
-	private PrintSystem printSystem;	
-	private OI oi;
-	private OperatorDrive operatorDrive;
-	private JoystickButton button;
+    private MecanumDriveSystem mecanumDriveSystem;
+    private SensorSystem sensorSystem;	
+    private PrintSystem printSystem;	
+    private OI oi;
+    private OperatorDrive operatorDrive;
+    private JoystickButton button;
 	
     public boolean driveSystemConflict;
     public boolean gridLocked;
     
     private double previousDegree;
 
-	double currentDegree;
-	double deltaDegree;
+    double currentDegree;
+    double deltaDegree;
 	
-	int numIteration;
+    int numIteration;
 	
     private static double THRESHOLD = 2.0;//degrees
     
@@ -56,7 +56,10 @@ public class EnableRotate extends Command {
 
     protected void execute() {
     	if(button.get()){
-	    	mecanumDriveSystem.drive(oi.getMainJoyX(), oi.getMainJoyY(), oi.getMainJoyZ() * RobotConstants.ROTATE_SPEED);
+    	    mecanumDriveSystem.drive(oi.getMainJoyX(), oi.getMainJoyY(), 
+    	    		oi.getMainJoyZ() * RobotConstants.ROTATE_SPEED
+    	    		, (double)sensorSystem.getYawWithCompensation());
+    		
     	}
     	mecanumDriveSystem.setGoalHeading(sensorSystem.getYaw());
     }
@@ -71,14 +74,14 @@ public class EnableRotate extends Command {
     	===========================================*/
     	
     	if(numIteration % 5 == 0){
-    		currentDegree = sensorSystem.getYaw();
-        	deltaDegree = Math.abs(previousDegree - currentDegree);        	
-        	previousDegree = currentDegree;
-        	numIteration = 1;
-        	return (deltaDegree < THRESHOLD) && (!button.get() );
+    	    currentDegree = sensorSystem.getYaw();
+    	    deltaDegree = Math.abs(previousDegree - currentDegree);        	
+    	    previousDegree = currentDegree;
+    	    numIteration = 1;
+    	    return (deltaDegree < THRESHOLD) && (!button.get() );
     	} else {
-        	numIteration++;
-    		return false;
+    	    numIteration++;
+    	    return false;
     	}        
     }
 

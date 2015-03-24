@@ -23,15 +23,14 @@ public class ClampOpenTime extends Command {
     }
 
     protected void initialize() {
-		containerSystem = Robot.containerLiftSystem;
-		oi = Robot.oi;
-		teleop = Robot.teleOp;
-		if(teleop.containerClampConflict) {
-		    this.cancel();
-		}
-		teleop.containerClampConflict = true;
-		startTime = Timer.getFPGATimestamp();
-		
+	containerSystem = Robot.containerLiftSystem;
+	oi = Robot.oi;
+	teleop = Robot.teleOp;
+	if(teleop.containerClampConflict) {
+	    this.cancel();
+	}
+	teleop.containerClampConflict = true;
+	startTime = Timer.getFPGATimestamp();
     }
 
     protected void execute() {

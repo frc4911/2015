@@ -25,6 +25,7 @@ public class Robot extends IterativeRobot {
     public static PrintSystem printSystem;
     public static HookLiftSystem hookLiftSystem;
     public static ContainerLiftSystem containerLiftSystem;
+    public static CameraSystem cameraSystem;
     
     public void robotInit() {
     	RobotMap.init();
@@ -34,10 +35,11 @@ public class Robot extends IterativeRobot {
     	sensorSystem = new SensorSystem();
         hookLiftSystem = new HookLiftSystem();
         containerLiftSystem = new ContainerLiftSystem();
+        //cameraSystem = new CameraSystem();
         
         autonomousCommand = new Autonomous();
         teleOp = new OperatorDrive();
-
+  
         oi = new OI();
     }
 
@@ -61,6 +63,7 @@ public class Robot extends IterativeRobot {
     	if(teleOp.isCanceled()){
     		teleOp = new OperatorDrive();
     	}
+    	//cameraSystem.start();
     	printServerCommand = new RunPrintServer();
     	printServerCommand.start();    	
     	teleOp.start();

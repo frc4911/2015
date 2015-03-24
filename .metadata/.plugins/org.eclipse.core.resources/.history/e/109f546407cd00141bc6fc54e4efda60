@@ -1,0 +1,22 @@
+package org.usfirst.frc.team4911.robot;
+
+import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.RobotDrive;
+
+public class DriveSystem {
+    private CANTalon frontLeft = new CANTalon(3);
+    private CANTalon rearLeft = new CANTalon(4);
+    private CANTalon frontRight = new CANTalon(7);
+    private CANTalon rearRight = new CANTalon(8);
+    
+    private RobotDrive robot = new RobotDrive(frontLeft, rearLeft, frontRight, rearRight);
+    
+    private double rotation;
+    private double currError;
+    private double lastError;
+    private double integration;
+    private double derivative;
+	
+    private double goalHeading;
+    private double speed;
+}

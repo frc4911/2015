@@ -16,15 +16,16 @@ import edu.wpi.first.wpilibj.CANTalon.ControlMode;
  *
  */
 public class ContainerLiftSystem extends Subsystem {
-	private CANTalon containerLift;
-	private CANTalon containerContainer;
-	private CANTalon secondContainerContainer;
-	private SensorSystem sensorSystem = Robot.sensorSystem;
-	private boolean atLowSpeed = false;
-	private double targetPosition;
-	private boolean usingLift;
-	private double prevCurrent = 0.0;
-	private double highCurrentStartTime = 0.0;
+    private CANTalon containerLift;
+    private CANTalon containerContainer;
+    private CANTalon secondContainerContainer;
+    private SensorSystem sensorSystem = Robot.sensorSystem;
+    private boolean atLowSpeed = false;
+    private double targetPosition;
+    private boolean usingLift;
+    private double prevCurrent = 0.0;
+    private double highCurrentStartTime = 0.0;
+    
     public void initDefaultCommand() {
 	
     }
@@ -52,11 +53,11 @@ public class ContainerLiftSystem extends Subsystem {
 		if(usingLift) {
 		    double error = targetPosition - 0.0;
 		    if(Math.abs(error) > RobotConstants.LIFT_ERROR_TOLERANCE) {
-		    	containerLift.set(error * 1.0); //TODO: Fix this scaler vlaue
+			containerLift.set(error * 1.0); //TODO: Fix this scaler vlaue
 		    }
 		    else {
-		    	containerLift.set(0.0);
-		    	usingLift = false;
+			containerLift.set(0.0);
+			usingLift = false;
 		    }
 		}
 		else {
@@ -78,38 +79,13 @@ public class ContainerLiftSystem extends Subsystem {
     	containerContainer.changeControlMode(ControlMode.PercentVbus);
     	secondContainerContainer.changeControlMode(ControlMode.Follower);
     	//pot value:   0.4499214632998128 if greater, fast
-    	if(sensorSystem.getPot() > 0.4499214632998128) {
+    	//pot logic: removed due to broken pot TODO: Add in once pot fixed
+    	if(sensorSystem.getPot() > 0.6863350027983585) {
     	    containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
     	}
     	else {
     	    containerContainer.set(0.307);
     	}
-    	/*if(sensorSystem.getPot() < 0.42) {
-    	    containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
-    	}
-    	else {
-    	    /*if(atLowSpeed) {
-    		containerContainer.set(0.0);
-    	    }
-    	    else {
-    		if(containerContainer.getOutputCurrent() > 21.0) {
-    		    if(prevCurrent > 21.0) {
-    			    if(highCurrentStartTime == 0.0) {
-    				highCurrentStartTime = Timer.getFPGATimestamp();
-    			    }
-    			    else if(Timer.getFPGATimestamp() - highCurrentStartTime > .08) {
-    				containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
-    			    }
-    		    }
-    		    containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_HOLD_POWER);
-    		    atLowSpeed = true;
-    		}
-    		else {
-    		    containerContainer.set(RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
-    		}
-    	    }*/
-    	    //containerContainer.set(0.307);
-    	//}
     	secondContainerContainer.set(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT);
     }
     
@@ -128,20 +104,21 @@ public class ContainerLiftSystem extends Subsystem {
     }
 	
     public void runClampManuallyBackward(){
-		containerContainer.changeControlMode(ControlMode.PercentVbus);
-		secondContainerContainer.changeControlMode(ControlMode.Follower);
-		if(sensorSystem.getPot() < 0.720) {
-		    containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
-		}
-		else {
-		    containerContainer.set(0.0);
-		}
-		secondContainerContainer.set(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT);
-		atLowSpeed = false;
+	containerContainer.changeControlMode(ControlMode.PercentVbus);
+	secondContainerContainer.changeControlMode(ControlMode.Follower);
+	//TODO: add in once pot is fixed
+	if(sensorSystem.getPot() < 0.9491851645337156) { //0.720
+	    containerContainer.set(-RobotConstants.CONTAINERSYSTEM_CLAMP_SPEED);
+	}
+	else {
+	    containerContainer.set(0.0);
+	}
+	secondContainerContainer.set(RobotConstants.CONTAINER_CONTAINER_CANTALON_PORT);
+	atLowSpeed = false;
     }
 	    
-	    public boolean lowSpeed() {
-		return atLowSpeed;
+    public boolean lowSpeed() {
+	return atLowSpeed;
     }
 	 
     public void setLowSpeed(boolean on) {

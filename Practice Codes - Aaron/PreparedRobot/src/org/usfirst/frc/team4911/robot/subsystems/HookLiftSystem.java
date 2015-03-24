@@ -10,11 +10,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.CANTalon;
 
 public class HookLiftSystem extends Subsystem {
-	private CANTalon leftHook;
-	private CANTalon rightHook;
-	private boolean isBeingUsed;
-	private double targetPos;
-	private SensorSystem sensorSystem = Robot.sensorSystem;
+    private CANTalon leftHook;
+    private CANTalon rightHook;
+    private boolean isBeingUsed;
+    private double targetPos;
+    private SensorSystem sensorSystem = Robot.sensorSystem;
 	
     public void initDefaultCommand() {
     	
@@ -35,30 +35,30 @@ public class HookLiftSystem extends Subsystem {
     }
     
     public void updateLift(double joyVal) {
-		leftHook.changeControlMode(ControlMode.PercentVbus);
-		rightHook.changeControlMode(ControlMode.Follower);
-		if(Math.abs(joyVal) >= 0.1) {
-		    isBeingUsed = false;
-		}
-		if(isBeingUsed) {
-		    double error = targetPos - 0.0;//sensorSystem.getHookLiftPot();
-		    if(Math.abs(error) > RobotConstants.LIFT_ERROR_TOLERANCE) {
-			leftHook.set(error * 1.0); //TODO: Fix this scaler value
-		    }
-		    else {
-			leftHook.set(0.0);
-			isBeingUsed = false;
-		    }
-		}
-		else {
-		    leftHook.set(-joyVal);
-		}
-		rightHook.set(RobotConstants.HOOK_LEFT_CANTALON_PORT);
+	leftHook.changeControlMode(ControlMode.PercentVbus);
+	rightHook.changeControlMode(ControlMode.Follower);
+	if(Math.abs(joyVal) >= 0.1) {
+	    isBeingUsed = false;
+	}
+	if(isBeingUsed) {
+	    double error = targetPos - 0.0;//sensorSystem.getHookLiftPot();
+	    if(Math.abs(error) > RobotConstants.LIFT_ERROR_TOLERANCE) {
+		leftHook.set(error * 1.0); //TODO: Fix this scaler value
+	    }
+	    else {
+		leftHook.set(0.0);
+		isBeingUsed = false;
+	    }
+	}
+	else {
+	    leftHook.set(-joyVal);
+	}
+	rightHook.set(RobotConstants.HOOK_LEFT_CANTALON_PORT);
     }
     
     public void setTargetPos(double pos) {
-		isBeingUsed = true;
-		targetPos = pos;
+	isBeingUsed = true;
+	targetPos = pos;
     }
     
     public void setLiftToPoint(double pos) {
@@ -67,7 +67,6 @@ public class HookLiftSystem extends Subsystem {
     	rightHook.changeControlMode(CANTalon.ControlMode.Follower);
     	leftHook.set(pos);
     	rightHook.set(RobotConstants.HOOK_LEFT_CANTALON_PORT);
-
     }    
 
     public boolean isBeingUsed(){

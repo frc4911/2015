@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move 2 packages to &apos;PreparedRobot/src&apos;&#x0D;&#x0A;- Original project: &apos;CyberKnightsIterativeBot&apos;&#x0D;&#x0A;- Destination element: &apos;PreparedRobot/src&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     CyberKnightsIterativeBot/src/com.kauailabs.nav6.frc&#x0D;&#x0A;     CyberKnightsIterativeBot/src/com.kauailabs.nav6&#x0D;&#x0A;- Update references to refactored element" description="Move packages" destination="=PreparedRobot/src" element1="/src&lt;com.kauailabs.nav6.frc" element2="/src&lt;com.kauailabs.nav6" flags="589830" fragments="2" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.movePackages" stamp="1426643338029" version="1.0"/>
+</session>

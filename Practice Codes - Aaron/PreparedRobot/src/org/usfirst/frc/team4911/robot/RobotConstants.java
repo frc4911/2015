@@ -1,4 +1,6 @@
 package org.usfirst.frc.team4911.robot;
+import com.ni.vision.NIVision;
+import com.ni.vision.NIVision.Image;
 
 public class RobotConstants {
     //JOYSTICK CONFIG
@@ -89,12 +91,18 @@ public class RobotConstants {
     public static final double inToCM = 2.54;
     
     //PrintSystem Constants
-    public static final int printFrequency = 100;
-    public static final boolean STATIC_INFO_ALLOWED = true;
+    public static final int printFrequency = 10;
+    public static final boolean STATIC_INFO_ALLOWED = false;
     
     //Autonomous Movement Constants
     public static final double HORIZONTAL_DISTANCE_BETWEEN_TOTES = 400;
     public static final double FORWARD_DISTANCE_TO_AUTO_ZONE = 300;
     public static final double CLEAR_TOTE_LIP_DISTANCE = 10;
+    
+    //Camera Constants
+    public static final String TOTE_CAMERA = "cam2";
+    public static final int TOTE_SESSION = NIVision.IMAQdxOpenCamera("cam2", 
+	    				NIVision.IMAQdxCameraControlMode.CameraControlModeController);
+    public static final Image FRAME = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
     
 }

@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class ZeroYaw extends Command {
 
-	private JoystickButton button;
+    private JoystickButton button;
 	
     public ZeroYaw(JoystickButton button) {
         this.button = button;
@@ -33,10 +33,10 @@ public class ZeroYaw extends Command {
 
     protected boolean isFinished() {
     	if(DriverStation.getInstance().isOperatorControl()) {
-    		return !button.get();
+    	    return !button.get();
     	}
     	else {
-    		return true;
+    	    return true;
     	}
     }
 

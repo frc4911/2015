@@ -16,6 +16,7 @@ import org.usfirst.frc.team4911.robot.RobotConstants;
  */
 public class DriveForTime extends Command {
 	private MecanumDriveSystem mecanumDriveSystem;
+	private SensorSystem sensorSystem;
 	private OI oi;
 	private OperatorDrive operatorDrive;
 	
@@ -37,6 +38,7 @@ public class DriveForTime extends Command {
     	
     	operatorDrive = Robot.teleOp;
     	mecanumDriveSystem = Robot.mecanumDriveSystem;
+    	sensorSystem = Robot.sensorSystem;
     	if(DriverStation.getInstance().isOperatorControl()){
     	    if(operatorDrive.driveSystemConflict){
     		this.cancel();
@@ -46,7 +48,7 @@ public class DriveForTime extends Command {
     }
 
     protected void execute() {
-    	mecanumDriveSystem.driveWithPID(x, y);
+    	mecanumDriveSystem.driveWithPID(x, y, (double)sensorSystem.getYawWithCompensation());
     }
 
     protected boolean isFinished() {
@@ -56,9 +58,7 @@ public class DriveForTime extends Command {
     	}
     	else{
     	    //checks if we have moved for the designated time
-    	    return ((Timer.getFPGATimestamp() - startTime) >= time);
-    		
-    		
+    	    return ((Timer.getFPGATimestamp() - startTime) >= time);	
     	}
     }
 
@@ -66,6 +66,7 @@ public class DriveForTime extends Command {
     	if(DriverStation.getInstance().isOperatorControl()){
     	    operatorDrive.driveSystemConflict = false;  
     	}
+    	Timer.delay(0.75);
     }
 
     protected void interrupted() {

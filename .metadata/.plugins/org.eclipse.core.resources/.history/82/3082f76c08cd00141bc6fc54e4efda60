@@ -1,0 +1,108 @@
+package org.usfirst.frc.team4911.robot;
+
+import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.RobotDrive;
+
+public class DriveSystem {
+    private CANTalon leftFront3 = new CANTalon(3);
+    private CANTalon leftRear4 = new CANTalon(4);
+    private CANTalon rightFront7 = new CANTalon(7);
+    private CANTalon rightRear8 = new CANTalon(8);
+    
+    private RobotDrive robot = new RobotDrive(leftFront3, leftRear4, rightFront7, rightRear8);
+    
+    //private double rotation;
+    //private double currError;
+    //private double lastError;
+    //private double integration;
+    //private double derivative;
+	
+    //private double goalHeading;
+    //private double speed;
+    
+    public DriveSystem() {
+	robot.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, false);
+	robot.setInvertedMotor(RobotDrive.MotorType.kRearLeft, false);
+
+	robot.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+	robot.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+		
+	goalHeading = 0.0;
+	speed = 1.0;
+    }
+    
+    public void drive(double x, double y, double rotation, double angle, double speedLimit){
+	//Speed Correction
+	x *= speedLimit;
+	y *= speedLimit;
+	rotation *= speedLimit;
+	
+	double[] wheelSpeeds = new double[4];
+	byte syncGroup = 0;
+	        
+	y = -y;
+		
+	// Compenstate for gyro angle.
+	double rotated[] = rotateVector(x, y, angle);
+	x = rotated[0];
+	y = rotated[1];
+
+	if(Math.abs(rotation) <= 0.05){
+	    wheelSpeeds[0] = x + y;
+	    wheelSpeeds[2] = (-x + y) * -1.0;
+		
+	    leftFront3.changeControlMode(CANTalon.ControlMode.PercentVbus);
+	    leftRear4.changeControlMode(CANTalon.ControlMode.Follower);
+	    rightFront7.changeControlMode(CANTalon.ControlMode.PercentVbus);
+	    rightRear8.changeControlMode(CANTalon.ControlMode.Follower);
+        
+	    leftFront3.set(wheelSpeeds[0] , syncGroup);
+	    rightFront7.set(wheelSpeeds[2] , syncGroup);
+	    leftRear4.set(7 , syncGroup);
+	    rightRear8.set(3, syncGroup);
+  
+	    System.out.println("==============================================================");
+	    System.out.println("GoalHeading:\t" + goalHeading);
+	    System.out.println("X:\t" + x);
+	    System.out.println("Y:\t" + y);
+	    System.out.println("R:\t" + rotation);
+	    System.out.println("A:\t" + angle);
+	    System.out.println("WheelSpeeds:\t" + wheelSpeeds[0] + " , ," + wheelSpeeds[2]);
+	} else {
+	    wheelSpeeds[0] = x + y + rotation;
+	    wheelSpeeds[1] = -x + y + rotation;
+	    wheelSpeeds[2] = (-x + y - rotation) * -1.0;
+	    wheelSpeeds[3] = (x + y - rotation) * -1.0;
+
+	    leftFront3.changeControlMode(CANTalon.ControlMode.PercentVbus);
+	    leftRear4.changeControlMode(CANTalon.ControlMode.PercentVbus);
+	    rightFront7.changeControlMode(CANTalon.ControlMode.PercentVbus);
+	    rightRear8.changeControlMode(CANTalon.ControlMode.PercentVbus);
+        
+	    leftFront3.set(wheelSpeeds[0], syncGroup);
+	    leftRear4.set(wheelSpeeds[1], syncGroup);
+	    rightFront7.set(wheelSpeeds[2], syncGroup);
+	    rightRear8.set(wheelSpeeds[3], syncGroup);
+
+	    System.out.println("==============================================================");
+	    System.out.println("GoalHeading:\t" + goalHeading);
+	    System.out.println("X:\t" + x);
+	    System.out.println("Y:\t" + y);
+	    System.out.println("R:\t" + rotation);
+	    System.out.println("A:\t" + angle);
+	    System.out.println("WheelSpeeds:\t" + wheelSpeeds[0] + " , " + wheelSpeeds[1]
+        		 	+ " , " + wheelSpeeds[2]  + " , " + wheelSpeeds[3]);
+	}
+    }
+    
+    private static double[] rotateVector(double x, double y, double angle) {
+        double cosA = Math.cos(angle * (3.14159 / 180.0));
+        double sinA = Math.sin(angle * (3.14159 / 180.0));
+        double out[] = new double[2];
+        out[0] = x * cosA - y * sinA;
+        out[1] = x * sinA + y * cosA;
+        return out;
+    }
+    
+    
+}
