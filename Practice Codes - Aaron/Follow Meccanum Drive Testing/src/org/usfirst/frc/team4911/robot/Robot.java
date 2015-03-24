@@ -76,6 +76,8 @@ public class Robot extends SampleRobot {
 
     private PrintStream output;
 
+    private int autoMode;
+    
     /////////////////////////////////////////////////////////////
     //
     //	CONSTRUCTOR / INITIALIZATION
@@ -97,8 +99,8 @@ public class Robot extends SampleRobot {
 	openClampButton = new JoystickButton(operatorJoystick, 8);
 	stowClampButton = new JoystickButton(operatorJoystick, 5);
 	
-	grabberDownButton = new JoystickButton(operatorJoystick, 2);
-	grabberUpButton = new JoystickButton(operatorJoystick, 4);
+	grabberDownButton = new JoystickButton(operatorJoystick, 4);
+	grabberUpButton = new JoystickButton(operatorJoystick, 2);
 	
 	
 	leftFront3 = new CANTalon(3);
@@ -134,10 +136,27 @@ public class Robot extends SampleRobot {
 	containerLift.changeControlMode(CANTalon.ControlMode.Follower);	
 	
 	clampPot = new AnalogPotentiometer(0);
-		
-
+	
+	///////////////////////////////////////////
+	// BBBBBB   EEEEE   N     N
+	// B	B   E       N N   N
+	// BBBBBB   EEEEE   N  N  N
+	// B	B   E       N   N N
+	// BBBBBB   EEEEE   N    NN
+	autoMode = 2;
+	// 0 = Nothing
+	// 1 = Tote and Can
+	// 2 = Can from step
+	// 3 = Two Can auto
+	//CHANGE AUTO HERE!!!!!
+	//CHANGE AUTO HERE!!!!!
+	//CHANGE AUTO HERE!!!!!
+	//CHANGE AUTO HERE!!!!!
+	
+	
+	
 	/*frame = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
-        session = NIVision.IMAQdxOpenCamera("cam2",
+        session = NIVision.IMAQdxOpenCamera("cam0",
         	NIVision.IMAQdxCameraControlMode.CameraControlModeController);
         NIVision.IMAQdxConfigureGrab(session);
 
@@ -185,7 +204,9 @@ public class Robot extends SampleRobot {
 	//NIVision.IMAQdxStartAcquisition(session);
 		
 	//Direction Initialization
-	reinitializingIMU(2.0);//Two Second Max
+	/*if(autoMode == 2) {
+	    reinitializingIMU(2.0);//Two Second Max
+	}*/
 		
 	//CAMERA THREAD
 	/*Thread cameraThread = new Thread(new Runnable(){
@@ -387,8 +408,14 @@ public class Robot extends SampleRobot {
 	    speedLimit = 1.0;
 	    imu.zeroYaw();
 		
+	    
+	    //NO AUTO
+	    if(autoMode == 0) {
+		
+	    }
 	    //CONTAINER AND TOTE AUTONOMOUS
-	    /*double startTime = Timer.getFPGATimestamp();
+	    if(autoMode == 1) {
+		double startTime = Timer.getFPGATimestamp();
 		double currTime = startTime;
 		//MOVING TOTE LIFT UP
 		while(isAutonomous() && isEnabled() && currTime - startTime <= 1.0){
@@ -399,20 +426,77 @@ public class Robot extends SampleRobot {
 		startTime = Timer.getFPGATimestamp();
 		currTime = startTime;
 		//ROTATE 
-		while(isAutonomous() && isEnabled() && currTime - startTime <= 1.75){
+		while(isAutonomous() && isEnabled() && currTime - startTime <= 1.85){
 			drive(0.0, 0.0, -0.7, imu.getYaw());
 			currTime = Timer.getFPGATimestamp();
 		}
 		drive(0.0, 0.0, 0.0, 0.0);
-		
+		driveForTime(0.5, -0.5, 0.0, imu.getYaw(), 0.25);
 		startTime = Timer.getFPGATimestamp();
 		currTime = startTime;
 		//CONTAINER LIFT DOWN
-		while(isAutonomous() && isEnabled() && currTime - startTime <= 3.5){
-			runContainerLift(0.25);
+		while(isAutonomous() && isEnabled() && currTime - startTime <= 2.5){
+			runContainerLift(0.5);
 			currTime = Timer.getFPGATimestamp();
 		}
 		runContainerLift(0.0);
+		startTime = Timer.getFPGATimestamp();
+		currTime = startTime;
+		//CLAMP IN
+		while(isAutonomous() && isEnabled() && currTime - startTime <= 3.75){
+			runClampInward();
+			currTime = Timer.getFPGATimestamp();
+		}
+		runClamp(0.0);
+		
+		startTime = Timer.getFPGATimestamp();
+		currTime = startTime;
+		//CONTAINER LIFT UP
+		while(isAutonomous() && isEnabled() && currTime - startTime <= 0.8){
+			runContainerLift(-1.0);
+			currTime = Timer.getFPGATimestamp();
+		}
+		runContainerLift(0.0);
+		startTime = Timer.getFPGATimestamp();
+		currTime = startTime;
+		//ROTATE 
+		while(isAutonomous() && isEnabled() && currTime - startTime <= 0.9){
+			drive(0.0, 0.0, 0.7, imu.getYaw());
+			currTime = Timer.getFPGATimestamp();
+		}
+		drive(0.0, 0.0, 0.0, 0.0);
+		startTime = Timer.getFPGATimestamp();
+		currTime = startTime;
+		//STRAFE LEFT
+		while(isAutonomous() && isEnabled() && currTime - startTime <= 1.75){
+		    drive(0.0, -0.5, 0.0, imu.getYaw());
+		    currTime = Timer.getFPGATimestamp();
+		}
+		drive(0.0, 0.0, 0.0, 0.0);
+	    }
+	    else if(autoMode == 2) {
+		//Step can auto
+		driveForTime(-0.5, 0.0, 0.0, imu.getYaw(), .1);
+		Timer.delay(4.0);
+		driveForTime(0.5, 0.0, 0.0, imu.getYaw(), 2.25);
+		driveForTime(-0.5, 0.0, 0.0, imu.getYaw(), 1.5);
+		Timer.delay(1.0);
+		driveForTime(0.5, 0.0, 0.0, imu.getYaw(), 1.25);
+		retractArm();
+		driveForTime(0.0, 0.0, -0.7, imu.getYaw(), 1.25);
+		imu.zeroYaw();
+	    }
+	    else if(autoMode == 3) {
+		double startTime = Timer.getFPGATimestamp();
+		double currTime = startTime;
+		//MOVING TOTE LIFT UP
+		while(isAutonomous() && isEnabled() && currTime - startTime <= 2.5){
+			runHookLift(-1.0);
+			currTime = Timer.getFPGATimestamp();
+		}
+		runHookLift(0.0);
+		driveForTime(-0.5, 0.0, 0.0, imu.getYaw(), 1.5);
+	    }
 		/*
 		startTime = Timer.getFPGATimestamp();
 		currTime = startTime;
@@ -538,15 +622,7 @@ public class Robot extends SampleRobot {
 	    drive(0.0, 0.0, 0.0, imu.getYaw());*/
 	    
 	    //Can from step
-	    driveForTime(-0.5, 0.0, 0.0, imu.getYaw(), .1);
-	    Timer.delay(4.0);
-	    driveForTime(0.5, 0.0, 0.0, imu.getYaw(), 2.25);
-	    driveForTime(-0.5, 0.0, 0.0, imu.getYaw(), 1.25);
-	    Timer.delay(1.0);
-	    driveForTime(0.5, 0.0, 0.0, imu.getYaw(), 1.0);
-	    retractArm();
-	    driveForTime(0.0, 0.0, -0.7, imu.getYaw(), 1.2525);
-	    //driveForTime(0.5, 0.0, 0.0, imu.getYaw(), 0.5);
+	    
 	}
 	
 	/////////////////////////////////////////////////////////////
@@ -609,13 +685,13 @@ public class Robot extends SampleRobot {
 	        rightRear8.set(3, syncGroup);
 
 	        
-	        System.out.println("==============================================================");
+	        /*System.out.println("==============================================================");
 	        System.out.println("GoalHeading:\t" + goalHeading);
 	        System.out.println("X:\t" + x);
 	        System.out.println("Y:\t" + y);
 	        System.out.println("R:\t" + rotation);
 	        System.out.println("A:\t" + angle);
-	        System.out.println("WheelSpeeds:\t" + wheelSpeeds[0] + " , ," + wheelSpeeds[2]);
+	        System.out.println("WheelSpeeds:\t" + wheelSpeeds[0] + " , ," + wheelSpeeds[2]);*/
 		} else {
 			wheelSpeeds[0] = x + y + rotation;
 	        wheelSpeeds[1] = -x + y + rotation;
@@ -632,14 +708,14 @@ public class Robot extends SampleRobot {
 	        rightFront7.set(wheelSpeeds[2], syncGroup);
 	        rightRear8.set(wheelSpeeds[3], syncGroup);
 
-	        System.out.println("==============================================================");
+	        /*System.out.println("==============================================================");
 	        System.out.println("GoalHeading:\t" + goalHeading);
 	        System.out.println("X:\t" + x);
 	        System.out.println("Y:\t" + y);
 	        System.out.println("R:\t" + rotation);
 	        System.out.println("A:\t" + angle);
 	        System.out.println("WheelSpeeds:\t" + wheelSpeeds[0] + " , " + wheelSpeeds[1]
-	        		 + " , " + wheelSpeeds[2]  + " , " + wheelSpeeds[3]);
+	        		 + " , " + wheelSpeeds[2]  + " , " + wheelSpeeds[3]);*/
 		}
      
 	}
@@ -689,9 +765,10 @@ public class Robot extends SampleRobot {
 	
 	public void retractArm() {
 	    double startTime = Timer.getFPGATimestamp();
-	    while((Timer.getFPGATimestamp() - startTime < 2.5) && (isAutonomous() && isEnabled())) {
+	    while((Timer.getFPGATimestamp() - startTime < 2.2) && (isAutonomous() && isEnabled())) {
 		canGrabber.set(-0.25);
 	    }
+	    canGrabber.set(0.0);
 	}
 	
 	public void runClampInForTime(double time) {
@@ -794,7 +871,7 @@ public class Robot extends SampleRobot {
 		while((imu.isCalibrating() || Math.abs(imu.getYaw()) >= 1.0) && currTime - startTime <= overrideTime){
 			currTime = Timer.getFPGATimestamp();
 			Timer.delay(0.1);
-			System.out.println("WAITING FOR IMU TO ZERO AND CALIBRATE");
+			//System.out.println("WAITING FOR IMU TO ZERO AND CALIBRATE");
 		}
 	}
 	

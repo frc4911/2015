@@ -15,5 +15,8 @@
 <fullyQualifiedTypeName name="com.kauailabs.nav6.frc.IMU"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Joystick"/>
 <fullyQualifiedTypeName name="java.lang.Math"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Talon"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Servo"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.DigitalInput"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Timer"/>
 </qualifiedTypeNameHistroy>
