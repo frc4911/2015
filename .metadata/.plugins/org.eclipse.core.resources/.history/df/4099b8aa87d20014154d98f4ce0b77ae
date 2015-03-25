@@ -646,79 +646,6 @@ public class Robot extends SampleRobot {
 	//
 	/////////////////////////////////////////////////////////////
 	
-	public void rotateToAngle(double angle, double time) {
-	    int count = 0;
-	    double startTime = Timer.getFPGATimestamp();
-	    double currYaw = imu.getYaw();
-	    integration = 0.0;
-	    derivative = 0.0;
-	    lastError = 0.0;
-	    currError = 0.0;
-
-	    currError = angle - currYaw;//[-180 - 180] degrees
-	    //Angle Bound Correction
-	    if(Math.abs(currError) > 180) {
-		double delta = 360-Math.abs(currError);
-		if(currError > 0) {
-		    delta*= -1;
-		}
-		currError = delta;
-	    }	
-	    
-	    System.out.println("************************************************************************************");
-	    System.out.println("*\tFrom " + currYaw +  " degrees to " + angle + "*");
-	    System.out.println("************************************************************************************");
-	    while(count <= 10
-		    && (Timer.getFPGATimestamp() - startTime <= time)
-		    && (isAutonomous() && isEnabled())) {
-		if(Math.abs(currError) <= 1.5){
-	    	    count++;
-	    	} else {
-	    	    count = 0;
-	    	}
-	    	currYaw = imu.getYaw();
-	    	
-	    	System.out.println("Angle:\t" + currYaw);
-	    	
-	    	currError = angle - currYaw;//[-180 - 180] degrees
-	    	//Angle Bound Correction
-	    	if(Math.abs(currError) > 180) {
-	    	    double delta = 360-Math.abs(currError);
-	    	    if(currError > 0) {
-	    		delta*= -1;
-	    	    }
-	    	    currError = delta;
-	    	}
-	    	//PID Algorithm
-	    	integration += currError;
-	    	derivative = lastError - currError;
-	    	lastError = currError;
-	    	//Clear Integral When Passed the Goal Heading
-	    	if ( currError * lastError < 0.0){
-	    	    integration = 0.0;
-	    	}
-	    	//PID Constants
-	    	double kP = 1.0 / 19.0;
-	    	double kI = 0.0;
-	    	double kD = 0.015;
-	    		
-	    	//Calculate Rotation
-	    	rotation = kP * currError + kI * integration + kD * derivative;//[-1.0 - 1.0] percentage
-	    	rotation = (rotation < 0) ? Math.max(-1.0, rotation) : Math.min(1.0, rotation);
-	    	
-	    	System.out.println("Rotation:\t" + rotation);
-	    	System.out.println("Time:\t" + (Timer.getFPGATimestamp() - startTime));
-	    	System.out.println("==============================================");
-	    	//Command Motors
-	    	drive(0.0, 0.0, rotation, currYaw);
-	    }
-	    drive(0.0, 0.0, 0.0, 0.0);
-	    System.out.println("Count:\t" + count);
-	    System.out.println(Math.abs(currError) >= 1.0);
-	    System.out.println((Timer.getFPGATimestamp() - startTime <= time));
-	    System.out.println((isAutonomous() && isEnabled()));
-	}
-	
 	public void driveForTime(double x, double y, double rotation, double angle, double time) {
 	    double startTime = Timer.getFPGATimestamp();
 	    while(Timer.getFPGATimestamp() - startTime < time && (isAutonomous() && isEnabled())) {
@@ -727,27 +654,27 @@ public class Robot extends SampleRobot {
 	    drive(0.0, 0.0, 0.0, imu.getYaw());
 	}
 	public void drive(double x, double y, double rotation, double angle){
-	    //Speed Correction
-	    x *= speedLimit;
-	    y *= speedLimit;
-	    rotation *= speedLimit;
-	    
-	    double[] wheelSpeeds = new double[4];
-	    byte syncGroup = 0;
+		//Speed Correction
+		x *= speedLimit;
+		y *= speedLimit;
+		rotation *= speedLimit;
+		
+		double[] wheelSpeeds = new double[4];
+		byte syncGroup = 0;
 		        
-	    y = -y;
+		y = -y;
 			
 	
-	    // Compenstate for gyro angle.
-	    double rotated[] = rotateVector(x, y, angle);
-	    x = rotated[0];
-	    y = rotated[1];
+		// Compenstate for gyro angle.
+        double rotated[] = rotateVector(x, y, angle);
+        x = rotated[0];
+        y = rotated[1];
 	
-	    if(Math.abs(rotation) <= 0.05){
-		wheelSpeeds[0] = x + y;
-		wheelSpeeds[2] = (-x + y) * -1.0;
-		
-		leftFront3.changeControlMode(CANTalon.ControlMode.PercentVbus);
+		if(Math.abs(rotation) <= 0.05){
+			wheelSpeeds[0] = x + y;
+			wheelSpeeds[2] = (-x + y) * -1.0;
+			
+	        leftFront3.changeControlMode(CANTalon.ControlMode.PercentVbus);
 	        leftRear4.changeControlMode(CANTalon.ControlMode.Follower);
 	        rightFront7.changeControlMode(CANTalon.ControlMode.PercentVbus);
 	        rightRear8.changeControlMode(CANTalon.ControlMode.Follower);
@@ -765,9 +692,8 @@ public class Robot extends SampleRobot {
 	        System.out.println("R:\t" + rotation);
 	        System.out.println("A:\t" + angle);
 	        System.out.println("WheelSpeeds:\t" + wheelSpeeds[0] + " , ," + wheelSpeeds[2]);*/
-		} 
-	    else {
-		wheelSpeeds[0] = x + y + rotation;
+		} else {
+			wheelSpeeds[0] = x + y + rotation;
 	        wheelSpeeds[1] = -x + y + rotation;
 	        wheelSpeeds[2] = (-x + y - rotation) * -1.0;
 	        wheelSpeeds[3] = (x + y - rotation) * -1.0;
@@ -790,7 +716,8 @@ public class Robot extends SampleRobot {
 	        System.out.println("A:\t" + angle);
 	        System.out.println("WheelSpeeds:\t" + wheelSpeeds[0] + " , " + wheelSpeeds[1]
 	        		 + " , " + wheelSpeeds[2]  + " , " + wheelSpeeds[3]);*/
-	    }
+		}
+     
 	}
 	
 	public void driveWithPID(double x, double y, double currYaw){
@@ -908,6 +835,7 @@ public class Robot extends SampleRobot {
 	}
 	
 	public void runHookLift(double speed) {
+
 	    hookLift1.changeControlMode(CANTalon.ControlMode.PercentVbus);
 	    //hookLift2.changeControlMode(CANTalon.ControlMode.Follower);
 	    hookLift1.set(-speed);
@@ -917,12 +845,12 @@ public class Robot extends SampleRobot {
 	public Thread createNudgeToteLiftDownThread(){
 	    Thread t = new Thread(new Runnable(){
 		public void run(){
-		    double startTime = Timer.getFPGATimestamp();
-		    double currTime = startTime;
-		    while(currTime - startTime <= 0.3){//3 Seconds
-			runHookLift(0.5);//50% Power
-			currTime = Timer.getFPGATimestamp();
-		    }
+    			double startTime = Timer.getFPGATimestamp();
+    			double currTime = startTime;
+    			while(currTime - startTime <= 0.3){//3 Seconds
+    				runHookLift(0.5);//50% Power
+    				currTime = Timer.getFPGATimestamp();
+    			}
     		}
     	});
 		return t;
