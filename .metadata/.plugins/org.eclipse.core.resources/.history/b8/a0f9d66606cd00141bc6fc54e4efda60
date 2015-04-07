@@ -1,7 +1,0 @@
-package org.usfirst.frc.team4911.robot;
-
-import edu.wpi.first.wpilibj.CANTalon;
-
-public class DriveSystem {
-    private CANTalon leftFront;
-}

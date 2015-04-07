@@ -147,7 +147,8 @@ public class Robot extends SampleRobot {
 	// 0 = Nothing
 	// 1 = Tote and Can
 	// 2 = Can from step
-	// 3 = Two Can auto
+	// 3 = Two Can auto - DO NOT USE!!!!!
+	//4 - One Can auto - untested
 	//CHANGE AUTO HERE!!!!!
 	//CHANGE AUTO HERE!!!!!
 	//CHANGE AUTO HERE!!!!!
@@ -155,13 +156,13 @@ public class Robot extends SampleRobot {
 	
 	
 	
-	/*frame = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
+	frame = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
         session = NIVision.IMAQdxOpenCamera("cam0",
         	NIVision.IMAQdxCameraControlMode.CameraControlModeController);
         NIVision.IMAQdxConfigureGrab(session);
 
         cameraServer = CameraServer.getInstance();
-        cameraServer.setQuality(30);*/
+        cameraServer.setQuality(30);
         
         /***************************************
          *
@@ -204,12 +205,12 @@ public class Robot extends SampleRobot {
 	//NIVision.IMAQdxStartAcquisition(session);
 		
 	//Direction Initialization
-	/*if(autoMode == 2) {
+	if(autoMode == 2 || autoMode == 4) {
 	    reinitializingIMU(2.0);//Two Second Max
-	}*/
+	}
 		
 	//CAMERA THREAD
-	/*Thread cameraThread = new Thread(new Runnable(){
+	Thread cameraThread = new Thread(new Runnable(){
 	    public void run(){
 		while(isOperatorControl() && isEnabled()){
 		    //Camera Update
@@ -218,7 +219,7 @@ public class Robot extends SampleRobot {
 		}
 	    }
 	});
-	cameraThread.start();*/
+	//cameraThread.start();
 		
 	//PAYLOAD OPERATOR"S THREAD
 	Thread payloadOperatorThread = new Thread(new Runnable(){
@@ -386,9 +387,11 @@ public class Robot extends SampleRobot {
 		    driveWithPID(x, y, angle);					
 		}
 	    }
+	   
 	}//END of Main TeleOp Loop
 		
-	drive(0.0, 0.0, 0.0, 0.0);	
+	drive(0.0, 0.0, 0.0, 0.0);
+	//NIVision.IMAQdxStopAcquisition(session);
 	//output.close();
     }
 	
@@ -426,12 +429,13 @@ public class Robot extends SampleRobot {
 		startTime = Timer.getFPGATimestamp();
 		currTime = startTime;
 		//ROTATE 
-		while(isAutonomous() && isEnabled() && currTime - startTime <= 1.85){
-			drive(0.0, 0.0, -0.7, imu.getYaw());
-			currTime = Timer.getFPGATimestamp();
-		}
+		//while(isAutonomous() && isEnabled() && currTime - startTime <= 1.85){
+		//	drive(0.0, 0.0, -0.7, imu.getYaw());
+		//	currTime = Timer.getFPGATimestamp();
+		//}
+		rotateToAngle(-145.0, 2.0);
 		drive(0.0, 0.0, 0.0, 0.0);
-		driveForTime(0.5, -0.5, 0.0, imu.getYaw(), 0.25);
+		driveForTime(0.5, -0.5, 0.0, imu.getYaw(), 0.25); //0.25
 		startTime = Timer.getFPGATimestamp();
 		currTime = startTime;
 		//CONTAINER LIFT DOWN
@@ -440,6 +444,7 @@ public class Robot extends SampleRobot {
 			currTime = Timer.getFPGATimestamp();
 		}
 		runContainerLift(0.0);
+		driveForTime(-0.5, 0.5, 0.0, imu.getYaw(), 0.25);
 		startTime = Timer.getFPGATimestamp();
 		currTime = startTime;
 		//CLAMP IN
@@ -457,13 +462,14 @@ public class Robot extends SampleRobot {
 			currTime = Timer.getFPGATimestamp();
 		}
 		runContainerLift(0.0);
-		startTime = Timer.getFPGATimestamp();
+		/*startTime = Timer.getFPGATimestamp();
 		currTime = startTime;
 		//ROTATE 
 		while(isAutonomous() && isEnabled() && currTime - startTime <= 0.9){
 			drive(0.0, 0.0, 0.7, imu.getYaw());
 			currTime = Timer.getFPGATimestamp();
-		}
+		}*/
+		rotateToAngle(-90.0, 2.0);
 		drive(0.0, 0.0, 0.0, 0.0);
 		startTime = Timer.getFPGATimestamp();
 		currTime = startTime;
@@ -477,13 +483,14 @@ public class Robot extends SampleRobot {
 	    else if(autoMode == 2) {
 		//Step can auto
 		driveForTime(-0.5, 0.0, 0.0, imu.getYaw(), .1);
-		Timer.delay(4.0);
+		Timer.delay(2.5);
 		driveForTime(0.5, 0.0, 0.0, imu.getYaw(), 2.25);
 		driveForTime(-0.5, 0.0, 0.0, imu.getYaw(), 1.5);
 		Timer.delay(1.0);
 		driveForTime(0.5, 0.0, 0.0, imu.getYaw(), 1.25);
 		retractArm();
-		driveForTime(0.0, 0.0, -0.7, imu.getYaw(), 1.25);
+		//driveForTime(0.0, 0.0, -0.7, imu.getYaw(), 1.25);
+		//rotateToAngle(-92, 2.0);
 		imu.zeroYaw();
 	    }
 	    else if(autoMode == 3) {
@@ -496,6 +503,24 @@ public class Robot extends SampleRobot {
 		}
 		runHookLift(0.0);
 		driveForTime(-0.5, 0.0, 0.0, imu.getYaw(), 1.5);
+	    }
+	    else if(autoMode == 4) {
+		double startTime = Timer.getFPGATimestamp();
+		double currTime = startTime;
+		while(isAutonomous() && isEnabled() && currTime - startTime <= 3.75) {
+		    runClampInward();
+		    currTime = Timer.getFPGATimestamp();
+		}
+		runClamp(0.0);
+		startTime = Timer.getFPGATimestamp();
+		currTime = startTime;
+		while(isAutonomous() && isEnabled() && currTime - startTime <= 0.8) {
+		    runContainerLift(-1.0);
+		    currTime = Timer.getFPGATimestamp();
+		}
+		runContainerLift(0.0);
+		rotateToAngle(180.0, 2.0);
+		imu.zeroYaw();
 	    }
 		/*
 		startTime = Timer.getFPGATimestamp();
@@ -854,7 +879,7 @@ public class Robot extends SampleRobot {
 	public void runClampOutward(){
 	    containerContainer1.changeControlMode(ControlMode.PercentVbus);
 	    containerContainer2.changeControlMode(ControlMode.Follower);
-	    if(clampPot.get() < 0.9491851645337156) {
+	    if(clampPot.get() > 0.21372848527866198) {//0.9491851645337156
 		containerContainer1.set(-1.0);
 	    }
 	    else {
@@ -866,8 +891,8 @@ public class Robot extends SampleRobot {
 	public void runClampInward() {
 	    containerContainer1.changeControlMode(ControlMode.PercentVbus);
 	    containerContainer2.changeControlMode(ControlMode.Follower);
-    	//pot value:   0.4499214632998128 if greater, fast
-	    if(clampPot.get() > 0.6863350027983585) {
+    	//pot value:   0.6863350027983585 if greater, fast
+	    if(clampPot.get() < 0.4481196270848689) {
 		containerContainer1.set(1.0);
 	    }
 	    else {
